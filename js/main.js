@@ -50,6 +50,8 @@ function refreshHud() {
     d.className = 'pip' + (i < s.charges ? '' : ' empty');
     box.appendChild(d);
   }
+  document.getElementById('bb-coins').textContent = '\u{1FA99} ' + Math.floor(s.bank);
+  document.getElementById('bb-rate').textContent = 'Coins/s $' + Math.floor(s.incomeRate);
   const combo = document.getElementById('combo');
   if (s.combo >= 2) { combo.textContent = 'x' + s.combo + ' COMBO'; combo.classList.add('show'); }
   else combo.classList.remove('show');

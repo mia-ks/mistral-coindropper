@@ -70,7 +70,7 @@ function makeEngine(CONFIG) {
     return {
       id: m.id, type: m.type, go: m.go, x: m.pos[0], y: m.pos[1], z: m.pos[2],
       yaw: m.yaw, tierIdx: m.tierName != null ? tiers.findIndex((t) => t.name === m.tierName) : best,
-      tierIdxFallback: best, params: p, zone, exit: m.exit || null,
+      tierIdxFallback: best, params: p, zone, exit: m.exit || null, visual: m.visual || null,
       t: 0, pulse: 0, on: true, platT: 0, platPos: 0, magPos: 0, level: p.level || 1,
     };
   }

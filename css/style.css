@@ -64,3 +64,17 @@ body {
   text-align: center; font-size: 10px; color: #5f739e;
   background: rgba(14, 22, 38, 0.9); padding: 4px;
 }
+
+#bottombar {
+  position: fixed; bottom: 22px; left: 0; right: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.bpill {
+  background: rgba(20, 28, 52, 0.92); border: 1px solid #33456e; border-radius: 999px;
+  padding: 7px 14px; font-weight: 800; font-size: 14px; color: #ffd24a;
+}
+#bb-rate { color: #7dcea0; }
+#shop-btn {
+  background: linear-gradient(180deg, #ffd24a, #ff9f1a); border: none; border-radius: 999px;
+  padding: 8px 22px; font-weight: 900; font-size: 14px; color: #4a2c00; cursor: pointer;
+}

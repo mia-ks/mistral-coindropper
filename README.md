@@ -82,10 +82,10 @@ parent-resolved **world transforms** (see `re/ANALYSIS.md` and `re/gen_layouts.p
 
 ## Screenshots
 
-- `docs/screenshot-level1.png`, `docs/screenshot-level12.png`, `docs/screenshot-level19.png` -
+- `docs/screenshot-level1.png`, `docs/screenshot-level7.png`, `docs/screenshot-level10.png`, `docs/screenshot-level14.png` -
   **real Chromium (SwiftShader WebGL) screenshots** at 1080x1920 portrait, served over
   local http (see `tools/screenshot.mjs`).
-- `docs/compare-level*.png` - side-by-side with the original's Play Store screenshots (`re/refshots/`).
+- `docs/compare-level{1,7,10,14}.png` - side-by-side with the original's Play Store screenshots for the SAME stages (ref2=stage 1, ref6=stage 7, ref4=stage 10, ref0=stage 14 in `re/refshots/`).
 
 ## Tests
 

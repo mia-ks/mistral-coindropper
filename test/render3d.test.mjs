@@ -47,28 +47,30 @@ for (const c of world.coins) {
 built.scene.add(built.coinGroup);
 
 const W = 405, H = 720; // portrait 9:16 mobile
-const camera = new THREE.PerspectiveCamera(1, W / H, 3, 900);
-renderer.applyCamera(camera, level, W / H);
+const camera = new THREE.PerspectiveCamera(1, W / H, 3, 2000);
+renderer.applyCamera(camera, level, W / H, world); // same fit path as the runtime
 const buf = raster.render(world, built, W, H, camera);
 
-let bg = 0, orange = 0, platform = 0, pusher = 0;
-const rowsWithPlatform = new Set();
+let bg = 0, orange = 0, white = 0, green = 0, pusher = 0;
+const rowsWithBlock = new Set();
 for (let y = 0; y < H; y++) {
   for (let x = 0; x < W; x++) {
     const i = (y * W + x) * 4;
     const r = buf[i], g = buf[i + 1], b = buf[i + 2];
-    if (b > 150 && r > 80 && r < 200 && g < 160) bg++;
+    if (b > 150 && r > 80 && r < 200 && g < 110) bg++;
     if (r > 200 && g > 100 && g < 200 && b < 80) orange++;
-    if (r > 215 && g > 215 && b > 218) { platform++; rowsWithPlatform.add(y); }
-    if (b > 180 && r < 120 && g < 160) pusher++;
+    if (r > 215 && g > 215 && b > 218) { white++; rowsWithBlock.add(y); }
+    if (g > 170 && r < 200 && b < 160 && g > r) green++;
+    if (b > 200 && r < 90 && g >= 110 && g < 180) pusher++;
   }
 }
 const total = W * H;
-console.log(`pixels: bg=${(100 * bg / total).toFixed(1)}% coins=${orange} platform=${platform} (rows: ${rowsWithPlatform.size}) pusher=${pusher}`);
-assert.ok(bg / total > 0.25, 'purple background visible');
+console.log(`pixels: bg=${(100 * bg / total).toFixed(1)}% coins=${orange} whiteBlocks=${white} greenTops=${green} (rows: ${rowsWithBlock.size}) pusher=${pusher}`);
+assert.ok(bg / total > 0.2, 'background visible');
 assert.ok(orange > 150, 'coins visibly rendered, got ' + orange);
-assert.ok(platform > 3000, 'platforms visibly rendered, got ' + platform);
-assert.ok(rowsWithPlatform.size > 40, 'multi-tier silhouette: platform spans many rows, got ' + rowsWithPlatform.size);
+assert.ok(white > 3000, 'solid tier blocks visibly rendered (white sides), got ' + white);
+assert.ok(green > 500, 'green tier tops visible, got ' + green);
+assert.ok(rowsWithBlock.size > 40, 'tower silhouette: blocks span many rows, got ' + rowsWithBlock.size);
 assert.ok(pusher > 100, 'pusher visible, got ' + pusher);
 
 console.log('render3d ok: portrait frame rasterized from the real scene graph + extracted camera, pixel classes verified');
