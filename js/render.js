@@ -35,12 +35,12 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     g.userData.star = star;
     switch (m.type) {
       case 'conveyor': {
-        const base = box(W.halfX * 2, 0.5, m.w, 0x3a4a63);
+        const base = box(W.halfX * 2, 0.5, m.w, 0x2f7bff, { roughness: 0.5 });
         base.position.y = 0.25;
         g.add(base);
         g.userData.rollers = [];
         for (let i = 0; i < 5; i++) {
-          const r = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, W.halfX * 2, 12), new THREE.MeshStandardMaterial({ color: 0x55688a }));
+          const r = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, W.halfX * 2, 12), new THREE.MeshStandardMaterial({ color: 0xeaf3ff }));
           r.rotation.z = Math.PI / 2;
           r.position.set(0, 0.55, -m.w / 2 + (i + 0.5) * (m.w / 5));
           g.add(r);
@@ -49,16 +49,16 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         break;
       }
       case 'fan': {
-        const pole = box(0.25, m.y, 0.25, 0x2e6f8e);
+        const pole = box(0.25, m.y, 0.25, 0xff6ad5);
         pole.position.y = m.y / 2;
         g.add(pole);
         const head = new THREE.Group();
         head.position.y = m.y;
-        const ring = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.14, 10, 24), new THREE.MeshStandardMaterial({ color: 0x2e6f8e }));
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.14, 10, 24), new THREE.MeshStandardMaterial({ color: 0xff6ad5 }));
         head.add(ring);
         const blades = new THREE.Group();
         for (let i = 0; i < 3; i++) {
-          const b = box(1.7, 0.08, 0.22, 0x8cdcff);
+          const b = box(1.7, 0.08, 0.22, 0xffe3f4);
           b.rotation.y = (i * Math.PI * 2) / 3;
           blades.add(b);
         }
@@ -71,7 +71,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       case 'magnet':
       case 'movingMagnet':
       case 'suction': {
-        const color = m.type === 'suction' ? 0x7a4ad6 : 0xc0392b;
+        const color = m.type === 'suction' ? 0xa55eff : 0xff4757;
         const body = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.35, 10, 20, Math.PI), new THREE.MeshStandardMaterial({ color }));
         body.position.y = m.y;
         body.rotation.x = Math.PI;
@@ -87,10 +87,10 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         break;
       }
       case 'launcher': {
-        const base = box(2.2, 0.3, 2.2, 0x6b5636);
+        const base = box(2.2, 0.3, 2.2, 0xffa502);
         base.position.y = 0.15;
         g.add(base);
-        const cone = new THREE.Mesh(new THREE.ConeGeometry(1.0, 1.6, 16), new THREE.MeshStandardMaterial({ color: 0xb8860b }));
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(1.0, 1.6, 16), new THREE.MeshStandardMaterial({ color: 0xffc312 }));
         cone.position.y = 1.1;
         g.add(cone);
         const flash = new THREE.Mesh(new THREE.SphereGeometry(1.4, 12, 12), new THREE.MeshBasicMaterial({ color: 0xffdc50, transparent: true, opacity: 0.0 }));
@@ -100,7 +100,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         break;
       }
       case 'portal': {
-        const tor = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.16, 10, 28), new THREE.MeshStandardMaterial({ color: 0xb44aff, emissive: 0x5a1a99 }));
+        const tor = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.16, 10, 28), new THREE.MeshStandardMaterial({ color: 0xc56cf0, emissive: 0x6c2bd9 }));
         tor.position.y = 2.2;
         g.add(tor);
         g.userData.tor = tor;
@@ -108,7 +108,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       }
       case 'gate':
       case 'dollarGate': {
-        const color = m.type === 'gate' ? 0x27ae60 : 0x145a32;
+        const color = m.type === 'gate' ? 0x2ed573 : 0x1e90ff;
         const p1 = box(0.35, 4, 0.35, color);
         p1.position.set(-1.8, 2, 0);
         const p2 = p1.clone();
@@ -122,21 +122,21 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       }
       case 'spike': {
         for (let i = 0; i < 5; i++) {
-          const cone = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.9, 8), new THREE.MeshStandardMaterial({ color: 0xe74c3c }));
+          const cone = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.9, 8), new THREE.MeshStandardMaterial({ color: 0xff4757 }));
           cone.position.set(-1 + i * 0.5, 0.45, 0);
           g.add(cone);
         }
         break;
       }
       case 'platform': {
-        const pad = box(W.halfX * 2, 0.4, m.w, 0x8e6e3a);
+        const pad = box(W.halfX * 2, 0.4, m.w, 0x7bed9f);
         pad.position.y = 0.2;
         g.add(pad);
         g.userData.pad = pad;
         break;
       }
       case 'laser': {
-        const emitter = box(0.5, 4.5, 0.5, 0x555a66);
+        const emitter = box(0.5, 4.5, 0.5, 0x576574);
         emitter.position.y = 2.25;
         g.add(emitter);
         const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 4.5, 8), new THREE.MeshBasicMaterial({ color: 0xff3c3c, transparent: true, opacity: 0.85 }));
@@ -152,30 +152,33 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
 
   function buildScene(world) {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x101828);
-    scene.fog = new THREE.Fog(0x101828, 30, 60);
-    scene.add(new THREE.AmbientLight(0x8899bb, 0.9));
-    const dir = new THREE.DirectionalLight(0xffffff, 1.4);
+    scene.background = new THREE.Color(0x6a4fd8);
+    scene.fog = new THREE.Fog(0x6a4fd8, 34, 70);
+    scene.add(new THREE.AmbientLight(0xffffff, 1.15));
+    const dir = new THREE.DirectionalLight(0xfff2d9, 1.6);
     dir.position.set(5, 14, 10);
     scene.add(dir);
 
-    const plat = box(W.halfX * 2 + 1.5, 1, W.edgeZ - W.backZ + 3, 0x4a3b28);
+    const plat = box(W.halfX * 2 + 1.5, 1, W.edgeZ - W.backZ + 3, 0xf2f5ff, { roughness: 0.9, metalness: 0 });
     plat.position.set(0, -0.5, (W.backZ + W.edgeZ) / 2 + 0.5);
     scene.add(plat);
-    const lip = box(W.halfX * 2 + 1.5, 0.12, W.edgeZ - W.backZ + 3, 0x6b5636);
-    lip.position.set(0, 0.06, (W.backZ + W.edgeZ) / 2 + 0.5);
+    const lip = box(W.halfX * 2 + 1.5, 0.14, W.edgeZ - W.backZ + 3, 0x9fe870);
+    lip.position.set(0, 0.07, (W.backZ + W.edgeZ) / 2 + 0.5);
     scene.add(lip);
-    const back = box(W.halfX * 2 + 1.5, 6, 0.5, 0x33291b);
-    back.position.set(0, 3, W.backZ - 0.25);
+    const back = box(W.halfX * 2 + 1.5, 1.6, 0.4, 0xdfe6f7, { roughness: 0.9 });
+    back.position.set(0, 0.8, W.backZ - 0.2);
     scene.add(back);
     for (const s of [-1, 1]) {
-      const wall = box(0.4, 6, W.edgeZ - W.backZ + 3, 0x33291b);
-      wall.position.set(s * (W.halfX + 0.55), 3, (W.backZ + W.edgeZ) / 2 + 0.5);
+      const wall = box(0.35, 1.6, W.edgeZ - W.backZ + 3, 0xdfe6f7, { roughness: 0.9 });
+      wall.position.set(s * (W.halfX + 0.55), 0.8, (W.backZ + W.edgeZ) / 2 + 0.5);
       scene.add(wall);
     }
+    const deck = box(W.halfX * 2 + 1.5, 1.2, 3.4, 0xe8edfb, { roughness: 0.9 });
+    deck.position.set(0, -1.2, W.edgeZ + 1.7);
+    scene.add(deck);
 
-    const collector = box(W.halfX * 2 + 1.5, 3.5, 3, 0x2ecc71, { transparent: true, opacity: 0.18 });
-    collector.position.set(0, 1.75, W.edgeZ + 1.5);
+    const collector = box(W.halfX * 2 + 1.5, 2.2, 3.2, 0x2ed573, { transparent: true, opacity: 0.22, emissive: 0x0a5c2e });
+    collector.position.set(0, 0.6, W.edgeZ + 1.6);
     scene.add(collector);
     const cTex = textTexture('COLLECT', '#7dffa8');
     const cLabel = new THREE.Mesh(new THREE.PlaneGeometry(4, 2), new THREE.MeshBasicMaterial({ map: cTex || null, transparent: true, color: 0x2ecc71 }));
@@ -183,7 +186,10 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     cLabel.rotation.y = Math.PI;
     scene.add(cLabel);
 
-    const pusher = box(W.halfX * 2 + 1, W.pusherH, W.pusherThick, 0x8fa3c8, { metalness: 0.5, roughness: 0.3 });
+    const pusher = box(W.halfX * 2 + 1, W.pusherH, W.pusherThick, 0x2f7bff, { metalness: 0.25, roughness: 0.35 });
+    const pusherFace = box(W.halfX * 2 + 1, W.pusherH - 0.5, 0.12, 0x9cc4ff);
+    pusherFace.position.z = W.pusherThick / 2 + 0.07;
+    pusher.add(pusherFace);
     pusher.position.set(0, W.pusherH / 2, world.pusher.z + W.pusherThick / 2);
     scene.add(pusher);
 
@@ -199,10 +205,16 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
   function coinMesh(def) {
     const g = new THREE.Group();
     const h = W.coinH;
-    const rim = new THREE.Mesh(new THREE.CylinderGeometry(W.coinR + 0.05, W.coinR + 0.05, h * 2, 20), new THREE.MeshStandardMaterial({ color: def.rim, roughness: 0.4, metalness: 0.6 }));
-    const face = new THREE.Mesh(new THREE.CylinderGeometry(W.coinR, W.coinR, h * 2 + 0.02, 20), new THREE.MeshStandardMaterial({ color: def.color, roughness: 0.25, metalness: 0.75 }));
-    const mark = new THREE.Mesh(new THREE.CylinderGeometry(W.coinR * 0.55, W.coinR * 0.55, h * 2 + 0.04, 12), new THREE.MeshStandardMaterial({ color: def.rim, roughness: 0.5, metalness: 0.5 }));
-    g.add(rim); g.add(face); g.add(mark);
+    const rim = new THREE.Mesh(new THREE.CylinderGeometry(W.coinR + 0.05, W.coinR + 0.05, h * 2, 24), new THREE.MeshStandardMaterial({ color: def.rim, roughness: 0.35, metalness: 0.7 }));
+    const face = new THREE.Mesh(new THREE.CylinderGeometry(W.coinR, W.coinR, h * 2 + 0.02, 24), new THREE.MeshStandardMaterial({ color: def.color, roughness: 0.2, metalness: 0.8 }));
+    g.add(rim); g.add(face);
+    const tex = textTexture(def.gem ? '◆' : '$', '#8a5a00');
+    if (tex) {
+      const face2 = new THREE.Mesh(new THREE.CircleGeometry(W.coinR * 0.72, 20), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+      face2.rotation.x = -Math.PI / 2;
+      face2.position.y = h + 0.015;
+      g.add(face2);
+    }
     return g;
   }
 
@@ -211,8 +223,8 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     renderer.setPixelRatio(typeof devicePixelRatio !== 'undefined' ? devicePixelRatio : 1);
     container.appendChild(renderer.domElement);
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 120);
-    camera.position.set(0, 10.5, 27);
-    camera.lookAt(0, 0.5, 8);
+    camera.position.set(8.5, 11.5, 25);
+    camera.lookAt(0, 0.2, 7.5);
     const raycaster = new THREE.Raycaster();
     const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
     let built = null;

@@ -8,7 +8,7 @@ const CONFIG = {
     pusherTravel: 3.5,
     pusherThick: 0.8,
     pusherH: 3,
-    coinR: 0.55,
+    coinR: 0.62,
     coinH: 0.09,
     gravity: 14,
     maxCoins: 130,
@@ -16,7 +16,7 @@ const CONFIG = {
     spawnY: 8,
   },
   coins: [
-    { id: 0, name: 'Bronze', value: 2, weight: 90, color: 0xc98a4b, rim: 0x8a5a2b, symbol: 'B' },
+    { id: 0, name: 'Bronze', value: 2, weight: 90, color: 0xff9f1a, rim: 0xb25e00, symbol: '$' },
     { id: 1, name: 'Silver', value: 5, weight: 8, color: 0xd8dde6, rim: 0x8f97a6, symbol: 'S' },
     { id: 2, name: 'Gold', value: 10, weight: 2, color: 0xffd24a, rim: 0xb8860b, symbol: 'G' },
     { id: 3, name: 'Gem', value: 1, weight: 0, color: 0x4ad6ff, rim: 0x1a7fa8, symbol: '◆', gem: true },
