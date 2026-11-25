@@ -13,24 +13,37 @@ const engine = makeEngine(CONFIG);
 const renderer = makeRenderer(CONFIG, LEVELS, THREE);
 const raster = makeRasterizer(THREE);
 
-// camera rig must match the extracted (handedness-converted) LevelCameraBounds for every level
+// camera rig must match the extracted (handedness-converted) LevelCameraBounds for every
+// level, going through the SAME runtime path as the app (applyCamera with world -> marker fit)
 for (const lv of LEVELS) {
   const cam = new THREE.PerspectiveCamera(1, 9 / 16, 3, 900);
-  renderer.applyCamera(cam, lv, 9 / 16); // no world -> no fit, raw extracted pose
+  const w = engine.createWorld(lv);
+  renderer.applyCamera(cam, lv, 9 / 16, w); // runtime path: extracted pose + marker-quad fit
   const gl = lv.cameraGL;
   assert.ok(gl, 'level ' + lv.index + ' cameraGL');
   assert.ok(Math.abs(cam.fov - gl.fov) < 1e-6, 'level ' + lv.index + ' fov');
-  assert.ok(Math.abs(cam.position.x - gl.pos[0]) < 1e-6 &&
-            Math.abs(cam.position.y - gl.pos[1]) < 1e-6 &&
-            Math.abs(cam.position.z - gl.pos[2]) < 1e-6, 'level ' + lv.index + ' cam pos');
   const wantQ = new THREE.Quaternion(gl.quat[0], gl.quat[1], gl.quat[2], gl.quat[3]);
-  assert.ok(Math.abs(cam.quaternion.dot(wantQ)) > 1 - 1e-6, 'level ' + lv.index + ' cam quat');
-  // three.js camera forward is local -z; it must equal quat * (0,0,-1)
+  assert.ok(Math.abs(cam.quaternion.dot(wantQ)) > 1 - 1e-6, 'level ' + lv.index + ' cam quat (fit must not change orientation)');
+  // the fit only slides along the extracted view ray: cam.pos = target - fwd * d
+  const b = gl.bounds;
+  const target = new THREE.Vector3(
+    (b.topMarker[0] + b.bottomMarker[0] + b.leftMarker[0] + b.rightMarker[0]) / 4,
+    (b.topMarker[1] + b.bottomMarker[1] + b.leftMarker[1] + b.rightMarker[1]) / 4,
+    (b.topMarker[2] + b.bottomMarker[2] + b.leftMarker[2] + b.rightMarker[2]) / 4);
   const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(wantQ);
   const got = cam.getWorldDirection(new THREE.Vector3());
   assert.ok(got.distanceTo(fwd) < 1e-4, 'level ' + lv.index + ' forward');
+  const v = cam.position.clone().sub(target);
+  assert.ok(v.length() > 1, 'level ' + lv.index + ' camera moved off target');
+  v.normalize();
+  assert.ok(Math.abs(v.dot(fwd) + 1) < 1e-3, 'level ' + lv.index + ' camera sits on the extracted view ray');
+  // the marker quad must fit inside the frame at the fitted distance
+  for (const mk of ['topMarker', 'bottomMarker', 'leftMarker', 'rightMarker']) {
+    const p = new THREE.Vector3(...b[mk]).project(cam);
+    assert.ok(p.z > -1 && p.z < 1 && Math.abs(p.x) <= 1.0 && Math.abs(p.y) <= 1.0, 'level ' + lv.index + ' marker ' + mk + ' in frame');
+  }
 }
-console.log('ok - camera pose (mirrored pos + quat, fov 20) matches extracted LevelCameraBounds for all 19 levels');
+console.log('ok - runtime camera path (pose + marker fit) matches extracted LevelCameraBounds for all 19 levels');
 
 // scene graph is built from the real exported meshes
 const level = LEVELS[11]; // level 12: 3 tiers
@@ -64,24 +77,29 @@ const camera = new THREE.PerspectiveCamera(1, W / H, 3, 2000);
 renderer.applyCamera(camera, level, W / H, world);
 const buf = raster.render(world, built, W, H, camera);
 
-let bg = 0, orange = 0, nonBg = 0, white = 0;
+let bg = 0, orange = 0, nonBg = 0, white = 0, colored = 0;
 const rowsWithNonBg = new Set();
 const rowsWithWhite = new Set();
+const colorSet = new Set();
 for (let y = 0; y < H; y++) {
   for (let x = 0; x < W; x++) {
     const i = (y * W + x) * 4;
     const r = buf[i], g = buf[i + 1], b = buf[i + 2];
     const isBg = b > 150 && r > 80 && r < 200 && g < 110;
+    const isWhite = r > 215 && g > 215 && b > 218;
     if (isBg) bg++; else { nonBg++; rowsWithNonBg.add(y); }
+    if (isWhite) { white++; rowsWithWhite.add(y); } else if (!isBg) colored++;
+    colorSet.add(((r >> 4) << 8) | ((g >> 4) << 4) | (b >> 4));
     if (r > 170 && g > 90 && g < 215 && b < 100 && r > b + 60) orange++;
-    if (r > 215 && g > 215 && b > 218) { white++; rowsWithWhite.add(y); }
   }
 }
 const total = W * H;
-console.log(`pixels: bg=${(100 * bg / total).toFixed(1)}% nonBg=${(100 * nonBg / total).toFixed(1)}% white=${white} coins=${orange} nonBgRows=${rowsWithNonBg.size}/${H} whiteRows=${rowsWithWhite.size}/${H}`);
+console.log(`pixels: bg=${(100 * bg / total).toFixed(1)}% nonBg=${(100 * nonBg / total).toFixed(1)}% white=${white} colored=${colored} coins=${orange} distinctColors=${colorSet.size} nonBgRows=${rowsWithNonBg.size}/${H} whiteRows=${rowsWithWhite.size}/${H}`);
 assert.ok(nonBg / total > 0.15, 'frame is not blank: tower occupies >15% of the frame, got ' + (100 * nonBg / total).toFixed(1) + '%');
-assert.ok(rowsWithWhite.size > H * 0.3, 'tower silhouette (light structure) spans >30% of frame rows, got ' + rowsWithWhite.size);
+assert.ok(rowsWithNonBg.size > H * 0.4, 'tower silhouette spans >40% of frame rows, got ' + rowsWithNonBg.size + '/' + H);
 assert.ok(orange > 30, 'coins visibly rendered, got ' + orange);
 assert.ok(bg / total > 0.1, 'background visible around the tower, got ' + (100 * bg / total).toFixed(1) + '%');
+assert.ok(colorSet.size > 12, 'frame has material/color diversity (not a flat white model), got ' + colorSet.size + ' distinct colors');
+assert.ok(colored / total > 0.08, 'non-white non-bg structure >8% of frame (colored machinery), got ' + (100 * colored / total).toFixed(1) + '%');
 
 console.log('render3d ok: portrait frame rasterized from the real exported scene graph + extracted camera; non-blank, silhouette and coins verified');

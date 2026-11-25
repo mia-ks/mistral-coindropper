@@ -3,14 +3,22 @@
 // js/level_layouts.js, mirrored x -> -x into right-handed three.js with matching
 // quaternion camera from LevelCameraBounds). Only coins are procedural (they are
 // spawned at runtime in the original too), plus the background gradient plane.
-const _MESH_LIB = (typeof MESH_LIB !== 'undefined') ? MESH_LIB
-  : ((typeof module !== 'undefined' && module.exports) ? require('./meshlib.js').MESH_LIB : null);
+const _ML = (typeof MESH_LIB !== 'undefined') ? { LIB: MESH_LIB, MATS: (typeof MESH_MATS !== 'undefined' ? MESH_MATS : {}) }
+  : ((typeof module !== 'undefined' && module.exports)
+      ? (() => { const m = require('./meshlib.js'); return { LIB: m.MESH_LIB, MATS: m.MESH_MATS }; })()
+      : { LIB: null, MATS: {} });
 
 function makeRenderer(CONFIG, LEVELS, THREE) {
   const W = CONFIG.world;
-  const LIB = _MESH_LIB;
+  const LIB = _ML.LIB;
+  const MATS = _ML.MATS;
 
-  // ---- caches: one BufferGeometry per submesh, one material per color ----
+  function yawDirLocal(yawDeg) {
+    const r = (yawDeg * Math.PI) / 180;
+    return [Math.sin(r), Math.cos(r)];
+  }
+
+  // ---- caches: one BufferGeometry per submesh, one material per exported material ----
   const geoCache = new Map();
   function geomsFor(name) {
     if (geoCache.has(name)) return geoCache.get(name);
@@ -27,8 +35,17 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         }
         const g = new THREE.BufferGeometry();
         g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+        if (sub.nrm && sub.nrm.length === n) {
+          const na = new Float32Array(n * 3);
+          for (let i = 0; i < n; i++) { na[i * 3] = sub.nrm[i][0] / 1000; na[i * 3 + 1] = sub.nrm[i][1] / 1000; na[i * 3 + 2] = sub.nrm[i][2] / 1000; }
+          g.setAttribute('normal', new THREE.BufferAttribute(na, 3));
+        } else g.computeVertexNormals();
+        if (sub.uv && sub.uv.length === n) {
+          const ua = new Float32Array(n * 2);
+          for (let i = 0; i < n; i++) { ua[i * 2] = sub.uv[i][0] / 10000; ua[i * 2 + 1] = sub.uv[i][1] / 10000; }
+          g.setAttribute('uv', new THREE.BufferAttribute(ua, 2));
+        }
         g.setIndex(sub.idx);
-        g.computeVertexNormals();
         list.push(g);
       }
     }
@@ -36,7 +53,45 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     return list;
   }
 
+  // textures from the exported data URLs (browser only); node tests fall back to flat colors
+  const texCache = new Map();
+  const pendingTex = [];
+  function texFor(def) {
+    if (!def.tex || typeof document === 'undefined') return null;
+    if (texCache.has(def.tex)) return texCache.get(def.tex);
+    const img = new Image();
+    const tex = new THREE.Texture(img);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    tex.colorSpace = THREE.SRGBColorSpace;
+    if (def.uvScale) tex.repeat.set(def.uvScale[0], def.uvScale[1]);
+    if (def.uvOffset) tex.offset.set(def.uvOffset[0], def.uvOffset[1]);
+    const p = new Promise((res) => { img.onload = () => { tex.needsUpdate = true; res(); }; img.onerror = () => res(); });
+    pendingTex.push(p);
+    img.src = def.tex;
+    texCache.set(def.tex, tex);
+    return tex;
+  }
+
   const matCache = new Map();
+  function matByPid(pid) {
+    const key = 'p' + pid;
+    if (matCache.has(key)) return matCache.get(key);
+    const def = MATS[String(pid)] || MATS[pid];
+    let mat;
+    if (def) {
+      const [r, g, b, a] = def.color;
+      const map = texFor(def);
+      mat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(r, g, b), roughness: 0.65, metalness: 0.1, map,
+        transparent: a < 0.995, opacity: a,
+      });
+    } else {
+      mat = new THREE.MeshStandardMaterial({ color: 0xd8dce6, roughness: 0.75, metalness: 0.15 });
+    }
+    matCache.set(key, mat);
+    return mat;
+  }
   function matFor(colors, i) {
     const c = (colors && colors.length ? colors[i % colors.length] : null) || [0.8, 0.8, 0.8];
     const key = c[0].toFixed(4) + ',' + c[1].toFixed(4) + ',' + c[2].toFixed(4);
@@ -47,13 +102,21 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     }
     return matCache.get(key);
   }
+  function instMat(inst, s) {
+    if (inst.mats && inst.mats.length) return matByPid(inst.mats[s % inst.mats.length]);
+    return matFor(inst.colors, s);
+  }
 
   // one THREE.Group per exported instance, one Mesh per submesh (per-submesh material)
   function addInstance(scene, inst) {
     const geos = geomsFor(inst.mesh);
     const grp = new THREE.Group();
+    grp.name = inst.name || '';
+    grp.userData.baseQuat = inst.quat.slice();
+    grp.userData.basePos = inst.pos.slice();
+    grp.userData.baseScale = inst.scale.slice();
     for (let s = 0; s < geos.length; s++) {
-      const mesh = new THREE.Mesh(geos[s], matFor(inst.colors, s));
+      const mesh = new THREE.Mesh(geos[s], instMat(inst, s));
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       grp.add(mesh);
@@ -167,6 +230,16 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         const grp = addInstance(scene, d);
         dozerAnims.push({ grp, base: d.pos.slice(), tierName: d.tier });
       }
+      // attach machine visual groups to their machine (for animations) by proximity
+      for (const m of world.machines) {
+        const v = m.visual;
+        if (!v) continue;
+        const pad = 2.5;
+        m.vizGroups = instanceGroups.filter((g) =>
+          g.position.x > v.min[0] - pad && g.position.x < v.max[0] + pad &&
+          g.position.y > v.min[1] - pad && g.position.y < v.max[1] + pad &&
+          g.position.z > v.min[2] - pad && g.position.z < v.max[2] + pad);
+      }
     }
 
     const coinGroup = new THREE.Group();
@@ -177,7 +250,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
 
   function applyCamera(camera, level, aspect, world) {
     camera.near = 3;
-    camera.far = 2000;
+    camera.far = 8000;
     camera.aspect = aspect;
     const gl = level.cameraGL;
     if (gl) {
@@ -234,11 +307,11 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       camera.updateMatrixWorld(true);
       for (const p of pts) {
         const v = new THREE.Vector3(...p).project(camera);
-        if (v.z < -1 || v.z > 1 || Math.abs(v.x) > margin || Math.abs(v.y) > margin) return false;
+        if (Math.abs(v.x) > margin || Math.abs(v.y) > margin) return false;
       }
       return true;
     };
-    let lo = dist0 * 0.4, hi = dist0 * 24;
+    let lo = dist0 * 0.4, hi = Math.min(dist0 * 200, 7000);
     if (fits(lo)) { /* close enough */ }
     else if (!fits(hi)) { lo = hi; }
     else { for (let i = 0; i < 30; i++) { const mid = (lo + hi) / 2; if (fits(mid)) hi = mid; else lo = mid; } lo = hi; }
@@ -282,6 +355,41 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         if (p.axis === 'x') da.grp.position.set(da.base[0] + delta, da.base[1], da.base[2]);
         else da.grp.position.set(da.base[0], da.base[1], da.base[2] + delta);
       }
+      // machine part animations on the real meshes (fans spin, portals pulse, ...)
+      const t = world.time;
+      for (const m of world.machines) {
+        const gs = m.vizGroups || [];
+        if (!gs.length) continue;
+        const p = m.params;
+        const dir = yawDirLocal(m.yaw);
+        for (const g of gs) {
+          const nm = g.name || '';
+          if ((m.type === 'Fan') && nm.startsWith('Fan')) {
+            const a = (p.speed || 10) * dt * 0.5 + (g.userData.spin || 0);
+            g.userData.spin = a;
+            const bq = new THREE.Quaternion(g.userData.baseQuat[0], g.userData.baseQuat[1], g.userData.baseQuat[2], g.userData.baseQuat[3]);
+            const spin = new THREE.Quaternion(0, 0, Math.sin(a / 2), Math.cos(a / 2)); // local z (blade axis)
+            g.quaternion.copy(bq.multiply(spin));
+          } else if (m.type === 'Portal' && /Portal/.test(nm)) {
+            const s = 1 + 0.07 * Math.sin(t * 3 + g.position.x);
+            g.scale.set(g.userData.baseScale[0] * s, g.userData.baseScale[1] * s, g.userData.baseScale[2] * s);
+          } else if ((m.type === 'Magnet' || m.type === 'MovingMagnet') && /Magnet/.test(nm)) {
+            const mx = m.type === 'MovingMagnet' ? (m.magX != null ? m.magX : m.x) : m.x;
+            const mz = m.type === 'MovingMagnet' ? (m.magZ != null ? m.magZ : m.z) : m.z;
+            g.position.x += (mx - g.position.x) * Math.min(1, 4 * dt);
+            g.position.z += (mz - g.position.z) * Math.min(1, 4 * dt);
+          } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm) && m.firing) {
+            for (const ch of g.children) if (ch.material && ch.material.emissive) ch.material = ch.material.clone(), ch.material.emissive.setRGB(0.7, 0.4, 1.0);
+          } else if (m.type === 'MovingPlatform' && /MovingPlate|Slider/.test(nm) && m.platOff != null) {
+            g.position.set(g.userData.basePos[0] + dir[0] * m.platOff, g.userData.basePos[1], g.userData.basePos[2] + dir[1] * m.platOff);
+          } else if (m.type === 'ConveyorBelt' && /Coveyor/.test(nm)) {
+            for (const ch of g.children) {
+              const map = ch.material && ch.material.map;
+              if (map) map.offset.y -= (p.speed || 2) * dt * 0.06;
+            }
+          }
+        }
+      }
       const seen = new Set();
       for (const c of world.coins) {
         seen.add(c.id);
@@ -304,7 +412,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       renderer.render(built.scene, camera);
     }
 
-    return { render, resize, setLevel, coinMesh, applyCamera, get camera() { return camera; }, get built() { return built; }, get world() { return world; } };
+    return { render, resize, setLevel, coinMesh, applyCamera, whenTexturesReady: () => Promise.all(pendingTex), get camera() { return camera; }, get built() { return built; }, get world() { return world; } };
   }
 
   return { buildScene, create, coinMesh, applyCamera, fitCameraToWorld };
