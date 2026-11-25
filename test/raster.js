@@ -26,6 +26,7 @@ function makeRasterizer(THREE) {
     built.scene.updateMatrixWorld(true);
     built.scene.traverse((obj) => {
       if (!obj.isMesh || !obj.geometry) return;
+      if (obj.userData && obj.userData.skipRaster) return;
       const geo = obj.geometry;
       const pos = geo.attributes.position;
       const idx = geo.index;

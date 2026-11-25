@@ -5,6 +5,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { CONFIG, LEVELS } = require('../js/config.js');
 const { makeEngine } = require('../js/engine.js');
+const { MESH_LIB } = require('../js/meshlib.js');
 
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixture-levels.json'), 'utf8'));
 const engine = makeEngine(CONFIG);
@@ -55,14 +56,27 @@ test('tier floors are real extracted collider AABBs (not evenly spaced)', () => 
   assert.ok(new Set(tops).size > 1, 'level 19 tiers at distinct elevations');
 });
 
-test('camera rig per level matches LevelCameraBounds (fov, euler, zoom marker pos)', () => {
+test('camera rig per level matches extracted LevelCameraBounds (mirrored pos, quat, fov)', () => {
   for (const lv of LEVELS) {
     const fx = fixture.levels['Level ' + lv.index].camera;
-    assert.ok(near(lv.camera.fov, fx.fov, 0.01), 'level ' + lv.index + ' fov');
-    for (let k = 0; k < 3; k++) assert.ok(near(lv.camera.euler[k], fx.euler[k], 0.01), 'level ' + lv.index + ' euler ' + k);
-    for (let k = 0; k < 3; k++) assert.ok(near(lv.camera.pos[k], fx.pos[k], 0.05), 'level ' + lv.index + ' cam pos ' + k);
+    const gl = lv.cameraGL;
+    assert.ok(gl, 'level ' + lv.index + ' has cameraGL');
+    assert.ok(near(gl.fov, fx.fov, 0.01), 'level ' + lv.index + ' fov');
+    for (let k = 0; k < 3; k++) assert.ok(near(gl.pos[k], fx.pos[k], 1e-6), 'level ' + lv.index + ' cam pos ' + k);
+    for (let k = 0; k < 4; k++) assert.ok(near(gl.quat[k], fx.quat[k], 1e-6), 'level ' + lv.index + ' cam quat ' + k);
   }
   assert.strictEqual(LEVELS[0].camera.fov, 20);
+  assert.deepStrictEqual(LEVELS[0].camera.euler, [35, 330, 0]);
+});
+
+test('every level carries real exported mesh instances, all referencing the mesh lib', () => {
+  for (const lv of LEVELS) {
+    assert.ok(lv.meshData && lv.meshData.instances.length > 0, 'level ' + lv.index + ' meshData');
+    for (const inst of lv.meshData.instances) assert.ok(MESH_LIB[inst.mesh] && MESH_LIB[inst.mesh].subs.length > 0, 'level ' + lv.index + ' mesh ' + inst.mesh);
+    for (const d of lv.meshData.dozers) assert.ok(MESH_LIB[d.mesh], 'dozer mesh ' + d.mesh);
+    const tierNames = new Set(lv.tiers.map((t) => t.name));
+    for (const d of lv.meshData.dozers) assert.ok(tierNames.has(d.tier), 'level ' + lv.index + ' dozer tier ' + d.tier);
+  }
 });
 
 test('spawn config extracted: 15 charges, refill 2s, first 10 bronze', () => {

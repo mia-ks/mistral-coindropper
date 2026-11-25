@@ -14,9 +14,14 @@ const q = new URLSearchParams(location.search);
 if (q.get('level')) { game.loadLevel(Math.max(1, Math.min(LEVELS.length, parseInt(q.get('level')) || 1)) - 1); }
 view.setLevel(LEVELS[game.state.levelIndex], game.world);
 // debug/screenshot hook: ?level=N&t=SECONDS&dropEvery=TICKS fast-forwards the sim
+window.__game = game;
+window.__view = view;
 window.__demo = {
   setLevel(n) { game.loadLevel(n - 1); view.setLevel(LEVELS[game.state.levelIndex], game.world); refreshHud(); refreshUpgrades(); },
   simulate(seconds, dropEvery) {
+    game.state.freezeLevel = true; // capture the requested level: never auto-advance mid-sim
+    game.state.progress = 0;
+    game.state.completed = false;
     game.state.charges = 999;
     const n = Math.round(seconds * 60);
     for (let i = 0; i < n; i++) { if (i % (dropEvery || 20) === 0) game.drop(); game.tick(1 / 60); }
@@ -41,7 +46,7 @@ function refreshHud() {
   document.getElementById('level-label').textContent = 'LEVEL ' + (s.levelIndex + 1) + ' / ' + LEVELS.length;
   const pct = Math.min(100, (100 * s.progress) / lv.goal);
   document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = Math.floor(s.progress) + ' / ' + lv.goal;
+  document.getElementById('progress-text').textContent = Math.floor(Math.min(s.progress, lv.goal)) + ' / ' + lv.goal;
   const cap = lv.spawn.maxCharges + s.globalUpgrades.capacity * 5;
   const box = document.getElementById('charges');
   box.innerHTML = '';

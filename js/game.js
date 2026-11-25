@@ -12,6 +12,7 @@ function makeGame(CONFIG, LEVELS, engine) {
     combo: 0, comboTimer: 0,
     progress: 0,
     completed: false,
+    freezeLevel: false, // transient: scripted capture must never auto-advance the level
     upgrades: {},       // machineId -> level
     globalUpgrades: { value: 0, refill: 0, capacity: 0, combo: 0 },
     lastSave: Date.now(),
@@ -28,6 +29,7 @@ function makeGame(CONFIG, LEVELS, engine) {
     world = engine.createWorld(level());
     state.progress = 0;
     state.completed = false;
+    state.freezeLevel = false;
     return world;
   }
 
@@ -109,7 +111,7 @@ function makeGame(CONFIG, LEVELS, engine) {
     }
     // level progression: complete on crossing; last level rolls progress over
     const goal = level().goal;
-    if (state.completed) {
+    if (state.completed && !state.freezeLevel) {
       if (state.levelIndex === LEVELS.length - 1) {
         state.progress -= goal; // endless carry-over, no repeated reward
         state.completed = false;

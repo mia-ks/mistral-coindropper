@@ -91,7 +91,9 @@ function buildLevels() {
     levels.push({
       index: idx,
       goal: raw.goal || CONFIG.goal,
-      camera: raw.camera, // {pos:[x,y,z], euler:[x,y,z], fov}
+      camera: raw.camera, // raw Unity {pos, euler, fov} from LevelCameraBounds
+      cameraGL: raw.cameraGL || null, // handedness-converted {pos, quat, fov} for three.js
+      meshData: raw.meshData || null, // real exported Unity mesh instances + dozers
       spawn: { pos: spawn.pos, point: spawn.point, maxCharges: spawn.maxCharges, refillInterval: spawn.refillInterval, chargesPerRefill: spawn.chargesPerRefill, guaranteedBronzeCount: spawn.guaranteedBronzeCount },
       collector: raw.collector, // {pos, box:{min,max}}
       bg: raw.bg || null, // {pos, meshSize:[w,h,d]}

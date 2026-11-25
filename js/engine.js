@@ -27,8 +27,10 @@ function makeEngine(CONFIG) {
       const b = p.box;
       const pcx = (b.min[0] + b.max[0]) / 2, pcz = (b.min[2] + b.max[2]) / 2;
       const dx = tier.cx - pcx, dz = tier.cz - pcz;
-      const axis = Math.abs(dx) >= Math.abs(dz) ? 'x' : 'z';
-      const sign = (axis === 'x' ? dx : dz) >= 0 ? 1 : -1;
+      // axis/sign are precomputed in the mirrored layout (gen_js2 derives them in Unity
+      // coords and flips the x component); fall back to geometry if absent
+      const axis = p.axis || (Math.abs(dx) >= Math.abs(dz) ? 'x' : 'z');
+      const sign = (p.sign != null ? p.sign : (axis === 'x' ? dx : dz) >= 0 ? 1 : -1);
       const ax = axis === 'x' ? sign : 0, az = axis === 'z' ? sign : 0;
       const fmin = axis === 'x' ? tier.minX : tier.minZ;
       const fmax = axis === 'x' ? tier.maxX : tier.maxZ;
@@ -83,12 +85,53 @@ function makeEngine(CONFIG) {
       ? { minX: level.collector.box.min[0], maxX: level.collector.box.max[0], minY: level.collector.box.min[1], maxY: level.collector.box.max[1], minZ: level.collector.box.min[2], maxZ: level.collector.box.max[2] }
       : null;
     const portals = machines.filter((m) => m.type === 'Portal');
+    // walkable machine surfaces (conveyor belts): coins can rest on the extracted visual top
+    const surfaces = machines
+      .filter((m) => m.type === 'ConveyorBelt' && m.visual)
+      .map((m) => ({
+        machine: m.id,
+        minX: m.visual.min[0], maxX: m.visual.max[0],
+        minZ: m.visual.min[2], maxZ: m.visual.max[2],
+        top: m.visual.max[1],
+      }));
     return {
-      level, tiers, machines, portals, collector,
+      level, tiers, machines, portals, collector, surfaces,
       spawn: level.spawn,
       coins: [], events: [], time: 0, nextCoinId: 1,
       killY: collector ? collector.minY - W.killMargin : -60,
     };
+  }
+
+  function supportSurfaceAt(world, x, z, bottomY) {
+    let best = null, bestTop = -Infinity;
+    for (const s of world.surfaces) {
+      if (inRect(x, z, s.minX, s.maxX, s.minZ, s.maxZ) && s.top <= bottomY + W.snap && s.top > bestTop) {
+        bestTop = s.top; best = s;
+      }
+    }
+    return best;
+  }
+
+  // The original dispenser chute/slides deliver the coin from the spawn point onto the
+  // machine (belts, slides). We emulate the end of that chute: land the drop on the
+  // nearest support rect (tier floor or conveyor belt top) to the spawn column.
+  function dropTarget(world, sp) {
+    const rects = [];
+    for (const t of world.tiers) rects.push({ minX: t.minX, maxX: t.maxX, minZ: t.minZ, maxZ: t.maxZ, top: t.top });
+    for (const s of world.surfaces) rects.push(s);
+    let best = null, bd = 8; // max horizontal miss distance
+    for (const r of rects) {
+      const cx = Math.max(r.minX, Math.min(sp[0], r.maxX));
+      const cz = Math.max(r.minZ, Math.min(sp[2], r.maxZ));
+      const d = Math.hypot(cx - sp[0], cz - sp[2]);
+      if (d > bd) continue;
+      if (!best || d < bd - 1e-9 || (Math.abs(d - bd) <= 1e-9 && r.top > best.top)) {
+        best = { ...r, cx, cz };
+        bd = d;
+      }
+    }
+    if (best) return { x: best.cx, y: best.top + 2.5, z: best.cz };
+    return { x: sp[0], y: sp[1], z: sp[2] };
   }
 
   function dropCoin(world, typeDef) {
@@ -97,11 +140,12 @@ function makeEngine(CONFIG) {
       world.events.push({ type: 'evict', coin: old });
     }
     const sp = world.spawn.point || world.spawn.pos;
+    const tgt = dropTarget(world, sp);
     const c = {
       id: world.nextCoinId++, type: typeDef.id,
-      x: sp[0] + (Math.random() - 0.5) * 0.6,
-      y: sp[1] + W.coinH / 2,
-      z: sp[2] + (Math.random() - 0.5) * 0.6,
+      x: tgt.x + (Math.random() - 0.5) * 0.6,
+      y: tgt.y + W.coinH / 2,
+      z: tgt.z + (Math.random() - 0.5) * 0.6,
       vx: 0, vy: -1, vz: 0,
       r: W.coinR, h: W.coinH, mult: 1,
       falling: true, tier: -1,
@@ -116,7 +160,7 @@ function makeEngine(CONFIG) {
     const c = {
       id: data.id, type: data.type, x: data.x, y: data.y, z: data.z,
       vx: data.vx, vy: data.vy, vz: data.vz, r: W.coinR, h: W.coinH,
-      mult: data.mult || 1, falling: !!data.falling, tier: data.tier != null ? data.tier : -1,
+      mult: data.mult || 1, falling: !!data.falling, tier: data.tier != null ? data.tier : -1, surface: data.surface != null ? data.surface : null,
       gates: new Set(data.gates || []), portalT: data.portalT || {}, holdT: data.holdT || {},
       rx: data.rx || 0, rz: data.rz || 0,
     };
@@ -367,8 +411,16 @@ function makeEngine(CONFIG) {
           if (c.y > t.top + 3) continue;
           if (inRect(c.x, c.z, pr.minX, pr.maxX, pr.minZ, pr.maxZ, c.r)) {
             const p = t.pusher;
-            if (p.axis === 'x') { c.x = p.sign > 0 ? pr.maxX + c.r : pr.minX - c.r; c.vx = p.vel; }
-            else { c.z = p.sign > 0 ? pr.maxZ + c.r : pr.minZ - c.r; c.vz = p.vel; }
+            // carried by the moving plate; clamped only when ahead of its leading face
+            if (p.axis === 'x') {
+              c.vx = p.vel;
+              if (p.sign > 0 && c.x + c.r > pr.maxX) c.x = pr.maxX + c.r;
+              if (p.sign < 0 && c.x - c.r < pr.minX) c.x = pr.minX - c.r;
+            } else {
+              c.vz = p.vel;
+              if (p.sign > 0 && c.z + c.r > pr.maxZ) c.z = pr.maxZ + c.r;
+              if (p.sign < 0 && c.z - c.r < pr.minZ) c.z = pr.minZ - c.r;
+            }
             c.falling = false;
           }
         }
@@ -377,10 +429,11 @@ function makeEngine(CONFIG) {
       for (const c of world.coins) {
         const bottom = c.y - c.h / 2;
         const prevBottom = (c.py != null ? c.py : c.y) - c.h / 2;
-        const ti = supportTierAt(world, c.x, c.z, Math.max(bottom, prevBottom));
+        let ti = supportTierAt(world, c.x, c.z, Math.max(bottom, prevBottom));
         if (ti >= 0) {
           const t = world.tiers[ti];
           c.tier = ti;
+          c.surface = null;
           // resting on another coin (stacked) takes precedence over the tier floor
           let onCoin = null;
           for (const o of world.coins) {
@@ -407,8 +460,20 @@ function makeEngine(CONFIG) {
           if (c.z - c.r < t.minZ && open !== 'minZ') { c.z = t.minZ + c.r; if (c.vz < 0) c.vz = -c.vz * W.wallRestitution; }
           if (c.z + c.r > t.maxZ && open !== 'maxZ') { c.z = t.maxZ - c.r; if (c.vz > 0) c.vz = -c.vz * W.wallRestitution; }
         } else {
-          c.tier = -1;
-          c.falling = true;
+          // maybe resting on a machine surface (conveyor belt top)
+          const s = supportSurfaceAt(world, c.x, c.z, Math.max(bottom, prevBottom));
+          if (s && c.vy <= 0 && prevBottom >= s.top - W.snap && bottom <= s.top + W.snap) {
+            c.y = s.top + c.h / 2;
+            if (c.vy < 0) c.vy = 0;
+            c.falling = false;
+            c.tier = -1;
+            c.surface = s.machine;
+            c.vx *= W.floorDamping; c.vz *= W.floorDamping;
+          } else {
+            c.tier = -1;
+            c.surface = null;
+            c.falling = true;
+          }
         }
       }
       // coin-coin: same-layer circle collision + vertical stacking
@@ -469,7 +534,7 @@ function makeEngine(CONFIG) {
       nextCoinId: world.nextCoinId,
       coins: world.coins.map((c) => ({
         id: c.id, type: c.type, x: c.x, y: c.y, z: c.z, vx: c.vx, vy: c.vy, vz: c.vz,
-        mult: c.mult, falling: c.falling, tier: c.tier, gates: [...c.gates], portalT: c.portalT, holdT: c.holdT,
+        mult: c.mult, falling: c.falling, tier: c.tier, surface: c.surface != null ? c.surface : null, gates: [...c.gates], portalT: c.portalT, holdT: c.holdT,
         rx: c.rx, rz: c.rz,
       })),
       pushers: world.tiers.map((t) => (t.pusher ? { t: t.pusher.t, pos: t.pusher.pos } : null)),
@@ -492,7 +557,7 @@ function makeEngine(CONFIG) {
     });
   }
 
-  return { createWorld, dropCoin, addCoinRaw, step, serialize, restore, pusherPlateRect, supportTierAt, yawDir };
+  return { createWorld, dropCoin, addCoinRaw, step, serialize, restore, pusherPlateRect, supportTierAt, supportSurfaceAt, yawDir };
 }
 
 if (typeof module !== 'undefined' && module.exports) module.exports = { makeEngine };
