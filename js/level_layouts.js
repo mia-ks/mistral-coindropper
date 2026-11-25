@@ -1,2 +1,7047 @@
-const LEVEL_LAYOUTS = {"1":{"goal":100,"machines":[{"type":"gate","x":-2.15,"z":10,"y":1.22}]},"2":{"goal":100,"machines":[{"type":"conveyor","x":-0.03,"z":5,"speed":2},{"type":"gate","x":-2.09,"z":16,"y":1.609}]},"3":{"goal":100,"machines":[{"type":"fan","x":0,"z":5,"speed":10,"y":1},{"type":"gate","x":-2.59,"z":16,"y":1.834}]},"4":{"goal":100,"machines":[{"type":"conveyor","x":0.05,"z":5,"speed":2},{"type":"fan","x":0,"z":10.5,"speed":50,"y":1},{"type":"gate","x":-2.05,"z":16,"y":2.378}]},"5":{"goal":100,"machines":[{"type":"conveyor","x":-0.01,"z":5,"speed":2},{"type":"spike","x":0,"z":10.5,"y":1},{"type":"gate","x":0.12,"z":16,"y":1.646}]},"6":{"goal":100,"machines":[{"type":"gate","x":-1.49,"z":5,"y":1.973},{"type":"conveyor","x":0.05,"z":8.67,"speed":2},{"type":"fan","x":-2.1,"z":12.33,"speed":50,"y":1.566},{"type":"gate","x":-2.1,"z":16,"y":2.518}]},"7":{"goal":100,"machines":[{"type":"conveyor","x":-0.01,"z":5,"speed":2},{"type":"conveyor","x":-0.01,"z":7.75,"speed":2},{"type":"magnet","x":-2.75,"z":10.5,"speed":0.55,"attraction":2,"y":1.27},{"type":"fan","x":-2.13,"z":13.25,"speed":10,"y":1},{"type":"gate","x":-2.14,"z":16,"y":2.495}]},"8":{"goal":100,"machines":[{"type":"gate","x":-2.2,"z":5,"y":1.877},{"type":"conveyor","x":-0.06,"z":7.75,"speed":2},{"type":"portal","x":-0.1,"z":10.5,"pull":0.4,"y":1},{"type":"spike","x":0,"z":13.25,"y":1},{"type":"conveyor","x":-0.01,"z":16,"speed":2}]},"9":{"goal":100,"machines":[{"type":"gate","x":-0.65,"z":5,"y":1.417},{"type":"gate","x":-2.14,"z":7.2,"y":2.515},{"type":"fan","x":1.98,"z":9.4,"speed":10,"y":1},{"type":"spike","x":0,"z":11.6,"y":1},{"type":"conveyor","x":-0.01,"z":13.8,"speed":2},{"type":"conveyor","x":-0.01,"z":16,"speed":2}]},"10":{"goal":100,"machines":[{"type":"dollarGate","x":-0.84,"z":5,"cash":1,"y":1.338},{"type":"gate","x":-2.71,"z":6.83,"y":2.387},{"type":"spike","x":0,"z":8.67,"y":1},{"type":"conveyor","x":-0.01,"z":10.5,"speed":2},{"type":"conveyor","x":-0.01,"z":12.33,"speed":2},{"type":"fan","x":-0.09,"z":14.17,"speed":10,"y":1},{"type":"portal","x":0.17,"z":16,"pull":0.35,"y":1}]},"11":{"goal":100,"machines":[{"type":"spike","x":0,"z":5,"y":1},{"type":"gate","x":1.51,"z":6.38,"y":1.248},{"type":"conveyor","x":-0.01,"z":7.75,"speed":2},{"type":"platform","x":0.42,"z":9.13,"stay":5,"y":1},{"type":"magnet","x":-0.03,"z":10.5,"speed":0.55,"attraction":2,"y":1.428},{"type":"spike","x":0,"z":11.88,"y":1},{"type":"fan","x":-2.15,"z":13.25,"speed":10,"y":1.172},{"type":"gate","x":-2.73,"z":14.63,"y":3.155},{"type":"portal","x":-1.89,"z":16,"pull":0.35,"y":1}]},"12":{"goal":100,"machines":[{"type":"launcher","x":0,"z":5,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"fan","x":0,"z":8.67,"speed":10,"y":1},{"type":"launcher","x":0,"z":12.33,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"gate","x":-0.81,"z":16,"y":2.077}]},"13":{"goal":100,"machines":[{"type":"gate","x":-2.5,"z":5,"y":2.304},{"type":"fan","x":0.09,"z":7.75,"speed":10,"y":1},{"type":"portal","x":-4,"z":10.5,"pull":0.35,"y":1},{"type":"spike","x":-0.17,"z":13.25,"y":1},{"type":"conveyor","x":0.05,"z":16,"speed":2}]},"14":{"goal":100,"machines":[{"type":"magnet","x":0.06,"z":5,"speed":0.55,"attraction":2,"y":1},{"type":"fan","x":2.09,"z":6.57,"speed":10,"y":1},{"type":"fan","x":-2.1,"z":8.14,"speed":10,"y":1},{"type":"conveyor","x":0.05,"z":9.71,"speed":2},{"type":"gate","x":-2.05,"z":11.29,"y":2.378},{"type":"conveyor","x":0.05,"z":12.86,"speed":2},{"type":"launcher","x":-0.07,"z":14.43,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"portal","x":-2.41,"z":16,"pull":0.35,"y":1}]},"15":{"goal":100,"machines":[{"type":"conveyor","x":0.05,"z":5,"speed":2},{"type":"gate","x":3.6,"z":6.57,"y":1},{"type":"fan","x":2.2,"z":8.14,"speed":10,"y":1},{"type":"fan","x":0.11,"z":9.71,"speed":10,"y":1},{"type":"magnet","x":0.52,"z":11.29,"speed":0.55,"attraction":2,"y":2.117},{"type":"launcher","x":0.1,"z":12.86,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"portal","x":-4,"z":14.43,"pull":0.35,"y":1},{"type":"gate","x":-1.8,"z":16,"y":2.304}]},"16":{"goal":100,"machines":[{"type":"fan","x":0.19,"z":5,"speed":10,"y":1},{"type":"conveyor","x":0.05,"z":6.1,"speed":2},{"type":"gate","x":-2.38,"z":7.2,"y":3.238},{"type":"dollarGate","x":0.71,"z":8.3,"cash":1,"y":1.527},{"type":"gate","x":3.6,"z":9.4,"y":1},{"type":"launcher","x":0,"z":10.5,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"portal","x":0.84,"z":11.6,"pull":0.35,"y":1},{"type":"spike","x":0,"z":12.7,"y":1},{"type":"movingMagnet","x":-0.29,"z":13.8,"speed":0.55,"stay":1.5},{"type":"launcher","x":0,"z":14.9,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"conveyor","x":0.05,"z":16,"speed":2}]},"17":{"goal":100,"machines":[{"type":"conveyor","x":-0.01,"z":5,"speed":2},{"type":"fan","x":4,"z":6.22,"speed":10,"y":1},{"type":"gate","x":-2.14,"z":7.44,"y":2.461},{"type":"laser","x":-1.05,"z":8.67,"on":6,"off":3,"y":1},{"type":"gate","x":4,"z":9.89,"y":1},{"type":"conveyor","x":-0.01,"z":11.11,"speed":2},{"type":"conveyor","x":-0.01,"z":12.33,"speed":2},{"type":"fan","x":-0.14,"z":13.56,"speed":10,"y":1},{"type":"conveyor","x":-0.01,"z":14.78,"speed":2},{"type":"portal","x":-0.16,"z":16,"pull":0.35,"y":1}]},"18":{"goal":100,"machines":[{"type":"magnet","x":-0.72,"z":5,"speed":0.55,"attraction":2,"y":1},{"type":"spike","x":0,"z":6.38,"y":1},{"type":"gate","x":-2.14,"z":7.75,"y":2.515},{"type":"conveyor","x":-0.01,"z":9.13,"speed":2},{"type":"spike","x":0,"z":10.5,"y":1},{"type":"conveyor","x":-0.01,"z":11.88,"speed":2},{"type":"conveyor","x":-0.01,"z":13.25,"speed":2},{"type":"fan","x":-0.03,"z":14.63,"speed":10,"y":1},{"type":"portal","x":-3.17,"z":16,"pull":0.35,"y":1}]},"19":{"goal":100,"machines":[{"type":"portal","x":0.18,"z":5,"pull":0.35,"y":1},{"type":"launcher","x":0,"z":5.79,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"fan","x":2.04,"z":6.57,"speed":10,"y":1},{"type":"dollarGate","x":1.52,"z":7.36,"cash":1,"y":1.397},{"type":"platform","x":-1.67,"z":8.14,"stay":5,"y":1},{"type":"launcher","x":0,"z":8.93,"speed":2,"interval":1.2,"hop":2.2,"y":1},{"type":"dollarGate","x":1.52,"z":9.71,"cash":1,"y":1.2},{"type":"fan","x":-0.01,"z":10.5,"speed":10,"y":1},{"type":"spike","x":0,"z":11.29,"y":1},{"type":"magnet","x":-0.03,"z":12.07,"speed":0.55,"attraction":2,"y":1},{"type":"gate","x":-2.11,"z":12.86,"y":3.155},{"type":"conveyor","x":-0.01,"z":13.64,"speed":2},{"type":"movingMagnet","x":-3.98,"z":14.43,"speed":0.55,"stay":1.5},{"type":"fan","x":-0.04,"z":15.21,"speed":10,"y":1.157},{"type":"launcher","x":0,"z":16,"speed":2,"interval":1.2,"hop":2.2,"y":1}]}};
+// GENERATED by re/gen_js.py from re/dump/levels_final.json
+// (Unity level prefab hierarchies with parent-resolved WORLD transforms, collider AABBs,
+//  per-instance interaction params, LevelCameraBounds camera rig). Do not edit by hand.
+const LEVEL_LAYOUTS = {
+ "scale": 10.0,
+ "coins": {
+  "SilverCoin": {
+   "fields": {
+    "currency": 0,
+    "coinId": 1,
+    "value": 5.0,
+    "spawnWeight": 8.0,
+    "maxSpeed": 5.0,
+    "maxDepenetrationVelocity": 1.0,
+    "spinSpeed": 0.0,
+    "collisionSoundCooldown": 0.15,
+    "minCollisionSpeedForSound": 0.4
+   },
+   "scale": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "mesh": "Cylinder.002",
+   "diameter": 0.8676,
+   "height": 0.1589
+  },
+  "GoldCoin": {
+   "fields": {
+    "currency": 0,
+    "coinId": 2,
+    "value": 10.0,
+    "spawnWeight": 2.0,
+    "maxSpeed": 5.0,
+    "maxDepenetrationVelocity": 1.0,
+    "spinSpeed": 0.0,
+    "collisionSoundCooldown": 0.15,
+    "minCollisionSpeedForSound": 0.4
+   },
+   "scale": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "mesh": "Cylinder.002",
+   "diameter": 0.8676,
+   "height": 0.1589
+  },
+  "BronzeCoin": {
+   "fields": {
+    "currency": 0,
+    "coinId": 0,
+    "value": 2.0,
+    "spawnWeight": 90.0,
+    "maxSpeed": 5.0,
+    "maxDepenetrationVelocity": 1.0,
+    "spinSpeed": 0.0,
+    "collisionSoundCooldown": 0.15,
+    "minCollisionSpeedForSound": 0.4
+   },
+   "scale": [
+    0.9,
+    0.9,
+    0.85
+   ],
+   "mesh": "Cylinder.002",
+   "diameter": 0.8676,
+   "height": 0.1589
+  },
+  "GemCoin": {
+   "fields": {
+    "currency": 2,
+    "coinId": 3,
+    "value": 1.0,
+    "spawnWeight": 0.0,
+    "maxSpeed": 5.0,
+    "maxDepenetrationVelocity": 1.0,
+    "spinSpeed": 0.0,
+    "collisionSoundCooldown": 0.15,
+    "minCollisionSpeedForSound": 0.4
+   },
+   "scale": [
+    0.85,
+    0.85,
+    0.85
+   ],
+   "mesh": "Diamond_Blue_Diamond_Blue_0",
+   "diameter": 0.9213,
+   "height": 0.8083
+  }
+ },
+ "levels": {
+  "Level 1": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     22.52,
+     45.54,
+     -45.3
+    ],
+    "fov": 20.0,
+    "euler": [
+     35.0,
+     330.0,
+     0.0
+    ],
+    "zoomOut": [
+     22.52,
+     45.54,
+     -45.3
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.1195,
+     13.24,
+     7.23
+    ],
+    "point": [
+     -5.12,
+     13.465,
+     7.23
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     0.73,
+     -0.59,
+     0.2088
+    ],
+    "yaw": 90.0,
+    "box": {
+     "min": [
+      -3.67,
+      -2.69,
+      -2.5085
+     ],
+     "max": [
+      1.33,
+      -2.49,
+      3.1306
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.1195,
+      5.0,
+      5.1979
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -7.616,
+       10.6048,
+       4.8047
+      ],
+      "max": [
+       -2.965,
+       10.6048,
+       9.8099
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.763,
+       4.9879,
+       2.6885
+      ],
+      "max": [
+       -2.6145,
+       11.1314,
+       9.8099
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.2905,
+       10.0,
+       7.6479
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -7.616,
+        10.0079,
+        4.8047
+       ],
+       "max": [
+        -2.965,
+        10.6048,
+        9.8099
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher",
+     "pos": [
+      -5.1195,
+      0.0,
+      0.1979
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.7315,
+       5.6048,
+       -2.0214
+      ],
+      "max": [
+       -4.7263,
+       5.6048,
+       2.6672
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.7315,
+       -0.0121,
+       -2.3081
+      ],
+      "max": [
+       -2.6102,
+       6.1314,
+       2.8143
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.5695,
+       5.0,
+       0.3229
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.7315,
+        5.0079,
+        -2.0214
+       ],
+       "max": [
+        -4.7263,
+        5.6048,
+        2.6672
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.11,
+      12.2,
+      6.43
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.2052,
+       12.3145,
+       5.2746
+      ],
+      "max": [
+       -4.0501,
+       12.4055,
+       7.1367
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 2": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     31.0,
+     55.9,
+     -55.8
+    ],
+    "fov": 20.0,
+    "euler": [
+     35.0,
+     330.0,
+     -0.0
+    ],
+    "zoomOut": [
+     31.0,
+     55.9,
+     -55.8
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.0,
+     17.047,
+     7.09
+    ],
+    "point": [
+     -5.0,
+     17.272,
+     7.09
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     0.16,
+     -1.8,
+     -5.84
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      -2.5573,
+      -4.0292,
+      -5.4181
+     ],
+     "max": [
+      3.0818,
+      -3.5708,
+      -2.1278
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher",
+     "pos": [
+      0.0,
+      -1.76,
+      0.0093
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -2.4792,
+       3.8448,
+       -0.3838
+      ],
+      "max": [
+       2.2292,
+       3.8448,
+       4.6214
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.6314,
+       -1.7721,
+       -2.5
+      ],
+      "max": [
+       2.5,
+       4.3714,
+       4.6214
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -0.125,
+       3.24,
+       2.4593
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -2.4792,
+        3.2479,
+        -0.3838
+       ],
+       "max": [
+        2.2292,
+        3.8448,
+        4.6214
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.0093,
+      2.9523,
+      -0.0
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.6214,
+       8.5572,
+       -2.1931
+      ],
+      "max": [
+       -4.6162,
+       8.5572,
+       2.4731
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.6214,
+       2.9403,
+       -2.51
+      ],
+      "max": [
+       -2.5,
+       9.0837,
+       2.6214
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.4593,
+       7.9523,
+       0.14
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.6214,
+        7.9602,
+        -2.1931
+       ],
+       "max": [
+        -4.6162,
+        8.5572,
+        2.4731
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.1918,
+      12.5765,
+      5.2693
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -4.97,
+      16.09,
+      6.38
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.0652,
+       16.3824,
+       5.2246
+      ],
+      "max": [
+       -3.9101,
+       16.5176,
+       7.0867
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 3": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     35.457,
+     45.232,
+     -39.017
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     316.46808,
+     2e-05
+    ],
+    "zoomOut": [
+     49.134,
+     54.559,
+     -54.152
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -6.9,
+     19.45,
+     5.27
+    ],
+    "point": [
+     -6.9,
+     19.66,
+     5.27
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     5.8412,
+     -0.9909,
+     -2.26
+    ],
+    "yaw": 90.0,
+    "box": {
+     "min": [
+      1.4412,
+      -3.1438,
+      -5.0317
+     ],
+     "max": [
+      6.4412,
+      -2.838,
+      0.7202
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -0.0083,
+      -0.7379,
+      -2.314
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.6204,
+       4.8669,
+       -4.5238
+      ],
+      "max": [
+       0.3848,
+       4.8669,
+       0.1758
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.6204,
+       -0.75,
+       -4.824
+      ],
+      "max": [
+       2.501,
+       5.3934,
+       0.4445
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.4583,
+       4.2621,
+       -2.174
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.6204,
+        4.27,
+        -4.5238
+       ],
+       "max": [
+        0.3848,
+        4.8669,
+        0.1758
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher",
+     "pos": [
+      -5.0093,
+      10.0121,
+      5.2034
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.6214,
+       15.6169,
+       2.9961
+      ],
+      "max": [
+       -4.6162,
+       15.6169,
+       7.6408
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.6214,
+       10.0,
+       2.6934
+      ],
+      "max": [
+       -2.5,
+       16.1434,
+       7.8341
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.4593,
+       15.0121,
+       5.3184
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.6214,
+        15.02,
+        2.9961
+       ],
+       "max": [
+        -4.6162,
+        15.6169,
+        7.6408
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -0.009,
+      5.0121,
+      3.92
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.509,
+       8.9121,
+       -0.58
+      ],
+      "max": [
+       2.491,
+       13.9121,
+       8.42
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -6.157,
+      18.34,
+      5.32
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.8637,
+       18.418,
+       4.2248
+      ],
+      "max": [
+       -5.0016,
+       18.5275,
+       6.3799
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 4": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     40.816,
+     52.729,
+     -39.609
+    ],
+    "fov": 20.0,
+    "euler": [
+     35.00001,
+     311.15033,
+     1e-05
+    ],
+    "zoomOut": [
+     48.8,
+     68.6,
+     -42.9
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -2.68,
+     30.64,
+     6.3641
+    ],
+    "point": [
+     -2.68,
+     30.85,
+     6.364
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     -0.34,
+     -0.85,
+     -5.94
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      -3.1596,
+      4.0628,
+      -6.701
+     ],
+     "max": [
+      2.4796,
+      4.4372,
+      -0.979
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      -5.0,
+      15.4993,
+      4.4073
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -7.4514,
+       21.1041,
+       4.0141
+      ],
+      "max": [
+       -2.8285,
+       21.1041,
+       9.0194
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.5364,
+       15.4872,
+       1.898
+      ],
+      "max": [
+       -2.5,
+       21.6306,
+       9.0194
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.14,
+       20.4993,
+       6.8573
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -7.4514,
+        20.5072,
+        4.0141
+       ],
+       "max": [
+        -2.8285,
+        21.1041,
+        9.0194
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.0093,
+      10.6974,
+      -0.602
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.6214,
+       16.3022,
+       -2.7903
+      ],
+      "max": [
+       -4.6162,
+       16.3022,
+       1.8562
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.6214,
+       10.6853,
+       -3.112
+      ],
+      "max": [
+       -2.5,
+       16.8287,
+       2.001
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.4593,
+       15.6974,
+       -0.467
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.6214,
+        15.7053,
+        -2.7903
+       ],
+       "max": [
+        -4.6162,
+        16.3022,
+        1.8562
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -4.88,
+      23.78,
+      5.68
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher (2)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -5.9752,
+       23.858,
+       4.5246
+      ],
+      "max": [
+       -3.8201,
+       23.9675,
+       6.3867
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -0.004,
+      5.5478,
+      -0.3646
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 50.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.504,
+       9.4478,
+       -7.8178
+      ],
+      "max": [
+       2.496,
+       14.4478,
+       2.6354
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.1242,
+      18.2535,
+      4.5973
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    }
+   ]
+  },
+  "Level 5": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     35.7,
+     45.3,
+     -42.3
+    ],
+    "fov": 20.0,
+    "euler": [
+     29.93743,
+     320.53699,
+     2.03322
+    ],
+    "zoomOut": [
+     43.4,
+     52.2,
+     -52.0
+    ]
+   },
+   "spawn": {
+    "pos": [
+     1.14,
+     18.6795,
+     6.234
+    ],
+    "point": [
+     1.14,
+     18.904,
+     6.234
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     0.09,
+     1.53,
+     -6.32
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      -3.0963,
+      -0.6715,
+      -5.6257
+     ],
+     "max": [
+      2.8355,
+      -0.138,
+      -2.0138
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      0.0,
+      5.8099,
+      4.4073
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -2.399,
+       11.4148,
+       4.0141
+      ],
+      "max": [
+       2.213,
+       11.4148,
+       9.0193
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.5447,
+       5.7979,
+       1.898
+      ],
+      "max": [
+       2.5,
+       11.9413,
+       9.0193
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -0.093,
+       10.8099,
+       6.8573
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -2.399,
+        10.8179,
+        4.0141
+       ],
+       "max": [
+        2.213,
+        11.4148,
+        9.0193
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -4.9356,
+      14.02,
+      4.3336
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -7.4356,
+       13.7155,
+       1.8336
+      ],
+      "max": [
+       -2.4356,
+       14.6195,
+       6.8336
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      0.29,
+      16.46,
+      5.63
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -0.8052,
+       16.4304,
+       4.4622
+      ],
+      "max": [
+       1.3499,
+       16.7123,
+       6.3264
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.0299,
+      5.6843,
+      -0.2166
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    }
+   ]
+  },
+  "Level 6": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     35.7,
+     59.7,
+     -50.6
+    ],
+    "fov": 20.0,
+    "euler": [
+     35.0,
+     323.63879,
+     359.4613
+    ],
+    "zoomOut": [
+     52.5,
+     79.6,
+     -73.5
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.03,
+     26.4908,
+     6.18
+    ],
+    "point": [
+     -5.03,
+     26.716,
+     6.18
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     10.84,
+     0.7026,
+     -3.0
+    ],
+    "yaw": 90.0,
+    "box": {
+     "min": [
+      6.44,
+      -1.3974,
+      -5.826
+     ],
+     "max": [
+      11.44,
+      -1.1974,
+      0.0387
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -4.9979,
+      10.9556,
+      -3.0669
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.6099,
+       16.5604,
+       -5.2596
+      ],
+      "max": [
+       -4.6047,
+       16.5604,
+       -0.5961
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.6099,
+       10.9435,
+       -5.5769
+      ],
+      "max": [
+       -2.4885,
+       17.0869,
+       -0.4498
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.4479,
+       15.9556,
+       -2.9279
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.6099,
+        15.9635,
+        -5.2596
+       ],
+       "max": [
+        -4.6047,
+        16.5604,
+        -0.5961
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      4.9928,
+      0.9556,
+      -3.1
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       0.3808,
+       6.5604,
+       -5.327
+      ],
+      "max": [
+       5.386,
+       6.5604,
+       -0.905
+      ]
+     },
+     "visual": {
+      "min": [
+       0.3808,
+       0.9435,
+       -5.61
+      ],
+      "max": [
+       7.5021,
+       7.0869,
+       -0.6
+      ]
+     },
+     "pusher": {
+      "pos": [
+       2.5428,
+       5.9556,
+       -3.116
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        0.3808,
+        5.9635,
+        -5.327
+       ],
+       "max": [
+        5.386,
+        6.5604,
+        -0.905
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (1)",
+     "pos": [
+      -3.54,
+      19.73,
+      -1.34
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -4.2788,
+       19.801,
+       -2.0177
+      ],
+      "max": [
+       -2.825,
+       19.9007,
+       -0.9255
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.1272,
+      10.83,
+      -2.9811
+     ],
+     "yaw": -90.0,
+     "tier": "Pusher (2)",
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -5.004,
+      15.6565,
+      4.6354
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 50.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -7.504,
+       19.5565,
+       -2.8178
+      ],
+      "max": [
+       -2.504,
+       24.5565,
+       7.6354
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.0023,
+      25.18,
+      5.59
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.0975,
+       25.258,
+       4.4346
+      ],
+      "max": [
+       -3.9424,
+       25.3675,
+       6.2967
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 7": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     36.0,
+     55.7,
+     -46.8
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     56.203,
+     70.145,
+     -73.037
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.17,
+     26.35,
+     6.58
+    ],
+    "point": [
+     -5.17,
+     26.575,
+     6.58
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     -5.13,
+     6.02,
+     -11.68
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      -8.0823,
+      3.62,
+      -11.1787
+     ],
+     "max": [
+      -2.274,
+      4.0573,
+      -7.9678
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (3)",
+     "pos": [
+      -0.0723,
+      8.7421,
+      -0.4799
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -2.5697,
+       14.3469,
+       -0.8731
+      ],
+      "max": [
+       2.1511,
+       14.3469,
+       4.1321
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.7189,
+       8.73,
+       -2.9892
+      ],
+      "max": [
+       2.4277,
+       14.8734,
+       4.1321
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -0.2093,
+       13.7421,
+       1.9701
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -2.5697,
+        13.75,
+        -0.8731
+       ],
+       "max": [
+        2.1511,
+        14.3469,
+        4.1321
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.09,
+      24.95,
+      5.88
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.1852,
+       25.028,
+       4.7246
+      ],
+      "max": [
+       -4.0301,
+       25.1375,
+       6.5867
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.3869,
+      21.9944,
+      4.7991
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Magnet",
+     "go": "Magnet",
+     "pos": [
+      -6.549,
+      12.7,
+      -5.37
+     ],
+     "yaw": -1.91,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 1.0,
+      "hiddenDuration": 3.0,
+      "startAtShownPosition": 1,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -5.8878,
+       10.7804,
+       -7.745
+      ],
+      "max": [
+       2.5135,
+       13.0274,
+       -3.0886
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.3096,
+      16.5903,
+      -0.3611
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -5.0723,
+      4.6221,
+      -5.4899
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -7.5723,
+       8.5221,
+       -8.4899
+      ],
+      "max": [
+       -2.7453,
+       11.4838,
+       -2.4899
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 8": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     39.751,
+     51.666,
+     -50.291
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.00001,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     52.35,
+     59.76,
+     -65.83
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.3,
+     20.2105,
+     6.53
+    ],
+    "point": [
+     -5.3,
+     20.436,
+     6.53
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     0.63,
+     -3.9727,
+     -5.28
+    ],
+    "yaw": 90.0,
+    "box": {
+     "min": [
+      -3.5054,
+      -6.1328,
+      -8.8047
+     ],
+     "max": [
+      0.6657,
+      -5.8126,
+      -1.8537
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.2219,
+      5.8879,
+      -0.4189
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.8339,
+       11.4928,
+       -2.6379
+      ],
+      "max": [
+       -4.8287,
+       11.4928,
+       2.0322
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.8339,
+       5.8759,
+       -2.9289
+      ],
+      "max": [
+       -2.7126,
+       12.0193,
+       2.1778
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.6719,
+       10.8879,
+       -0.3029
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.8339,
+        10.8959,
+        -2.6379
+       ],
+       "max": [
+        -4.8287,
+        11.4928,
+        2.0322
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.3613,
+      15.7623,
+      4.8085
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -0.1193,
+      6.2269,
+      -0.4457
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -2.6193,
+       5.9224,
+       -2.9457
+      ],
+      "max": [
+       2.3807,
+       6.8264,
+       2.0543
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.4399,
+      1.4844,
+      -5.2839
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.25,
+      18.77,
+      5.868
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.2456,
+       18.848,
+       4.7126
+      ],
+      "max": [
+       -4.2865,
+       18.9575,
+       6.5747
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      -0.2838,
+      8.95,
+      1.87
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -7.5238,
+       5.49,
+       -5.25
+      ],
+      "yaw": -90.0
+     },
+     "params": {
+      "pullDuration": 0.4,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -2.7898,
+       7.1271,
+       -2.4338
+      ],
+      "max": [
+       1.7826,
+       9.5321,
+       2.4283
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 9": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     41.625,
+     56.651,
+     -47.758
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     61.0,
+     69.1,
+     -67.8
+    ]
+   },
+   "spawn": {
+    "pos": [
+     5.11,
+     26.62,
+     6.56
+    ],
+    "point": [
+     5.11,
+     26.845,
+     6.56
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     4.6706,
+     1.44,
+     -6.53
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      1.6556,
+      -0.96,
+      -6.0287
+     ],
+     "max": [
+      7.5873,
+      -0.5227,
+      -2.8178
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.3,
+      11.7159,
+      -0.47
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.912,
+       17.3208,
+       -2.6783
+      ],
+      "max": [
+       -4.9068,
+       17.3208,
+       2.0883
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.912,
+       11.7039,
+       -2.98
+      ],
+      "max": [
+       -2.7907,
+       17.8473,
+       2.2368
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.75,
+       16.7159,
+       -0.295
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.912,
+        16.7238,
+        -2.6783
+       ],
+       "max": [
+        -4.9068,
+        17.3208,
+        2.0883
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      4.71,
+      0.6,
+      -0.4638
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       2.2016,
+       6.2048,
+       -0.857
+      ],
+      "max": [
+       6.8964,
+       6.2048,
+       4.1482
+      ]
+     },
+     "visual": {
+      "min": [
+       2.0523,
+       0.5879,
+       -2.9732
+      ],
+      "max": [
+       7.21,
+       6.7314,
+       4.1482
+      ]
+     },
+     "pusher": {
+      "pos": [
+       4.549,
+       5.6,
+       1.9862
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        2.2016,
+        5.6079,
+        -0.857
+       ],
+       "max": [
+        6.8964,
+        6.2048,
+        4.1482
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -0.12,
+      19.22,
+      4.562
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -2.8786,
+       18.9155,
+       2.2017
+      ],
+      "max": [
+       2.38,
+       19.8195,
+       7.646
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.3869,
+      22.3844,
+      4.7991
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      4.71,
+      9.8737,
+      4.5201
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (2)",
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       2.21,
+       13.7737,
+       1.5201
+      ],
+      "max": [
+       7.21,
+       18.7737,
+       7.5201
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.09,
+      25.154,
+      5.931
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.1852,
+       25.232,
+       4.7756
+      ],
+      "max": [
+       -4.0301,
+       25.3415,
+       6.6377
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.576,
+      10.5444,
+      -0.325
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (1)",
+     "pos": [
+      -1.55,
+      14.166,
+      -0.34
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -2.7789,
+       14.2717,
+       -2.2424
+      ],
+      "max": [
+       -0.4636,
+       14.4202,
+       1.5011
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 10": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     39.417,
+     54.597,
+     -48.109
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     60.03,
+     67.658,
+     -70.558
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -7.18,
+     25.17,
+     4.67
+    ],
+    "point": [
+     -7.18,
+     25.395,
+     4.67
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     4.885,
+     -1.8727,
+     -6.28
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      1.9327,
+      -4.2728,
+      -5.7787
+     ],
+     "max": [
+      7.741,
+      -3.8354,
+      -2.5678
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      4.7874,
+      4.1287,
+      4.5905
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       2.7447,
+       9.7335,
+       4.1973
+      ],
+      "max": [
+       6.9722,
+       9.7335,
+       9.2025
+      ]
+     },
+     "visual": {
+      "min": [
+       2.2774,
+       4.1166,
+       2.0811
+      ],
+      "max": [
+       7.2874,
+       10.2601,
+       9.2025
+      ]
+     },
+     "pusher": {
+      "pos": [
+       4.8584,
+       9.1287,
+       7.0405
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        2.7447,
+        9.1366,
+        4.1973
+       ],
+       "max": [
+        6.9722,
+        9.7335,
+        9.2025
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.2219,
+      10.7884,
+      -0.4189
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.8339,
+       16.3933,
+       -2.6379
+      ],
+      "max": [
+       -4.8287,
+       16.3933,
+       2.0322
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.8339,
+       10.7764,
+       -2.9289
+      ],
+      "max": [
+       -2.7126,
+       16.9198,
+       2.1778
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.6719,
+       15.7884,
+       -0.3029
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.8339,
+        15.7963,
+        -2.6379
+       ],
+       "max": [
+        -4.8287,
+        16.3933,
+        2.0322
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.4399,
+      20.4648,
+      4.7161
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "DollarGate",
+     "go": "DollarGate",
+     "pos": [
+      -2.0097,
+      13.381,
+      0.96
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "cashAmount": 1.0,
+      "addToProgression": 1,
+      "amountText": null,
+      "innerRenderer": null,
+      "emissionFlashDuration": 0.5
+     },
+     "box": {
+      "min": [
+       -2.6352,
+       13.1115,
+       0.1794
+      ],
+      "max": [
+       -1.0635,
+       13.2538,
+       1.7155
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -0.2219,
+      3.7104,
+      -0.4189
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -3.2219,
+       7.6104,
+       -2.9189
+      ],
+      "max": [
+       2.7781,
+       12.6104,
+       2.0811
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      0.3562,
+      18.36,
+      7.17
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -7.7038,
+       19.9,
+       -0.39
+      ],
+      "yaw": -90.0
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -2.5108,
+       16.5371,
+       2.9875
+      ],
+      "max": [
+       2.6432,
+       19.263,
+       7.7283
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.6224,
+      3.5844,
+      -0.1915
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -6.46,
+      23.873,
+      4.69
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -7.1667,
+       23.951,
+       3.5948
+      ],
+      "max": [
+       -5.3046,
+       24.0605,
+       5.7499
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -0.206,
+      16.0984,
+      4.7721
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -2.706,
+       15.7939,
+       2.4119
+      ],
+      "max": [
+       2.294,
+       16.6979,
+       7.2721
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 11": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     44.4,
+     51.0,
+     -53.1
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     72.1,
+     75.9,
+     -86.2
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -7.32,
+     32.6,
+     3.55
+    ],
+    "point": [
+     -7.32,
+     32.825,
+     3.55
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     9.8,
+     -10.4799,
+     -13.9358
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      6.7849,
+      -12.8799,
+      -13.4346
+     ],
+     "max": [
+      12.7167,
+      -12.4426,
+      -10.2236
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (3)",
+     "pos": [
+      -0.1,
+      11.57,
+      4.55
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.712,
+       17.1748,
+       2.3326
+      ],
+      "max": [
+       0.2932,
+       17.1748,
+       7.0274
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.712,
+       11.5579,
+       2.04
+      ],
+      "max": [
+       2.4093,
+       17.7014,
+       7.1747
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.55,
+       16.57,
+       4.68
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.712,
+        16.5779,
+        2.3326
+       ],
+       "max": [
+        0.2932,
+        17.1748,
+        7.0274
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      9.8348,
+      -11.08,
+      -7.83
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       7.6369,
+       -5.4752,
+       -8.2232
+      ],
+      "max": [
+       12.0308,
+       -5.4752,
+       -3.218
+      ]
+     },
+     "visual": {
+      "min": [
+       7.3248,
+       -11.0921,
+       -10.3393
+      ],
+      "max": [
+       12.3348,
+       -4.9486,
+       -3.218
+      ]
+     },
+     "pusher": {
+      "pos": [
+       9.8338,
+       -6.08,
+       -5.38
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        7.6369,
+        -6.0721,
+        -8.2232
+       ],
+       "max": [
+        12.0308,
+        -5.4752,
+        -3.218
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MovingPlatform",
+     "go": "Platform",
+     "pos": [
+      -7.7623,
+      28.99,
+      4.5249
+     ],
+     "yaw": -89.45,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "dropPointIndex": -1,
+      "travelDuration": 4.0,
+      "dropTiltZ": 270.0,
+      "tiltDuration": 0.4,
+      "dropHoldDuration": 1.0,
+      "stayDuration": 5.0,
+      "rotationCostPerDegree": 0.0025,
+      "accelerationTime": 0.1,
+      "gripStrength": 200.0,
+      "gripMinHeight": 0.03
+     },
+     "box": null
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -5.14,
+      20.65,
+      -0.43
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -7.8986,
+       20.3455,
+       -2.7902
+      ],
+      "max": [
+       -2.64,
+       21.2495,
+       2.654
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.755,
+      8.4244,
+      4.7381
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      0.0435,
+      10.94,
+      1.8751
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -2.4565,
+       21.77,
+       4.6751
+      ],
+      "yaw": -91.06
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -2.5382,
+       5.5459,
+       -2.856
+      ],
+      "max": [
+       2.1113,
+       11.4298,
+       2.7197
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -6.49,
+      31.55,
+      3.6
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -7.1967,
+       31.628,
+       2.5048
+      ],
+      "max": [
+       -5.3346,
+       31.7375,
+       4.6599
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Magnet",
+     "go": "Magnet (2)",
+     "pos": [
+      -0.08,
+      14.28,
+      -0.32
+     ],
+     "yaw": 180.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 0.35,
+      "hiddenDuration": 2.0,
+      "startAtShownPosition": 0,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -2.9178,
+       10.9451,
+       -8.0383
+      ],
+      "max": [
+       2.2724,
+       15.1626,
+       -1.1014
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -5.12,
+      11.7159,
+      -5.47
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -8.12,
+       15.6159,
+       -7.97
+      ],
+      "max": [
+       -2.12,
+       20.6159,
+       -2.97
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -5.0178,
+      24.21,
+      4.5653
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -7.7765,
+       23.9055,
+       2.205
+      ],
+      "max": [
+       -2.5178,
+       24.8095,
+       7.6493
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (1)",
+     "pos": [
+      3.59,
+      12.48,
+      4.61
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       2.3611,
+       12.5857,
+       2.7076
+      ],
+      "max": [
+       4.6764,
+       12.7342,
+       6.4511
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 12": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     34.1,
+     30.8,
+     -36.9
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     316.46808,
+     2e-05
+    ],
+    "zoomOut": [
+     49.134,
+     54.559,
+     -54.152
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -2.01,
+     21.88,
+     7.19
+    ],
+    "point": [
+     -2.01,
+     22.09,
+     7.19
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     5.8402,
+     -11.1709,
+     -4.86
+    ],
+    "yaw": 90.0,
+    "box": {
+     "min": [
+      1.4402,
+      -13.3238,
+      -7.6317
+     ],
+     "max": [
+      6.4402,
+      -13.018,
+      -1.8798
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher",
+     "pos": [
+      -0.009,
+      -1.54,
+      5.13
+     ],
+     "yaw": -0.0,
+     "floor": {
+      "min": [
+       -2.4263,
+       4.0648,
+       4.7368
+      ],
+      "max": [
+       2.2183,
+       4.0648,
+       9.742
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.6996,
+       -1.5521,
+       2.6206
+      ],
+      "max": [
+       2.491,
+       4.5914,
+       9.742
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -0.104,
+       3.46,
+       7.58
+      ],
+      "yaw": 180.0,
+      "box": {
+       "min": [
+        -2.4263,
+        3.4679,
+        4.7368
+       ],
+       "max": [
+        2.2183,
+        4.0648,
+        9.742
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      -5.0193,
+      -5.9897,
+      -4.9
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.6314,
+       -0.3849,
+       -7.0839
+      ],
+      "max": [
+       -4.6262,
+       -0.3849,
+       -2.3797
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.6314,
+       -6.0018,
+       -7.41
+      ],
+      "max": [
+       -2.51,
+       0.1416,
+       -2.184
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.4693,
+       -0.9897,
+       -4.7318
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.6314,
+        -0.9818,
+        -7.0839
+       ],
+       "max": [
+        -4.6262,
+        -0.3849,
+        -2.3797
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -0.0083,
+      -5.8179,
+      -2.314
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.6204,
+       -0.2131,
+       -4.5238
+      ],
+      "max": [
+       0.3848,
+       -0.2131,
+       0.1758
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.6204,
+       -5.83,
+       -4.824
+      ],
+      "max": [
+       2.501,
+       0.3134,
+       0.4445
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.4583,
+       -0.8179,
+       -2.174
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.6204,
+        -0.81,
+        -4.5238
+       ],
+       "max": [
+        0.3848,
+        -0.2131,
+        0.1758
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -2.4993,
+      -4.7479,
+      -4.904
+     ],
+     "yaw": -88.01,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -2.4473,
+       -5.9494,
+       -7.1141
+      ],
+      "max": [
+       2.6034,
+       -3.9761,
+       -2.2557
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -1.93,
+      20.77,
+      6.36
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -3.0252,
+       20.848,
+       5.2046
+      ],
+      "max": [
+       -0.8701,
+       20.9575,
+       7.0667
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -4.99,
+      12.05,
+      7.7028
+     ],
+     "yaw": 1.99,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -7.7886,
+       10.7919,
+       2.6108
+      ],
+      "max": [
+       -2.6562,
+       12.506,
+       7.6711
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (1)",
+     "pos": [
+      -0.009,
+      -7.29,
+      0.12
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.509,
+       -3.39,
+       -2.88
+      ],
+      "max": [
+       2.491,
+       1.61,
+       3.12
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 13": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     44.9,
+     54.0,
+     -42.2
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     66.9,
+     76.4,
+     -61.4
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -6.6458,
+     24.19,
+     -0.59
+    ],
+    "point": [
+     -6.646,
+     24.4,
+     -0.59
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     6.47,
+     -10.54,
+     -6.5662
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      3.7527,
+      -11.7272,
+      -8.2784
+     ],
+     "max": [
+      9.3918,
+      -11.3528,
+      -2.5563
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher",
+     "pos": [
+      0.22,
+      -2.0,
+      -0.67
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -2.2346,
+       3.6048,
+       -1.0632
+      ],
+      "max": [
+       2.4086,
+       3.6048,
+       3.942
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.3813,
+       -2.0121,
+       -3.1793
+      ],
+      "max": [
+       2.72,
+       4.1314,
+       3.942
+      ]
+     },
+     "pusher": {
+      "pos": [
+       0.087,
+       3.0,
+       1.78
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -2.2346,
+        3.0079,
+        -1.0632
+       ],
+       "max": [
+        2.4086,
+        3.6048,
+        3.942
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      -7.1522,
+      14.1356,
+      -0.5768
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       0.2178,
+       12.0756,
+       6.4832
+      ],
+      "yaw": -0.0
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -11.1522,
+       10.97,
+       -3.5172
+      ],
+      "max": [
+       -2.5922,
+       14.6156,
+       2.8056
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.96,
+      23.036,
+      -0.49
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.6667,
+       23.114,
+       -1.5852
+      ],
+      "max": [
+       -4.8046,
+       23.2235,
+       0.5699
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      0.0668,
+      7.8744,
+      4.59
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher",
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -5.343,
+      21.038,
+      -7.577
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -7.4409,
+       20.8446,
+       -9.5737
+      ],
+      "max": [
+       -3.2451,
+       21.4188,
+       -5.5802
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (4)",
+     "pos": [
+      0.2107,
+      -7.0,
+      -5.6794
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.7893,
+       -3.1,
+       -8.1794
+      ],
+      "max": [
+       3.2107,
+       1.9,
+       -3.1793
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 14": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     40.816,
+     52.729,
+     -39.609
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     79.7,
+     87.3,
+     -70.1
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -4.922,
+     24.934,
+     6.035
+    ],
+    "point": [
+     -4.922,
+     25.144,
+     6.035
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     9.9047,
+     -3.18,
+     -1.5704
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      7.1873,
+      -4.3672,
+      -3.2826
+     ],
+     "max": [
+      12.8265,
+      -3.9928,
+      2.4395
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.0093,
+      12.28,
+      -0.602
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -7.4793,
+       17.8848,
+       -0.9952
+      ],
+      "max": [
+       -2.8054,
+       17.8848,
+       4.01
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.627,
+       12.2679,
+       -3.1114
+      ],
+      "max": [
+       -2.5093,
+       18.4114,
+       4.01
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.1423,
+       17.28,
+       1.848
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -7.4793,
+        17.2879,
+        -0.9952
+       ],
+       "max": [
+        -2.8054,
+        17.8848,
+        4.01
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (3)",
+     "pos": [
+      -0.0093,
+      -0.45,
+      -5.6282
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.6214,
+       5.1548,
+       -8.1109
+      ],
+      "max": [
+       0.3838,
+       5.1548,
+       -3.1155
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.6214,
+       -0.4621,
+       -8.2062
+      ],
+      "max": [
+       2.5,
+       5.6814,
+       -2.9622
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.4593,
+       4.55,
+       -5.6132
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.6214,
+        4.5579,
+        -8.1109
+       ],
+       "max": [
+        0.3838,
+        5.1548,
+        -3.1155
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      0.0,
+      10.76,
+      4.4073
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.612,
+       16.3648,
+       2.2057
+      ],
+      "max": [
+       0.3932,
+       16.3648,
+       6.8909
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.612,
+       10.7479,
+       1.8973
+      ],
+      "max": [
+       2.5093,
+       16.8914,
+       7.0355
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.45,
+       15.76,
+       4.5483
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.612,
+        15.7679,
+        2.2057
+       ],
+       "max": [
+        0.3932,
+        16.3648,
+        6.8909
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -5.16,
+      13.6336,
+      -3.026
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -7.5404,
+       12.4858,
+       -8.1336
+      ],
+      "max": [
+       -2.7933,
+       14.2298,
+       -3.026
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -4.88,
+      23.78,
+      5.68
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher (2)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -5.9752,
+       23.858,
+       4.5246
+      ],
+      "max": [
+       -3.8201,
+       23.9675,
+       6.3867
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (2)",
+     "pos": [
+      -5.0093,
+      4.26,
+      -10.6282
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -8.0093,
+       8.16,
+       -13.1282
+      ],
+      "max": [
+       -2.0093,
+       13.16,
+       -8.1282
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      4.8829,
+      -2.887,
+      -3.2875
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -0.0971,
+       21.123,
+       6.6625
+      ],
+      "yaw": -1.96
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       2.3012,
+       -6.9769,
+       -8.6565
+      ],
+      "max": [
+       7.275,
+       0.2819,
+       -3.2114
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.1242,
+      20.5718,
+      4.5973
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.8175,
+      12.5844,
+      4.6673
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (1)",
+     "pos": [
+      4.98,
+      0.36,
+      -0.7
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       1.98,
+       4.26,
+       -3.2
+      ],
+      "max": [
+       7.98,
+       9.26,
+       1.8
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Magnet",
+     "go": "Magnet (1)",
+     "pos": [
+      0.1373,
+      8.8003,
+      -3.93
+     ],
+     "yaw": 77.52,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 0.35,
+      "hiddenDuration": 2.0,
+      "startAtShownPosition": 0,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -2.7005,
+       6.9232,
+       -13.068
+      ],
+      "max": [
+       2.4187,
+       9.885,
+       -4.5912
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 15": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     50.864,
+     68.743,
+     -44.181
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     67.0,
+     81.2,
+     -58.2
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -4.28,
+     24.19,
+     5.7
+    ],
+    "point": [
+     -4.28,
+     24.4,
+     5.7
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     9.4098,
+     -16.6691,
+     -12.33
+    ],
+    "yaw": -90.0,
+    "box": {
+     "min": [
+      7.6976,
+      -17.8563,
+      -15.2518
+     ],
+     "max": [
+      13.4197,
+      -17.4818,
+      -9.6127
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (4)",
+     "pos": [
+      5.29,
+      -6.24,
+      -7.4381
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       0.678,
+       -0.6352,
+       -9.6089
+      ],
+      "max": [
+       5.6832,
+       -0.6352,
+       -4.9072
+      ]
+     },
+     "visual": {
+      "min": [
+       0.678,
+       -6.2521,
+       -9.9481
+      ],
+      "max": [
+       7.7993,
+       -0.1086,
+       -4.7617
+      ]
+     },
+     "pusher": {
+      "pos": [
+       2.84,
+       -1.24,
+       -7.2581
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        0.678,
+        -1.2321,
+        -9.6089
+       ],
+       "max": [
+        5.6832,
+        -0.6352,
+        -4.9072
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (5)",
+     "pos": [
+      10.3494,
+      -10.4378,
+      -2.4287
+     ],
+     "yaw": -0.0,
+     "floor": {
+      "min": [
+       7.8032,
+       -4.833,
+       -2.8219
+      ],
+      "max": [
+       12.5495,
+       -4.833,
+       2.1833
+      ]
+     },
+     "visual": {
+      "min": [
+       7.6543,
+       -10.4499,
+       -4.9381
+      ],
+      "max": [
+       12.8494,
+       -4.3064,
+       2.1833
+      ]
+     },
+     "pusher": {
+      "pos": [
+       10.1763,
+       -5.4378,
+       0.0213
+      ],
+      "yaw": 180.0,
+      "box": {
+       "min": [
+        7.8032,
+        -5.4299,
+        -2.8219
+       ],
+       "max": [
+        12.5495,
+        -4.833,
+        2.1833
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      0.2156,
+      9.8,
+      4.1237
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -2.2544,
+       15.4048,
+       3.7306
+      ],
+      "max": [
+       2.4196,
+       15.4048,
+       8.7358
+      ]
+     },
+     "visual": {
+      "min": [
+       -2.402,
+       9.7879,
+       1.6144
+      ],
+      "max": [
+       2.7156,
+       15.9314,
+       8.7358
+      ]
+     },
+     "pusher": {
+      "pos": [
+       0.0826,
+       14.8,
+       6.5737
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -2.2544,
+        14.8079,
+        3.7306
+       ],
+       "max": [
+        2.4196,
+        15.4048,
+        8.7358
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Magnet",
+     "go": "Magnet (1)",
+     "pos": [
+      1.24,
+      21.17,
+      4.11
+     ],
+     "yaw": 162.18,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 0.35,
+      "hiddenDuration": 2.0,
+      "startAtShownPosition": 0,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -8.2643,
+       19.2929,
+       0.9543
+      ],
+      "max": [
+       0.5788,
+       22.4223,
+       6.9478
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (2)",
+     "pos": [
+      8.58,
+      -0.23,
+      -0.86
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (5)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       7.9106,
+       -0.159,
+       -1.5988
+      ],
+      "max": [
+       9.2577,
+       -0.0593,
+       -0.145
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -4.29,
+      23.036,
+      5.27
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -5.3852,
+       23.114,
+       4.1146
+      ],
+      "max": [
+       -3.2301,
+       23.2235,
+       5.9767
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      2.6746,
+      2.7636,
+      -2.1843
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       2.6746,
+       1.6249,
+       -4.5547
+      ],
+      "max": [
+       7.7308,
+       3.3276,
+       0.0847
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (1)",
+     "pos": [
+      0.2646,
+      -2.9053,
+      -7.4143
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.7354,
+       0.9947,
+       -9.9143
+      ],
+      "max": [
+       3.2646,
+       5.9947,
+       -4.9143
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      -2.1322,
+      7.7256,
+      -2.9368
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       2.7978,
+       12.8856,
+       4.4132
+      ],
+      "yaw": -90.0
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -6.1322,
+       4.56,
+       -4.2616
+      ],
+      "max": [
+       2.4498,
+       9.1775,
+       -1.1875
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (4)",
+     "pos": [
+      5.23,
+      0.73,
+      3.9
+     ],
+     "yaw": -0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       2.73,
+       4.63,
+       0.9
+      ],
+      "max": [
+       7.73,
+       9.63,
+       6.9
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      10.1962,
+      -8.8556,
+      -7.1687
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    }
+   ]
+  },
+  "Level 16": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     36.738,
+     62.126,
+     -46.91
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     58.273,
+     68.353,
+     -72.44
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -6.32,
+     33.53,
+     4.3
+    ],
+    "point": [
+     -6.32,
+     33.74,
+     4.3
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     -0.508,
+     -1.3,
+     -15.6648
+    ],
+    "yaw": -90.0,
+    "box": {
+     "min": [
+      -2.2201,
+      -2.4872,
+      -18.5866
+     ],
+     "max": [
+      3.502,
+      -2.1128,
+      -12.9474
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      5.545,
+      -0.26,
+      -2.7
+     ],
+     "yaw": -0.0,
+     "floor": {
+      "min": [
+       3.1303,
+       5.3448,
+       -3.0932
+      ],
+      "max": [
+       7.7677,
+       5.3448,
+       1.912
+      ]
+     },
+     "visual": {
+      "min": [
+       2.9838,
+       -0.2721,
+       -5.2094
+      ],
+      "max": [
+       8.045,
+       5.8714,
+       1.912
+      ]
+     },
+     "pusher": {
+      "pos": [
+       5.449,
+       4.74,
+       -0.25
+      ],
+      "yaw": 180.0,
+      "box": {
+       "min": [
+        3.1303,
+        4.7479,
+        -3.0932
+       ],
+       "max": [
+        7.7677,
+        5.3448,
+        1.912
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (2)",
+     "pos": [
+      8.58,
+      -0.23,
+      -0.86
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       7.9106,
+       -0.159,
+       -1.5988
+      ],
+      "max": [
+       9.2577,
+       -0.0593,
+       -0.145
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MovingMagnet",
+     "go": "JunkyardMagnet",
+     "pos": [
+      -4.1617,
+      28.38,
+      6.5339
+     ],
+     "yaw": -0.5,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "dropPointIndex": -1,
+      "travelDuration": 4.0,
+      "tiltPart": null,
+      "dropTiltZ": 270.0,
+      "tiltDuration": 0.4,
+      "dropHoldDuration": 1.0,
+      "stayDuration": 1.5,
+      "rotationCostPerDegree": 0.01,
+      "accelerationTime": 0.4,
+      "gripStrength": 12.0,
+      "gripMinHeight": 0.03,
+      "speed": 0.55,
+      "attractMultiplier": 25.0,
+      "triggerCollider": null,
+      "emissionRenderer": null
+     },
+     "box": null
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.66,
+      32.376,
+      4.29
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.3667,
+       32.454,
+       3.1948
+      ],
+      "max": [
+       -4.5046,
+       32.5635,
+       5.3499
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -4.507,
+      21.6036,
+      1.8108
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -7.1973,
+       20.4826,
+       -3.2828
+      ],
+      "max": [
+       -2.0262,
+       22.2116,
+       1.6467
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "DollarGate",
+     "go": "DollarGate",
+     "pos": [
+      1.7,
+      15.27,
+      -0.9
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "cashAmount": 1.0,
+      "addToProgression": 1,
+      "amountText": null,
+      "innerRenderer": null,
+      "emissionFlashDuration": 0.5
+     },
+     "box": {
+      "min": [
+       0.8776,
+       14.9861,
+       -1.8968
+      ],
+      "max": [
+       2.4959,
+       15.136,
+       -0.2411
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      8.43,
+      16.5316,
+      1.26
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       5.93,
+       16.227,
+       -1.24
+      ],
+      "max": [
+       10.93,
+       17.1311,
+       3.76
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -7.1328,
+      14.2836,
+      -10.7817
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -6.9688,
+       13.1209,
+       -12.9846
+      ],
+      "max": [
+       -1.9375,
+       14.8558,
+       -8.3009
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      0.46,
+      3.66,
+      -10.78
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -3.4268,
+       7.56,
+       -14.6215
+      ],
+      "max": [
+       2.96,
+       10.6275,
+       -4.6791
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      0.1912,
+      10.9886,
+      -2.5894
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      5.5995,
+      0.3855,
+      -5.42
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -6.9806,
+       24.6055,
+       -0.7486
+      ],
+      "yaw": -91.4
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       3.0178,
+       -2.613,
+       -10.002
+      ],
+      "max": [
+       8.0648,
+       1.6138,
+       -1.42
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -4.684,
+      16.7244,
+      -5.522
+     ],
+     "yaw": -0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    }
+   ]
+  },
+  "Level 17": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     44.1,
+     55.3,
+     -59.7
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     73.232,
+     75.504,
+     -87.636
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -0.79,
+     26.62,
+     6.56
+    ],
+    "point": [
+     -0.79,
+     26.845,
+     6.56
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     9.24,
+     -7.82,
+     -5.64
+    ],
+    "yaw": 90.64,
+    "box": {
+     "min": [
+      5.292,
+      -10.22,
+      -7.7684
+     ],
+     "max": [
+      8.7334,
+      -9.7827,
+      -3.5311
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.3,
+      13.18,
+      4.54
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -9.912,
+       18.7848,
+       2.3317
+      ],
+      "max": [
+       -4.9068,
+       18.7848,
+       7.0983
+      ]
+     },
+     "visual": {
+      "min": [
+       -9.912,
+       13.1679,
+       2.03
+      ],
+      "max": [
+       -2.7907,
+       19.3114,
+       7.2468
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -7.75,
+       18.18,
+       4.715
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -9.912,
+        18.1879,
+        2.3317
+       ],
+       "max": [
+        -4.9068,
+        18.7848,
+        7.0983
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (5)",
+     "pos": [
+      -0.358,
+      -3.3255,
+      -5.47
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.97,
+       2.2794,
+       -7.6377
+      ],
+      "max": [
+       0.0352,
+       2.2794,
+       -3.2871
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.97,
+       -3.3375,
+       -7.98
+      ],
+      "max": [
+       2.1513,
+       2.8059,
+       -2.97
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.808,
+       1.6745,
+       -5.4624
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.97,
+        1.6825,
+        -7.6377
+       ],
+       "max": [
+        0.0352,
+        2.2794,
+        -3.2871
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      -5.2907,
+      7.43,
+      -0.4607
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -7.799,
+       13.0348,
+       -0.8538
+      ],
+      "max": [
+       -3.1043,
+       13.0348,
+       4.1514
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.9483,
+       7.4179,
+       -2.97
+      ],
+      "max": [
+       -2.7907,
+       13.5614,
+       4.1514
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.4517,
+       12.43,
+       1.9893
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -7.799,
+        12.4379,
+        -0.8538
+       ],
+       "max": [
+        -3.1043,
+        13.0348,
+        4.1514
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (4)",
+     "pos": [
+      4.642,
+      0.43,
+      -0.47
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       0.03,
+       6.0348,
+       -2.6784
+      ],
+      "max": [
+       5.0352,
+       6.0348,
+       2.0164
+      ]
+     },
+     "visual": {
+      "min": [
+       0.03,
+       0.7708,
+       -2.98
+      ],
+      "max": [
+       7.1513,
+       6.5614,
+       2.1617
+      ]
+     },
+     "pusher": {
+      "pos": [
+       2.192,
+       5.43,
+       -0.331
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        0.03,
+        5.4379,
+        -2.6784
+       ],
+       "max": [
+        5.0352,
+        6.0348,
+        2.0164
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (3)",
+     "pos": [
+      -5.2907,
+      14.8207,
+      4.5493
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       -7.799,
+       20.4255,
+       4.1562
+      ],
+      "max": [
+       -3.1043,
+       20.4255,
+       9.1614
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.9483,
+       14.8086,
+       2.04
+      ],
+      "max": [
+       -2.7907,
+       20.952,
+       9.1614
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.4517,
+       19.8207,
+       6.9993
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        -7.799,
+        19.8286,
+        4.1562
+       ],
+       "max": [
+        -3.1043,
+        20.4255,
+        9.1614
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2 (1)",
+     "pos": [
+      9.75,
+      0.85,
+      -4.2
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 0,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       7.8476,
+       0.9557,
+       -5.2864
+      ],
+      "max": [
+       11.5911,
+       1.1042,
+       -2.9711
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Laser",
+     "go": "Laser",
+     "pos": [
+      2.1483,
+      10.71,
+      4.57
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "maxLength": 0.45,
+      "emitterTemplate": null,
+      "emitterCount": 5,
+      "emitterSpacing": 0.115,
+      "offDuration": 3.0,
+      "onDuration": 6.0,
+      "extendDuration": 0.15,
+      "retractDuration": 0.1
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (1)",
+     "pos": [
+      -0.34,
+      3.08,
+      -0.46
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -3.34,
+       6.98,
+       -2.96
+      ],
+      "max": [
+       2.66,
+       11.98,
+       2.04
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.09,
+      24.61,
+      5.931
+     ],
+     "yaw": 90.0,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.1852,
+       24.688,
+       4.7756
+      ],
+      "max": [
+       -4.0301,
+       24.7975,
+       6.6377
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.424,
+      -3.9829,
+      -5.325
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      4.73,
+      13.57,
+      7.32
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -0.25,
+       13.45,
+       1.96
+      ],
+      "yaw": -1.96
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       2.1483,
+       10.0467,
+       2.738
+      ],
+      "max": [
+       6.8264,
+       15.204,
+       11.32
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.424,
+      9.7844,
+      4.675
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      9.71,
+      -2.2573,
+      -0.4638
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       7.21,
+       1.6427,
+       -3.4638
+      ],
+      "max": [
+       12.21,
+       6.6427,
+       2.5362
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.576,
+      14.9971,
+      4.675
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.518,
+      9.7327,
+      -5.335
+     ],
+     "yaw": -90.0,
+     "tier": "Pusher (5)",
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    }
+   ]
+  },
+  "Level 18": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     44.1,
+     55.3,
+     -59.7
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     73.2,
+     72.4,
+     -93.6
+    ]
+   },
+   "spawn": {
+    "pos": [
+     4.75,
+     26.62,
+     6.62
+    ],
+    "point": [
+     4.75,
+     26.845,
+     6.62
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     0.04,
+     -7.43,
+     -21.24
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      -2.8263,
+      -9.83,
+      -20.7387
+     ],
+     "max": [
+      2.8128,
+      -9.3927,
+      -17.5278
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (1)",
+     "pos": [
+      -5.2219,
+      12.12,
+      -0.4189
+     ],
+     "yaw": -0.0,
+     "floor": {
+      "min": [
+       -7.681,
+       17.7248,
+       -0.8121
+      ],
+      "max": [
+       -3.0108,
+       17.7248,
+       4.1932
+      ]
+     },
+     "visual": {
+      "min": [
+       -7.8285,
+       12.1079,
+       -2.9282
+      ],
+      "max": [
+       -2.7219,
+       18.2514,
+       4.1932
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -5.3459,
+       17.12,
+       2.0311
+      ],
+      "yaw": 180.0,
+      "box": {
+       "min": [
+        -7.681,
+        17.1279,
+        -0.8121
+       ],
+       "max": [
+        -3.0108,
+        17.7248,
+        4.1932
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      4.93,
+      4.99,
+      -0.412
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       2.4216,
+       10.5948,
+       -0.8052
+      ],
+      "max": [
+       7.1164,
+       10.5948,
+       4.2
+      ]
+     },
+     "visual": {
+      "min": [
+       2.2723,
+       4.9779,
+       -2.9214
+      ],
+      "max": [
+       7.43,
+       11.1214,
+       4.2
+      ]
+     },
+     "pusher": {
+      "pos": [
+       4.769,
+       9.99,
+       2.038
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        2.4216,
+        9.9979,
+        -0.8052
+       ],
+       "max": [
+        7.1164,
+        10.5948,
+        4.2
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -5.3869,
+      21.9944,
+      4.7991
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (1)",
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.6224,
+      5.6628,
+      -0.1915
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Magnet",
+     "go": "Magnet",
+     "pos": [
+      -1.71,
+      7.6203,
+      -5.5227
+     ],
+     "yaw": -1.91,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 0.65,
+      "hiddenDuration": 3.0,
+      "startAtShownPosition": 0,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -1.0488,
+       5.7172,
+       -7.6527
+      ],
+      "max": [
+       7.428,
+       7.9478,
+       -2.8764
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      4.9921,
+      15.82,
+      4.4464
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (2)",
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       2.4921,
+       15.5155,
+       2.0861
+      ],
+      "max": [
+       7.4921,
+       16.4195,
+       6.9464
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -0.07,
+      19.18,
+      4.4464
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -2.57,
+       18.8755,
+       2.0861
+      ],
+      "max": [
+       2.43,
+       19.7795,
+       6.9464
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.09,
+      25.154,
+      5.931
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.1852,
+       25.232,
+       4.7756
+      ],
+      "max": [
+       -4.0301,
+       25.3415,
+       6.6377
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      -0.2997,
+      13.3244,
+      -0.3443
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      -7.5938,
+      14.28,
+      -5.17
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -0.8438,
+       18.47,
+       1.87
+      ],
+      "yaw": -0.0
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       -8.1521,
+       11.4186,
+       -7.3657
+      ],
+      "max": [
+       -3.0066,
+       15.5181,
+       -2.6412
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -0.0723,
+      -0.93,
+      -5.2238
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -2.5723,
+       2.97,
+       -9.1846
+      ],
+      "max": [
+       2.6395,
+       5.6118,
+       -2.2238
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  },
+  "Level 19": {
+   "goal": 100.0,
+   "camera": {
+    "pos": [
+     41.625,
+     56.651,
+     -47.758
+    ],
+    "fov": 20.0,
+    "euler": [
+     30.0,
+     320.0,
+     -0.0
+    ],
+    "zoomOut": [
+     71.6,
+     80.7,
+     -83.0
+    ]
+   },
+   "spawn": {
+    "pos": [
+     -5.08,
+     32.6,
+     6.37
+    ],
+    "point": [
+     -5.08,
+     32.825,
+     6.37
+    ],
+    "maxCharges": 15,
+    "refillInterval": 2.0,
+    "chargesPerRefill": 1,
+    "guaranteedBronzeCoinCount": 10
+   },
+   "collector": {
+    "pos": [
+     9.8,
+     -10.4799,
+     -14.1258
+    ],
+    "yaw": -180.0,
+    "box": {
+     "min": [
+      6.3252,
+      -12.8799,
+      -15.6266
+     ],
+     "max": [
+      12.7167,
+      -12.3308,
+      -9.6029
+     ]
+    }
+   },
+   "tiers": [
+    {
+     "name": "Pusher (3)",
+     "pos": [
+      -0.05,
+      3.3593,
+      -0.47
+     ],
+     "yaw": -90.0,
+     "floor": {
+      "min": [
+       -4.662,
+       8.9642,
+       -2.6874
+      ],
+      "max": [
+       0.3432,
+       8.9642,
+       2.0074
+      ]
+     },
+     "visual": {
+      "min": [
+       -4.662,
+       3.3473,
+       -2.98
+      ],
+      "max": [
+       2.4593,
+       9.4907,
+       2.1547
+      ]
+     },
+     "pusher": {
+      "pos": [
+       -2.5,
+       8.3593,
+       -0.34
+      ],
+      "yaw": 90.0,
+      "box": {
+       "min": [
+        -4.662,
+        8.3672,
+        -2.6874
+       ],
+       "max": [
+        0.3432,
+        8.9642,
+        2.0074
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    },
+    {
+     "name": "Pusher (2)",
+     "pos": [
+      9.8348,
+      -11.08,
+      -8.02
+     ],
+     "yaw": 0.0,
+     "floor": {
+      "min": [
+       7.6369,
+       -5.4752,
+       -8.4132
+      ],
+      "max": [
+       12.0308,
+       -5.4752,
+       -3.408
+      ]
+     },
+     "visual": {
+      "min": [
+       7.3248,
+       -11.0921,
+       -10.5293
+      ],
+      "max": [
+       12.3348,
+       -4.9486,
+       -3.408
+      ]
+     },
+     "pusher": {
+      "pos": [
+       9.8338,
+       -6.08,
+       -5.57
+      ],
+      "yaw": -180.0,
+      "box": {
+       "min": [
+        7.6369,
+        -6.0721,
+        -8.4132
+       ],
+       "max": [
+        12.0308,
+        -5.4752,
+        -3.408
+       ]
+      },
+      "speed": 2.0,
+      "backHoldDuration": 1.0,
+      "direction": 2,
+      "minDistance": 0.0,
+      "maxDistance": 40.0
+     }
+    }
+   ],
+   "machines": [
+    {
+     "type": "Fan",
+     "go": "AirBlower",
+     "pos": [
+      -0.1,
+      11.57,
+      4.55
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -3.1,
+       15.47,
+       2.05
+      ],
+      "max": [
+       2.9,
+       20.47,
+       7.05
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Magnet",
+     "go": "Magnet (2)",
+     "pos": [
+      -0.07,
+      7.17,
+      -13.48
+     ],
+     "yaw": 180.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 0.55,
+      "attractionDuration": 2.0,
+      "slideDuration": 0.35,
+      "hiddenDuration": 2.0,
+      "startAtShownPosition": 0,
+      "attractMultiplier": 30.0
+     },
+     "box": {
+      "min": [
+       -2.9078,
+       4.5665,
+       -12.8188
+      ],
+      "max": [
+       2.3381,
+       8.1656,
+       -2.7448
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (2)",
+     "pos": [
+      4.8543,
+      -3.18,
+      -0.3096
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       2.3543,
+       0.72,
+       -5.5987
+      ],
+      "max": [
+       7.0986,
+       3.5856,
+       2.6904
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      -7.6228,
+      17.8195,
+      -5.4417
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       -7.4588,
+       16.6568,
+       -7.6446
+      ],
+      "max": [
+       -2.5357,
+       18.4275,
+       -2.9609
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Spike",
+     "go": "spikes platform",
+     "pos": [
+      -5.0178,
+      20.7,
+      -0.46
+     ],
+     "yaw": 0.0,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {},
+     "box": {
+      "min": [
+       -7.7765,
+       20.3955,
+       -2.8202
+      ],
+      "max": [
+       -2.5178,
+       21.2995,
+       2.624
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MovingMagnet",
+     "go": "JunkyardMagnet",
+     "pos": [
+      -7.6276,
+      28.13,
+      -5.2018
+     ],
+     "yaw": -89.23,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "dropPointIndex": -1,
+      "travelDuration": 4.0,
+      "tiltPart": null,
+      "dropTiltZ": 270.0,
+      "tiltDuration": 0.4,
+      "dropHoldDuration": 1.0,
+      "stayDuration": 1.5,
+      "rotationCostPerDegree": 0.01,
+      "accelerationTime": 0.4,
+      "gripStrength": 12.0,
+      "gripMinHeight": 0.03,
+      "speed": 0.55,
+      "attractMultiplier": 25.0,
+      "triggerCollider": null,
+      "emissionRenderer": null
+     },
+     "box": null
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      4.8783,
+      0.4299,
+      -5.4904
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       2.1985,
+       -0.7328,
+       -10.712
+      ],
+      "max": [
+       7.3964,
+       1.0379,
+       -5.6544
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "DollarGate",
+     "go": "DollarGate (2)",
+     "pos": [
+      3.62,
+      12.0,
+      4.28
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "cashAmount": 1.0,
+      "addToProgression": 1,
+      "amountText": null,
+      "innerRenderer": null,
+      "emissionFlashDuration": 0.5
+     },
+     "box": {
+      "min": [
+       2.4402,
+       12.135,
+       2.7112
+      ],
+      "max": [
+       4.3058,
+       12.3004,
+       6.3666
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MultiplyingGate",
+     "go": "MultiplyingGate x2",
+     "pos": [
+      -5.03,
+      31.55,
+      5.54
+     ],
+     "yaw": 90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "multiplier": 2,
+      "isRewardedOfferGate": 1,
+      "spawnLeftOffset": 0.04,
+      "spawnPunchScale": 1.4,
+      "spawnScaleDuration": 0.35,
+      "emissionPulseDuration": 0.4
+     },
+     "box": {
+      "min": [
+       -6.1252,
+       31.628,
+       4.3846
+      ],
+      "max": [
+       -3.9701,
+       31.7375,
+       6.2467
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "TeslaCoil",
+     "go": "TeslaCoil",
+     "pos": [
+      9.8331,
+      6.6705,
+      7.1786
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 2.0,
+      "shockwaveMultiplier": 1.0,
+      "interval": 1.2,
+      "firstPulseDelay": 1.0,
+      "edgeStrength": 0.35,
+      "liftRatio": 0.15,
+      "pulsePrefab": null,
+      "maxChainLinks": 6,
+      "maxHopDistance": 1.0,
+      "hopDelay": 0.08,
+      "pulseDuration": 0.15
+     },
+     "box": {
+      "min": [
+       7.3952,
+       5.5078,
+       1.957
+      ],
+      "max": [
+       12.3139,
+       7.2785,
+       7.0146
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Fan",
+     "go": "AirBlower (1)",
+     "pos": [
+      -0.03,
+      -8.8116,
+      -13.09
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "speed": 10.0,
+      "pushMultiplier": 3.0,
+      "rollResponse": 12.0,
+      "maxRollTilt": 0.5,
+      "maxDiscAspect": 0.5
+     },
+     "box": {
+      "min": [
+       -3.03,
+       -4.9116,
+       -15.59
+      ],
+      "max": [
+       8.5372,
+       -1.8166,
+       -10.59
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "MovingPlatform",
+     "go": "Platform",
+     "pos": [
+      -2.6683,
+      13.04,
+      -0.4434
+     ],
+     "yaw": -89.45,
+     "tier": "Pusher (3)",
+     "exit": null,
+     "params": {
+      "dropPointIndex": -1,
+      "travelDuration": 4.0,
+      "dropTiltZ": 270.0,
+      "tiltDuration": 0.4,
+      "dropHoldDuration": 1.0,
+      "stayDuration": 5.0,
+      "rotationCostPerDegree": 0.0025,
+      "accelerationTime": 0.1,
+      "gripStrength": 200.0,
+      "gripMinHeight": 0.03
+     },
+     "box": null
+    },
+    {
+     "type": "ConveyorBelt",
+     "go": "Coveyor_Belt",
+     "pos": [
+      4.6927,
+      8.4244,
+      4.6258
+     ],
+     "yaw": -90.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "direction": 2,
+      "speed": 2.0
+     },
+     "box": null
+    },
+    {
+     "type": "DollarGate",
+     "go": "DollarGate (1)",
+     "pos": [
+      3.62,
+      13.97,
+      4.28
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": null,
+     "params": {
+      "cashAmount": 1.0,
+      "addToProgression": 1,
+      "amountText": null,
+      "innerRenderer": null,
+      "emissionFlashDuration": 0.5
+     },
+     "box": {
+      "min": [
+       2.5076,
+       14.1789,
+       2.7018
+      ],
+      "max": [
+       4.8881,
+       14.3288,
+       6.2204
+      ],
+      "trigger": true
+     }
+    },
+    {
+     "type": "Portal",
+     "go": "In Portal",
+     "pos": [
+      4.9735,
+      6.3411,
+      1.9751
+     ],
+     "yaw": 0.0,
+     "tier": null,
+     "exit": {
+      "pos": [
+       -2.4565,
+       22.1011,
+       4.6751
+      ],
+      "yaw": -91.06
+     },
+     "params": {
+      "pullDuration": 0.35,
+      "duration": 1.15,
+      "hiddenDuration": 3.0,
+      "blueRingMaterial": null,
+      "inRingMaterial": null,
+      "emissionOffIntensity": 1.0,
+      "emissionOnIntensity": 1.0,
+      "lightUpDuration": 0.4,
+      "closeVisualDelay": 0.35,
+      "lightDownDuration": 0.35,
+      "particleFadeDuration": 0.35,
+      "particleFadeInDuration": 0.25,
+      "openingOverlap": 0.5,
+      "chargeStartDelay": 0.2,
+      "chargeFadeInDuration": 0.3,
+      "chargeOnlyDuringCoinInteraction": 1,
+      "coinChargeActivityDuration": 0.7,
+      "minimumChargePlayDuration": 1.0
+     },
+     "box": {
+      "min": [
+       2.3918,
+       4.0219,
+       -2.8461
+      ],
+      "max": [
+       7.4388,
+       7.7942,
+       2.1353
+      ],
+      "trigger": true
+     }
+    }
+   ]
+  }
+ }
+};
 if (typeof module !== 'undefined' && module.exports) module.exports = { LEVEL_LAYOUTS };

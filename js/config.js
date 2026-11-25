@@ -1,33 +1,42 @@
+// browser: LEVEL_LAYOUTS is the global lexical binding from the level_layouts.js classic script
+// node: require it
+const _LAYOUTS = (typeof module !== 'undefined' && module.exports)
+  ? require('./level_layouts.js').LEVEL_LAYOUTS
+  : LEVEL_LAYOUTS;
+
+// World constants extracted from the APK (re/dump/levels_final.json):
+// coin mesh Cylinder.002 AABB x coin prefab scale, Unity gravity -9.81, maxSpeed 5,
+// all positions scaled x10 (LEVEL_LAYOUTS.scale) from Unity level units.
+const S = _LAYOUTS.scale;
+const BRONZE = _LAYOUTS.coins.BronzeCoin;
+const SILVER = _LAYOUTS.coins.SilverCoin;
+const GOLD = _LAYOUTS.coins.GoldCoin;
+const GEM = _LAYOUTS.coins.GemCoin;
+
 const CONFIG = {
   world: {
-    halfX: 4.5,
-    backZ: 1,
-    edgeZ: 17,
-    floorY: 0,
-    pusherBaseZ: 1.6,
-    pusherTravel: 3.5,
-    pusherThick: 0.8,
-    pusherH: 3,
-    coinR: 0.62,
-    coinH: 0.09,
-    gravity: 14,
-    maxCoins: 130,
-    killY: 9,
-    spawnY: 8,
+    scale: S,
+    coinR: BRONZE.diameter / 2,          // 0.4338
+    coinH: BRONZE.height,                // 0.1589
+    gravity: 98.1,                       // -9.81 * S
+    maxSpeed: 50,                        // maxSpeed 5 * S
+    maxCoins: 220,
+    substeps: 2,
+    pairPasses: 3,
+    wallRestitution: 0.25,
+    floorDamping: 0.995,
+    killMargin: 6,                       // below collector bottom
+    snap: 0.05,
   },
   coins: [
-    { id: 0, name: 'Bronze', value: 2, weight: 90, color: 0xff9f1a, rim: 0xb25e00, symbol: '$' },
-    { id: 1, name: 'Silver', value: 5, weight: 8, color: 0xd8dde6, rim: 0x8f97a6, symbol: 'S' },
-    { id: 2, name: 'Gold', value: 10, weight: 2, color: 0xffd24a, rim: 0xb8860b, symbol: 'G' },
-    { id: 3, name: 'Gem', value: 1, weight: 0, color: 0x4ad6ff, rim: 0x1a7fa8, symbol: '◆', gem: true },
+    { id: 0, name: 'Bronze', value: BRONZE.fields.value, weight: BRONZE.fields.spawnWeight, color: 0xff9f1a, rim: 0xb25e00, symbol: '$' },
+    { id: 1, name: 'Silver', value: SILVER.fields.value, weight: SILVER.fields.spawnWeight, color: 0xd8dde6, rim: 0x8f97a6, symbol: 'S' },
+    { id: 2, name: 'Gold', value: GOLD.fields.value, weight: GOLD.fields.spawnWeight, color: 0xffd24a, rim: 0xb8860b, symbol: 'G' },
+    { id: 3, name: 'Gem', value: GEM.fields.value, weight: 0, color: 0x4ad6ff, rim: 0x1a7fa8, symbol: '\u25c6', gem: true },
   ],
-  spawn: {
-    maxCharges: 15,
-    refillInterval: 2.0,
-    chargesPerRefill: 1,
-    guaranteedBronzeCount: 10,
-  },
-  goal: 100,
+  // CoinSpawnController fields (per level, defaults from Level 1)
+  spawn: { maxCharges: 15, refillInterval: 2.0, chargesPerRefill: 1, guaranteedBronzeCount: 10 },
+  goal: 100, // Level.targetCoins
   gemInterval: 40,
   levelRewardGems: 5,
   levelRewardCoinBase: 50,
@@ -40,49 +49,58 @@ const CONFIG = {
   machineCostMult: 1.6,
   machineMaxLevel: 10,
   machineEffectPerLevel: 0.2,
+  // Per-machine-type defaults; every per-instance value extracted from the prefab
+  // overrides these (see buildLevels). Lengths are in Unity units and get xS below.
   machineTypes: {
-    conveyor:     { label: 'Conveyor',        w: 3, speed: 2 },
-    fan:          { label: 'Air Blower',      speed: 10, y: 2.6, r: 3 },
-    magnet:       { label: 'Magnet',          speed: 0.55, y: 2.2, r: 3.2, attraction: 2 },
-    movingMagnet: { label: 'Junkyard Magnet', speed: 0.55, y: 2.2, r: 3.2, attraction: 2, sway: 2, stay: 1.5 },
-    launcher:     { label: 'Launcher',        speed: 2, y: 1.2, r: 2.5, interval: 1.2, hop: 2.2 },
-    portal:       { label: 'Portal',          w: 1.6, outOffset: 6, pull: 0.35 },
-    gate:         { label: 'x2 Gate',         w: 3, mult: 2 },
-    dollarGate:   { label: 'Cash Gate',       w: 3, cash: 1 },
-    spike:        { label: 'Spikes',          w: 2.5 },
-    platform:     { label: 'Mover',           w: 3.5, carry: 6, stay: 5 },
-    laser:        { label: 'Laser',           w: 1.2, on: 1.0, off: 2.0 },
-    suction:      { label: 'Suction',         speed: 2.2, y: 1.6, r: 2.8 },
+    ConveyorBelt:     { label: 'Conveyor',        direction: 2, speed: 2 },
+    Fan:              { label: 'Air Blower',      speed: 10, pushMultiplier: 3, r: 4.5 },
+    Magnet:           { label: 'Magnet',          speed: 0.55, attractionDuration: 2, slideDuration: 1, hiddenDuration: 3, attractMultiplier: 30, r: 4.5 },
+    MovingMagnet:     { label: 'Moving Magnet',   speed: 0.55, attractionDuration: 2, travelDuration: 4, stayDuration: 1.5, attractMultiplier: 25, r: 4.5 },
+    TeslaCoil:        { label: 'Tesla Coil',      speed: 2, interval: 1.2, firstPulseDelay: 1, maxHopDistance: 1, liftRatio: 0.15, r: 3 },
+    Portal:           { label: 'Portal',          pullDuration: 0.4, duration: 1.15, hiddenDuration: 3, r: 2.5 },
+    MultiplyingGate:  { label: 'x2 Gate',         multiplier: 2 },
+    DollarGate:       { label: '$ Gate',          cashAmount: 1, addToProgression: 1 },
+    Spike:            { label: 'Spikes',          r: 2.5 },
+    MovingPlatform:   { label: 'Mover',           travelDuration: 4, stayDuration: 5, dropHoldDuration: 1 },
+    Laser:            { label: 'Laser',           maxLength: 0.45, emitterCount: 5, emitterSpacing: 0.115, onDuration: 6, offDuration: 3 },
   },
-  upgrades: {
-    coinValue: { label: 'Coin Value',   icon: 'C', baseCost: 50,  costMult: 3.0, max: 20, desc: '+25% coin value per level' },
-    refill:    { label: 'Fast Refill',  icon: 'F', baseCost: 100, costMult: 2.5, max: 10, desc: 'Refill charges 10% faster per level' },
-    capacity:  { label: 'Capacity',     icon: 'K', baseCost: 150, costMult: 2.5, max: 10, desc: '+5 max charges per level' },
-    autoDrop:  { label: 'Auto Dropper', icon: 'A', baseCost: 500, costMult: 4.0, max: 5,  desc: 'Automatically drops a coin (5s, faster per level)' },
-    combo:     { label: 'Combo Boost',  icon: 'X', baseCost: 200, costMult: 3.0, max: 10, desc: '+10% combo multiplier per level' },
-  },
-  shakeCost: 1,
 };
 
-function buildLevels(layouts) {
-  return Object.keys(layouts).map((k) => {
-    const n = parseInt(k);
-    const L = layouts[n];
-    return {
-      index: n,
-      goal: L.goal || CONFIG.goal,
-      spawn: { ...CONFIG.spawn },
-      machines: L.machines.map((m) => ({ ...(CONFIG.machineTypes[m.type] || {}), ...m })),
-    };
-  }).sort((a, b) => a.index - b.index);
+// Length-valued params (Unity units -> game units xS). Times/durations stay in seconds.
+const LENGTH_PARAMS = ['speed', 'maxHopDistance', 'maxLength', 'emitterSpacing', 'r', 'w', 'outOffset'];
+
+function buildLevels() {
+  const levels = [];
+  const keys = Object.keys(_LAYOUTS.levels).sort((a, b) => parseInt(a.split(' ')[1]) - parseInt(b.split(' ')[1]));
+  for (const key of keys) {
+    const raw = _LAYOUTS.levels[key];
+    const idx = parseInt(key.split(' ')[1]);
+    const spawn = { ...CONFIG.spawn, ...(raw.spawn || {}) };
+    const tiers = (raw.tiers || []).map((t) => ({
+      name: t.name,
+      floor: t.floor, // {min:[x,top,z], max:[x,top,z]} world AABB of the platform collider
+      visual: t.visual,
+      pusher: t.pusher, // {pos, box:{min,max}, speed, backHoldDuration, direction}
+    }));
+    const machines = (raw.machines || []).map((m, i) => {
+      const def = CONFIG.machineTypes[m.type] || { label: m.type };
+      const params = { ...def, ...(m.params || {}) };
+      for (const k of LENGTH_PARAMS) if (typeof params[k] === 'number') params[k] *= S;
+      return { id: i, type: m.type, go: m.go, pos: m.pos, yaw: m.yaw || 0, tierName: m.tier, params, box: m.box, exit: m.exit || null };
+    });
+    levels.push({
+      index: idx,
+      goal: raw.goal || CONFIG.goal,
+      camera: raw.camera, // {pos:[x,y,z], euler:[x,y,z], fov}
+      spawn: { pos: spawn.pos, point: spawn.point, maxCharges: spawn.maxCharges, refillInterval: spawn.refillInterval, chargesPerRefill: spawn.chargesPerRefill, guaranteedBronzeCount: spawn.guaranteedBronzeCount },
+      collector: raw.collector, // {pos, box:{min,max}}
+      tiers,
+      machines,
+    });
+  }
+  return levels;
 }
 
-let LAYOUTS = typeof LEVEL_LAYOUTS !== 'undefined' ? LEVEL_LAYOUTS : null;
-if (!LAYOUTS && typeof module !== 'undefined' && module.exports) {
-  LAYOUTS = require('./level_layouts.js').LEVEL_LAYOUTS;
-}
-const LEVELS = buildLevels(LAYOUTS || {});
+const LEVELS = buildLevels();
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { CONFIG, LEVELS, LEVEL_LAYOUTS: LAYOUTS };
-}
+if (typeof module !== 'undefined' && module.exports) module.exports = { CONFIG, LEVELS };

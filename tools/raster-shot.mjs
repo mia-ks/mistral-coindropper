@@ -51,7 +51,7 @@ function crc32(buf) {
   return (c ^ 0xffffffff) >>> 0;
 }
 
-const levelIdx = Number(process.argv[2] || 0);
+const levelIdx = Math.max(0, Number(process.argv[2] || 1) - 1);
 const simSeconds = Number(process.argv[3] || 11);
 const out = process.argv[4] || path.join(root, 'docs', `raster-level${levelIdx + 1}.png`);
 
@@ -75,8 +75,10 @@ for (const c of world.coins) {
   built.coinGroup.add(mesh);
 }
 built.scene.add(built.coinGroup);
-const W = 960, H = 600;
-const buf = raster.render(world, built, W, H);
+const W = 540, H = 960;
+const camera = new THREE.PerspectiveCamera(1, W / H, 3, 2000);
+renderer.applyCamera(camera, LEVELS[levelIdx], W / H, world);
+const buf = raster.render(world, built, W, H, camera);
 fs.mkdirSync(path.dirname(out), { recursive: true });
 writePNG(out, buf, W, H);
 console.log(`${out} | level ${levelIdx + 1} | coins on board: ${world.coins.length} | ${W}x${H} rasterized from the real scene graph`);

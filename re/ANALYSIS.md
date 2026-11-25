@@ -74,3 +74,54 @@ Method (per the morluto/rea approach — inspect locally, gather evidence, then 
 - Extracted artifacts: `dump/monos3.json` (all MonoBehaviour typetrees with resolved
   names/positions), `dump/levels_layout.json`, `dump/scripts_all.json`,
   `apk_list.txt`. The 174 MB XAPK is at `game.xapk` if you want to inspect further.
+
+---
+
+## v2 extraction: hierarchy-resolved world transforms (re/dump_hier.py, re/dump_world.py, re/dump_world2.py, re/gen_layouts.py)
+
+The first pass (dump2/dump3) read component-local transforms, which is why machine
+positions looked like ~0. This pass walks each `Level N` prefab's GameObject tree and
+composes parent transforms (position/quaternion/scale) into world space.
+
+### Structure of a level (confirmed)
+- Root `Level N` carries `Level` (targetCoins=100) and `LevelCameraBounds`.
+- Each direct child named `Pusher` / `Pusher (n)` is one **tier**: a platform
+  (`Base` + floor MeshCollider) plus a moving `Pusher/Dozer` plate (kinematic
+  Rigidbody + BoxCollider + `PusherInteraction{direction,speed=2,minDistance,
+  maxDistance,backHoldDuration=1}`) with a `DozerWall`. Levels have 1-5 tiers
+  (Level 12: 3, Level 17: 5), stacked at different elevations and offsets - the
+  game is a **vertical multi-tier tower**, not a single tray.
+- `CoinSpawnController` (dispenser, LeanFingerTap = tap to drop) at the top:
+  `maxCharges=15, refillInterval=2, chargesPerRefill=1, guaranteedBronzeCoinCount=10`,
+  with a `Spawn Point` child.
+- `CoinCollector` + `CoinCollectorInteraction` with a trigger BoxCollider at the bottom.
+- Machines: `ConveyorBelt`, `Fan`(AirBlower), `Magnet`, `MovingMagnet`, `TeslaCoil`,
+  `Portal` (paired with an `Out Portal` sibling in a `Portal Pair`), `MultiplyingGate`,
+  `DollarGate`, `Spike`, `MovingPlatform`, `Laser` - each with a trigger BoxCollider and
+  per-instance params (e.g. TeslaCoil level 12: interval=1.2, maxHopDistance=1.0;
+  Portal: pullDuration=0.35-0.4; Magnet: attractionDuration=2, attractMultiplier=30).
+- Coins: `BronzeCoin`/`SilverCoin`/`GoldCoin` prefabs, mesh `Cylinder.002`
+  (world diameter 0.0868, height 0.0159 - flat discs), values 2/5/10, weights 90/8/2,
+  maxSpeed 5; `GemCoin` = diamond mesh, currency 2.
+
+### Camera rig (LevelCameraBounds, per level)
+- `fieldOfView=20` (perspective, narrow - the "isometric look" of the store shots),
+  `rotationEuler` = (35,330,0) for early levels, (30,320,0) for late levels,
+  camera rests at the `zoomInMarker` transform (zoomOutMarker = max zoom-out),
+  with top/bottom/left/right markers bounding pan. Scene `Main Camera` default:
+  pos (0.55,2.11,-1.49), fov 50 - the menu view; per-level rig overrides to fov 20.
+
+### Outputs
+- `re/dump/level_trees.json`, `level_world.json`, `level_world2.json` - full trees with
+  world transforms, colliders, component fields.
+- `re/dump/levels_final.json` - compact per-level spec (tiers w/ floor AABBs, pushers,
+  machines w/ world pos + params + trigger boxes, portal exits, collector, spawn, camera).
+- `re/gen_js.py` turns that into `js/level_layouts.js` (all positions scaled x10).
+- `test/fixture-levels.json` - expectations the test suite checks against.
+
+### Known interpretation (documented, not extracted)
+- Pusher sweep travel: the extracted plate is ~pad-sized, so the sweep range is derived
+  geometrically (back edge -> past the open edge); speed=2 and backHoldDuration=1 are
+  extracted and used as-is.
+- Camera distance: the original rig picks zoom from markers; we keep the extracted
+  direction/fov and fit distance to the portrait frame.

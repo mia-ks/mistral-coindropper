@@ -3,53 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Coin Dozer — Clean Edition (3D)</title>
+<title>Coin Dozer — Clean Edition</title>
 <link rel="stylesheet" href="css/style.css">
-<script type="importmap">
-{ "imports": { "three": "./js/vendor/three.module.js" } }
-</script>
+<script type="importmap">{ "imports": { "three": "./js/vendor/three.module.js" } }</script>
 </head>
 <body>
-<div id="app">
-  <header id="hud">
-    <div class="hud-left">
-      <div class="pill" id="pill-coins">Coins <span id="ui-coins">0</span></div>
-      <div class="pill" id="pill-cash">$ <span id="ui-cash">0</span></div>
-      <div class="pill" id="pill-gems">◆ <span id="ui-gems">0</span></div>
-    </div>
-    <div class="hud-center">
-      <div id="ui-level">Level 1</div>
-      <div id="progress"><div id="progress-fill"></div><span id="progress-text">0 / 100</span></div>
-      <div id="ui-combo"></div>
-    </div>
-    <div class="hud-right">
-      <div id="charges"></div>
-      <button class="hbtn" id="btn-shake" title="Shake the board (costs $1)">shake</button>
-      <button class="hbtn" id="btn-upgrades" title="Upgrades">up</button>
-      <button class="hbtn" id="btn-mute" title="Sound on/off">sound</button>
-      <button class="hbtn" id="btn-reset" title="Reset save">reset</button>
-    </div>
-  </header>
-  <div id="stage">
-    <canvas id="overlay"></canvas>
-    <div id="toast" class="hidden"></div>
+<div id="stage"><canvas id="gl"></canvas></div>
+<div id="hud">
+  <div class="pill" id="hud-coins">&#129689; 0</div>
+  <div class="pill" id="hud-cash">$ 0</div>
+  <div class="pill" id="hud-gems">&#128142; 0</div>
+  <div id="level-wrap">
+    <div id="level-label">LEVEL 1 / 19</div>
+    <div id="progress"><div id="progress-fill"></div><span id="progress-text">0 / 100</span></div>
   </div>
-  <div id="panel" class="hidden">
-    <div id="panel-inner">
-      <div class="panel-head">
-        <h2>Upgrades</h2>
-        <button id="btn-close-panel">✕</button>
-      </div>
-      <h3>Global (coins)</h3>
-      <div id="global-upgrades"></div>
-      <h3>Machines on this level (gems)</h3>
-      <div id="machine-upgrades"></div>
-      <h3>Pusher (gems)</h3>
-      <div id="pusher-upgrade"></div>
-    </div>
-  </div>
-  <footer id="foot">Click the machine to drop a coin where you click · 100% offline · no ads, no tracking, no purchases</footer>
+  <div id="charges"></div>
 </div>
+<div id="combo"></div>
+<div id="upgrades"><div id="upgrades-title">UPGRADES</div><div id="upgrades-list"></div></div>
+<div id="footer">tap the machine to drop a coin &mdash; no ads, no tracking, no purchases</div>
 <script src="js/level_layouts.js"></script>
 <script src="js/config.js"></script>
 <script src="js/engine.js"></script>

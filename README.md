@@ -60,13 +60,40 @@ python3 -m http.server 8000
 
 No build step, no runtime dependencies (Three.js is vendored), no network.
 
+## Architecture: extracted, not invented
+
+The game world is reconstructed from the APK's Unity level prefabs with
+parent-resolved **world transforms** (see `re/ANALYSIS.md` and `re/gen_layouts.py`):
+
+- `js/level_layouts.js` (generated from `re/dump/levels_final.json`) carries, per level:
+  every **tier** (platform collider AABB + elevation + yaw), its **pusher** plate box,
+  speed and back-hold time, every **machine** (type, world position, yaw, trigger box and
+  per-instance params: conveyor speed, fan speed, magnet attraction duration, portal
+  pull duration + Out Portal exit, tesla interval/maxHopDistance, gate multiplier/cash,
+  mover stay/travel, laser on/off), the **dispenser** spawn point + charge config, the
+  **collector** trigger box, and the **camera rig** (`LevelCameraBounds`: fov 20,
+  euler rotation, zoom-marker position).
+- Coins are flat discs sized from the extracted coin mesh (diameter 0.87 : height 0.16).
+- Physics: custom flat-disc solver over the real tier rectangles - per-tier pusher
+  plates, 3 closed walls + open fall-off edge per tier, gravity-driven inter-tier falls,
+  collector volume. `test/run-tests.js` asserts the layouts match the extracted data
+  (tier counts, machine positions, camera rig) and that coins physically transition
+  between tiers.
+
+## Screenshots
+
+- `docs/screenshot-level1.png`, `docs/screenshot-level12.png`, `docs/screenshot-level19.png` -
+  **real Chromium (SwiftShader WebGL) screenshots** at 1080x1920 portrait, served over
+  local http (see `tools/screenshot.mjs`).
+- `docs/compare-level*.png` - side-by-side with the original's Play Store screenshots (`re/refshots/`).
+
 ## Tests
 
 ```
-node test/run-tests.js       # 20 unit/integration tests (config, economy, 3D disc-stacking physics, machines, save)
-node test/smoke.js           # headless full-loop simulation
-node test/render3d.test.mjs  # rasterizes real frames of the Three.js scene graph (pure-JS z-buffer) and asserts on pixels
-node tools/raster-shot.mjs 0 11 docs/raster-level1.png  # dump a PNG frame of any level, no browser needed
+node test/run-tests.js       # 25 tests: layout-vs-extracted-fixture, camera rig, multi-tier physics, machines, economy, save/load
+node test/smoke.js           # headless full-loop simulation on the 3-tier level 12
+node test/render3d.test.mjs  # rasterizes a real portrait frame of the scene graph (pure-JS z-buffer, sRGB) and asserts pixel classes
+node tools/raster-shot.mjs 12 5 /tmp/l12.png  # dump a PNG frame of any level without a browser
 ```
 
 ## Files

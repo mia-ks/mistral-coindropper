@@ -1,332 +1,188 @@
-function makeGame(CONFIG, LEVELS, engine, storage) {
-  const store = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
-  const SAVE_KEY = 'coindozer-clean-save-v1';
+// Game state: currencies, charges, combo, level progression, upgrades, save/load.
+// Economy rules verified against the APK's extracted values (re/dump/).
+function makeGame(CONFIG, LEVELS, engine) {
+  const SAVE_KEY = 'coindozer-clean-save-v3';
 
-  function defaultState() {
-    return {
-      v: 1,
-      coins: 0,
-      cash: 0,
-      gems: 0,
-      levelIndex: 0,
-      progress: 0,
-      charges: CONFIG.spawn.maxCharges,
-      refillTimer: 0,
-      totalDrops: 0,
-      combo: 0,
-      lastCollectAt: -99,
-      upgrades: { coinValue: 0, refill: 0, capacity: 0, autoDrop: 0, combo: 0 },
-      machineLevels: {},
-      pusherLevels: {},
-      autoTimer: 0,
-      gemTimer: CONFIG.gemInterval,
-      stats: { collected: 0, earned: 0, spent: 0, levelsCompleted: 0 },
-      incomeRate: 0,
-      settings: { muted: false },
-      lastSeen: Date.now(),
-    };
-  }
+  const state = {
+    levelIndex: 0,
+    bank: 0, gems: 0, cash: 0,
+    charges: CONFIG.spawn.maxCharges,
+    refillTimer: 0,
+    totalDrops: 0,
+    combo: 0, comboTimer: 0,
+    progress: 0,
+    completed: false,
+    upgrades: {},       // machineId -> level
+    globalUpgrades: { value: 0, refill: 0, capacity: 0, combo: 0 },
+    lastSave: Date.now(),
+    incomeRate: 0,      // coins/s, measured from recent collections
+    recent: [],         // [timestamp, amount]
+  };
 
-  let state = defaultState();
-  let world = engine.createWorld(LEVELS[0]);
+  let world = null;
 
-  function save() {
-    state.lastSeen = Date.now();
-    state.boardCoins = world.coins.map((c) => ({
-      t: c.type, x: +c.x.toFixed(3), y: +c.y.toFixed(3), z: +c.z.toFixed(3),
-      vx: +c.vx.toFixed(3), vy: +c.vy.toFixed(3), vz: +c.vz.toFixed(3),
-      m: c.mult, r: +(c.rx || 0).toFixed(3), rz: +(c.rz || 0).toFixed(3),
-    }));
-    if (store) {
-      try { store.setItem(SAVE_KEY, JSON.stringify(state)); } catch (e) {}
-    }
-  }
+  function level() { return LEVELS[state.levelIndex]; }
 
-  function load() {
-    if (!store) return false;
-    try {
-      const raw = store.getItem(SAVE_KEY);
-      if (!raw) return false;
-      const s = JSON.parse(raw);
-      if (!s || s.v !== 1) return false;
-      state = Object.assign(defaultState(), s);
-      state.upgrades = Object.assign(defaultState().upgrades, s.upgrades || {});
-      state.stats = Object.assign(defaultState().stats, s.stats || {});
-      state.settings = Object.assign(defaultState().settings, s.settings || {});
-      loadLevel(state.levelIndex, true);
-      if (Array.isArray(s.boardCoins)) {
-        for (const b of s.boardCoins) {
-          const def = CONFIG.coins.find((k) => k.id === b.t) || CONFIG.coins[0];
-          const c = engine.dropCoin(world, b.x, b.z, def);
-          if (c) {
-            c.y = b.y; c.vx = b.vx; c.vy = b.vy; c.vz = b.vz;
-            c.mult = b.m || 1; c.rx = b.r || 0; c.rz = b.rz || 0;
-          }
-        }
-      }
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function reset() {
-    state = defaultState();
-    world = engine.createWorld(LEVELS[0]);
-    save();
-  }
-
-  function currentLevel() {
-    return LEVELS[Math.min(state.levelIndex, LEVELS.length - 1)];
-  }
-
-  function loadLevel(index, preserveProgress) {
-    state.levelIndex = Math.max(0, Math.min(index, LEVELS.length - 1));
-    if (!preserveProgress) state.progress = 0;
-    world = engine.createWorld(currentLevel());
-    const ml = state.machineLevels[state.levelIndex] || {};
-    world.machines.forEach((m, i) => { m.level = ml[i] || 0; });
-    const pusherLvl = state.pusherLevels[state.levelIndex] || 0;
-    world.pusher.level = pusherLvl;
-  }
-
-  function coinValueMult() {
-    return Math.pow(1.25, state.upgrades.coinValue);
-  }
-
-  function comboMult() {
-    const base = 1 + CONFIG.comboStep * Math.max(0, Math.min(state.combo, CONFIG.comboMax) - 1);
-    return base * (1 + 0.1 * state.upgrades.combo);
-  }
-
-  function maxCharges() {
-    return CONFIG.spawn.maxCharges + 5 * state.upgrades.capacity;
-  }
-
-  function refillInterval() {
-    return Math.max(0.4, CONFIG.spawn.refillInterval * Math.pow(0.9, state.upgrades.refill));
-  }
-
-  function autoDropInterval() {
-    if (!state.upgrades.autoDrop) return Infinity;
-    return 5 * Math.pow(0.7, state.upgrades.autoDrop - 1);
+  function loadLevel(idx) {
+    state.levelIndex = ((idx % LEVELS.length) + LEVELS.length) % LEVELS.length;
+    world = engine.createWorld(level());
+    state.progress = 0;
+    state.completed = false;
+    return world;
   }
 
   function pickCoinType() {
-    if (state.totalDrops < CONFIG.spawn.guaranteedBronzeCount) return CONFIG.coins[0];
-    const total = CONFIG.coins.reduce((s, c) => s + (c.gem ? 0 : c.weight), 0);
-    let roll = Math.random() * total;
-    for (const c of CONFIG.coins) {
-      if (c.gem) continue;
-      roll -= c.weight;
-      if (roll <= 0) return c;
-    }
+    // first `guaranteedBronzeCount` drops are bronze (checked before incrementing)
+    if (state.totalDrops < level().spawn.guaranteedBronzeCount) return CONFIG.coins[0];
+    const total = CONFIG.coins.reduce((s, c) => s + c.weight, 0);
+    let r = Math.random() * total;
+    for (const c of CONFIG.coins) { r -= c.weight; if (r <= 0) return c; }
     return CONFIG.coins[0];
   }
 
-  function canDrop() {
-    return state.charges >= 1 && world.coins.length < CONFIG.world.maxCoins;
+  function drop() {
+    const lv = level();
+    const cap = lv.spawn.maxCharges + state.globalUpgrades.capacity * 5;
+    if (state.charges <= 0 || !world || world.coins.length >= CONFIG.world.maxCoins) return null;
+    if (state.charges >= cap) state.refillTimer = 0;
+    state.charges--;
+    const def = pickCoinType();
+    state.totalDrops++;
+    return engine.dropCoin(world, def);
   }
 
-  function dropAt(x, z, free) {
-    if (!free && !canDrop()) return null;
-    const type = pickCoinType();
-    if (!free) {
-      state.charges -= 1;
-      state.totalDrops += 1;
-    }
-    const W = CONFIG.world;
-    const dz = Math.max(W.backZ + 1.5, Math.min(W.backZ + 4.5, z));
-    return engine.dropCoin(world, x, dz, type);
+  function comboMult() {
+    return 1 + CONFIG.comboStep * Math.max(0, state.combo - 1);
   }
 
-  function dropGem() {
-    const x = (Math.random() * 2 - 1) * (CONFIG.world.halfX - 1.5);
-    const z = CONFIG.world.backZ + 3 + Math.random() * (CONFIG.world.edgeZ - CONFIG.world.backZ - 6);
-    return engine.dropCoin(world, x, z, CONFIG.coins[3]);
-  }
-
-  function upgradeCost(key) {
-    const u = CONFIG.upgrades[key];
-    const lvl = state.upgrades[key];
-    if (lvl >= u.max) return null;
-    return Math.round(u.baseCost * Math.pow(u.costMult, lvl));
-  }
-
-  function buyUpgrade(key) {
-    const cost = upgradeCost(key);
-    if (cost === null || state.coins < cost) return false;
-    state.coins -= cost;
-    state.stats.spent += cost;
-    state.upgrades[key] += 1;
-    save();
-    return true;
-  }
-
-  function machineUpgradeCost(levelIdx, machineIdx) {
-    const lvl = ((state.machineLevels[levelIdx] || {})[machineIdx]) || 0;
-    if (lvl >= CONFIG.machineMaxLevel) return null;
-    return Math.round(CONFIG.machineCostBase * Math.pow(CONFIG.machineCostMult, lvl));
-  }
-
-  function pusherUpgradeCost(levelIdx) {
-    const lvl = state.pusherLevels[levelIdx] || 0;
-    if (lvl >= CONFIG.machineMaxLevel) return null;
-    return Math.round(CONFIG.machineCostBase * Math.pow(CONFIG.machineCostMult, lvl));
-  }
-
-  function buyMachineUpgrade(levelIdx, machineIdx) {
-    const cost = machineUpgradeCost(levelIdx, machineIdx);
-    if (cost === null || state.gems < cost) return false;
-    state.gems -= cost;
-    if (!state.machineLevels[levelIdx]) state.machineLevels[levelIdx] = {};
-    state.machineLevels[levelIdx][machineIdx] = (state.machineLevels[levelIdx][machineIdx] || 0) + 1;
-    if (levelIdx === state.levelIndex && world.machines[machineIdx]) {
-      world.machines[machineIdx].level = state.machineLevels[levelIdx][machineIdx];
-    }
-    save();
-    return true;
-  }
-
-  function buyPusherUpgrade(levelIdx) {
-    const cost = pusherUpgradeCost(levelIdx);
-    if (cost === null || state.gems < cost) return false;
-    state.gems -= cost;
-    state.pusherLevels[levelIdx] = (state.pusherLevels[levelIdx] || 0) + 1;
-    if (levelIdx === state.levelIndex) world.pusher.level = state.pusherLevels[levelIdx];
-    save();
-    return true;
-  }
-
-  function pusherSpeed() {
-    const lvl = state.pusherLevels[state.levelIndex] || 0;
-    return 2 * (1 + CONFIG.machineEffectPerLevel * lvl);
-  }
-
-  function handleEvents(events, now) {
-    let collectedValue = 0;
-    let cashGain = 0;
-    let gemsGain = 0;
-    const lv = currentLevel();
-    const wasBelow = state.progress < lv.goal;
-    for (const e of events) {
-      if (e.type === 'collect') {
-        if (now - state.lastCollectAt < CONFIG.comboWindow) state.combo += 1;
-        else state.combo = 1;
-        state.lastCollectAt = now;
-        const def = CONFIG.coins.find((c) => c.id === e.coin.type) || CONFIG.coins[0];
-        if (def.gem) {
-          gemsGain += 1;
-        } else {
-          const v = def.value * e.coin.mult * coinValueMult() * comboMult();
-          collectedValue += v;
-          cashGain += e.cash || 0;
-        }
-        state.stats.collected += 1;
-      }
-    }
-    if (collectedValue > 0 || cashGain > 0 || gemsGain > 0) {
-      state.coins += collectedValue;
-      state.cash += cashGain;
-      state.gems += gemsGain;
-      state.stats.earned += collectedValue;
-      state.progress += collectedValue;
-      if (state.progress >= lv.goal && wasBelow) {
-        completeLevel();
-      }
-    }
-    return { collectedValue, cashGain, gemsGain };
-  }
-
-  function completeLevel() {
-    state.stats.levelsCompleted += 1;
-    const reward = CONFIG.levelRewardGems;
-    const coinBonus = CONFIG.levelRewardCoinBase * (state.levelIndex + 1);
-    state.gems += reward;
-    state.coins += coinBonus;
-    state.lastLevelReward = { gems: reward, coins: coinBonus };
-    if (state.levelIndex < LEVELS.length - 1) {
-      loadLevel(state.levelIndex + 1);
-    } else {
-      state.progress -= currentLevel().goal;
-    }
-    save();
-  }
-
-  function tick(dt, now) {
-    state.refillTimer += dt;
-    const ri = refillInterval();
-    while (state.refillTimer >= ri && state.charges < maxCharges()) {
-      state.refillTimer -= ri;
-      state.charges += CONFIG.spawn.chargesPerRefill;
-    }
-    if (state.charges >= maxCharges()) state.refillTimer = 0;
-
-    state.gemTimer -= dt;
-    if (state.gemTimer <= 0) {
-      state.gemTimer = CONFIG.gemInterval;
-      dropGem();
-    }
-
-    if (state.combo > 0 && now - state.lastCollectAt > CONFIG.comboWindow) state.combo = 0;
-
-    state.autoTimer += dt;
-    const ai = autoDropInterval();
-    if (ai !== Infinity && state.autoTimer >= ai) {
-      state.autoTimer = 0;
-      if (canDrop()) {
-        const x = (Math.random() * 2 - 1) * (CONFIG.world.halfX - 1.5);
-        dropAt(x, CONFIG.world.backZ + 3 + Math.random() * 6, false);
-      }
-    }
-
-    const events = engine.step(world, dt, { pusherSpeed: pusherSpeed() });
-    const gains = handleEvents(events, now);
-
-    const window = 10;
-    state.incomeRate = state.incomeRate * 0.9 + (gains.collectedValue / Math.max(dt, 0.001)) * 0.1;
-    state._window = window;
-    return { events, gains };
-  }
-
-  function shake() {
-    if (state.cash < CONFIG.shakeCost) return false;
-    state.cash -= CONFIG.shakeCost;
-    engine.shake(world, 14);
-    save();
-    return true;
-  }
-
-  function applyOffline() {
+  function collect(coin) {
+    const def = CONFIG.coins.find((c) => c.id === coin.type) || CONFIG.coins[0];
+    // combo updated before payout; expires during tick
+    if (state.comboTimer > 0) { state.combo = Math.min(CONFIG.comboMax, state.combo + 1); }
+    else state.combo = 1;
+    state.comboTimer = CONFIG.comboWindow;
+    let value = def.value * (1 + state.globalUpgrades.value * 0.5) * coin.mult * comboMult();
+    if (def.gem) { state.gems += value; return value; }
+    state.bank += value;
+    state.progress += value;
     const now = Date.now();
-    const away = Math.max(0, (now - (state.lastSeen || now)) / 1000);
-    if (away < 60) return null;
-    const capped = Math.min(away, CONFIG.offlineCapSeconds);
-    const rate = state.incomeRate;
-    const gain = rate > 0 ? capped * rate * CONFIG.offlineEfficiency : 0;
-    if (gain > 0) {
-      state.coins += gain;
-      state.stats.earned += gain;
+    state.recent.push([now, value]);
+    while (state.recent.length && now - state.recent[0][0] > 10000) state.recent.shift();
+    const sum = state.recent.reduce((s, r) => s + r[1], 0);
+    state.incomeRate = sum / 10;
+    // level completes only on crossing the goal
+    const goal = level().goal;
+    if (!state.completed && state.progress >= goal) {
+      state.completed = true;
+      state.gems += CONFIG.levelRewardGems;
+      state.bank += CONFIG.levelRewardCoinBase * (state.levelIndex + 1);
     }
-    return { seconds: away, gain };
+    return value;
   }
 
-  function getState() { return state; }
-  function getWorld() { return world; }
+  function tick(dt) {
+    // charges refill
+    const cap = level().spawn.maxCharges + state.globalUpgrades.capacity * 5;
+    if (state.charges < cap) {
+      state.refillTimer += dt;
+      const interval = Math.max(0.2, level().spawn.refillInterval * Math.pow(0.9, state.globalUpgrades.refill));
+      while (state.refillTimer >= interval && state.charges < cap) {
+        state.refillTimer -= interval;
+        state.charges = Math.min(cap, state.charges + level().spawn.chargesPerRefill);
+      }
+    }
+    // combo expiry
+    if (state.comboTimer > 0) {
+      state.comboTimer -= dt;
+      if (state.comboTimer <= 0) { state.comboTimer = 0; state.combo = 0; }
+    }
+    if (world) engine.step(world, dt);
+    if (world) {
+      for (const ev of world.events) {
+        if (ev.type === 'collect') collect(ev.coin);
+        else if (ev.type === 'dollar') {
+          state.cash += ev.amount;
+          if (ev.addToProgression) state.progress += ev.amount;
+        }
+      }
+      world.events.length = 0;
+    }
+    // level progression: complete on crossing; last level rolls progress over
+    const goal = level().goal;
+    if (state.completed) {
+      if (state.levelIndex === LEVELS.length - 1) {
+        state.progress -= goal; // endless carry-over, no repeated reward
+        state.completed = false;
+      } else {
+        loadLevel(state.levelIndex + 1);
+      }
+    }
+  }
+
+  function upgradeMachine(id) {
+    const lvl = (state.upgrades[id] || 0);
+    if (lvl >= CONFIG.machineMaxLevel) return false;
+    const cost = Math.ceil(CONFIG.machineCostBase * Math.pow(CONFIG.machineCostMult, lvl));
+    if (state.gems < cost) return false;
+    state.gems -= cost;
+    state.upgrades[id] = lvl + 1;
+    if (world) {
+      const m = world.machines.find((x) => x.id === id);
+      if (m) m.level = lvl + 1;
+    }
+    return true;
+  }
+
+  function upgradeGlobal(key) {
+    const lvl = state.globalUpgrades[key] || 0;
+    const cost = 3 + lvl * 2;
+    if (state.gems < cost) return false;
+    state.gems -= cost;
+    state.globalUpgrades[key] = lvl + 1;
+    return true;
+  }
+
+  function serialize() {
+    return {
+      v: 3,
+      state: {
+        levelIndex: state.levelIndex, bank: state.bank, gems: state.gems, cash: state.cash,
+        charges: state.charges, refillTimer: state.refillTimer, totalDrops: state.totalDrops,
+        combo: state.combo, comboTimer: state.comboTimer, progress: state.progress,
+        completed: state.completed, upgrades: state.upgrades, globalUpgrades: state.globalUpgrades,
+        lastSave: Date.now(), incomeRate: state.incomeRate,
+      },
+      world: world ? engine.serialize(world) : null,
+    };
+  }
+
+  function save() {
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(serialize())); } catch (e) { /* private mode */ }
+  }
+
+  function load() {
+    let raw = null;
+    try { raw = localStorage.getItem(SAVE_KEY); } catch (e) { return false; }
+    if (!raw) return false;
+    try {
+      const data = JSON.parse(raw);
+      if (!data || data.v !== 3 || !data.state) return false;
+      Object.assign(state, data.state);
+      loadLevel(state.levelIndex);
+      if (data.world) engine.restore(world, data.world); // coins restored raw: no respawn clamping
+      // offline earnings: incomeRate * elapsed * efficiency, capped; 0 when incomeRate is 0
+      const elapsed = Math.min(CONFIG.offlineCapSeconds, Math.max(0, (Date.now() - (state.lastSave || Date.now())) / 1000));
+      const gain = (state.incomeRate > 0 ? state.incomeRate : 0) * elapsed * CONFIG.offlineEfficiency;
+      state.bank += gain;
+      state.offlineGain = gain;
+      return true;
+    } catch (e) { return false; }
+  }
 
   return {
-    load, save, reset, tick, dropAt, canDrop, shake,
-    buyUpgrade, buyMachineUpgrade, buyPusherUpgrade,
-    upgradeCost, machineUpgradeCost, pusherUpgradeCost,
-    coinValueMult, comboMult, maxCharges, refillInterval, autoDropInterval, pusherSpeed,
-    currentLevel, loadLevel, applyOffline, handleEvents,
-    getState, getWorld,
+    state, loadLevel, drop, tick, collect, upgradeMachine, upgradeGlobal, save, load, serialize,
+    get world() { return world; }, comboMult,
   };
 }
 
-if (typeof module !== 'undefined' && module.exports) {
-  const { CONFIG, LEVELS } = require('./config.js');
-  const { makeEngine } = require('./engine.js');
-  const engine = makeEngine(CONFIG);
-  module.exports = { makeGame, CONFIG, LEVELS, engine };
-}
+if (typeof module !== 'undefined' && module.exports) module.exports = { makeGame };

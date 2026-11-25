@@ -1,8 +1,10 @@
 function makeRasterizer(THREE) {
-  function render(world, built, W, H) {
-    const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 120);
-    camera.position.set(8.5, 11.5, 25);
-    camera.lookAt(0, 0.2, 7.5);
+  function render(world, built, W, H, camera) {
+    if (!camera) {
+      camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 120);
+      camera.position.set(8.5, 11.5, 25);
+      camera.lookAt(0, 0.2, 7.5);
+    }
     camera.updateMatrixWorld(true);
     camera.updateProjectionMatrix();
     const buf = new Uint8ClampedArray(W * H * 4);
