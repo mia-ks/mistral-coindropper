@@ -1,12 +1,14 @@
+import * as THREE from 'three';
 /* global CONFIG, LEVELS, makeEngine, makeGame, makeRenderer, makeAudio */
 (function () {
   const engine = makeEngine(CONFIG);
   const game = makeGame(CONFIG, LEVELS, engine, typeof localStorage !== 'undefined' ? localStorage : null);
-  const renderer = makeRenderer(CONFIG, LEVELS);
+  const renderer = makeRenderer(CONFIG, LEVELS, THREE);
   const audio = makeAudio();
 
-  const canvas = document.getElementById('game');
-  const ctx = canvas.getContext('2d');
+  const stage = document.getElementById('stage');
+  const overlay = document.getElementById('overlay');
+  const view = renderer.create(stage, overlay);
   const el = (id) => document.getElementById(id);
   const ui = {
     coins: el('ui-coins'), cash: el('ui-cash'), gems: el('ui-gems'),
@@ -22,7 +24,7 @@
   updateMuteIcon();
   const offline = game.applyOffline();
   if (offline && offline.gain > 1) {
-    toast(`Welcome back! +${fmt(offline.gain)} 🪙 while you were away (${Math.round(offline.seconds / 60)} min)`);
+    toast(`Welcome back! +${fmt(offline.gain)} coins while you were away (${Math.round(offline.seconds / 60)} min)`);
   }
 
   function fmt(n) {
@@ -41,39 +43,35 @@
     toastTimer = setTimeout(() => ui.toast.classList.add('hidden'), ms || 2600);
   }
 
-  function resize() {
-    const r = canvas.parentElement.getBoundingClientRect();
-    canvas.width = Math.max(320, Math.floor(r.width));
-    canvas.height = Math.max(240, Math.floor(r.height));
-  }
-  window.addEventListener('resize', resize);
-  resize();
+  window.addEventListener('resize', () => view.resize());
+  view.resize();
 
   const fx = { floaters: [], particles: [] };
-  function addFloater(x, y, text, color) {
-    fx.floaters.push({ x, y, text, color, life: 1.2, maxLife: 1.2 });
+  function addFloater(x, y, z, text, color) {
+    fx.floaters.push({ x, y, z, text, color, life: 1.2, maxLife: 1.2 });
   }
-  function burst(x, y, color, n) {
+  function burst(x, y, z, color, n) {
     for (let i = 0; i < (n || 8); i++) {
       fx.particles.push({
-        x, y, vx: (Math.random() - 0.5) * 14, vy: 4 + Math.random() * 10,
-        r: 0.35 + Math.random() * 0.35, color, life: 0.7, maxLife: 0.7,
+        x, y, z, vx: (Math.random() - 0.5) * 5, vy: 2 + Math.random() * 4, vz: (Math.random() - 0.5) * 5,
+        color, life: 0.7, maxLife: 0.7,
       });
     }
   }
 
-  canvas.addEventListener('pointerdown', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const wx = renderer.view(canvas).toWorldX(e.clientX - rect.left);
+  stage.addEventListener('pointerdown', (e) => {
+    if (!ui.panel.classList.contains('hidden')) return;
+    const p = view.pick(e.clientX, e.clientY);
+    if (!p) return;
     if (!game.canDrop()) {
       audio.deny();
       toast('Out of drops — refilling…');
       return;
     }
-    const c = game.dropAt(wx, false);
+    const c = game.dropAt(p.x, p.z, false);
     if (c) {
       audio.drop();
-      addFloater(c.x, 21, '-1', '#9db4e8');
+      addFloater(c.x, c.y, c.z, '-1', '#9db4e8');
     }
     game.save();
   });
@@ -91,7 +89,7 @@
     game.save();
     updateMuteIcon();
   });
-  function updateMuteIcon() { el('btn-mute').textContent = audio.isMuted() ? '🔇' : '🔊'; }
+  function updateMuteIcon() { el('btn-mute').textContent = audio.isMuted() ? 'muted' : 'sound'; }
   el('btn-reset').addEventListener('click', () => {
     if (confirm('Reset all progress?')) {
       game.reset();
@@ -110,8 +108,7 @@
     btn.className = 'up-btn' + (currency === 'gem' ? ' gem' : '');
     if (cost === null) { btn.textContent = 'MAX'; btn.disabled = true; }
     else {
-      btn.textContent = (currency === 'gem' ? '◆ ' : '🪙 ') + fmt(cost);
-      btn.disabled = false;
+      btn.textContent = (currency === 'gem' ? 'gem ' : 'coin ') + fmt(cost);
       btn.addEventListener('click', () => {
         if (onBuy()) { audio.buy(); renderPanel(); }
         else audio.deny();
@@ -128,7 +125,7 @@
     for (const key of Object.keys(CONFIG.upgrades)) {
       const u = CONFIG.upgrades[key];
       ui.gup.appendChild(row(
-        u.icon + ' ' + u.label, u.desc, s.upgrades[key], u.max,
+        u.label, u.desc, s.upgrades[key], u.max,
         game.upgradeCost(key), 'coin', () => game.buyUpgrade(key)
       ));
     }
@@ -144,7 +141,7 @@
     ui.pup.innerHTML = '';
     const plvl = s.pusherLevels[li] || 0;
     ui.pup.appendChild(row(
-      '🧱 Pusher', 'Pushes coins faster · +20% speed per level', plvl, CONFIG.machineMaxLevel,
+      'Pusher', 'Pushes coins faster · +20% speed per level', plvl, CONFIG.machineMaxLevel,
       game.pusherUpgradeCost(li), 'gem', () => game.buyPusherUpgrade(li)
     ));
     refreshAffordability();
@@ -186,7 +183,7 @@
     const pct = Math.min(100, (s.progress / lv.goal) * 100);
     ui.pfill.style.width = pct + '%';
     ui.ptext.textContent = fmt(s.progress) + ' / ' + fmt(lv.goal);
-    ui.combo.textContent = s.combo > 1 ? '🔥 combo x' + s.combo : '';
+    ui.combo.textContent = s.combo > 1 ? 'combo x' + s.combo : '';
     const max = game.maxCharges();
     if (ui.charges.childElementCount !== max) {
       ui.charges.innerHTML = '';
@@ -215,23 +212,23 @@
         if (e.type === 'collect') {
           const def = CONFIG.coins.find((c) => c.id === e.coin.type);
           if (def && def.gem) {
-            addFloater(e.coin.x, e.coin.y + 2, '+1 ◆', '#4ad6ff');
-            burst(e.coin.x, e.coin.y, '#4ad6ff', 10);
+            addFloater(e.coin.x, e.coin.y + 1, e.coin.z, '+1 gem', '#4ad6ff');
+            burst(e.coin.x, e.coin.y, e.coin.z, '#4ad6ff', 10);
             audio.gem();
           } else {
-            addFloater(e.coin.x, e.coin.y + 2, '+' + fmt(def.value * e.coin.mult * game.coinValueMult() * game.comboMult()), '#ffd24a');
-            burst(e.coin.x, e.coin.y, '#ffd24a', 8);
+            addFloater(e.coin.x, e.coin.y + 1, e.coin.z, '+' + fmt(def.value * e.coin.mult * game.coinValueMult() * game.comboMult()), '#ffd24a');
+            burst(e.coin.x, e.coin.y, e.coin.z, '#ffd24a', 8);
             audio.collect();
           }
-          if (e.cash) addFloater(e.coin.x, e.coin.y + 4, '+$' + e.cash, '#7dcea0');
+          if (e.cash) addFloater(e.coin.x, e.coin.y + 2, e.coin.z, '+$' + e.cash, '#7dcea0');
         } else if (e.type === 'destroy') {
-          burst(e.coin.x, e.coin.y, '#e74c3c', 6);
+          burst(e.coin.x, e.coin.y, e.coin.z, '#e74c3c', 6);
         }
       }
       if (game.getState().stats.levelsCompleted !== lastLevelsCompleted) {
         lastLevelsCompleted = game.getState().stats.levelsCompleted;
         const r = game.getState().lastLevelReward || { gems: 0, coins: 0 };
-        toast(`Level complete! +${fmt(r.coins)} 🪙 +${r.gems} ◆`);
+        toast(`Level complete! +${fmt(r.coins)} coins +${r.gems} gems`);
         audio.levelUp();
       }
       acc -= STEP;
@@ -243,11 +240,12 @@
       p.life -= dt;
       p.x += p.vx * dt;
       p.y += p.vy * dt;
+      p.z += p.vz * dt;
       p.vy -= CONFIG.world.gravity * 0.6 * dt;
     }
     fx.particles = fx.particles.filter((p) => p.life > 0);
 
-    renderer.draw(ctx, canvas, game.getWorld(), { engine }, fx, now);
+    view.render(game.getWorld(), fx, now);
 
     hudTimer -= dt;
     if (hudTimer <= 0) { hudTimer = 0.12; updateHud(); }

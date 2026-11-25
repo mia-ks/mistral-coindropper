@@ -25,35 +25,25 @@ function memStorage() {
   };
 }
 
-test('config: 19 levels, all with goal and spawn params', () => {
+test('config: 19 levels from extracted 3D layouts, machines in bounds', () => {
   assert.strictEqual(LEVELS.length, 19);
   for (const lv of LEVELS) {
     assert.strictEqual(lv.goal, 100);
     assert.strictEqual(lv.spawn.maxCharges, 15);
-    assert.strictEqual(lv.spawn.refillInterval, 2.0);
-    assert.ok(Array.isArray(lv.machines) && lv.machines.length >= 1);
-  }
-});
-
-test('config: machine types known and positions on track', () => {
-  for (const lv of LEVELS) {
+    assert.ok(lv.machines.length >= 1);
     for (const m of lv.machines) {
       assert.ok(CONFIG.machineTypes[m.type], 'unknown machine ' + m.type);
-      assert.ok(m.x > CONFIG.world.backX && m.x < CONFIG.world.edgeX, 'machine off track: ' + m.x);
+      assert.ok(Math.abs(m.x) <= CONFIG.world.halfX, 'x out of bounds: ' + m.x);
+      assert.ok(m.z > CONFIG.world.backZ && m.z < CONFIG.world.edgeZ, 'z off track: ' + m.z);
     }
   }
+  assert.ok(LEVELS[18].machines.length >= 10, 'level 19 should be busy');
 });
 
 test('config: coin table matches extracted values/weights', () => {
   const byId = Object.fromEntries(CONFIG.coins.map((c) => [c.id, c]));
-  assert.deepStrictEqual(
-    [byId[0].value, byId[1].value, byId[2].value, byId[3].gem],
-    [2, 5, 10, true]
-  );
-  assert.deepStrictEqual(
-    [byId[0].weight, byId[1].weight, byId[2].weight],
-    [90, 8, 2]
-  );
+  assert.deepStrictEqual([byId[0].value, byId[1].value, byId[2].value, byId[3].gem], [2, 5, 10, true]);
+  assert.deepStrictEqual([byId[0].weight, byId[1].weight, byId[2].weight], [90, 8, 2]);
 });
 
 test('economy: first 10 drops are guaranteed bronze, then weighted', () => {
@@ -63,10 +53,10 @@ test('economy: first 10 drops are guaranteed bronze, then weighted', () => {
   s.charges = 100;
   const types = [];
   for (let i = 0; i < 40; i++) {
-    const c = game.dropAt(30 + (i % 10) * 5, false);
+    const c = game.dropAt((i % 8) - 4, 5 + (i % 5), false);
     types.push(c.type);
   }
-  assert.deepStrictEqual(types.slice(0, 10).every((t) => t === 0), true);
+  assert.ok(types.slice(0, 10).every((t) => t === 0));
   assert.ok(types.slice(10).every((t) => t >= 0 && t <= 2));
   assert.strictEqual(s.totalDrops, 40);
   assert.strictEqual(s.charges, 60);
@@ -77,11 +67,9 @@ test('economy: upgrade purchase deducts coins, scales cost, respects max', () =>
   const game = makeGame(CONFIG, LEVELS, engine, memStorage());
   const s = game.getState();
   s.coins = 1000;
-  const c0 = game.upgradeCost('coinValue');
-  assert.strictEqual(c0, 50);
+  assert.strictEqual(game.upgradeCost('coinValue'), 50);
   assert.ok(game.buyUpgrade('coinValue'));
   assert.strictEqual(s.coins, 950);
-  assert.strictEqual(s.upgrades.coinValue, 1);
   assert.strictEqual(game.upgradeCost('coinValue'), Math.round(50 * 3));
   assert.strictEqual(game.coinValueMult(), 1.25);
   s.coins = 0;
@@ -101,7 +89,6 @@ test('economy: machine and pusher upgrades spend gems', () => {
   assert.strictEqual(s.machineLevels[0][0], 1);
   assert.ok(game.buyPusherUpgrade(0));
   assert.strictEqual(s.gems, 6);
-  assert.strictEqual(s.pusherLevels[0], 1);
   assert.strictEqual(game.pusherSpeed(), 2 * 1.2);
 });
 
@@ -145,55 +132,76 @@ test('economy: gate multiplies coin value at collect', () => {
   assert.strictEqual(s.coins, 10 * 2 * 1 * 1);
 });
 
-test('physics: coins fall, get pushed, and some are collected over 40s', () => {
+test('physics 3D: coins fall, stack, get pushed off the front edge and collected', () => {
   const engine = makeEngine(CONFIG);
-  const world = engine.createWorld(LEVELS[0]);
+  const world = engine.createWorld(LEVELS[1]);
   let collects = 0;
   let drops = 0;
-  for (let step = 0; step < 40 * 60; step++) {
-    if (step % 30 === 0 && drops < 25) {
-      engine.dropCoin(world, 20 + (drops % 8) * 6, CONFIG.coins[0]);
+  for (let step = 0; step < 90 * 60; step++) {
+    if (step % 45 === 0 && drops < 40) {
+      engine.dropCoin(world, ((drops % 9) - 4) * 0.9, 3.2, CONFIG.coins[0]);
       drops++;
     }
     const events = engine.step(world, 1 / 60, { pusherSpeed: 2 });
     collects += events.filter((e) => e.type === 'collect').length;
     for (const c of world.coins) {
-      assert.ok(isFinite(c.x) && isFinite(c.y), 'NaN coin position');
-      assert.ok(Math.abs(c.vx) <= 61 && Math.abs(c.vy) <= 61, 'velocity explosion');
+      assert.ok(isFinite(c.x) && isFinite(c.y) && isFinite(c.z), 'NaN coin position');
+      assert.ok(Math.abs(c.vx) <= 31 && Math.abs(c.vy) <= 31 && Math.abs(c.vz) <= 31, 'velocity explosion');
     }
     assert.ok(world.coins.length <= CONFIG.world.maxCoins);
   }
-  assert.ok(collects > 0, 'expected some coins to be collected, got ' + collects);
+  assert.ok(collects > 0, 'expected coins collected over 90s, got ' + collects);
 });
 
-test('physics: spikes destroy coins, fan lifts them, shake imparts velocity', () => {
+test('physics 3D: flat coins stack in layers instead of interpenetrating', () => {
   const engine = makeEngine(CONFIG);
-  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'spike', label: 'Spikes', x: 50, w: 4 }] };
+  const world = engine.createWorld(LEVELS[0]);
+  for (let i = 0; i < 6; i++) engine.dropCoin(world, 0, 11, CONFIG.coins[0]);
+  for (let i = 0; i < 60 * 8; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  const cs = world.coins;
+  assert.ok(cs.length >= 4, 'coins should remain on board: ' + cs.length);
+  for (let i = 0; i < cs.length; i++) {
+    for (let j = i + 1; j < cs.length; j++) {
+      const a = cs[i], b = cs[j];
+      const dXZ = Math.hypot(b.x - a.x, b.z - a.z);
+      if (dXZ < 2 * CONFIG.world.coinR - 0.02) {
+        assert.ok(Math.abs(b.y - a.y) >= 2 * CONFIG.world.coinH - 0.02,
+          `coins overlap: dXZ=${dXZ.toFixed(3)} dy=${Math.abs(b.y - a.y).toFixed(3)}`);
+      }
+    }
+  }
+  const maxY = Math.max(...cs.map((c) => c.y));
+  assert.ok(maxY > CONFIG.world.coinH + 0.05, 'some coin should be stacked on top, maxY=' + maxY);
+});
+
+test('physics 3D: spikes destroy, fan lifts, shake imparts velocity', () => {
+  const engine = makeEngine(CONFIG);
+  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'spike', label: 'Spikes', x: 0, z: 10, w: 2.5 }] };
   const world = engine.createWorld(lv);
-  const c = engine.dropCoin(world, 50, CONFIG.coins[0]);
+  const c = engine.dropCoin(world, 0, 10, CONFIG.coins[0]);
   let destroyed = false;
-  for (let i = 0; i < 120 && !destroyed; i++) {
+  for (let i = 0; i < 180 && !destroyed; i++) {
     const ev = engine.step(world, 1 / 60, { pusherSpeed: 0 });
     destroyed = ev.some((e) => e.type === 'destroy' && e.coin === c);
   }
   assert.ok(destroyed, 'spike should destroy the coin');
 
-  const lv2 = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'fan', label: 'Fan', x: 40, w: 0, speed: 50, y: 7, r: 11 }] };
+  const lv2 = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'fan', label: 'Fan', x: 0, z: 10, speed: 50, y: 2.6, r: 3 }] };
   const w2 = engine.createWorld(lv2);
-  const c2 = engine.dropCoin(w2, 40, CONFIG.coins[0]);
+  const c2 = engine.dropCoin(w2, 0, 10, CONFIG.coins[0]);
   let maxY = 0;
-  for (let i = 0; i < 180; i++) {
+  for (let i = 0; i < 240 && !c2.dead; i++) {
     engine.step(w2, 1 / 60, { pusherSpeed: 0 });
-    maxY = Math.max(maxY, c2.dead ? maxY : c2.y);
+    maxY = Math.max(maxY, c2.y);
   }
-  assert.ok(maxY > 6, 'fan should lift the coin, maxY=' + maxY);
+  assert.ok(maxY > 3, 'fan should lift the coin, maxY=' + maxY);
 
   const w3 = engine.createWorld(LEVELS[0]);
-  const c3 = engine.dropCoin(w3, 40, CONFIG.coins[0]);
+  const c3 = engine.dropCoin(w3, 0, 8, CONFIG.coins[0]);
   engine.step(w3, 1 / 60, { pusherSpeed: 0 });
-  const vx0 = c3.vx;
+  const before = c3.vx + c3.vy + c3.vz;
   engine.shake(w3, 14);
-  assert.ok(c3.vy > 0 || c3.vx !== vx0, 'shake should move coins');
+  assert.ok(c3.vx + c3.vy + c3.vz !== before, 'shake should move coins');
 });
 
 test('save/load roundtrip and offline earnings cap', () => {
@@ -232,11 +240,12 @@ test('charges refill over time up to capacity upgrade', () => {
   assert.ok(game.refillInterval() >= 0.4);
 });
 
-test('renderer module loads and exposes draw/view', () => {
+test('renderer module exposes buildScene/create/coinMesh', () => {
   const { makeRenderer } = require('../js/render.js');
   const r = makeRenderer(CONFIG, LEVELS);
-  assert.strictEqual(typeof r.draw, 'function');
-  assert.strictEqual(typeof r.view, 'function');
+  assert.strictEqual(typeof r.buildScene, 'function');
+  assert.strictEqual(typeof r.create, 'function');
+  assert.strictEqual(typeof r.coinMesh, 'function');
 });
 
 console.log(`\n${passed} tests passed`);

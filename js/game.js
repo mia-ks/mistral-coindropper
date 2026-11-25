@@ -112,19 +112,20 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
     return state.charges >= 1 && world.coins.length < CONFIG.world.maxCoins;
   }
 
-  function dropAt(x, free) {
+  function dropAt(x, z, free) {
     if (!free && !canDrop()) return null;
     if (!free) {
       state.charges -= 1;
       state.totalDrops += 1;
     }
     const type = pickCoinType();
-    return engine.dropCoin(world, x, type);
+    return engine.dropCoin(world, x, z, type);
   }
 
   function dropGem() {
-    const x = CONFIG.world.backX + 6 + Math.random() * (CONFIG.world.edgeX - CONFIG.world.backX - 12);
-    return engine.dropCoin(world, x, CONFIG.coins[3]);
+    const x = (Math.random() * 2 - 1) * (CONFIG.world.halfX - 1.5);
+    const z = CONFIG.world.backZ + 3 + Math.random() * (CONFIG.world.edgeZ - CONFIG.world.backZ - 6);
+    return engine.dropCoin(world, x, z, CONFIG.coins[3]);
   }
 
   function upgradeCost(key) {
@@ -254,8 +255,8 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
     if (ai !== Infinity && state.autoTimer >= ai) {
       state.autoTimer = 0;
       if (canDrop()) {
-        const x = CONFIG.world.backX + 6 + Math.random() * (CONFIG.world.edgeX - CONFIG.world.backX - 12);
-        dropAt(x, false);
+        const x = (Math.random() * 2 - 1) * (CONFIG.world.halfX - 1.5);
+        dropAt(x, CONFIG.world.backZ + 3 + Math.random() * 6, false);
       }
     }
 

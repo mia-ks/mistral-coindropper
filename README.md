@@ -1,14 +1,17 @@
 # mistral-coindropper
 
-# Coin Dozer — Clean Edition
+# Coin Dozer — Clean Edition (3D)
 
-An original, ad-free reimplementation of the coin-pusher idle game
-*Coins Clicker : Idle Collector* (`com.deadpixel.coinsclickercollector.game`, v1.0.11).
+An original, ad-free **3D** reimplementation of the coin-pusher idle game
+*Coins Clicker : Idle Collector* (`com.deadpixel.coinsclickercollector.game`, v1.0.11),
+rendered with Three.js (vendored in `js/vendor/`, MIT) and custom 3D physics:
+coins are flat discs — same-layer contacts collide as circles in the x–z plane,
+stacked coins rest face-to-face in y.
 
-Everything here is original code and original vector art drawn on a `<canvas>`.
+Everything here is original code and original procedurally-built 3D/2D art.
 No assets, code, or text were copied from the original APK; the original's
-mechanics and tuning numbers were used only as a design reference (see
-`re/ANALYSIS.md` for the reverse-engineering notes).
+mechanics, tuning numbers and per-level machine layouts were used only as a
+design reference (see `re/ANALYSIS.md` for the reverse-engineering notes).
 
 ## What's different from the original (the "not adware" part)
 
@@ -32,7 +35,7 @@ This version:
 
 ## How to play
 
-- **Tap/click the machine** to drop a coin where you tapped.
+- **Click the machine** to drop a coin at that spot on the platform.
 - Drops are limited by **charges** (15 max, refill 1 per 2 s — upgradeable).
 - Coins are pushed by the **pusher**, moved by **conveyors**, lifted by
   **air blowers**, pulled by **magnets**, hopped by **launchers**, doubled by
@@ -50,28 +53,31 @@ This version:
 
 ## Run it
 
-Open `index.html` in any modern browser, or serve the folder:
+Serve the folder (ES modules need http, not file://):
 
 ```
 python3 -m http.server 8000
 # then http://localhost:8000
 ```
 
-No build step, no dependencies, no network.
+No build step, no runtime dependencies (Three.js is vendored), no network.
 
 ## Tests
 
 ```
-node test/run-tests.js   # 14 unit/integration tests (config, economy, physics, save)
-node test/smoke.js       # headless full-loop smoke test with stubbed DOM/canvas
+node test/run-tests.js       # 14 unit/integration tests (config, economy, 3D disc-stacking physics, save)
+node test/smoke.js           # headless full-loop simulation
+node test/render3d.test.mjs  # builds the Three.js scene graph for level 19 and checks it
 ```
 
 ## Files
 
-- `js/config.js` — all tuning data: coin table, 19 level layouts, upgrade tree
-- `js/engine.js` — 2D physics: coin stacking, pusher, machine zones (pure, node-testable)
+- `js/config.js` — all tuning data: coin table, upgrade tree, world dimensions
+- `js/level_layouts.js` — 19 level layouts generated from the APK's extracted 3D machine positions
+- `js/engine.js` — 3D disc-coin physics: pusher, stacking, machine zones (pure, node-testable)
 - `js/game.js` — game state, economy, combo, save/load, offline earnings
-- `js/render.js` — canvas rendering (original vector art)
+- `js/render.js` — Three.js renderer (original procedural models; receives `THREE` as a param so it stays node-testable)
+- `js/vendor/three.module.js` — Three.js r170, MIT (`js/vendor/THREE-LICENSE.md`)
 - `js/audio.js` — WebAudio sound effects (generated, no files)
-- `js/main.js` — input, HUD, upgrade panel, main loop
+- `js/main.js` — input (raycast picking), HUD, upgrade panel, main loop (ES module)
 - `index.html`, `css/style.css`

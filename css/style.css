@@ -50,8 +50,9 @@ body {
 }
 .hbtn:active { transform: scale(0.92); }
 #btn-shake { color: #7dcea0; }
-#stage { position: relative; flex: 1; min-height: 0; }
-#game { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#stage { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+#stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#overlay { pointer-events: none; z-index: 2; }
 #toast {
   position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
   background: #1d2a47ee; border: 1px solid #33456e; border-radius: 12px;
