@@ -18,8 +18,7 @@ import * as THREE from 'three';
     pup: el('pusher-upgrade'),
   };
 
-  const hadSave = game.load();
-  if (hadSave) game.loadLevel(game.getState().levelIndex, true);
+  game.load();
   audio.setMuted(!!game.getState().settings.muted);
   updateMuteIcon();
   const offline = game.applyOffline();

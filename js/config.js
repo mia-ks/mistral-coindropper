@@ -41,7 +41,7 @@ const CONFIG = {
   machineMaxLevel: 10,
   machineEffectPerLevel: 0.2,
   machineTypes: {
-    conveyor:     { label: 'Conveyor',        w: 3 },
+    conveyor:     { label: 'Conveyor',        w: 3, speed: 2 },
     fan:          { label: 'Air Blower',      speed: 10, y: 2.6, r: 3 },
     magnet:       { label: 'Magnet',          speed: 0.55, y: 2.2, r: 3.2, attraction: 2 },
     movingMagnet: { label: 'Junkyard Magnet', speed: 0.55, y: 2.2, r: 3.2, attraction: 2, sway: 2, stay: 1.5 },
@@ -72,7 +72,7 @@ function buildLevels(layouts) {
       index: n,
       goal: L.goal || CONFIG.goal,
       spawn: { ...CONFIG.spawn },
-      machines: L.machines.map((m) => ({ ...(CONFIG.machineTypes[m.type] || {}), type: m.type, x: m.x, z: m.z })),
+      machines: L.machines.map((m) => ({ ...(CONFIG.machineTypes[m.type] || {}), ...m })),
     };
   }).sort((a, b) => a.index - b.index);
 }

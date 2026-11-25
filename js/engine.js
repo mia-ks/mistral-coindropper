@@ -63,6 +63,9 @@ function makeEngine(cfg) {
       vy: 0,
       vz: 0,
       r: W.coinR,
+      rx: 0,
+      rz: 0,
+      portalT: 0,
       type: coinType.id,
       mult: 1,
       passed: {},
@@ -108,10 +111,16 @@ function makeEngine(cfg) {
             const dx = mx - c.x, dy = (m.y || 1.6) - c.y, dz = m.z - c.z;
             const d = Math.hypot(dx, dy, dz) || 0.001;
             if (d < m.r) {
+              if (c.releaseT > 0) { c.releaseT -= dt; continue; }
               const pull = (m.type === 'suction' ? (m.speed || 2) * 60 : m.speed * 60) * sm;
               c.vx += (dx / d) * pull * dt;
               c.vy += (dy / d) * pull * dt * 0.7;
               c.vz += (dz / d) * pull * dt;
+              const sp = Math.hypot(c.vx, c.vy, c.vz);
+              if (sp < 1.5) {
+                c.holdT = (c.holdT || 0) + dt;
+                if (c.holdT > (m.attraction || 2)) { c.releaseT = 0.6; c.holdT = 0; }
+              } else c.holdT = 0;
             }
           }
           break;
@@ -125,22 +134,22 @@ function makeEngine(cfg) {
               if (d < bd && c.y < 5) { bd = d; best = c; }
             }
             if (best) {
-              best.z += (m.hop || 2.2) * sm;
-              best.y = Math.max(best.y, 2.5);
-              best.vy = 5;
-              best.vz += 3;
+              best.vz += (m.hop || 2.2) * 2.5 * sm;
+              best.vy += (m.hop || 2.2) * 1.8 * sm;
+              best.z += (m.hop || 2.2) * 0.3;
               best.launched = t;
             }
           }
           break;
         case 'portal':
           for (const c of world.coins) {
+            if (c.portalT > 0) continue;
             if (Math.abs(c.z - m.z) < m.w / 2 && inZoneX(c, { x: mx }, 1.5) && c.y < 4 && !c.passed['p' + m.idx]) {
               c.passed['p' + m.idx] = true;
-              c.z = Math.min(W.edgeZ - 2, m.z + m.outOffset);
-              c.y = 3.5;
-              c.vy = 3;
-              c.vz = 2;
+              c.portalT = m.pull || 0.35;
+              c.portalX = mx;
+              c.portalZ = m.z;
+              c.portalDest = Math.min(W.edgeZ - 2, m.z + (m.outOffset || 6));
             }
           }
           break;
@@ -258,8 +267,8 @@ function makeEngine(cfg) {
               const tx = -nz, tz = nx;
               const vt = rvx * tx + rvz * tz;
               const fr = vt * 0.06;
-              a.vx -= fr * tx; a.vz -= fr * tz;
-              b.vx += fr * tx; b.vz += fr * tz;
+              a.vx += fr * tx; a.vz += fr * tz;
+              b.vx -= fr * tx; b.vz -= fr * tz;
             }
           } else if (ady < 2 * R) {
             if (dy >= 0) { if (b.y < a.y + 2 * H) b.y = a.y + 2 * H; }
@@ -292,6 +301,22 @@ function makeEngine(cfg) {
         c.vx = Math.max(-lim, Math.min(lim, c.vx));
         c.vy = Math.max(-lim, Math.min(lim, c.vy));
         c.vz = Math.max(-lim, Math.min(lim, c.vz));
+        if (c.z > W.edgeZ) c.falling = true;
+        if (c.portalT > 0) {
+          c.portalT -= h;
+          c.x += (c.portalX - c.x) * 0.35;
+          c.z += (c.portalZ - c.z) * 0.35;
+          if (c.portalT <= 0) {
+            c.z = c.portalDest;
+            c.y = 3.5;
+            c.vy = 3;
+            c.vz = 2;
+          }
+        }
+        if (Math.abs(c.y - W.coinH) < 0.5 && c.z < W.edgeZ) {
+          c.rx = (c.rx || 0) + (-c.vz / c.r) * h;
+          c.rz = (c.rz || 0) + (c.vx / c.r) * h;
+        }
         if (!isFinite(c.x) || !isFinite(c.y) || !isFinite(c.z)) { c.dead = true; c.deadCause = 'nan'; }
       }
       collide(world);
@@ -302,7 +327,7 @@ function makeEngine(cfg) {
         events.push({ type: 'destroy', coin: c, cause: c.deadCause });
         continue;
       }
-      if (c.z > W.edgeZ + c.r * 0.5) {
+      if (c.falling && (c.y < -0.6 || c.z > W.edgeZ + 6)) {
         events.push({ type: 'collect', coin: c, cash: c.cash || 0 });
         continue;
       }

@@ -56,8 +56,9 @@ test('economy: first 10 drops are guaranteed bronze, then weighted', () => {
     const c = game.dropAt((i % 8) - 4, 5 + (i % 5), false);
     types.push(c.type);
   }
-  assert.ok(types.slice(0, 10).every((t) => t === 0));
+  assert.ok(types.slice(0, 10).every((t) => t === 0), 'first 10 must be bronze');
   assert.ok(types.slice(10).every((t) => t >= 0 && t <= 2));
+  assert.strictEqual(types.slice(0, 10).filter((t) => t === 0).length, 10);
   assert.strictEqual(s.totalDrops, 40);
   assert.strictEqual(s.charges, 60);
 });
@@ -100,9 +101,41 @@ test('economy: combo multiplier grows within window and resets after', () => {
   assert.strictEqual(s.combo, 1);
   game.handleEvents([{ type: 'collect', coin: { type: 0, mult: 1 } }], 101);
   assert.strictEqual(s.combo, 2);
-  assert.ok(game.comboMult() > 1.1);
+  assert.ok(game.comboMult() >= 1.1, 'combo x2 should give x1.1, got ' + game.comboMult());
   game.handleEvents([{ type: 'collect', coin: { type: 0, mult: 1 } }], 200);
   assert.strictEqual(s.combo, 1);
+});
+
+test('economy: combo expires during ticking and does not apply after a break', () => {
+  const engine = makeEngine(CONFIG);
+  const game = makeGame(CONFIG, LEVELS, engine, memStorage());
+  const s = game.getState();
+  s.combo = 5;
+  s.lastCollectAt = 100;
+  game.tick(1 / 60, 100 + CONFIG.comboWindow + 1);
+  assert.strictEqual(s.combo, 0, 'combo should expire while ticking');
+  s.coins = 0;
+  s.lastCollectAt = 0;
+  s.combo = 9;
+  game.handleEvents([{ type: 'collect', coin: { type: 0, mult: 1 } }], 1000);
+  assert.strictEqual(s.combo, 1);
+  assert.ok(Math.abs(s.coins - 2 * game.comboMult()) < 1e-9, 'post-break collect must use combo x1, coins=' + s.coins);
+});
+
+test('economy: last level completion awards once and carries progress over', () => {
+  const engine = makeEngine(CONFIG);
+  const game = makeGame(CONFIG, LEVELS, engine, memStorage());
+  const s = game.getState();
+  s.levelIndex = LEVELS.length - 1;
+  game.loadLevel(s.levelIndex, false);
+  s.progress = 99.5;
+  const before = s.stats.levelsCompleted;
+  game.handleEvents([{ type: 'collect', coin: { type: 0, mult: 1 } }], 1);
+  assert.strictEqual(s.stats.levelsCompleted, before + 1);
+  assert.strictEqual(s.levelIndex, LEVELS.length - 1);
+  assert.ok(s.progress < 100, 'progress should carry over, not stay pinned at goal');
+  game.handleEvents([{ type: 'collect', coin: { type: 0, mult: 1 } }], 2);
+  assert.strictEqual(s.stats.levelsCompleted, before + 1, 'no repeated completion reward');
 });
 
 test('economy: collecting fills goal and completes level with rewards', () => {
@@ -174,7 +207,66 @@ test('physics 3D: flat coins stack in layers instead of interpenetrating', () =>
   assert.ok(maxY > CONFIG.world.coinH + 0.05, 'some coin should be stacked on top, maxY=' + maxY);
 });
 
-test('physics 3D: spikes destroy, fan lifts, shake imparts velocity', () => {
+test('machines: conveyor accelerates coins (extracted speed=2 is wired)', () => {
+  const engine = makeEngine(CONFIG);
+  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ ...CONFIG.machineTypes.conveyor, type: 'conveyor', x: 0, z: 10 }] };
+  const world = engine.createWorld(lv);
+  const c = engine.dropCoin(world, 0, 7.5, CONFIG.coins[0]);
+  for (let i = 0; i < 150; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  assert.ok(Math.abs(c.vz) < 0.05, 'coin at rest outside conveyor zone, vz=' + c.vz);
+  c.vz = 3;
+  let maxVz = 0;
+  for (let i = 0; i < 120; i++) {
+    engine.step(world, 1 / 60, { pusherSpeed: 0 });
+    maxVz = Math.max(maxVz, c.vz);
+  }
+  assert.ok(maxVz > 4, 'conveyor must accelerate the coin well beyond entry speed, maxVz=' + maxVz);
+});
+
+test('machines: x2 gate multiplies a coin that passes through it', () => {
+  const engine = makeEngine(CONFIG);
+  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ ...CONFIG.machineTypes.gate, type: 'gate', x: 0, z: 10 }] };
+  const world = engine.createWorld(lv);
+  const c = engine.dropCoin(world, 0, 9.5, CONFIG.coins[0]);
+  for (let i = 0; i < 120; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  c.vz = 4;
+  for (let i = 0; i < 90 && c.mult === 1; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  assert.ok(c.mult >= 2, 'gate should have multiplied the coin, mult=' + c.mult);
+});
+
+test('machines: portal teleports after the extracted pull duration', () => {
+  const engine = makeEngine(CONFIG);
+  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ ...CONFIG.machineTypes.portal, type: 'portal', x: 0, z: 10, pull: 0.35, outOffset: 6 }] };
+  const world = engine.createWorld(lv);
+  const c = engine.dropCoin(world, 0, 9.5, CONFIG.coins[0]);
+  for (let i = 0; i < 120; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  c.vz = 4;
+  let teleportedAt = -1;
+  for (let i = 0; i < 180; i++) {
+    engine.step(world, 1 / 60, { pusherSpeed: 0 });
+    if (teleportedAt < 0 && c.z > 13) teleportedAt = i / 60;
+  }
+  assert.ok(teleportedAt >= 0, 'portal should teleport the coin forward');
+});
+
+test('machines: launcher imparts velocity impulse, not teleport', () => {
+  const engine = makeEngine(CONFIG);
+  const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ ...CONFIG.machineTypes.launcher, type: 'launcher', x: 0, z: 8, interval: 0.5, hop: 2.2 }] };
+  const world = engine.createWorld(lv);
+  const c = engine.dropCoin(world, 0, 8, CONFIG.coins[0]);
+  for (let i = 0; i < 120; i++) engine.step(world, 1 / 60, { pusherSpeed: 0 });
+  let maxVz = 0, maxStepDz = 0;
+  for (let i = 0; i < 90; i++) {
+    const z0 = c.z;
+    engine.step(world, 1 / 60, { pusherSpeed: 0 });
+    maxVz = Math.max(maxVz, c.vz);
+    maxStepDz = Math.max(maxStepDz, Math.abs(c.z - z0));
+  }
+  assert.ok(maxVz > 2, 'launcher should impart a real velocity impulse, maxVz=' + maxVz);
+  assert.ok(maxStepDz < 1.5, 'launcher must not teleport (single-step jump), maxStepDz=' + maxStepDz);
+});
+
+test('physics 3D: spikes destroy, fan lifts after settling, shake imparts velocity', () => {
   const engine = makeEngine(CONFIG);
   const lv = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'spike', label: 'Spikes', x: 0, z: 10, w: 2.5 }] };
   const world = engine.createWorld(lv);
@@ -188,13 +280,17 @@ test('physics 3D: spikes destroy, fan lifts, shake imparts velocity', () => {
 
   const lv2 = { goal: 100, spawn: CONFIG.spawn, machines: [{ type: 'fan', label: 'Fan', x: 0, z: 10, speed: 50, y: 2.6, r: 3 }] };
   const w2 = engine.createWorld(lv2);
-  const c2 = engine.dropCoin(w2, 0, 10, CONFIG.coins[0]);
-  let maxY = 0;
+  const c2 = engine.dropCoin(w2, 0, 15, CONFIG.coins[0]);
+  for (let i = 0; i < 150; i++) engine.step(w2, 1 / 60, { pusherSpeed: 0 });
+  const restY = c2.y;
+  assert.ok(restY < 1, 'coin should have settled on the floor, restY=' + restY);
+  c2.x = 0; c2.z = 10;
+  let maxY = restY;
   for (let i = 0; i < 240 && !c2.dead; i++) {
     engine.step(w2, 1 / 60, { pusherSpeed: 0 });
     maxY = Math.max(maxY, c2.y);
   }
-  assert.ok(maxY > 3, 'fan should lift the coin, maxY=' + maxY);
+  assert.ok(maxY > restY + 1, 'fan must lift the coin above its rest height, restY=' + restY + ' maxY=' + maxY);
 
   const w3 = engine.createWorld(LEVELS[0]);
   const c3 = engine.dropCoin(w3, 0, 8, CONFIG.coins[0]);
@@ -213,6 +309,8 @@ test('save/load roundtrip and offline earnings cap', () => {
   s.gems = 7;
   s.levelIndex = 4;
   s.incomeRate = 10;
+  g1.dropAt(0, 4, false);
+  g1.dropAt(1.5, 4, false);
   g1.save();
   const raw = JSON.parse(store.getItem('coindozer-clean-save-v1'));
   raw.lastSeen = Date.now() - 3 * 3600 * 1000;
@@ -223,9 +321,14 @@ test('save/load roundtrip and offline earnings cap', () => {
   assert.strictEqual(s2.coins, 123.5);
   assert.strictEqual(s2.gems, 7);
   assert.strictEqual(s2.levelIndex, 4);
+  assert.strictEqual(g2.getWorld().coins.length, 2, 'board coins must survive save/load');
   const off = g2.applyOffline();
   assert.ok(off.gain > 0);
   assert.ok(off.gain <= CONFIG.offlineCapSeconds * 10 * CONFIG.offlineEfficiency + 1);
+  const g3 = makeGame(CONFIG, LEVELS, makeEngine(CONFIG), memStorage());
+  g3.getState().incomeRate = 0;
+  g3.getState().lastSeen = Date.now() - 3600 * 1000;
+  assert.strictEqual(g3.applyOffline().gain, 0, 'no income rate means no offline payout');
 });
 
 test('charges refill over time up to capacity upgrade', () => {

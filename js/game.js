@@ -32,6 +32,11 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
 
   function save() {
     state.lastSeen = Date.now();
+    state.boardCoins = world.coins.map((c) => ({
+      t: c.type, x: +c.x.toFixed(3), y: +c.y.toFixed(3), z: +c.z.toFixed(3),
+      vx: +c.vx.toFixed(3), vy: +c.vy.toFixed(3), vz: +c.vz.toFixed(3),
+      m: c.mult, r: +(c.rx || 0).toFixed(3), rz: +(c.rz || 0).toFixed(3),
+    }));
     if (store) {
       try { store.setItem(SAVE_KEY, JSON.stringify(state)); } catch (e) {}
     }
@@ -48,6 +53,17 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
       state.upgrades = Object.assign(defaultState().upgrades, s.upgrades || {});
       state.stats = Object.assign(defaultState().stats, s.stats || {});
       state.settings = Object.assign(defaultState().settings, s.settings || {});
+      loadLevel(state.levelIndex, true);
+      if (Array.isArray(s.boardCoins)) {
+        for (const b of s.boardCoins) {
+          const def = CONFIG.coins.find((k) => k.id === b.t) || CONFIG.coins[0];
+          const c = engine.dropCoin(world, b.x, b.z, def);
+          if (c) {
+            c.y = b.y; c.vx = b.vx; c.vy = b.vy; c.vz = b.vz;
+            c.mult = b.m || 1; c.rx = b.r || 0; c.rz = b.rz || 0;
+          }
+        }
+      }
       return true;
     } catch (e) {
       return false;
@@ -79,7 +95,7 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
   }
 
   function comboMult() {
-    const base = 1 + CONFIG.comboStep * Math.min(state.combo, CONFIG.comboMax);
+    const base = 1 + CONFIG.comboStep * Math.max(0, Math.min(state.combo, CONFIG.comboMax) - 1);
     return base * (1 + 0.1 * state.upgrades.combo);
   }
 
@@ -114,12 +130,14 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
 
   function dropAt(x, z, free) {
     if (!free && !canDrop()) return null;
+    const type = pickCoinType();
     if (!free) {
       state.charges -= 1;
       state.totalDrops += 1;
     }
-    const type = pickCoinType();
-    return engine.dropCoin(world, x, z, type);
+    const W = CONFIG.world;
+    const dz = Math.max(W.backZ + 1.5, Math.min(W.backZ + 4.5, z));
+    return engine.dropCoin(world, x, dz, type);
   }
 
   function dropGem() {
@@ -189,8 +207,13 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
     let collectedValue = 0;
     let cashGain = 0;
     let gemsGain = 0;
+    const lv = currentLevel();
+    const wasBelow = state.progress < lv.goal;
     for (const e of events) {
       if (e.type === 'collect') {
+        if (now - state.lastCollectAt < CONFIG.comboWindow) state.combo += 1;
+        else state.combo = 1;
+        state.lastCollectAt = now;
         const def = CONFIG.coins.find((c) => c.id === e.coin.type) || CONFIG.coins[0];
         if (def.gem) {
           gemsGain += 1;
@@ -199,9 +222,6 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
           collectedValue += v;
           cashGain += e.cash || 0;
         }
-        if (now - state.lastCollectAt < CONFIG.comboWindow) state.combo += 1;
-        else state.combo = 1;
-        state.lastCollectAt = now;
         state.stats.collected += 1;
       }
     }
@@ -211,9 +231,7 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
       state.gems += gemsGain;
       state.stats.earned += collectedValue;
       state.progress += collectedValue;
-      const lv = currentLevel();
-      if (state.progress >= lv.goal) {
-        state.progress = lv.goal;
+      if (state.progress >= lv.goal && wasBelow) {
         completeLevel();
       }
     }
@@ -230,7 +248,7 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
     if (state.levelIndex < LEVELS.length - 1) {
       loadLevel(state.levelIndex + 1);
     } else {
-      state.levelIndex = LEVELS.length - 1;
+      state.progress -= currentLevel().goal;
     }
     save();
   }
@@ -249,6 +267,8 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
       state.gemTimer = CONFIG.gemInterval;
       dropGem();
     }
+
+    if (state.combo > 0 && now - state.lastCollectAt > CONFIG.comboWindow) state.combo = 0;
 
     state.autoTimer += dt;
     const ai = autoDropInterval();
@@ -282,8 +302,8 @@ function makeGame(CONFIG, LEVELS, engine, storage) {
     const away = Math.max(0, (now - (state.lastSeen || now)) / 1000);
     if (away < 60) return null;
     const capped = Math.min(away, CONFIG.offlineCapSeconds);
-    const rate = Math.max(state.incomeRate, 2);
-    const gain = capped * rate * CONFIG.offlineEfficiency;
+    const rate = state.incomeRate;
+    const gain = rate > 0 ? capped * rate * CONFIG.offlineEfficiency : 0;
     if (gain > 0) {
       state.coins += gain;
       state.stats.earned += gain;

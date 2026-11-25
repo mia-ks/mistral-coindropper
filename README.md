@@ -1,5 +1,3 @@
-# mistral-coindropper
-
 # Coin Dozer — Clean Edition (3D)
 
 An original, ad-free **3D** reimplementation of the coin-pusher idle game
@@ -65,9 +63,10 @@ No build step, no runtime dependencies (Three.js is vendored), no network.
 ## Tests
 
 ```
-node test/run-tests.js       # 14 unit/integration tests (config, economy, 3D disc-stacking physics, save)
+node test/run-tests.js       # 20 unit/integration tests (config, economy, 3D disc-stacking physics, machines, save)
 node test/smoke.js           # headless full-loop simulation
-node test/render3d.test.mjs  # builds the Three.js scene graph for level 19 and checks it
+node test/render3d.test.mjs  # rasterizes real frames of the Three.js scene graph (pure-JS z-buffer) and asserts on pixels
+node tools/raster-shot.mjs 0 11 docs/raster-level1.png  # dump a PNG frame of any level, no browser needed
 ```
 
 ## Files
@@ -77,6 +76,8 @@ node test/render3d.test.mjs  # builds the Three.js scene graph for level 19 and 
 - `js/engine.js` — 3D disc-coin physics: pusher, stacking, machine zones (pure, node-testable)
 - `js/game.js` — game state, economy, combo, save/load, offline earnings
 - `js/render.js` — Three.js renderer (original procedural models; receives `THREE` as a param so it stays node-testable)
+- `test/raster.js` — dependency-free per-pixel z-buffer rasterizer used by the render test (renders the real scene graph, sRGB-encoded like WebGL output)
+- `tools/raster-shot.mjs` — writes a PNG frame of any level using `test/raster.js` (pure Node, no browser/GL needed)
 - `js/vendor/three.module.js` — Three.js r170, MIT (`js/vendor/THREE-LICENSE.md`)
 - `js/audio.js` — WebAudio sound effects (generated, no files)
 - `js/main.js` — input (raycast picking), HUD, upgrade panel, main loop (ES module)

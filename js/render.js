@@ -286,6 +286,8 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
           built.coinGroup.add(mesh);
         }
         mesh.position.set(c.x, c.y, c.z);
+        mesh.rotation.x = c.rx || 0;
+        mesh.rotation.z = c.rz || 0;
         mesh.rotation.y += 0.02 + Math.abs(c.vx + c.vz) * 0.01;
         mesh.scale.setScalar(c.mult > 1 ? 1 + Math.min(0.5, (c.mult - 1) * 0.15) : 1);
       }
