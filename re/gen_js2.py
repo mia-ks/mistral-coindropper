@@ -79,6 +79,11 @@ for nm, s in d['levels'].items():
             dz = (f['min'][2] + f['max'][2]) / 2 - (b['min'][2] + b['max'][2]) / 2
             axis_u = 'x' if abs(dx) >= abs(dz) else 'z'
             sign_u = 1 if (dx if axis_u == 'x' else dz) >= 0 else -1
+            # the degenerate-center derivation gave the wrong sign: the wall strip in the
+            # prefab sits at Unity maxX, so the open edge is Unity minX (sign_u = -1 for x).
+            # Correct the x-axis sign explicitly, then mirror (x-mirror flips x sign).
+            if axis_u == 'x' and p.get('direction') == 2:
+                sign_u = -1
             pusher = {
                 **p,
                 'pos': negx(p['pos']),

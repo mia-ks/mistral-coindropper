@@ -223,6 +223,10 @@ for root in roots:
         if not mk: continue
         if not is_visible(t): continue
         p, q, s = W.world(t)
+        # dozer part = child of the inner 'Pusher' node (the moving assembly: Dozer plate
+        # AND its DozerWall move together), not just the node named 'Dozer'
+        par_nm = L['names'][L['tf'][L['tf'][t]['father']]['go']] if L['tf'][t]['father'] in L['tf'] else ''
+        is_dozer = bool(re.match(r'^Pusher( \(\d+\))?$', par_nm))
         M = W.world_mat(t)  # exact hierarchical matrix (row-major, column vectors)
         cm = [M[r][c] for c in range(4) for r in range(4)]  # column-major for THREE.Matrix4.fromArray
         # unit conversion x10 applies to the WHOLE affine transform: scale the linear
@@ -241,8 +245,6 @@ for root in roots:
                    for dx in (-1, 1) for dy in (-1, 1) for dz in (-1, 1)]
             inst_aabb = {'min': [round(min(q2[0] for q2 in pts) * 10, 3), round(min(q2[1] for q2 in pts) * 10, 3), round(min(q2[2] for q2 in pts) * 10, 3)],
                          'max': [round(max(q2[0] for q2 in pts) * 10, 3), round(max(q2[1] for q2 in pts) * 10, 3), round(max(q2[2] for q2 in pts) * 10, 3)]}
-        # dozer = node named Dozer or under 'Pusher' child of a tier, with Rigidbody kinematic
-        is_dozer = gonm == 'Dozer'
         pids, cols = renderer_mats(go)
         inst = {
             'mesh': str(mk[1]),

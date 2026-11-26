@@ -38,8 +38,10 @@ function makeEngine(CONFIG) {
       // sweep from the back edge of the pad to slightly past the open edge, so coins
       // resting on the plate get carried off the edge (plate is ~pad-sized in the original)
       const back = sign > 0 ? fmin + plateHalf : fmax - plateHalf;
-      const front = sign > 0 ? fmax + plateHalf * 0.5 : fmin - plateHalf * 0.5;
-      const travel = Math.max(0.5, Math.abs(front - back));
+      // sweep until the plate's leading edge is 0.9 past the open edge (pushes coins off
+      // without the plate flying out of the tower); plateHalf is the plate's own half-size
+      const front = sign > 0 ? fmax + 0.9 - plateHalf : fmin - 0.9 + plateHalf;
+      const travel = Math.max(0.3, Math.abs(front - back));
       tier.pusher = {
         ax, az, axis, sign, back, travel, pcx, pcz,
         speed: (p.speed != null ? p.speed : 2) * W.scale,

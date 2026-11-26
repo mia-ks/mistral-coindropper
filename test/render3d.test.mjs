@@ -45,6 +45,44 @@ const engine = makeEngine(CONFIG);
 const renderer = makeRenderer(CONFIG, LEVELS, THREE);
 const raster = makeRasterizer(THREE);
 
+// pusher plates vs all static geometry across the full motion range (stage 1):
+// transformed dozer-part AABBs at each phase must not intersect any static instance
+{
+  const lv = LEVELS[0];
+  const statics = lv.meshData.instances.map((i) => i.aabb).filter(Boolean);
+  const dozers = lv.meshData.dozers;
+  assert.ok(dozers.length >= 2, 'level 1 has dozer parts');
+  assert.ok(dozers.some((d) => /DozerWall/.test(d.name)), 'DozerWall moves with the plate');
+  let worst = 0;
+  for (let step = 0; step <= 24; step++) {
+    const w2 = engine.createWorld(lv);
+    const n = Math.round((step / 24) * 2.2 * 60);
+    for (let i = 0; i < n; i++) engine.step(w2, 1 / 60);
+    for (const t of w2.tiers) {
+      const p = t.pusher;
+      if (!p) continue;
+      const delta = p.pos - p.back;
+      for (const d of dozers.filter((dd) => dd.tier === t.name)) {
+        const a = d.aabb;
+        if (!a) continue;
+        const b = { min: [...a.min], max: [...a.max] };
+        if (p.axis === 'x') { b.min[0] += delta; b.max[0] += delta; } else { b.min[2] += delta; b.max[2] += delta; }
+        for (const s of statics) {
+          const ox = Math.min(b.max[0], s.max[0]) - Math.max(b.min[0], s.min[0]);
+          const oy = Math.min(b.max[1], s.max[1]) - Math.max(b.min[1], s.min[1]);
+          const oz = Math.min(b.max[2], s.max[2]) - Math.max(b.min[2], s.min[2]);
+          const vol = Math.max(0, ox) * Math.max(0, oy) * Math.max(0, oz);
+          // small contacts (vol < 0.1) exist in the source prefab itself (walls planted
+          // into edge strips); the defect this guards against is large interpenetration
+          worst = Math.max(worst, vol);
+          assert.ok(vol < 0.1, 'pusher part ' + d.name + ' intersects ' + s.name + ' at phase ' + step + ', vol ' + vol.toFixed(3));
+        }
+      }
+    }
+  }
+  console.log('ok - pusher plates intersect no static geometry across the full sweep (worst overlap vol ' + worst.toFixed(4) + ')');
+}
+
 // camera rig must match the extracted (handedness-converted) LevelCameraBounds for every
 // level, going through the SAME runtime path as the app (applyCamera with world -> marker fit)
 for (const lv of LEVELS) {

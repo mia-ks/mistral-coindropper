@@ -252,7 +252,13 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       for (const inst of md.instances) instanceGroups.push(addInstance(scene, inst));
       for (const d of md.dozers) {
         const grp = addInstance(scene, d);
-        dozerAnims.push({ grp, base: d.pos.slice(), tierName: d.tier });
+        // rest pose = the controller's back position along the sweep axis (the prefab pose
+        // can be mid-travel); perpendicular coordinate stays as exported
+        const tier0 = world.tiers.find((t) => t.name === d.tier);
+        const p0 = tier0 && tier0.pusher;
+        const base = d.pos.slice();
+        if (p0) { if (p0.axis === 'x') base[0] = p0.back; else base[2] = p0.back; }
+        dozerAnims.push({ grp, base, tierName: d.tier });
       }
       // attach visual groups to their machine by actual hierarchy (ancestor chain contains the machine GO)
       for (const m of world.machines) {
@@ -381,7 +387,8 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         const delta = p.pos - p.back;
         da.grp.matrix.copy(da.grp.userData.baseMat);
         const e = da.grp.matrix.elements;
-        if (p.axis === 'x') e[12] += delta; else e[14] += delta;
+        if (p.axis === 'x') e[12] += da.base[0] - da.grp.userData.basePos[0] + delta;
+        else e[14] += da.base[2] - da.grp.userData.basePos[2] + delta;
       }
       // machine part animations on the real meshes (fans spin, portals pulse, ...)
       const t = world.time;
