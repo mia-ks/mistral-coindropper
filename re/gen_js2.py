@@ -28,6 +28,8 @@ def mirror_inst(inst):
         out['mat'] = cm
     if inst.get('aabb'):
         out['aabb'] = negx_box(inst['aabb'])
+    if inst.get('origin'):
+        out['origin'] = negx(inst['origin'])
     return out
 
 def mirror_mesh(m):

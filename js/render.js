@@ -139,6 +139,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     }
     grp.matrix.decompose(grp.position, grp.quaternion, grp.scale);
     grp.userData.baseMat = grp.matrix.clone();
+    grp.userData.inst = inst;
     grp.userData.baseQuat = inst.quat ? inst.quat.slice() : [0, 0, 0, 1];
     grp.userData.basePos = inst.pos ? inst.pos.slice() : [0, 0, 0];
     grp.userData.baseScale = inst.scale ? inst.scale.slice() : [1, 1, 1];
@@ -252,13 +253,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       for (const inst of md.instances) instanceGroups.push(addInstance(scene, inst));
       for (const d of md.dozers) {
         const grp = addInstance(scene, d);
-        // rest pose = the controller's back position along the sweep axis (the prefab pose
-        // can be mid-travel); perpendicular coordinate stays as exported
-        const tier0 = world.tiers.find((t) => t.name === d.tier);
-        const p0 = tier0 && tier0.pusher;
-        const base = d.pos.slice();
-        if (p0) { if (p0.axis === 'x') base[0] = p0.back; else base[2] = p0.back; }
-        dozerAnims.push({ grp, base, tierName: d.tier });
+        dozerAnims.push({ grp, tierName: d.tier, origin: d.origin || null });
       }
       // attach visual groups to their machine by actual hierarchy (ancestor chain contains the machine GO)
       for (const m of world.machines) {
@@ -352,6 +347,67 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     camera.updateMatrixWorld(true);
   }
 
+  // shared animation update used by BOTH the runtime render loop and the tests
+  function updateAnimations(world, built, dt) {
+    // dozer assemblies: ONE shared world-space translation (p.pos - p.back along the sweep
+    // axis) added to each part's ORIGINAL matrix, so relative Dozer/DozerWall offsets and
+    // the controller origin are preserved exactly
+    for (const da of built.dozerAnims) {
+      const tier = world.tiers.find((t) => t.name === da.tierName);
+      const p = tier && tier.pusher;
+      if (!p) continue;
+      const delta = p.pos - p.back;
+      da.grp.matrix.copy(da.grp.userData.baseMat);
+      const e = da.grp.matrix.elements;
+      if (p.axis === 'x') e[12] += delta; else e[14] += delta;
+    }
+    // machine part animations on the real meshes (fans spin, portals pulse, ...)
+    const t = world.time;
+    for (const m of world.machines) {
+      const gs = m.vizGroups || [];
+      if (!gs.length) continue;
+      const p = m.params;
+      const dir = yawDirLocal(m.yaw);
+      for (const g of gs) {
+        const nm = g.name || '';
+        if ((m.type === 'Fan') && nm.startsWith('Fan')) {
+          const a = (p.speed || 10) * dt * 0.5 + (g.userData.spin || 0);
+          g.userData.spin = a;
+          g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeRotationZ(a)); // local blade axis
+        } else if (m.type === 'Portal' && /Portal/.test(nm)) {
+          const s = 1 + 0.07 * Math.sin(t * 3 + g.userData.basePos[0]);
+          g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeScale(s, s, s));
+        } else if ((m.type === 'Magnet' || m.type === 'MovingMagnet') && /Magnet/.test(nm)) {
+          if (g.userData.magOff == null) g.userData.magOff = [g.userData.basePos[0] - m.x, g.userData.basePos[2] - m.z];
+          const mx = m.type === 'MovingMagnet' ? (m.magX != null ? m.magX : m.x) : m.x;
+          const mz = m.type === 'MovingMagnet' ? (m.magZ != null ? m.magZ : m.z) : m.z;
+          const dx = mx + g.userData.magOff[0] - g.userData.basePos[0];
+          const dz = mz + g.userData.magOff[1] - g.userData.basePos[2];
+          g.matrix.copy(new THREE.Matrix4().makeTranslation(dx, 0, dz)).multiply(g.userData.baseMat);
+        } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm)) {
+          for (const ch of g.children) {
+            if (!ch.userData.baseEmissive) continue;
+            if (m.firing) {
+              ch.material.emissive.setRGB(0.7, 0.4, 1.0);
+              ch.material.emissiveIntensity = 2.5;
+            } else {
+              ch.material.emissive.copy(ch.userData.baseEmissive);
+              ch.material.emissiveIntensity = ch.userData.baseEmissiveIntensity;
+            }
+          }
+        } else if (m.type === 'MovingPlatform' && /MovingPlate|Slider/.test(nm) && m.platOff != null) {
+          g.matrix.copy(new THREE.Matrix4().makeTranslation(dir[0] * m.platOff, 0, dir[1] * m.platOff)).multiply(g.userData.baseMat);
+        } else if (m.type === 'ConveyorBelt' && /Coveyor/.test(nm)) {
+          for (const ch of g.children) {
+            const map = ch.material && ch.material.map; // this group's own cloned texture
+            if (map) map.offset.y -= (p.speed || 2) * dt * 0.06;
+          }
+        }
+      }
+    }
+
+  }
+
   function create(canvas) {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
     renderer.shadowMap.enabled = true;
@@ -379,61 +435,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
 
     function render(dt) {
       if (!built || !world) return;
-      // dozer plates ride their tier's pusher along its sweep axis (matrix translation)
-      for (const da of built.dozerAnims) {
-        const tier = world.tiers.find((t) => t.name === da.tierName);
-        const p = tier && tier.pusher;
-        if (!p) continue;
-        const delta = p.pos - p.back;
-        da.grp.matrix.copy(da.grp.userData.baseMat);
-        const e = da.grp.matrix.elements;
-        if (p.axis === 'x') e[12] += da.base[0] - da.grp.userData.basePos[0] + delta;
-        else e[14] += da.base[2] - da.grp.userData.basePos[2] + delta;
-      }
-      // machine part animations on the real meshes (fans spin, portals pulse, ...)
-      const t = world.time;
-      for (const m of world.machines) {
-        const gs = m.vizGroups || [];
-        if (!gs.length) continue;
-        const p = m.params;
-        const dir = yawDirLocal(m.yaw);
-        for (const g of gs) {
-          const nm = g.name || '';
-          if ((m.type === 'Fan') && nm.startsWith('Fan')) {
-            const a = (p.speed || 10) * dt * 0.5 + (g.userData.spin || 0);
-            g.userData.spin = a;
-            g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeRotationZ(a)); // local blade axis
-          } else if (m.type === 'Portal' && /Portal/.test(nm)) {
-            const s = 1 + 0.07 * Math.sin(t * 3 + g.userData.basePos[0]);
-            g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeScale(s, s, s));
-          } else if ((m.type === 'Magnet' || m.type === 'MovingMagnet') && /Magnet/.test(nm)) {
-            if (g.userData.magOff == null) g.userData.magOff = [g.userData.basePos[0] - m.x, g.userData.basePos[2] - m.z];
-            const mx = m.type === 'MovingMagnet' ? (m.magX != null ? m.magX : m.x) : m.x;
-            const mz = m.type === 'MovingMagnet' ? (m.magZ != null ? m.magZ : m.z) : m.z;
-            const dx = mx + g.userData.magOff[0] - g.userData.basePos[0];
-            const dz = mz + g.userData.magOff[1] - g.userData.basePos[2];
-            g.matrix.copy(new THREE.Matrix4().makeTranslation(dx, 0, dz)).multiply(g.userData.baseMat);
-          } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm)) {
-            for (const ch of g.children) {
-              if (!ch.userData.baseEmissive) continue;
-              if (m.firing) {
-                ch.material.emissive.setRGB(0.7, 0.4, 1.0);
-                ch.material.emissiveIntensity = 2.5;
-              } else {
-                ch.material.emissive.copy(ch.userData.baseEmissive);
-                ch.material.emissiveIntensity = ch.userData.baseEmissiveIntensity;
-              }
-            }
-          } else if (m.type === 'MovingPlatform' && /MovingPlate|Slider/.test(nm) && m.platOff != null) {
-            g.matrix.copy(new THREE.Matrix4().makeTranslation(dir[0] * m.platOff, 0, dir[1] * m.platOff)).multiply(g.userData.baseMat);
-          } else if (m.type === 'ConveyorBelt' && /Coveyor/.test(nm)) {
-            for (const ch of g.children) {
-              const map = ch.material && ch.material.map; // this group's own cloned texture
-              if (map) map.offset.y -= (p.speed || 2) * dt * 0.06;
-            }
-          }
-        }
-      }
+      updateAnimations(world, built, dt);
       const seen = new Set();
       for (const c of world.coins) {
         seen.add(c.id);
@@ -459,7 +461,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     return { render, resize, setLevel, coinMesh, applyCamera, whenTexturesReady: () => Promise.all(pendingTex), get camera() { return camera; }, get built() { return built; }, get world() { return world; } };
   }
 
-  return { buildScene, create, coinMesh, applyCamera, fitCameraToWorld };
+  return { buildScene, create, coinMesh, applyCamera, fitCameraToWorld, updateAnimations };
 }
 
 if (typeof module !== 'undefined' && module.exports) module.exports = { makeRenderer };

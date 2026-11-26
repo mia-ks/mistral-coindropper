@@ -45,42 +45,47 @@ const engine = makeEngine(CONFIG);
 const renderer = makeRenderer(CONFIG, LEVELS, THREE);
 const raster = makeRasterizer(THREE);
 
-// pusher plates vs all static geometry across the full motion range (stage 1):
-// transformed dozer-part AABBs at each phase must not intersect any static instance
+// pusher-vs-static intersection test on the REAL scene graph: build the scene with the
+// renderer, step the engine, invoke the renderer's own updateAnimations, then intersect
+// the dozer parts' actual world matrices (from the scene graph) with every static AABB.
 {
   const lv = LEVELS[0];
+  const world0 = engine.createWorld(lv);
+  const built = renderer.buildScene(world0);
   const statics = lv.meshData.instances.map((i) => i.aabb).filter(Boolean);
   const dozers = lv.meshData.dozers;
-  assert.ok(dozers.length >= 2, 'level 1 has dozer parts');
-  assert.ok(dozers.some((d) => /DozerWall/.test(d.name)), 'DozerWall moves with the plate');
-  let worst = 0;
+  assert.ok(dozers.length >= 2 && dozers.some((d) => /DozerWall/.test(d.name)), 'level 1 dozer assembly exported (plate + wall)');
+  // motion period from the actual controller parameters: 2*travel/speed + backHold
+  const period = Math.max(...world0.tiers.map((t) => {
+    const p = t.pusher;
+    return p ? (2 * p.travel) / p.speed + p.hold : 0;
+  }), 0.1);
+  let worst = 0, worstWhat = '';
   for (let step = 0; step <= 24; step++) {
     const w2 = engine.createWorld(lv);
-    const n = Math.round((step / 24) * 2.2 * 60);
+    const n = Math.round((step / 24) * period * 60);
     for (let i = 0; i < n; i++) engine.step(w2, 1 / 60);
-    for (const t of w2.tiers) {
-      const p = t.pusher;
-      if (!p) continue;
-      const delta = p.pos - p.back;
-      for (const d of dozers.filter((dd) => dd.tier === t.name)) {
-        const a = d.aabb;
-        if (!a) continue;
-        const b = { min: [...a.min], max: [...a.max] };
-        if (p.axis === 'x') { b.min[0] += delta; b.max[0] += delta; } else { b.min[2] += delta; b.max[2] += delta; }
-        for (const s of statics) {
-          const ox = Math.min(b.max[0], s.max[0]) - Math.max(b.min[0], s.min[0]);
-          const oy = Math.min(b.max[1], s.max[1]) - Math.max(b.min[1], s.min[1]);
-          const oz = Math.min(b.max[2], s.max[2]) - Math.max(b.min[2], s.min[2]);
-          const vol = Math.max(0, ox) * Math.max(0, oy) * Math.max(0, oz);
-          // small contacts (vol < 0.1) exist in the source prefab itself (walls planted
-          // into edge strips); the defect this guards against is large interpenetration
-          worst = Math.max(worst, vol);
-          assert.ok(vol < 0.1, 'pusher part ' + d.name + ' intersects ' + s.name + ' at phase ' + step + ', vol ' + vol.toFixed(3));
-        }
+    renderer.updateAnimations(w2, built, 0); // the same function the render loop calls
+    built.scene.updateMatrixWorld(true);
+    for (const da of built.dozerAnims) {
+      const inst = da.grp.userData.inst;
+      const a = inst.aabb;
+      if (!a) continue;
+      const e = da.grp.matrix.elements;
+      const bt = inst.mat;
+      const dx = e[12] - bt[12], dy = e[13] - bt[13], dz = e[14] - bt[14];
+      const b = { min: [a.min[0] + dx, a.min[1] + dy, a.min[2] + dz], max: [a.max[0] + dx, a.max[1] + dy, a.max[2] + dz] };
+      for (const s2 of statics) {
+        const ox = Math.min(b.max[0], s2.max[0]) - Math.max(b.min[0], s2.min[0]);
+        const oy = Math.min(b.max[1], s2.max[1]) - Math.max(b.min[1], s2.min[1]);
+        const oz = Math.min(b.max[2], s2.max[2]) - Math.max(b.min[2], s2.min[2]);
+        const vol = Math.max(0, ox) * Math.max(0, oy) * Math.max(0, oz);
+        if (vol > worst) { worst = vol; worstWhat = 'phase ' + step + ' ' + inst.name + ' ox' + ox.toFixed(2) + ' oy' + oy.toFixed(2) + ' oz' + oz.toFixed(2); }
+        assert.ok(vol < 0.1, 'pusher part ' + inst.name + ' intersects static geometry at phase ' + step + ', vol ' + vol.toFixed(3));
       }
     }
   }
-  console.log('ok - pusher plates intersect no static geometry across the full sweep (worst overlap vol ' + worst.toFixed(4) + ')');
+  console.log('ok - real scene graph, runtime updateAnimations, controller-derived period ' + period.toFixed(2) + 's: worst pusher/static overlap vol ' + worst.toFixed(4) + ' (' + worstWhat + ')');
 }
 
 // camera rig must match the extracted (handedness-converted) LevelCameraBounds for every

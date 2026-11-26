@@ -227,6 +227,10 @@ for root in roots:
         # AND its DozerWall move together), not just the node named 'Dozer'
         par_nm = L['names'][L['tf'][L['tf'][t]['father']]['go']] if L['tf'][t]['father'] in L['tf'] else ''
         is_dozer = bool(re.match(r'^Pusher( \(\d+\))?$', par_nm))
+        # controller origin = the inner Pusher node's world position (all parts share it)
+        origin = None
+        if is_dozer and L['tf'][t]['father'] in L['tf']:
+            origin = [round(v * 10, 3) for v in W.world2(L['tf'][t]['father'])[0]]
         M = W.world_mat(t)  # exact hierarchical matrix (row-major, column vectors)
         cm = [M[r][c] for c in range(4) for r in range(4)]  # column-major for THREE.Matrix4.fromArray
         # unit conversion x10 applies to the WHOLE affine transform: scale the linear
@@ -258,6 +262,7 @@ for root in roots:
             'name': gonm,
             'chain': chain_of(t),
             'aabb': inst_aabb,
+            'origin': origin,
         }
         g = mesh_geom(mk)
         if not g.get('subs'):
