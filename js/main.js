@@ -11,6 +11,7 @@ const view = renderer.create(canvas);
 
 const hadSave = game.load();
 const q = new URLSearchParams(location.search);
+const FREEZE = !!q.get('freeze'); // frozen static scene: no sim, no coins, no animation (geometry verification)
 if (q.get('level')) { game.loadLevel(Math.max(1, Math.min(LEVELS.length, parseInt(q.get('level')) || 1)) - 1); }
 view.setLevel(LEVELS[game.state.levelIndex], game.world);
 // debug/screenshot hook: ?level=N&t=SECONDS&dropEvery=TICKS fast-forwards the sim
@@ -85,7 +86,7 @@ let hudTimer = 0, saveTimer = 0;
 function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000);
   last = now;
-  game.tick(dt);
+  if (!FREEZE) game.tick(dt);
   if (view.world !== game.world) view.setLevel(LEVELS[game.state.levelIndex], game.world);
   view.render(dt);
   hudTimer += dt;

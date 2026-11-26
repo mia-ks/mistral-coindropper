@@ -45,6 +45,14 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
           for (let i = 0; i < n; i++) { ua[i * 2] = sub.uv[i][0] / 10000; ua[i * 2 + 1] = sub.uv[i][1] / 10000; }
           g.setAttribute('uv', new THREE.BufferAttribute(ua, 2));
         }
+        // vertex colors when present (white fill otherwise, so one material can serve all)
+        const ca = new Float32Array(n * 3);
+        if (sub.col && sub.col.length === n) {
+          for (let i = 0; i < n; i++) { ca[i * 3] = sub.col[i][0] / 255; ca[i * 3 + 1] = sub.col[i][1] / 255; ca[i * 3 + 2] = sub.col[i][2] / 255; }
+        } else {
+          ca.fill(1);
+        }
+        g.setAttribute('color', new THREE.BufferAttribute(ca, 3));
         g.setIndex(sub.idx);
         list.push(g);
       }
@@ -82,12 +90,18 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     if (def) {
       const [r, g, b, a] = def.color;
       const map = texFor(def);
+      const blending = (def.mode != null && def.mode >= 2) || a < 0.995;
       mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(r, g, b), roughness: 0.65, metalness: 0.1, map,
-        transparent: a < 0.995, opacity: a,
+        color: new THREE.Color(r, g, b), map,
+        roughness: def.smoothness != null ? 1 - def.smoothness : 0.5,
+        metalness: def.metallic || 0,
+        vertexColors: true,
+        transparent: blending, opacity: a,
+        side: def.cull === 0 ? THREE.DoubleSide : def.cull === 1 ? THREE.BackSide : THREE.FrontSide,
       });
+      if (blending) mat.depthWrite = false;
     } else {
-      mat = new THREE.MeshStandardMaterial({ color: 0xd8dce6, roughness: 0.75, metalness: 0.15 });
+      mat = new THREE.MeshStandardMaterial({ color: 0xd8dce6, roughness: 0.75, metalness: 0.15, vertexColors: true });
     }
     matCache.set(key, mat);
     return mat;
@@ -97,7 +111,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     const key = c[0].toFixed(4) + ',' + c[1].toFixed(4) + ',' + c[2].toFixed(4);
     if (!matCache.has(key)) {
       matCache.set(key, new THREE.MeshStandardMaterial({
-        color: new THREE.Color(c[0], c[1], c[2]), roughness: 0.75, metalness: 0.15,
+        color: new THREE.Color(c[0], c[1], c[2]), roughness: 0.75, metalness: 0.15, vertexColors: true,
       }));
     }
     return matCache.get(key);
@@ -115,6 +129,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     grp.userData.baseQuat = inst.quat.slice();
     grp.userData.basePos = inst.pos.slice();
     grp.userData.baseScale = inst.scale.slice();
+    grp.userData.chain = inst.chain || [];
     for (let s = 0; s < geos.length; s++) {
       const mesh = new THREE.Mesh(geos[s], instMat(inst, s));
       mesh.castShadow = true;
@@ -230,15 +245,18 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
         const grp = addInstance(scene, d);
         dozerAnims.push({ grp, base: d.pos.slice(), tierName: d.tier });
       }
-      // attach machine visual groups to their machine (for animations) by proximity
+      // attach visual groups to their machine by actual hierarchy (ancestor chain contains the machine GO)
       for (const m of world.machines) {
-        const v = m.visual;
-        if (!v) continue;
-        const pad = 2.5;
-        m.vizGroups = instanceGroups.filter((g) =>
-          g.position.x > v.min[0] - pad && g.position.x < v.max[0] + pad &&
-          g.position.y > v.min[1] - pad && g.position.y < v.max[1] + pad &&
-          g.position.z > v.min[2] - pad && g.position.z < v.max[2] + pad);
+        m.vizGroups = instanceGroups.filter((g) => (g.userData.chain || []).includes(m.go));
+        for (const g of m.vizGroups) {
+          // per-group clones so animations never mutate shared materials/textures
+          for (const ch of g.children) {
+            ch.material = ch.material.clone();
+            if (ch.material.map) ch.material.map = ch.material.map.clone();
+            ch.userData.baseEmissive = ch.material.emissive ? ch.material.emissive.clone() : null;
+            ch.userData.baseEmissiveIntensity = ch.material.emissiveIntensity != null ? ch.material.emissiveIntensity : 1;
+          }
+        }
       }
     }
 
@@ -249,7 +267,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
   }
 
   function applyCamera(camera, level, aspect, world) {
-    camera.near = 3;
+    camera.near = 1;
     camera.far = 8000;
     camera.aspect = aspect;
     const gl = level.cameraGL;
@@ -374,17 +392,26 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
             const s = 1 + 0.07 * Math.sin(t * 3 + g.position.x);
             g.scale.set(g.userData.baseScale[0] * s, g.userData.baseScale[1] * s, g.userData.baseScale[2] * s);
           } else if ((m.type === 'Magnet' || m.type === 'MovingMagnet') && /Magnet/.test(nm)) {
+            if (g.userData.magOff == null) g.userData.magOff = [g.userData.basePos[0] - m.x, g.userData.basePos[2] - m.z];
             const mx = m.type === 'MovingMagnet' ? (m.magX != null ? m.magX : m.x) : m.x;
             const mz = m.type === 'MovingMagnet' ? (m.magZ != null ? m.magZ : m.z) : m.z;
-            g.position.x += (mx - g.position.x) * Math.min(1, 4 * dt);
-            g.position.z += (mz - g.position.z) * Math.min(1, 4 * dt);
-          } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm) && m.firing) {
-            for (const ch of g.children) if (ch.material && ch.material.emissive) ch.material = ch.material.clone(), ch.material.emissive.setRGB(0.7, 0.4, 1.0);
+            g.position.set(mx + g.userData.magOff[0], g.userData.basePos[1], mz + g.userData.magOff[1]);
+          } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm)) {
+            for (const ch of g.children) {
+              if (!ch.userData.baseEmissive) continue;
+              if (m.firing) {
+                ch.material.emissive.setRGB(0.7, 0.4, 1.0);
+                ch.material.emissiveIntensity = 2.5;
+              } else {
+                ch.material.emissive.copy(ch.userData.baseEmissive);
+                ch.material.emissiveIntensity = ch.userData.baseEmissiveIntensity;
+              }
+            }
           } else if (m.type === 'MovingPlatform' && /MovingPlate|Slider/.test(nm) && m.platOff != null) {
             g.position.set(g.userData.basePos[0] + dir[0] * m.platOff, g.userData.basePos[1], g.userData.basePos[2] + dir[1] * m.platOff);
           } else if (m.type === 'ConveyorBelt' && /Coveyor/.test(nm)) {
             for (const ch of g.children) {
-              const map = ch.material && ch.material.map;
+              const map = ch.material && ch.material.map; // this group's own cloned texture
               if (map) map.offset.y -= (p.speed || 2) * dt * 0.06;
             }
           }
