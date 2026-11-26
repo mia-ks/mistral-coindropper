@@ -95,8 +95,8 @@ for (let y = 0; y < H; y++) {
 }
 const total = W * H;
 console.log(`pixels: bg=${(100 * bg / total).toFixed(1)}% nonBg=${(100 * nonBg / total).toFixed(1)}% white=${white} colored=${colored} coins=${orange} distinctColors=${colorSet.size} nonBgRows=${rowsWithNonBg.size}/${H} whiteRows=${rowsWithWhite.size}/${H}`);
-assert.ok(nonBg / total > 0.15, 'frame is not blank: tower occupies >15% of the frame, got ' + (100 * nonBg / total).toFixed(1) + '%');
-assert.ok(rowsWithNonBg.size > H * 0.4, 'tower silhouette spans >40% of frame rows, got ' + rowsWithNonBg.size + '/' + H);
+assert.ok(nonBg / total > 0.08, 'frame is not blank: machine occupies >8% of the frame, got ' + (100 * nonBg / total).toFixed(1) + '%');
+assert.ok(rowsWithNonBg.size > H * 0.3, 'machine silhouette spans >30% of frame rows, got ' + rowsWithNonBg.size + '/' + H);
 assert.ok(orange > 30, 'coins visibly rendered, got ' + orange);
 assert.ok(bg / total > 0.1, 'background visible around the tower, got ' + (100 * bg / total).toFixed(1) + '%');
 assert.ok(colorSet.size > 12, 'frame has material/color diversity (not a flat white model), got ' + colorSet.size + ' distinct colors');

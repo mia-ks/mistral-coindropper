@@ -10,7 +10,7 @@ def load():
     env = UnityPy.load(BUNDLE, META, MONO)
     env2 = UnityPy.load(DATA, META)
     scripts, names, meshname, meshaabb = {}, {}, {}, {}
-    tf, go_of_tf, go_comps = {}, {}, defaultdict(list)
+    tf, go_of_tf, go_comps, go_active = {}, {}, defaultdict(list), {}
     for tag, e in (('aa', env), ('data', env2)):
         for o in e.objects:
             t = o.type.name
@@ -21,6 +21,7 @@ def load():
                 elif t == 'GameObject':
                     d = o.read_typetree()
                     names[(tag, o.path_id)] = d.get('m_Name', '')
+                    go_active[(tag, o.path_id)] = d.get('m_IsActive', 1)
                     for c in d.get('m_Component', []):
                         pid = c.get('component', {}).get('m_PathID')
                         if pid: go_comps[(tag, o.path_id)].append((tag, pid))
@@ -42,7 +43,7 @@ def load():
             except Exception:
                 pass
     return dict(env=env, env2=env2, scripts=scripts, names=names, meshname=meshname, meshaabb=meshaabb,
-                tf=tf, go_of_tf=go_of_tf, go_comps=go_comps)
+                tf=tf, go_of_tf=go_of_tf, go_comps=go_comps, go_active=go_active)
 
 def qmul(a, b):
     ax, ay, az, aw = a; bx, by, bz, bw = b
@@ -56,11 +57,29 @@ def qrot(q, v):
 
 def sapply(s, v): return (s[0]*v[0], s[1]*v[1], s[2]*v[2])
 
+def mat_mul(a, b):  # row-major 4x4, column vectors
+    return [[sum(a[i][k] * b[k][j] for k in range(4)) for j in range(4)] for i in range(4)]
+
+def trs_mat(p, q, s):
+    x, y, z, w = q
+    R = [[1-2*(y*y+z*z), 2*(x*y-z*w),   2*(x*z+y*w)],
+         [2*(x*y+z*w),   1-2*(x*x+z*z), 2*(y*z-x*w)],
+         [2*(x*z-y*w),   2*(y*z+x*w),   1-2*(x*x+y*y)]]
+    M = [[R[i][j] * s[j] for j in range(3)] + [p[i]] for i in range(3)]
+    M.append([0.0, 0.0, 0.0, 1.0])
+    return M
+
+def xform(m, v):
+    return (m[0][0]*v[0] + m[0][1]*v[1] + m[0][2]*v[2] + m[0][3],
+            m[1][0]*v[0] + m[1][1]*v[1] + m[1][2]*v[2] + m[1][3],
+            m[2][0]*v[0] + m[2][1]*v[1] + m[2][2]*v[2] + m[2][3])
+
 class World:
     def __init__(self, L):
         self.L = L
         self.tf = L['tf']
         self._W = {}
+        self._WM = {}
     def world(self, key):
         if key in self._W: return self._W[key]
         d = self.tf[key]
@@ -76,6 +95,28 @@ class World:
     def yaw(self, q):
         x, y, z, w = q
         return math.degrees(math.atan2(2*(w*y + x*z), 1 - 2*(y*y + x*x)))
+    def world_mat(self, key):
+        # full hierarchical 4x4 matrix composition (correct under nonuniform scale,
+        # unlike separate pos/quat/scale accumulation)
+        if key in self._WM: return self._WM[key]
+        d = self.tf[key]
+        f = d['father']
+        if f in self.tf:
+            M = mat_mul(self.world_mat(f), trs_mat(d['pos'], d['quat'], d['scale']))
+        else:
+            M = trs_mat(d['pos'], d['quat'], d['scale'])
+        self._WM[key] = M
+        return M
+    def world2(self, key):
+        # (pos, yaw, scale, mat): pos = translation (exact), yaw from the matrix z column,
+        # scale = column norms
+        M = self.world_mat(key)
+        pos = (M[0][3], M[1][3], M[2][3])
+        sx = math.sqrt(M[0][0]**2 + M[1][0]**2 + M[2][0]**2)
+        sy = math.sqrt(M[0][1]**2 + M[1][1]**2 + M[2][1]**2)
+        sz = math.sqrt(M[0][2]**2 + M[1][2]**2 + M[2][2]**2)
+        yaw = math.degrees(math.atan2(M[0][2] / (sz or 1), M[2][2] / (sz or 1)))
+        return pos, yaw, (sx, sy, sz), M
     def children(self, key):
         return [k for k, d in self.tf.items() if d['father'] == key]
     def tf_of_go(self, go):

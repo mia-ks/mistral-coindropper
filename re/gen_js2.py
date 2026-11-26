@@ -14,7 +14,16 @@ def mirror_inst(inst):
     # diag(-1,1,1)). With the mesh vertices themselves mirrored below (negx + winding
     # flip), the mirrored-world instance transform is exactly the conjugated one, so the
     # stored values are already correct: M*T_u = (M*T_u*M^-1) * M.
-    return inst
+    # The column-major matrix is mirrored by negating row 0 of the row-major form,
+    # i.e. column-major elements 0, 4, 8, 12.
+    out = dict(inst)
+    if inst.get('mat'):
+        m = inst['mat']
+        cm = list(m)
+        for i in (0, 4, 8, 12):
+            cm[i] = -m[i]
+        out['mat'] = cm
+    return out
 
 def mirror_mesh(m):
     # true global mirror of geometry: x -> -x plus reversed winding so normals stay outward
@@ -29,6 +38,8 @@ def mirror_mesh(m):
             sub['nrm'] = [[-n[0], n[1], n[2]] for n in s['nrm']]
         if s.get('uv'):
             sub['uv'] = [list(u) for u in s['uv']]
+        if s.get('col'):
+            sub['col'] = [list(c) for c in s['col']]
         subs.append(sub)
     return {'name': m['name'], 'subs': subs}
 

@@ -121,24 +121,33 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
     return matFor(inst.colors, s);
   }
 
-  // one THREE.Group per exported instance, one Mesh per submesh (per-submesh material)
+  // one THREE.Group per exported instance, one Mesh per submesh (per-submesh material).
+  // Transform = the exact exported hierarchical matrix (column-major), so nonuniform
+  // parent scales compose correctly.
   function addInstance(scene, inst) {
     const geos = geomsFor(inst.mesh);
     const grp = new THREE.Group();
     grp.name = inst.name || '';
-    grp.userData.baseQuat = inst.quat.slice();
-    grp.userData.basePos = inst.pos.slice();
-    grp.userData.baseScale = inst.scale.slice();
     grp.userData.chain = inst.chain || [];
+    if (inst.mat) {
+      grp.matrixAutoUpdate = false;
+      grp.matrix.fromArray(inst.mat);
+    } else {
+      grp.position.set(inst.pos[0], inst.pos[1], inst.pos[2]);
+      grp.quaternion.set(inst.quat[0], inst.quat[1], inst.quat[2], inst.quat[3]);
+      grp.scale.set(inst.scale[0], inst.scale[1], inst.scale[2]);
+    }
+    grp.matrix.decompose(grp.position, grp.quaternion, grp.scale);
+    grp.userData.baseMat = grp.matrix.clone();
+    grp.userData.baseQuat = inst.quat ? inst.quat.slice() : [0, 0, 0, 1];
+    grp.userData.basePos = inst.pos ? inst.pos.slice() : [0, 0, 0];
+    grp.userData.baseScale = inst.scale ? inst.scale.slice() : [1, 1, 1];
     for (let s = 0; s < geos.length; s++) {
       const mesh = new THREE.Mesh(geos[s], instMat(inst, s));
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       grp.add(mesh);
     }
-    grp.position.set(inst.pos[0], inst.pos[1], inst.pos[2]);
-    grp.quaternion.set(inst.quat[0], inst.quat[1], inst.quat[2], inst.quat[3]);
-    grp.scale.set(inst.scale[0], inst.scale[1], inst.scale[2]);
     scene.add(grp);
     return grp;
   }
@@ -364,14 +373,15 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
 
     function render(dt) {
       if (!built || !world) return;
-      // dozer plates ride their tier's pusher along its sweep axis
+      // dozer plates ride their tier's pusher along its sweep axis (matrix translation)
       for (const da of built.dozerAnims) {
         const tier = world.tiers.find((t) => t.name === da.tierName);
         const p = tier && tier.pusher;
         if (!p) continue;
         const delta = p.pos - p.back;
-        if (p.axis === 'x') da.grp.position.set(da.base[0] + delta, da.base[1], da.base[2]);
-        else da.grp.position.set(da.base[0], da.base[1], da.base[2] + delta);
+        da.grp.matrix.copy(da.grp.userData.baseMat);
+        const e = da.grp.matrix.elements;
+        if (p.axis === 'x') e[12] += delta; else e[14] += delta;
       }
       // machine part animations on the real meshes (fans spin, portals pulse, ...)
       const t = world.time;
@@ -385,17 +395,17 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
           if ((m.type === 'Fan') && nm.startsWith('Fan')) {
             const a = (p.speed || 10) * dt * 0.5 + (g.userData.spin || 0);
             g.userData.spin = a;
-            const bq = new THREE.Quaternion(g.userData.baseQuat[0], g.userData.baseQuat[1], g.userData.baseQuat[2], g.userData.baseQuat[3]);
-            const spin = new THREE.Quaternion(0, 0, Math.sin(a / 2), Math.cos(a / 2)); // local z (blade axis)
-            g.quaternion.copy(bq.multiply(spin));
+            g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeRotationZ(a)); // local blade axis
           } else if (m.type === 'Portal' && /Portal/.test(nm)) {
-            const s = 1 + 0.07 * Math.sin(t * 3 + g.position.x);
-            g.scale.set(g.userData.baseScale[0] * s, g.userData.baseScale[1] * s, g.userData.baseScale[2] * s);
+            const s = 1 + 0.07 * Math.sin(t * 3 + g.userData.basePos[0]);
+            g.matrix.copy(g.userData.baseMat).multiply(new THREE.Matrix4().makeScale(s, s, s));
           } else if ((m.type === 'Magnet' || m.type === 'MovingMagnet') && /Magnet/.test(nm)) {
             if (g.userData.magOff == null) g.userData.magOff = [g.userData.basePos[0] - m.x, g.userData.basePos[2] - m.z];
             const mx = m.type === 'MovingMagnet' ? (m.magX != null ? m.magX : m.x) : m.x;
             const mz = m.type === 'MovingMagnet' ? (m.magZ != null ? m.magZ : m.z) : m.z;
-            g.position.set(mx + g.userData.magOff[0], g.userData.basePos[1], mz + g.userData.magOff[1]);
+            const dx = mx + g.userData.magOff[0] - g.userData.basePos[0];
+            const dz = mz + g.userData.magOff[1] - g.userData.basePos[2];
+            g.matrix.copy(new THREE.Matrix4().makeTranslation(dx, 0, dz)).multiply(g.userData.baseMat);
           } else if (m.type === 'TeslaCoil' && /Tesla/.test(nm)) {
             for (const ch of g.children) {
               if (!ch.userData.baseEmissive) continue;
@@ -408,7 +418,7 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
               }
             }
           } else if (m.type === 'MovingPlatform' && /MovingPlate|Slider/.test(nm) && m.platOff != null) {
-            g.position.set(g.userData.basePos[0] + dir[0] * m.platOff, g.userData.basePos[1], g.userData.basePos[2] + dir[1] * m.platOff);
+            g.matrix.copy(new THREE.Matrix4().makeTranslation(dir[0] * m.platOff, 0, dir[1] * m.platOff)).multiply(g.userData.baseMat);
           } else if (m.type === 'ConveyorBelt' && /Coveyor/.test(nm)) {
             for (const ch of g.children) {
               const map = ch.material && ch.material.map; // this group's own cloned texture

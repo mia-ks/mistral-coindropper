@@ -38,7 +38,8 @@ mat_def_cache = {}
 mat_defs = {}
 def mat_def(mid):
     if mid in mat_def_cache: return mat_def_cache[mid]
-    d_def = {'name': str(mid), 'color': [0.85, 0.85, 0.9, 1.0], 'tex': None, 'uvScale': [1, 1], 'uvOffset': [0, 0]}
+    d_def = {'name': str(mid), 'color': [0.85, 0.85, 0.9, 1.0], 'tex': None, 'uvScale': [1, 1], 'uvOffset': [0, 0],
+             'metallic': 0.0, 'smoothness': 0.5, 'cull': 2, 'mode': 0}
     for o in env.objects:
         if o.type.name == 'Material' and o.path_id == mid:
             try:
@@ -47,6 +48,13 @@ def mat_def(mid):
                 d_def['color'] = [round(c.get('r', 1), 4), round(c.get('g', 1), 4), round(c.get('b', 1), 4), round(c.get('a', 1), 4)]
                 d_def['name'] = d.get('m_Name', str(mid))
                 sp = d.get('m_SavedProperties') or {}
+                for e in (sp.get('m_Floats') or []):
+                    if isinstance(e, (list, tuple)) and len(e) == 2:
+                        k, v = e[0], e[1]
+                        if k == '_Metallic': d_def['metallic'] = round(float(v), 4)
+                        elif k in ('_Glossiness', '_Smoothness'): d_def['smoothness'] = round(float(v), 4)
+                        elif k == '_Cull': d_def['cull'] = int(v)
+                        elif k == '_Mode': d_def['mode'] = int(v)
                 # new serialization: m_SavedProperties.m_TexEnvs = [[name, {m_Texture, m_Scale, m_Offset}], ...]
                 for e in (sp.get('m_TexEnvs') or []):
                     if isinstance(e, (list, tuple)) and len(e) == 2 and e[0] in ('_BaseMap', '_MainTex'):
@@ -95,6 +103,9 @@ def mesh_geom(mesh_key):
                 quv = lambda v: [int(round(v[0] * 10000)), int(round(v[1] * 10000))]
                 nrm = h.m_Normals or []
                 qn = lambda v: [int(round(v[0] * 1000)), int(round(v[1] * 1000)), int(round(v[2] * 1000))]
+                cols = h.m_Colors or []
+                # MeshHandler returns Color32 bytes (0..255) already
+                qc = lambda v: [min(255, max(0, int(round(v[0])))), min(255, max(0, int(round(v[1])))), min(255, max(0, int(round(v[2])))), min(255, max(0, int(round(v[3] if len(v) > 3 else 255))))]
                 for si in range(nsub):
                     t = tris[si]
                     sub = {
@@ -103,6 +114,7 @@ def mesh_geom(mesh_key):
                     }
                     if nrm: sub['nrm'] = [qn(p) for p in nrm]
                     if uv: sub['uv'] = [quv(p) for p in uv]
+                    if cols: sub['col'] = [qc(p) for p in cols]
                     subs.append(sub)
                 mesh_cache[mesh_key] = {'name': L['meshname'].get(mesh_key, '?'), 'subs': subs}
             except Exception as e:
@@ -175,6 +187,31 @@ for root in roots:
     for ch in W.children(root):
         if re.match(r'^Pusher( \(\d+\))?$', L['names'][L['tf'][ch]['go']]):
             tier_names.add(L['names'][L['tf'][ch]['go']])
+    go_active = L['go_active']
+    def chain_of(t):
+        out = []
+        cur = t
+        while cur and cur != root:
+            out.append(L['names'][L['tf'][cur]['go']])
+            cur = L['tf'][cur]['father']
+        return out[::-1]
+    def is_visible(t):
+        # every ancestor GameObject active, and an enabled MeshRenderer on this GO
+        cur = t
+        while cur and cur != ('aa', 0):
+            go = L['tf'][cur]['go']
+            if not go_active.get(go, 1): return False
+            cur = L['tf'][cur]['father']
+        go = L['tf'][t]['go']
+        for o in env.objects:
+            if o.type.name == 'MeshRenderer':
+                try:
+                    d = o.read_typetree()
+                    if d['m_GameObject']['m_PathID'] == go[1]:
+                        return d.get('m_Enabled', 1) != 0
+                except Exception:
+                    pass
+        return False
     for t in descendants(root):
         go = L['tf'][t]['go']
         gonm = L['names'][go]
@@ -182,28 +219,25 @@ for root in roots:
             continue
         mk = mesh_key_of(go)
         if not mk: continue
-        # is it a MeshRenderer? (skip collider-only)
-        has_renderer = False
-        for o in env.objects:
-            if o.type.name == 'MeshRenderer':
-                try:
-                    if o.read_typetree()['m_GameObject']['m_PathID'] == go[1]:
-                        has_renderer = True
-                except Exception:
-                    pass
-        if not has_renderer: continue
+        if not is_visible(t): continue
         p, q, s = W.world(t)
+        M = W.world_mat(t)  # exact hierarchical matrix (row-major, column vectors)
+        cm = [M[r][c] for c in range(4) for r in range(4)]  # column-major for THREE.Matrix4.fromArray
+        cm[12] *= 10; cm[13] *= 10; cm[14] *= 10  # translation in game units (x10)
         # dozer = node named Dozer or under 'Pusher' child of a tier, with Rigidbody kinematic
         is_dozer = gonm == 'Dozer'
         pids, cols = renderer_mats(go)
         inst = {
-            'mesh': L['meshname'].get(mk, '?'),
+            'mesh': str(mk[1]),
+            'meshName': L['meshname'].get(mk, '?'),
+            'mat': [round(v, 5) for v in cm],
             'pos': [round(v * 10, 3) for v in mirror_pos(p)],
             'quat': [round(v, 5) for v in mirror_quat(q)],
             'scale': [round(v * 10, 3) for v in s],
             'mats': [str(int(x)) for x in pids],
             'colors': [list(c) for c in cols],
             'name': gonm,
+            'chain': chain_of(t),
         }
         g = mesh_geom(mk)
         if not g.get('subs'):
@@ -244,7 +278,7 @@ for root in roots:
     print(nm, 'instances', len(instances), 'dozers', len(dozers), 'uniqueMeshes', len(meshes_used), 'cam', cam and cam['fov'])
 
 json.dump(out, open('dump/level_meshes.json', 'w'))
-lib = {g['name']: g for g in mesh_cache.values() if g.get('subs')}
+lib = {str(k[1]): g for k, g in mesh_cache.items() if g.get('subs')}
 json.dump(lib, open('dump/meshes_global.json', 'w'))
 json.dump(mat_defs, open('dump/materials.json', 'w'))
 import os
