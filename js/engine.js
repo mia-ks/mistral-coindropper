@@ -25,25 +25,21 @@ function makeEngine(CONFIG) {
     const p = t.pusher;
     if (p && p.box) {
       const b = p.box;
-      const pcx = (b.min[0] + b.max[0]) / 2, pcz = (b.min[2] + b.max[2]) / 2;
-      const dx = tier.cx - pcx, dz = tier.cz - pcz;
-      // axis/sign are precomputed in the mirrored layout (gen_js2 derives them in Unity
-      // coords and flips the x component); fall back to geometry if absent
-      const axis = p.axis || (Math.abs(dx) >= Math.abs(dz) ? 'x' : 'z');
-      const sign = (p.sign != null ? p.sign : (axis === 'x' ? dx : dz) >= 0 ? 1 : -1);
+      // axis/sign come from the exported controller: PusherInteraction.direction == 2
+      // (local +Z) resolved through the Dozer node's full world matrix (gen_layouts.py)
+      const axis = p.axis || 'x';
+      const sign = (p.sign != null ? p.sign : 1);
       const ax = axis === 'x' ? sign : 0, az = axis === 'z' ? sign : 0;
-      const fmin = axis === 'x' ? tier.minX : tier.minZ;
-      const fmax = axis === 'x' ? tier.maxX : tier.maxZ;
-      const plateHalf = ((axis === 'x' ? b.max[0] - b.min[0] : b.max[2] - b.min[2]) / 2);
-      // sweep from the back edge of the pad to slightly past the open edge, so coins
-      // resting on the plate get carried off the edge (plate is ~pad-sized in the original)
-      const back = sign > 0 ? fmin + plateHalf : fmax - plateHalf;
-      // sweep until the plate's leading edge is 0.9 past the open edge (pushes coins off
-      // without the plate flying out of the tower); plateHalf is the plate's own half-size
-      const front = sign > 0 ? fmax + 0.9 - plateHalf : fmin - 0.9 + plateHalf;
-      const travel = Math.max(0.3, Math.abs(front - back));
+      // controller origin (inner 'Pusher' node world pos, exported): the prefab pose is
+      // the rest pose, so back = origin projected on the sweep axis
+      const origin = p.origin || [(b.min[0] + b.max[0]) / 2, (b.min[1] + b.max[1]) / 2, (b.min[2] + b.max[2]) / 2];
+      const back = axis === 'x' ? origin[0] : origin[2];
+      // travel: extracted from geometry (plate leading edge at rest -> floor open edge);
+      // the plate ends flush with the open edge, so carried coins fall off there
+      const travel = Math.max(0.3, p.travel != null ? p.travel : 2);
       tier.pusher = {
-        ax, az, axis, sign, back, travel, pcx, pcz,
+        ax, az, axis, sign, back, travel, origin,
+        pcx: (b.min[0] + b.max[0]) / 2, pcz: (b.min[2] + b.max[2]) / 2,
         speed: (p.speed != null ? p.speed : 2) * W.scale,
         hold: p.backHoldDuration != null ? p.backHoldDuration : 1,
         w: axis === 'x' ? b.max[2] - b.min[2] : b.max[0] - b.min[0],
@@ -54,18 +50,34 @@ function makeEngine(CONFIG) {
         openEdge: sign > 0 ? (axis === 'x' ? 'maxX' : 'maxZ') : (axis === 'x' ? 'minX' : 'minZ'),
       };
       tier.pusher.pos = back;
+      // walkable footprint = union of the static base collider and the plate at rest
+      // (the plate overhangs the base at the back, and ends flush with the open edge
+      // at full travel, so the union never extends past the base on the open side)
+      tier.minX = Math.min(tier.minX, b.min[0]); tier.maxX = Math.max(tier.maxX, b.max[0]);
+      tier.minZ = Math.min(tier.minZ, b.min[2]); tier.maxZ = Math.max(tier.maxZ, b.max[2]);
+      tier.cx = (tier.minX + tier.maxX) / 2; tier.cz = (tier.minZ + tier.maxZ) / 2;
+      // coins ride on the moving plate, whose top sits above the static base collider
+      tier.top = Math.max(tier.top, b.max[1]);
     }
     return tier;
   }
 
   function normalizeMachine(m, tiers) {
-    // attach to nearest tier by x-z distance to tier center
-    let best = -1, bd = Infinity;
+    // attach to the tier named by the exporter (floor containment); otherwise the tier
+    // whose walkable bounds overlap the machine's zone the most; fallback: nearest center
+    let best = -1, bd = Infinity, bo = -1, boArea = 0;
     for (let i = 0; i < tiers.length; i++) {
       const t = tiers[i];
       const d = Math.hypot(m.pos[0] - t.cx, m.pos[2] - t.cz);
       if (d < bd) { bd = d; best = i; }
+      if (m.box) {
+        const ox = Math.min(m.box.max[0], t.maxX) - Math.max(m.box.min[0], t.minX);
+        const oz = Math.min(m.box.max[2], t.maxZ) - Math.max(m.box.min[2], t.minZ);
+        const area = Math.max(0, ox) * Math.max(0, oz);
+        if (area > boArea) { boArea = area; bo = i; }
+      }
     }
+    if (bo >= 0) best = bo;
     const p = m.params;
     const pad = 0.3;
     const zone = m.box
@@ -198,8 +210,8 @@ function makeEngine(CONFIG) {
 
   function pusherPlateRect(tier) {
     const p = tier.pusher;
-    const c = p.axis === 'x' ? p.pos : tier.cx;
-    const d = p.axis === 'z' ? p.pos : tier.cz;
+    const c = p.axis === 'x' ? p.pos : p.pcx;
+    const d = p.axis === 'z' ? p.pos : p.pcz;
     if (p.axis === 'x') return { minX: c - p.d / 2, maxX: c + p.d / 2, minZ: d - p.w / 2, maxZ: d + p.w / 2, y: p.y, h: p.h };
     return { minX: c - p.w / 2, maxX: c + p.w / 2, minZ: d - p.d / 2, maxZ: d + p.d / 2, y: p.y, h: p.h };
   }

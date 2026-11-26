@@ -356,7 +356,11 @@ function makeRenderer(CONFIG, LEVELS, THREE) {
       const tier = world.tiers.find((t) => t.name === da.tierName);
       const p = tier && tier.pusher;
       if (!p) continue;
-      const delta = p.pos - p.back;
+      // rest pose = controller origin (exported inner 'Pusher' node world pos): the
+      // shared translation is measured from that origin, exactly like the physics
+      const ai = p.axis === 'x' ? 0 : 2;
+      const back = da.origin ? da.origin[ai] : p.back;
+      const delta = p.pos - back;
       da.grp.matrix.copy(da.grp.userData.baseMat);
       const e = da.grp.matrix.elements;
       if (p.axis === 'x') e[12] += delta; else e[14] += delta;

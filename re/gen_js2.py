@@ -74,22 +74,17 @@ for nm, s in d['levels'].items():
         pusher = None
         if t.get('pusher'):
             p = t['pusher']
-            # derive sweep axis/sign in UNITY coords, then mirror: an x-mirror flips the
-            # x component of the push direction (min/max swap), z is unchanged
-            f, b = t['floor'], p['box']
-            dx = (f['min'][0] + f['max'][0]) / 2 - (b['min'][0] + b['max'][0]) / 2
-            dz = (f['min'][2] + f['max'][2]) / 2 - (b['min'][2] + b['max'][2]) / 2
-            axis_u = 'x' if abs(dx) >= abs(dz) else 'z'
-            sign_u = 1 if (dx if axis_u == 'x' else dz) >= 0 else -1
-            # the degenerate-center derivation gave the wrong sign: the wall strip in the
-            # prefab sits at Unity maxX, so the open edge is Unity minX (sign_u = -1 for x).
-            # Correct the x-axis sign explicitly, then mirror (x-mirror flips x sign).
-            if axis_u == 'x' and p.get('direction') == 2:
-                sign_u = -1
+            # axis/sign come from the controller node's world local +Z (gen_layouts.py,
+            # PusherInteraction.direction == 2 resolved through the full world matrix),
+            # in UNITY coords; an x-mirror flips the x component of the sweep direction
+            axis_u = p.get('axis') or 'x'
+            sign_u = p.get('sign') if p.get('sign') is not None else 1
             pusher = {
                 **p,
                 'pos': negx(p['pos']),
                 'box': negx_box(p['box']),
+                'origin': negx(p['origin']) if p.get('origin') else None,
+                'fwd': negx(p['fwd']) if p.get('fwd') else None,
                 'axis': axis_u,
                 'sign': sign_u if axis_u == 'z' else -sign_u,
             }
@@ -97,7 +92,7 @@ for nm, s in d['levels'].items():
             'name': t['name'],
             'pos': negx(t['pos']),
             'yaw': -t['yaw'],
-            'floor': negx_box(t['floor']),
+            'floor': {**negx_box(t['floor']), 'sources': t['floor'].get('sources')},
             'visual': negx_box(tv),
             'pusher': pusher,
         })

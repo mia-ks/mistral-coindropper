@@ -36,9 +36,26 @@ def col_world_aabb(go, col):
             for dy in (-1,1):
                 for dz in (-1,1):
                     corners.append(U.xform(m, (c[0]+dx*sz[0]/2, c[1]+dy*sz[1]/2, c[2]+dz*sz[2]/2)))
-        xs=[c[0] for c in corners]; ys=[c[1] for c in corners]; zs=[c[2] for c in corners]
-        return {'min':[min(xs),min(ys),min(zs)], 'max':[max(xs),max(ys),max(zs)], 'trigger': bool(f.get('m_IsTrigger')), 'enabled': bool(f.get('m_Enabled',1))}
-    return None
+    elif col['type'] == 'MeshCollider':
+        mp = f.get('m_Mesh', {})
+        pid = mp.get('m_PathID') if isinstance(mp, dict) else None
+        aabb = None
+        for tag in ('aa', 'data'):
+            if (tag, pid) in L['meshaabb']:
+                aabb = L['meshaabb'][(tag, pid)]; break
+        if not aabb: return None
+        c, e = aabb['center'], aabb['extent']
+        corners = []
+        for dx in (-1,1):
+            for dy in (-1,1):
+                for dz in (-1,1):
+                    corners.append(U.xform(m, (c[0]+dx*e[0], c[1]+dy*e[1], c[2]+dz*e[2])))
+    else:
+        return None
+    xs=[p[0] for p in corners]; ys=[p[1] for p in corners]; zs=[p[2] for p in corners]
+    return {'min':[min(xs),min(ys),min(zs)], 'max':[max(xs),max(ys),max(zs)],
+            'trigger': bool(f.get('m_IsTrigger')), 'enabled': bool(f.get('m_Enabled',1)),
+            'go': L['names'].get(go, '?'), 'col': col['type']}
 
 def descendants(tid):
     out = []
@@ -85,9 +102,14 @@ for root in roots:
         if not re.match(r'^Pusher( \(\d+\))?$', gonm): continue
         cp = wpos(ch)
         sub = descendants(ch)
-        # all enabled non-trigger collider AABBs under the tier
+        # the moving dozer assembly = the inner 'Pusher' node (parent of the node carrying
+        # PusherInteraction) and all its descendants; NEVER treat these as the floor
+        dt, dc = find_mb(sub, 'PusherInteraction')
+        assembly = set(descendants(L['tf'][dt]['father'])) if dt else set()
+        # all enabled non-trigger collider AABBs under the tier, excluding the moving assembly
         boxes = []
         for t in sub:
+            if t in assembly: continue
             for c in W.comps(L['tf'][t]['go']):
                 if c['kind'] == 'COL':
                     a = col_world_aabb(L['tf'][t]['go'], c)
@@ -98,9 +120,11 @@ for root in roots:
         big = [b for b in boxes if b['area'] >= 0.5 * max_area]
         floor_top = min(b['max'][1] for b in big) if big else None
         floor_cols = [b for b in big if b['max'][1] <= floor_top + 0.02 * S] if floor_top is not None else []
+        floor_sources = [{'go': b['go'], 'col': b['col'], 'min': [round(v*S,4) for v in b['min']], 'max': [round(v*S,4) for v in b['max']]} for b in floor_cols]
         if floor_cols:
             floor = {'min': [min(b['min'][0] for b in floor_cols), floor_top, min(b['min'][2] for b in floor_cols)],
-                     'max': [max(b['max'][0] for b in floor_cols), floor_top, max(b['max'][2] for b in floor_cols)]}
+                     'max': [max(b['max'][0] for b in floor_cols), floor_top, max(b['max'][2] for b in floor_cols)],
+                     'sources': floor_sources}
         else:
             floor = None
         # visual bounds: union of all descendant mesh AABBs
@@ -111,10 +135,18 @@ for root in roots:
                 for i in range(3):
                     vmin[i] = min(vmin[i], a['min'][i]); vmax[i] = max(vmax[i], a['max'][i])
         visual = {'min': [round(v*S,4) for v in vmin], 'max': [round(v*S,4) for v in vmax]} if vmax[0] > -1e8 else None
-        # pusher dozer
-        dt, dc = find_mb(sub, 'PusherInteraction')
+        # pusher dozer: controller origin (inner Pusher node world pos), sweep axis resolved
+        # from the Dozer node's world matrix local +Z (PusherInteraction.direction == 2),
+        # and travel = distance from the plate's leading edge at rest to the floor's open edge
         pusher = None
         if dt:
+            inner = L['tf'][dt]['father']
+            origin = wpos(inner)
+            m = wmat(dt)
+            fwd = (m[0][2], m[1][2], m[2][2])  # world-space local +Z of the controller node
+            ai = max(range(3), key=lambda i: abs(fwd[i]))
+            axis_u = 'xyz'[ai]
+            sign_u = 1 if fwd[ai] >= 0 else -1
             dp = wpos(dt)
             pf = U.clean(dc['fields'])
             box = next((c for c in W.comps(L['tf'][dt]['go']) if c['kind'] == 'COL' and c['type'] == 'BoxCollider'), None)
@@ -122,9 +154,15 @@ for root in roots:
             pusher = {'pos': r3(dp), 'yaw': round(wyaw(dt), 2),
                       'box': {'min': [round(v*S,4) for v in pb['min']], 'max': [round(v*S,4) for v in pb['max']]} if pb else None,
                       'speed': pf.get('speed'), 'backHoldDuration': pf.get('backHoldDuration'),
-                      'direction': pf.get('direction'), 'minDistance': pf.get('minDistance'), 'maxDistance': pf.get('maxDistance')}
+                      'direction': pf.get('direction'), 'minDistance': pf.get('minDistance'), 'maxDistance': pf.get('maxDistance'),
+                      'origin': r3(origin), 'fwd': [round(v, 4) for v in fwd],
+                      'axis': axis_u, 'sign': sign_u}
+            if pb and floor and axis_u in ('x', 'z'):
+                a = 0 if axis_u == 'x' else 2
+                tr = (floor['max'][a] - pb['max'][a]) if sign_u > 0 else (pb['min'][a] - floor['min'][a])
+                pusher['travel'] = round(max(0.0, tr) * S, 4)
         tiers.append({'name': gonm, 'pos': r3(cp), 'yaw': round(wyaw(ch), 2),
-                      'floor': {'min': [round(v*S,4) for v in floor['min']], 'max': [round(v*S,4) for v in floor['max']]} if floor else None,
+                      'floor': {'min': [round(v*S,4) for v in floor['min']], 'max': [round(v*S,4) for v in floor['max']], 'sources': floor_sources} if floor else None,
                       'visual': visual, 'pusher': pusher})
     spec['tiers'] = tiers
 

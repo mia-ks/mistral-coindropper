@@ -45,14 +45,49 @@ const engine = makeEngine(CONFIG);
 const renderer = makeRenderer(CONFIG, LEVELS, THREE);
 const raster = makeRasterizer(THREE);
 
+// extraction regression guards: the tier floor must be a STATIONARY collider (the moving
+// pusher assembly must never be picked as the floor), and the sweep axis must be resolved
+// from the controller node's local +Z, not from coincident-rectangle centers
+for (const lv of LEVELS) {
+  for (const t of lv.tiers) {
+    const p = t.pusher, f = t.floor;
+    assert.ok(f, 'level ' + lv.index + ' tier ' + t.name + ' has a floor');
+    assert.ok(p && p.box && p.origin, 'level ' + lv.index + ' tier ' + t.name + ' pusher exports box+origin');
+    const same = Math.abs(f.min[0] - p.box.min[0]) < 1e-6 && Math.abs(f.max[0] - p.box.max[0]) < 1e-6 &&
+                 Math.abs(f.min[2] - p.box.min[2]) < 1e-6 && Math.abs(f.max[2] - p.box.max[2]) < 1e-6;
+    assert.ok(!same, 'level ' + lv.index + ' tier ' + t.name + ': floor must not be the pusher collider');
+    assert.ok(p.axis === 'x' || p.axis === 'z', 'level ' + lv.index + ' tier ' + t.name + ' axis from controller local +Z');
+    assert.ok(p.travel > 0.5 && p.travel < 5, 'level ' + lv.index + ' tier ' + t.name + ' travel from geometry, got ' + p.travel);
+    // the plate's leading edge at full travel must land flush with the floor's open edge
+    const a = p.axis === 'x' ? 0 : 2;
+    const lead0 = p.sign > 0 ? p.box.max[a] : p.box.min[a];
+    const openEdge = p.sign > 0 ? f.max[a] : f.min[a];
+    const leadEnd = lead0 + p.sign * p.travel;
+    assert.ok(Math.abs(leadEnd - openEdge) < 0.05, 'level ' + lv.index + ' tier ' + t.name + ' plate ends flush with open edge: ' + leadEnd.toFixed(3) + ' vs ' + openEdge.toFixed(3));
+  }
+}
+{
+  const l1 = LEVELS[0];
+  assert.strictEqual(l1.tiers.find((t) => t.name === 'Pusher (1)').pusher.axis, 'z', 'level 1 upper tier sweeps along z (tier yaw 0)');
+  assert.strictEqual(l1.tiers.find((t) => t.name === 'Pusher').pusher.axis, 'x', 'level 1 lower tier sweeps along x (tier yaw -90)');
+}
+console.log('ok - floors are stationary base colliders (not the pusher), controller-resolved sweep axes, flush travel, all 19 levels');
+
 // pusher-vs-static intersection test on the REAL scene graph: build the scene with the
 // renderer, step the engine, invoke the renderer's own updateAnimations, then intersect
 // the dozer parts' actual world matrices (from the scene graph) with every static AABB.
+// Rest-phase overlap is prefab-inherent (e.g. the wall planted into its slot); the motion
+// must not ADD any intersection beyond the rest-phase baseline for each part/static pair.
 {
   const lv = LEVELS[0];
   const world0 = engine.createWorld(lv);
+  // the physics and the renderer must reference the SAME controller origin
+  for (const t of world0.tiers) {
+    const p = t.pusher, ai = p.axis === 'x' ? 0 : 2;
+    assert.ok(Math.abs(p.back - p.origin[ai]) < 1e-6, 'tier ' + t.name + ' engine back == controller origin on sweep axis');
+  }
   const built = renderer.buildScene(world0);
-  const statics = lv.meshData.instances.map((i) => i.aabb).filter(Boolean);
+  const statics = lv.meshData.instances.map((i) => ({ aabb: i.aabb, name: i.name })).filter((s) => s.aabb);
   const dozers = lv.meshData.dozers;
   assert.ok(dozers.length >= 2 && dozers.some((d) => /DozerWall/.test(d.name)), 'level 1 dozer assembly exported (plate + wall)');
   // motion period from the actual controller parameters: 2*travel/speed + backHold
@@ -60,13 +95,20 @@ const raster = makeRasterizer(THREE);
     const p = t.pusher;
     return p ? (2 * p.travel) / p.speed + p.hold : 0;
   }), 0.1);
-  let worst = 0, worstWhat = '';
-  for (let step = 0; step <= 24; step++) {
+  // the tier's own base slabs (floor sources) are the support the assembly slides on /
+  // in: contact with them is allowed ONLY at or below the slab's top surface (a slot),
+  // never above it. Any other static (walls, machines, other tiers) must stay clear of
+  // the assembly beyond its rest-phase (prefab) contact.
+  const slabNames = new Set();
+  for (const t of lv.tiers) for (const s of (t.floor.sources || [])) slabNames.add(s.go);
+  const isOwnSlab = (da, s2) => [...slabNames].some((g) => s2.name === g || s2.name.startsWith(g + ' '));
+  const overlapAt = (step) => {
     const w2 = engine.createWorld(lv);
     const n = Math.round((step / 24) * period * 60);
     for (let i = 0; i < n; i++) engine.step(w2, 1 / 60);
     renderer.updateAnimations(w2, built, 0); // the same function the render loop calls
     built.scene.updateMatrixWorld(true);
+    const out = [];
     for (const da of built.dozerAnims) {
       const inst = da.grp.userData.inst;
       const a = inst.aabb;
@@ -76,16 +118,35 @@ const raster = makeRasterizer(THREE);
       const dx = e[12] - bt[12], dy = e[13] - bt[13], dz = e[14] - bt[14];
       const b = { min: [a.min[0] + dx, a.min[1] + dy, a.min[2] + dz], max: [a.max[0] + dx, a.max[1] + dy, a.max[2] + dz] };
       for (const s2 of statics) {
-        const ox = Math.min(b.max[0], s2.max[0]) - Math.max(b.min[0], s2.min[0]);
-        const oy = Math.min(b.max[1], s2.max[1]) - Math.max(b.min[1], s2.min[1]);
-        const oz = Math.min(b.max[2], s2.max[2]) - Math.max(b.min[2], s2.min[2]);
+        const ox = Math.min(b.max[0], s2.aabb.max[0]) - Math.max(b.min[0], s2.aabb.min[0]);
+        const oy = Math.min(b.max[1], s2.aabb.max[1]) - Math.max(b.min[1], s2.aabb.min[1]);
+        const oz = Math.min(b.max[2], s2.aabb.max[2]) - Math.max(b.min[2], s2.aabb.min[2]);
         const vol = Math.max(0, ox) * Math.max(0, oy) * Math.max(0, oz);
-        if (vol > worst) { worst = vol; worstWhat = 'phase ' + step + ' ' + inst.name + ' ox' + ox.toFixed(2) + ' oy' + oy.toFixed(2) + ' oz' + oz.toFixed(2); }
-        assert.ok(vol < 0.1, 'pusher part ' + inst.name + ' intersects static geometry at phase ' + step + ', vol ' + vol.toFixed(3));
+        if (vol > 1e-4) out.push({ da, s2, b, vol, top: Math.min(b.max[1], s2.aabb.max[1]) });
+      }
+    }
+    return out;
+  };
+  const rest = new Map();
+  for (const r of overlapAt(0)) rest.set(r.da.grp.userData.inst.name + '|' + r.s2.name, r.vol);
+  let worst = 0, worstWhat = '', worstAdded = 0, worstAddedWhat = '';
+  for (let step = 1; step <= 24; step++) {
+    for (const r of overlapAt(step)) {
+      const k = r.da.grp.userData.inst.name + '|' + r.s2.name;
+      const base = rest.get(k) || 0;
+      if (r.vol > worst) { worst = r.vol; worstWhat = 'phase ' + step + ' ' + k; }
+      if (isOwnSlab(r.da, r.s2)) {
+        // slot contact with the tier's own base: must stay at/below the slab top surface
+        assert.ok(r.top <= r.s2.aabb.max[1] + 1e-3, 'phase ' + step + ' ' + k + ': assembly rises above its own base slab top (visible clipping), overlap top ' + r.top.toFixed(3) + ' vs slab top ' + r.s2.aabb.max[1].toFixed(3));
+        assert.ok(r.vol < 0.5, 'phase ' + step + ' ' + k + ': slot contact unbounded, vol ' + r.vol.toFixed(3));
+      } else {
+        if (r.vol - base > worstAdded) { worstAdded = r.vol - base; worstAddedWhat = 'phase ' + step + ' ' + k + ' rest ' + base.toFixed(3) + ' now ' + r.vol.toFixed(3); }
+        assert.ok(r.vol < base + 0.02, 'motion adds intersection at phase ' + step + ' for ' + k + ': rest ' + base.toFixed(3) + ' now ' + r.vol.toFixed(3));
+        assert.ok(r.vol < 0.1, 'pusher part intersects non-base geometry at phase ' + step + ' for ' + k + ', vol ' + r.vol.toFixed(3));
       }
     }
   }
-  console.log('ok - real scene graph, runtime updateAnimations, controller-derived period ' + period.toFixed(2) + 's: worst pusher/static overlap vol ' + worst.toFixed(4) + ' (' + worstWhat + ')');
+  console.log('ok - real scene graph, runtime updateAnimations, controller-derived period ' + period.toFixed(2) + 's: worst overlap ' + worst.toFixed(4) + ' (' + worstWhat + '), worst motion-added vs non-base ' + worstAdded.toFixed(4) + ' (' + worstAddedWhat + ')');
 }
 
 // camera rig must match the extracted (handedness-converted) LevelCameraBounds for every
