@@ -116,7 +116,9 @@ def mesh_geom(mesh_key):
                     if uv: sub['uv'] = [quv(p) for p in uv]
                     if cols: sub['col'] = [qc(p) for p in cols]
                     subs.append(sub)
-                mesh_cache[mesh_key] = {'name': L['meshname'].get(mesh_key, '?'), 'subs': subs}
+                xs = [p[0] for p in pos]; ys = [p[1] for p in pos]; zs = [p[2] for p in pos]
+                mesh_cache[mesh_key] = {'name': L['meshname'].get(mesh_key, '?'), 'subs': subs,
+                                        'vbox': {'min': [min(xs), min(ys), min(zs)], 'max': [max(xs), max(ys), max(zs)]}}
             except Exception as e:
                 mesh_cache[mesh_key] = {'name': L['meshname'].get(mesh_key, '?'), 'error': str(e)[:80], 'subs': []}
             break
@@ -223,7 +225,22 @@ for root in roots:
         p, q, s = W.world(t)
         M = W.world_mat(t)  # exact hierarchical matrix (row-major, column vectors)
         cm = [M[r][c] for c in range(4) for r in range(4)]  # column-major for THREE.Matrix4.fromArray
-        cm[12] *= 10; cm[13] *= 10; cm[14] *= 10  # translation in game units (x10)
+        # unit conversion x10 applies to the WHOLE affine transform: scale the linear
+        # 3x3 part (rows 0..2) and the translation, keep the homogeneous bottom row
+        for r in range(3):
+            for c in range(4):
+                cm[c * 4 + r] *= 10
+        # expected world AABB of this instance (mesh VERTEX extents x world matrix), game units
+        g = mesh_geom(mk)
+        vbox = g.get('vbox') if g else None
+        inst_aabb = None
+        if vbox:
+            pts = [U.xform(M, (vbox['min'][0] + (dx > 0) * (vbox['max'][0] - vbox['min'][0]),
+                               vbox['min'][1] + (dy > 0) * (vbox['max'][1] - vbox['min'][1]),
+                               vbox['min'][2] + (dz > 0) * (vbox['max'][2] - vbox['min'][2])))
+                   for dx in (-1, 1) for dy in (-1, 1) for dz in (-1, 1)]
+            inst_aabb = {'min': [round(min(q2[0] for q2 in pts) * 10, 3), round(min(q2[1] for q2 in pts) * 10, 3), round(min(q2[2] for q2 in pts) * 10, 3)],
+                         'max': [round(max(q2[0] for q2 in pts) * 10, 3), round(max(q2[1] for q2 in pts) * 10, 3), round(max(q2[2] for q2 in pts) * 10, 3)]}
         # dozer = node named Dozer or under 'Pusher' child of a tier, with Rigidbody kinematic
         is_dozer = gonm == 'Dozer'
         pids, cols = renderer_mats(go)
@@ -238,6 +255,7 @@ for root in roots:
             'colors': [list(c) for c in cols],
             'name': gonm,
             'chain': chain_of(t),
+            'aabb': inst_aabb,
         }
         g = mesh_geom(mk)
         if not g.get('subs'):

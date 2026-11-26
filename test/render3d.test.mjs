@@ -8,6 +8,38 @@ const { CONFIG, LEVELS } = require('../js/config.js');
 const { makeEngine } = require('../js/engine.js');
 const { makeRenderer } = require('../js/render.js');
 const { makeRasterizer } = require('./raster.js');
+const { MESH_LIB } = require('../js/meshlib.js');
+
+// numerical geometry check: the rendered world-space bbox of every exported instance
+// (mesh verts through its matrix) must match the independently extracted Unity AABB
+// (unit x10 + x-mirror applied). Catches scale/handedness regressions exactly.
+for (const lv of LEVELS) {
+  const m4 = new THREE.Matrix4();
+  const v = new THREE.Vector3();
+  for (const inst of [...lv.meshData.instances, ...lv.meshData.dozers]) {
+    const entry = MESH_LIB[inst.mesh];
+    assert.ok(entry, 'level ' + lv.index + ' mesh ' + inst.mesh);
+    m4.fromArray(inst.mat);
+    let mn = [Infinity, Infinity, Infinity], mx = [-Infinity, -Infinity, -Infinity];
+    for (const sub of entry.subs) {
+      for (const p of sub.pos) {
+        v.set(p[0] / 1000, p[1] / 1000, p[2] / 1000).applyMatrix4(m4);
+        for (let k = 0; k < 3; k++) { mn[k] = Math.min(mn[k], v.toArray()[k]); mx[k] = Math.max(mx[k], v.toArray()[k]); }
+      }
+    }
+    assert.ok(inst.aabb, 'level ' + lv.index + ' inst ' + inst.name + ' has aabb');
+    // tolerance covers vertex quantization (int/1000) amplified by large instance scales;
+    // a missing x10 (or wrong handedness) is off by ~100% of the box size and fails hard
+    const maxAbs = Math.max(...inst.mat.slice(0, 12).map(Math.abs));
+    for (let k = 0; k < 3; k++) {
+      const size = inst.aabb.max[k] - inst.aabb.min[k];
+      const tol = 0.05 + 0.02 * size + 0.001 * maxAbs;
+      assert.ok(Math.abs(mn[k] - inst.aabb.min[k]) < tol, 'level ' + lv.index + ' ' + inst.name + ' min[' + k + '] ' + mn[k].toFixed(3) + ' vs aabb ' + inst.aabb.min[k]);
+      assert.ok(Math.abs(mx[k] - inst.aabb.max[k]) < tol, 'level ' + lv.index + ' ' + inst.name + ' max[' + k + '] ' + mx[k].toFixed(3) + ' vs aabb ' + inst.aabb.max[k]);
+    }
+  }
+}
+console.log('ok - rendered world bboxes of all mesh instances match extracted Unity AABBs (x10 + mirror) for all 19 levels');
 
 const engine = makeEngine(CONFIG);
 const renderer = makeRenderer(CONFIG, LEVELS, THREE);

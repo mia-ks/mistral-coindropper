@@ -18,11 +18,16 @@ def mirror_inst(inst):
     # i.e. column-major elements 0, 4, 8, 12.
     out = dict(inst)
     if inst.get('mat'):
+        # with already-mirrored vertices the instance matrix must be the CONJUGATION
+        # S*M*S (S = diag(-1,1,1,1)): negate entries where exactly one of row/col is 0.
+        # column-major e[j*4+i] = M[i][j] -> negate indices 1,2,3 (col 0) and 4,8,12 (row 0)
         m = inst['mat']
         cm = list(m)
-        for i in (0, 4, 8, 12):
+        for i in (1, 2, 3, 4, 8, 12):
             cm[i] = -m[i]
         out['mat'] = cm
+    if inst.get('aabb'):
+        out['aabb'] = negx_box(inst['aabb'])
     return out
 
 def mirror_mesh(m):
