@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Coin Dozer — Clean Edition</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">{ "imports": { "three": "./js/vendor/three.module.js" } }</script>
+</head>
+<body>
+<div id="stage"><canvas id="gl"></canvas></div>
+<div id="hud">
+  <div class="pill" id="hud-coins">&#129689; 0</div>
+  <div class="pill" id="hud-cash">$ 0</div>
+  <div class="pill" id="hud-gems">&#128142; 0</div>
+  <div id="level-wrap">
+    <div id="level-label">LEVEL 1 / 19</div>
+    <div id="progress"><div id="progress-fill"></div><span id="progress-text">0 / 100</span></div>
+  </div>
+  <div id="charges"></div>
+</div>
+<div id="combo"></div>
+<div id="upgrades"><div id="upgrades-title">UPGRADES</div><div id="upgrades-list"></div></div>
+<div id="bottombar">
+  <div class="bpill" id="bb-coins">&#129689; 0</div>
+  <div class="bpill" id="bb-rate">Coins/s $0</div>
+  <button id="shop-btn">SHOP</button>
+</div>
+<div id="footer">tap the machine to drop a coin &mdash; no ads, no tracking, no purchases</div>
+<script src="js/meshlib.js"></script>
+<script src="js/level_layouts.js"></script>
+<script src="js/config.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/game.js"></script>
+<script src="js/render.js"></script>
+<script src="js/audio.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

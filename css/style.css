@@ -1,0 +1,80 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(180deg, #8a63f0 0%, #5b3fc0 55%, #3c2586 100%);
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+#stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+#gl { display: block; height: 100vh; aspect-ratio: 9 / 16; max-width: 100vw; }
+@media (min-aspect-ratio: 9/16) { #gl { width: 100vw; height: auto; max-height: 100vh; } }
+
+#hud {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 10px;
+  background: rgba(16, 20, 38, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+.pill {
+  background: #1d2a47; border: 1px solid #33456e; border-radius: 999px;
+  padding: 5px 12px; font-weight: 700; font-size: 14px; white-space: nowrap;
+}
+#hud-coins { color: #ffd24a; }
+#hud-cash { color: #7dcea0; }
+#hud-gems { color: #4ad6ff; }
+#level-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+#level-label { font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9db4e8; }
+#progress { position: relative; width: 100%; max-width: 260px; height: 14px; background: #0e1626; border: 1px solid #33456e; border-radius: 8px; overflow: hidden; }
+#progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2ecc71, #ffd24a); transition: width .2s; }
+#progress-text { position: absolute; inset: 0; text-align: center; font-size: 10px; font-weight: 700; line-height: 14px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+#charges { display: flex; gap: 2px; }
+#charges .pip { width: 7px; height: 13px; border-radius: 2px; background: #ffd24a; }
+#charges .pip.empty { background: #33456e; }
+
+#combo {
+  position: fixed; top: 64px; right: 12px; z-index: 10;
+  font-size: 22px; font-weight: 900; color: #ffd24a;
+  text-shadow: 0 2px 6px rgba(0,0,0,.6);
+  opacity: 0; transition: opacity .15s;
+}
+#combo.show { opacity: 1; }
+
+#upgrades {
+  position: fixed; left: 0; right: 0; bottom: 26px; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  pointer-events: none;
+}
+#upgrades-title { font-size: 10px; font-weight: 800; letter-spacing: 2px; color: #9db4e8; }
+#upgrades-list { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 96vw; pointer-events: auto; }
+.upg {
+  background: rgba(20, 28, 52, 0.92); border: 1px solid #33456e; border-radius: 10px;
+  color: #cfe0ff; font-size: 11px; font-weight: 700;
+  padding: 6px 10px; cursor: pointer;
+}
+.upg:disabled { opacity: 0.45; cursor: default; }
+.upg .cost { color: #4ad6ff; }
+
+#footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+  text-align: center; font-size: 10px; color: #5f739e;
+  background: rgba(14, 22, 38, 0.9); padding: 4px;
+}
+
+#bottombar {
+  position: fixed; bottom: 22px; left: 0; right: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.bpill {
+  background: rgba(20, 28, 52, 0.92); border: 1px solid #33456e; border-radius: 999px;
+  padding: 7px 14px; font-weight: 800; font-size: 14px; color: #ffd24a;
+}
+#bb-rate { color: #7dcea0; }
+#shop-btn {
+  background: linear-gradient(180deg, #ffd24a, #ff9f1a); border: none; border-radius: 999px;
+  padding: 8px 22px; font-weight: 900; font-size: 14px; color: #4a2c00; cursor: pointer;
+}

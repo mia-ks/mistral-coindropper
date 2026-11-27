@@ -1,0 +1,4357 @@
+{
+ "Level 1": {
+  "level": {},
+  "machines": [
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 1",
+    "fields": {
+     "topMarker": "PPtr(-1658769906406437392)",
+     "bottomMarker": "PPtr(8390897820934295024)",
+     "leftMarker": "PPtr(-1557439677854429712)",
+     "rightMarker": "PPtr(-3310745756815831568)",
+     "zoomInMarker": "PPtr(-671005007349461520)",
+     "zoomOutMarker": "PPtr(5294490291388698096)",
+     "topY": 4.553999900817871,
+     "bottomY": 4.553999900817871,
+     "leftX": 2.252000093460083,
+     "rightX": 2.252000093460083,
+     "disableVerticalMovement": 1,
+     "disableHorizontalMovement": 1,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 34.999996185302734,
+      "y": 330.0,
+      "z": 0.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true
+ },
+ "Level 2": {
+  "level": {},
+  "machines": [
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 2",
+    "fields": {
+     "topMarker": "PPtr(4422589626591978531)",
+     "bottomMarker": "PPtr(6303752913076659235)",
+     "leftMarker": "PPtr(-7577998249210239965)",
+     "rightMarker": "PPtr(2132685584912786467)",
+     "zoomInMarker": "PPtr(-7497999698109946845)",
+     "zoomOutMarker": "PPtr(6699235405552002083)",
+     "topY": 5.590000152587891,
+     "bottomY": 5.590000152587891,
+     "leftX": 3.0999999046325684,
+     "rightX": 3.0999999046325684,
+     "disableVerticalMovement": 1,
+     "disableHorizontalMovement": 1,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 34.999996185302734,
+      "y": 330.0,
+      "z": -2.084530251522665e-06
+     }
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  }
+ },
+ "Level 3": {
+  "level": {},
+  "machines": [
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 3",
+    "fields": {
+     "topMarker": "PPtr(-1127268285629890803)",
+     "bottomMarker": "PPtr(-2474984791174250739)",
+     "leftMarker": "PPtr(4576028876525436685)",
+     "rightMarker": "PPtr(8493797239072784141)",
+     "zoomInMarker": "PPtr(3354745388351651597)",
+     "zoomOutMarker": "PPtr(3576252193113407245)",
+     "topY": 4.9019999504089355,
+     "bottomY": 4.375999927520752,
+     "leftX": 3.6641411781311035,
+     "rightX": 4.360000133514404,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 316.46807861328125,
+      "z": 2.070291156996973e-05
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0,
+  "gem": true
+ },
+ "Level 4": {
+  "level": {},
+  "machines": [
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 50.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 4",
+    "fields": {
+     "topMarker": "PPtr(881532132724711948)",
+     "bottomMarker": "PPtr(-639468697641213428)",
+     "leftMarker": "PPtr(-7822678269928332788)",
+     "rightMarker": "PPtr(-16429549863755252)",
+     "zoomInMarker": "PPtr(-2297516564373167604)",
+     "zoomOutMarker": "PPtr(287618070181257740)",
+     "topY": 6.949999809265137,
+     "bottomY": 5.570000171661377,
+     "leftX": 4.880000114440918,
+     "rightX": 5.019999980926514,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 35.0000114440918,
+      "y": 311.15032958984375,
+      "z": 6.253591891436372e-06
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  }
+ },
+ "Level 5": {
+  "level": {},
+  "machines": [
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 5",
+    "fields": {
+     "topMarker": "PPtr(-6511567983160249018)",
+     "bottomMarker": "PPtr(3487938214476068166)",
+     "leftMarker": "PPtr(8169700984940737862)",
+     "rightMarker": "PPtr(-6646513753332632250)",
+     "zoomInMarker": "PPtr(9062670284415120710)",
+     "zoomOutMarker": "PPtr(4229832300726662470)",
+     "topY": 5.21999979019165,
+     "bottomY": 5.21999979019165,
+     "leftX": 4.150000095367432,
+     "rightX": 4.489999771118164,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 29.93743324279785,
+      "y": 320.5369873046875,
+      "z": 2.0332190990448
+     }
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  }
+ },
+ "Level 6": {
+  "level": {},
+  "machines": [
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (1)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 50.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 6",
+    "fields": {
+     "topMarker": "PPtr(4883053303480432599)",
+     "bottomMarker": "PPtr(1942590080178763735)",
+     "leftMarker": "PPtr(-1555596663621306409)",
+     "rightMarker": "PPtr(1238026958406924247)",
+     "zoomInMarker": "PPtr(6543305608125659095)",
+     "zoomOutMarker": "PPtr(-1318072783669446697)",
+     "topY": 7.960000038146973,
+     "bottomY": 7.730000019073486,
+     "leftX": 5.25,
+     "rightX": 5.590000152587891,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 35.0,
+      "y": 323.6387939453125,
+      "z": 359.4613037109375
+     }
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  }
+ },
+ "Level 7": {
+  "level": {},
+  "machines": [
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 7",
+    "fields": {
+     "topMarker": "PPtr(2714422009474782604)",
+     "bottomMarker": "PPtr(6100678392291464588)",
+     "leftMarker": "PPtr(4606480865061901708)",
+     "rightMarker": "PPtr(-2537733600931015284)",
+     "zoomInMarker": "PPtr(-8948268174055893620)",
+     "zoomOutMarker": "PPtr(5486635505773254028)",
+     "topY": 7.014489650726318,
+     "bottomY": 7.014489650726318,
+     "leftX": 5.620260715484619,
+     "rightX": 5.620260715484619,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(-2744442275424430708)",
+     "animatedTransform": "PPtr(-6228947117459303028)",
+     "particleTransform": "PPtr(-3387013594582477428)",
+     "hiddenLocalOffset": {
+      "x": 0.0,
+      "y": -2.200000047683716,
+      "z": 0.0
+     },
+     "slideDuration": 1.0,
+     "hiddenDuration": 3.0,
+     "startAtShownPosition": 1,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0,
+  "gem": true
+ },
+ "Level 8": {
+  "level": {},
+  "machines": [
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 8",
+    "fields": {
+     "topMarker": "PPtr(-3936037331006859384)",
+     "bottomMarker": "PPtr(-5726011817152555128)",
+     "leftMarker": "PPtr(2431280084029265800)",
+     "rightMarker": "PPtr(-2371419469700802680)",
+     "zoomInMarker": "PPtr(-8993069340032444536)",
+     "zoomOutMarker": "PPtr(-1685621045200824440)",
+     "topY": 6.150000095367432,
+     "bottomY": 5.97599983215332,
+     "leftX": 5.235000133514404,
+     "rightX": 5.235000133514404,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000011444091797,
+      "y": 320.0,
+      "z": -9.858530347628403e-07
+     }
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(4784651552159356808)",
+     "exitDirection": "PPtr(4178006431735142280)",
+     "pullDuration": 0.4000000059604645,
+     "pullCenter": "PPtr(-8153109152786753656)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0,
+  "gem": true
+ },
+ "Level 9": {
+  "level": {},
+  "machines": [
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (1)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 9",
+    "fields": {
+     "topMarker": "PPtr(4071244072148111622)",
+     "bottomMarker": "PPtr(6040728388816965894)",
+     "leftMarker": "PPtr(5015503124094554374)",
+     "rightMarker": "PPtr(1005615491465842950)",
+     "zoomInMarker": "PPtr(-7640356389039861498)",
+     "zoomOutMarker": "PPtr(-7659895811760746234)",
+     "topY": 7.849999904632568,
+     "bottomY": 5.758773326873779,
+     "leftX": 4.752080917358398,
+     "rightX": 5.313720226287842,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true
+ },
+ "Level 10": {
+  "level": {},
+  "machines": [
+   {
+    "type": "DollarGateInteraction",
+    "go": "DollarGate",
+    "fields": {
+     "cashAmount": 1.0,
+     "addToProgression": 1,
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "amountText": "PPtr(5598061236967941268)",
+     "innerRenderer": "PPtr(3428706832594805908)",
+     "emissionFlashDuration": 0.5
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 10",
+    "fields": {
+     "topMarker": "PPtr(4520829667745703060)",
+     "bottomMarker": "PPtr(-7869609413761784684)",
+     "leftMarker": "PPtr(5195068887303365780)",
+     "rightMarker": "PPtr(-5611259322031496044)",
+     "zoomInMarker": "PPtr(-8961619858687679340)",
+     "zoomOutMarker": "PPtr(-1245518865784855404)",
+     "topY": 6.932012557983398,
+     "bottomY": 6.690000057220459,
+     "leftX": 5.820000171661377,
+     "rightX": 6.28000020980835,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(902289507130451092)",
+     "exitDirection": "PPtr(4971246166311216276)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(-110149733802859372)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0
+ },
+ "Level 11": {
+  "level": {},
+  "machines": [
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (1)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "MovingPlatformInteraction",
+    "go": "Platform",
+    "fields": {
+     "pointsParent": "PPtr(-7084074603688921611)",
+     "dropPointIndex": -1,
+     "travelDuration": 4.0,
+     "tiltPart": "PPtr(-1528522921052768779)",
+     "dropTiltZ": 270.0,
+     "tiltDuration": 0.4000000059604645,
+     "dropHoldDuration": 1.0,
+     "stayDuration": 5.0,
+     "rotationCostPerDegree": 0.0024999999441206455,
+     "accelerationTime": 0.10000000149011612,
+     "gripStrength": 200.0,
+     "gripMinHeight": 0.029999999329447746
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet (2)",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(814430073429587445)",
+     "animatedTransform": "PPtr(8387798710089119221)",
+     "particleTransform": "PPtr(4390866714884142581)",
+     "hiddenLocalOffset": {
+      "x": 2.5,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "slideDuration": 0.3499999940395355,
+     "hiddenDuration": 2.0,
+     "startAtShownPosition": 0,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 11",
+    "fields": {
+     "topMarker": "PPtr(4934025589737420277)",
+     "bottomMarker": "PPtr(3702482243638425077)",
+     "leftMarker": "PPtr(1200721500467131893)",
+     "rightMarker": "PPtr(9024584614752253429)",
+     "zoomInMarker": "PPtr(-4775046891001317899)",
+     "zoomOutMarker": "PPtr(-130337245669394955)",
+     "topY": 8.279999732971191,
+     "bottomY": 7.010000228881836,
+     "leftX": 6.53000020980835,
+     "rightX": 7.679999828338623,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(5236828922763834869)",
+     "exitDirection": "PPtr(-5196808278207662603)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(3529147951541614069)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 5,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0,
+  "gem": true
+ },
+ "Level 12": {
+  "level": {},
+  "machines": [
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(4800840076606882941)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 12",
+    "fields": {
+     "topMarker": "PPtr(7524299592365491325)",
+     "bottomMarker": "PPtr(6526578650413188221)",
+     "leftMarker": "PPtr(3912063245560956029)",
+     "rightMarker": "PPtr(-9102806245331254147)",
+     "zoomInMarker": "PPtr(-2848999961358777219)",
+     "zoomOutMarker": "PPtr(4864024626624382077)",
+     "topY": 5.377999782562256,
+     "bottomY": 4.584000110626221,
+     "leftX": 4.949999809265137,
+     "rightX": 5.354000091552734,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 316.46807861328125,
+      "z": 2.070291156996973e-05
+     }
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (1)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(7059946252866929789)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0,
+  "gem": true
+ },
+ "Level 13": {
+  "level": {},
+  "machines": [
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 13",
+    "fields": {
+     "topMarker": "PPtr(5518701709558862786)",
+     "bottomMarker": "PPtr(-1558301904717818942)",
+     "leftMarker": "PPtr(2472448906264564674)",
+     "rightMarker": "PPtr(-1187825136212454462)",
+     "zoomInMarker": "PPtr(-5504850204120788030)",
+     "zoomOutMarker": "PPtr(8273226345922614210)",
+     "topY": 6.880000114440918,
+     "bottomY": 6.03000020980835,
+     "leftX": 6.300000190734863,
+     "rightX": 6.300000190734863,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.0,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (4)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(7766993179589596098)",
+     "exitDirection": "PPtr(7943561373318108098)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(5747063338636268482)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0
+ },
+ "Level 14": {
+  "level": {},
+  "machines": [
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet (1)",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(7877466598826780057)",
+     "animatedTransform": "PPtr(-5065937403007654503)",
+     "particleTransform": "PPtr(4599641426256471449)",
+     "hiddenLocalOffset": {
+      "x": 0.0,
+      "y": -2.0,
+      "z": 0.0
+     },
+     "slideDuration": 0.3499999940395355,
+     "hiddenDuration": 2.0,
+     "startAtShownPosition": 0,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 14",
+    "fields": {
+     "topMarker": "PPtr(-6740017327581420135)",
+     "bottomMarker": "PPtr(4164214750664533401)",
+     "leftMarker": "PPtr(405844393316001177)",
+     "rightMarker": "PPtr(8295196563593110937)",
+     "zoomInMarker": "PPtr(1777347821427172761)",
+     "zoomOutMarker": "PPtr(1604216070271673753)",
+     "topY": 7.650000095367432,
+     "bottomY": 7.079999923706055,
+     "leftX": 7.590000152587891,
+     "rightX": 6.980000019073486,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.0,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (1)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (2)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(-334013187098925671)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(1543834972312708505)",
+     "exitDirection": "PPtr(-5971812651960687207)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(-4713135276318906983)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true,
+  "goal": 100.0
+ },
+ "Level 15": {
+  "level": {},
+  "machines": [
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (2)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (4)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (1)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet (1)",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(8373845130252916929)",
+     "animatedTransform": "PPtr(8406191450605951169)",
+     "particleTransform": "PPtr(6736761831443142849)",
+     "hiddenLocalOffset": {
+      "x": 2.5,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "slideDuration": 0.3499999940395355,
+     "hiddenDuration": 2.0,
+     "startAtShownPosition": 0,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(-1540465212930320191)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 15",
+    "fields": {
+     "topMarker": "PPtr(7986246713533143233)",
+     "bottomMarker": "PPtr(6550292111925713089)",
+     "leftMarker": "PPtr(1147305660480428225)",
+     "rightMarker": "PPtr(98885800197626049)",
+     "zoomInMarker": "PPtr(-4101186732839397183)",
+     "zoomOutMarker": "PPtr(-7089551093079009087)",
+     "topY": 6.96999979019165,
+     "bottomY": 6.880000114440918,
+     "leftX": 6.46999979019165,
+     "rightX": 7.239999771118164,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.0,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(-6009967368390960959)",
+     "exitDirection": "PPtr(-1902574536133306175)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(5766317982846884033)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0
+ },
+ "Level 16": {
+  "level": {},
+  "machines": [
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "DollarGateInteraction",
+    "go": "DollarGate",
+    "fields": {
+     "cashAmount": 1.0,
+     "addToProgression": 1,
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "amountText": "PPtr(-4701146377051638159)",
+     "innerRenderer": "PPtr(-6070927474962991503)",
+     "emissionFlashDuration": 0.5
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 16",
+    "fields": {
+     "topMarker": "PPtr(8539591703475844721)",
+     "bottomMarker": "PPtr(-7681947439922416015)",
+     "leftMarker": "PPtr(-9162055655896451471)",
+     "rightMarker": "PPtr(5955259809839249009)",
+     "zoomInMarker": "PPtr(6299775558944880241)",
+     "zoomOutMarker": "PPtr(2146577395350369905)",
+     "topY": 7.46999979019165,
+     "bottomY": 6.440000057220459,
+     "leftX": 5.429999828338623,
+     "rightX": 6.369999885559082,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.0,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (2)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(4798943318938154609)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(95815207139997297)",
+     "exitDirection": "PPtr(5858559824636081777)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(7297527023493379697)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "MovingMagnetInteraction",
+    "go": "JunkyardMagnet",
+    "fields": {
+     "pointsParent": "PPtr(-8647428625932880271)",
+     "dropPointIndex": -1,
+     "travelDuration": 4.0,
+     "tiltPart": "PPtr(0)",
+     "dropTiltZ": 270.0,
+     "tiltDuration": 0.4000000059604645,
+     "dropHoldDuration": 1.0,
+     "stayDuration": 1.5,
+     "rotationCostPerDegree": 0.009999999776482582,
+     "accelerationTime": 0.4000000059604645,
+     "gripStrength": 12.0,
+     "gripMinHeight": 0.029999999329447746,
+     "speed": 0.550000011920929,
+     "attractMultiplier": 25.0,
+     "attractionPoint": "PPtr(-8234519668368411023)",
+     "triggerCollider": "PPtr(3596832816713758321)",
+     "emissionRenderer": "PPtr(3486082665723065969)",
+     "particleTransform": "PPtr(6994667733672457841)"
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(-6745733146289637775)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 4,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true,
+  "goal": 100.0
+ },
+ "Level 17": {
+  "level": {},
+  "machines": [
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "LaserInteraction",
+    "go": "Laser",
+    "fields": {
+     "maxLength": 0.44999998807907104,
+     "beamThickness": {
+      "x": 0.009999999776482582,
+      "y": 0.009999999776482582
+     },
+     "coinLayers": {
+      "m_Bits": 512
+     },
+     "obstacleLayers": {
+      "m_Bits": 1
+     },
+     "emitterTemplate": "PPtr(665586820405357874)",
+     "emitterCount": 5,
+     "emitterSpacing": 0.11500000208616257,
+     "offDuration": 3.0,
+     "onDuration": 6.0,
+     "extendDuration": 0.15000000596046448,
+     "retractDuration": 0.10000000149011612,
+     "destroyParticlePrefab": "GameObject:Bronze"
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2 (1)",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 0,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (1)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 17",
+    "fields": {
+     "topMarker": "PPtr(-7364031379448632014)",
+     "bottomMarker": "PPtr(-6134895687044731598)",
+     "leftMarker": "PPtr(-9025933290190246606)",
+     "rightMarker": "PPtr(-8752602687810343630)",
+     "zoomInMarker": "PPtr(413159579698228530)",
+     "zoomOutMarker": "PPtr(2331022095041522994)",
+     "topY": 7.980000019073486,
+     "bottomY": 4.898194789886475,
+     "leftX": 6.0,
+     "rightX": 7.789999961853027,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(4572293679235493170)",
+     "exitDirection": "PPtr(3439094332431887666)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(-4651584752131347150)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true,
+  "goal": 100.0
+ },
+ "Level 18": {
+  "level": {},
+  "machines": [
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(6841957624134560452)",
+     "animatedTransform": "PPtr(66815585812671172)",
+     "particleTransform": "PPtr(-6740555044451980604)",
+     "hiddenLocalOffset": {
+      "x": 0.0,
+      "y": -2.200000047683716,
+      "z": 0.0
+     },
+     "slideDuration": 0.6499999761581421,
+     "hiddenDuration": 3.0,
+     "startAtShownPosition": 0,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 18",
+    "fields": {
+     "topMarker": "PPtr(8062301403513219780)",
+     "bottomMarker": "PPtr(6343704540843207364)",
+     "leftMarker": "PPtr(8894799912151476932)",
+     "rightMarker": "PPtr(-8002919609475863868)",
+     "zoomInMarker": "PPtr(-6216638176187389244)",
+     "zoomOutMarker": "PPtr(-7488579645498594620)",
+     "topY": 8.079999923706055,
+     "bottomY": 7.239999771118164,
+     "leftX": 6.130000114440918,
+     "rightX": 7.590000152587891,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(-242014792300238140)",
+     "exitDirection": "PPtr(-3794225644849141052)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(-3423524005720233276)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "gem": true
+ },
+ "Level 19": {
+  "level": {},
+  "machines": [
+   {
+    "type": "PortalInteraction",
+    "go": "In Portal",
+    "fields": {
+     "exitPoint": "PPtr(2920578337927454816)",
+     "exitDirection": "PPtr(5719114882904088672)",
+     "pullDuration": 0.3499999940395355,
+     "pullCenter": "PPtr(5223879828646977632)",
+     "inPortalVisual": "GameObject:VortexPortalyellow",
+     "outPortalVisual": "GameObject:VortexPortalBlue",
+     "duration": 1.149999976158142,
+     "hiddenDuration": 3.0,
+     "blueRingMaterial": "Material:Inner_Portal 1",
+     "inRingMaterial": "Material:Inner_Portal",
+     "blueOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "blueOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "inOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "emissionOffIntensity": 1.0,
+     "emissionOnIntensity": 1.0,
+     "lightUpDuration": 0.4000000059604645,
+     "closeVisualDelay": 0.3499999940395355,
+     "lightDownDuration": 0.3499999940395355,
+     "particleFadeDuration": 0.3499999940395355,
+     "particleFadeInDuration": 0.25,
+     "openingOverlap": 0.5,
+     "chargeStartDelay": 0.20000000298023224,
+     "chargeFadeInDuration": 0.30000001192092896,
+     "chargeOnlyDuringCoinInteraction": 1,
+     "coinChargeActivityDuration": 0.699999988079071,
+     "minimumChargePlayDuration": 1.0,
+     "inChargeVisual": "GameObject:MagicChargeBlue",
+     "outChargeVisual": "GameObject:MagicChargeBlue",
+     "inPortalSprite": "GameObject:innercircle",
+     "outPortalSprite": "GameObject:innercircle (1)",
+     "inSpriteOffColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "inSpriteOnColor": {
+      "r": 1.0,
+      "g": 0.6431372761726379,
+      "b": 0.0,
+      "a": 1.0
+     },
+     "outSpriteOffColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     },
+     "outSpriteOnColor": {
+      "r": 0.0,
+      "g": 0.6000000238418579,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(2614905441577918560)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (2)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "LevelCameraBounds",
+    "go": "Level 19",
+    "fields": {
+     "topMarker": "PPtr(1177949119472722016)",
+     "bottomMarker": "PPtr(-412131444997562272)",
+     "leftMarker": "PPtr(-6775238063117508512)",
+     "rightMarker": "PPtr(-3895018078640283552)",
+     "zoomInMarker": "PPtr(7969997920074588256)",
+     "zoomOutMarker": "PPtr(-7078356597833342880)",
+     "topY": 8.399999618530273,
+     "bottomY": 6.710000038146973,
+     "leftX": 3.450000047683716,
+     "rightX": 7.769999980926514,
+     "disableVerticalMovement": 0,
+     "disableHorizontalMovement": 0,
+     "fieldOfView": 20.0,
+     "rotationEuler": {
+      "x": 30.000001907348633,
+      "y": 320.0,
+      "z": -9.858529210760025e-07
+     }
+    }
+   },
+   {
+    "type": "DollarGateInteraction",
+    "go": "DollarGate (1)",
+    "fields": {
+     "cashAmount": 1.0,
+     "addToProgression": 1,
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "amountText": "PPtr(-8101886982691102624)",
+     "innerRenderer": "PPtr(8499624201285984352)",
+     "emissionFlashDuration": 0.5
+    }
+   },
+   {
+    "type": "MovingPlatformInteraction",
+    "go": "Platform",
+    "fields": {
+     "pointsParent": "PPtr(-2026956724001185696)",
+     "dropPointIndex": -1,
+     "travelDuration": 4.0,
+     "tiltPart": "PPtr(8211460853891522656)",
+     "dropTiltZ": 270.0,
+     "tiltDuration": 0.4000000059604645,
+     "dropHoldDuration": 1.0,
+     "stayDuration": 5.0,
+     "rotationCostPerDegree": 0.0024999999441206455,
+     "accelerationTime": 0.10000000149011612,
+     "gripStrength": 200.0,
+     "gripMinHeight": 0.029999999329447746
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(2803306219066286176)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   },
+   {
+    "type": "DollarGateInteraction",
+    "go": "DollarGate (2)",
+    "fields": {
+     "cashAmount": 1.0,
+     "addToProgression": 1,
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "amountText": "PPtr(482343036469764192)",
+     "innerRenderer": "PPtr(5541688136784994400)",
+     "emissionFlashDuration": 0.5
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower (1)",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "SpikeInteraction",
+    "go": "spikes platform",
+    "fields": {
+     "destroyParticlePrefab": "GameObject:Bronze",
+     "destroyParticleSilverPrefab": "GameObject:Silver",
+     "destroyParticleGoldPrefab": "GameObject:gold",
+     "destroyParticleGemPrefab": "GameObject:Gem"
+    }
+   },
+   {
+    "type": "MagnetInteraction",
+    "go": "Magnet (2)",
+    "fields": {
+     "speed": 0.550000011920929,
+     "attractionDuration": 2.0,
+     "attractionPoint": "PPtr(4277278797641015392)",
+     "animatedTransform": "PPtr(-4272321984130260896)",
+     "particleTransform": "PPtr(7713363603056287840)",
+     "hiddenLocalOffset": {
+      "x": 2.5,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "slideDuration": 0.3499999940395355,
+     "hiddenDuration": 2.0,
+     "startAtShownPosition": 0,
+     "attractMultiplier": 30.0
+    }
+   },
+   {
+    "type": "CoinCollectorInteraction",
+    "go": "CoinCollector",
+    "fields": {
+     "collectParticlePrefab": "GameObject:CurrencyCollectEffect",
+     "vfxGemCollect": "GameObject:GemCollectEffect",
+     "gemCreditDelay": 1.7999999523162842
+    }
+   },
+   {
+    "type": "MultiplyingGateInteraction",
+    "go": "MultiplyingGate x2",
+    "fields": {
+     "multiplier": 2,
+     "isRewardedOfferGate": 1,
+     "spawnLeftOffset": 0.03999999910593033,
+     "spawnPunchScale": 1.399999976158142,
+     "spawnScaleDuration": 0.3499999940395355,
+     "emissionTarget": "GameObject:InnerCube (1)",
+     "emissionPulseDuration": 0.4000000059604645,
+     "restingEmissionColor": {
+      "r": 0.6452829837799072,
+      "g": 0.6452829837799072,
+      "b": 0.6452829837799072,
+      "a": 1.0
+     },
+     "pulseEmissionColor": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+     }
+    }
+   },
+   {
+    "type": "ConveyorBeltInteraction",
+    "go": "Coveyor_Belt",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0
+    }
+   },
+   {
+    "type": "MovingMagnetInteraction",
+    "go": "JunkyardMagnet",
+    "fields": {
+     "pointsParent": "PPtr(-1908617273278996384)",
+     "dropPointIndex": -1,
+     "travelDuration": 4.0,
+     "tiltPart": "PPtr(0)",
+     "dropTiltZ": 270.0,
+     "tiltDuration": 0.4000000059604645,
+     "dropHoldDuration": 1.0,
+     "stayDuration": 1.5,
+     "rotationCostPerDegree": 0.009999999776482582,
+     "accelerationTime": 0.4000000059604645,
+     "gripStrength": 12.0,
+     "gripMinHeight": 0.029999999329447746,
+     "speed": 0.550000011920929,
+     "attractMultiplier": 25.0,
+     "attractionPoint": "PPtr(777292373103861856)",
+     "triggerCollider": "PPtr(-3567896319353233312)",
+     "emissionRenderer": "PPtr(-2989234704195985312)",
+     "particleTransform": "PPtr(9206619678632697952)"
+    }
+   },
+   {
+    "type": "PusherInteraction",
+    "go": "Dozer",
+    "fields": {
+     "direction": 2,
+     "speed": 2.0,
+     "maxDistance": 40.0,
+     "minDistance": 0.0,
+     "backHoldDuration": 1.0
+    }
+   },
+   {
+    "type": "FanInteraction",
+    "go": "AirBlower",
+    "fields": {
+     "speed": 10.0,
+     "pushMultiplier": 3.0,
+     "rollResponse": 12.0,
+     "maxRollTilt": 0.5,
+     "maxDiscAspect": 0.5
+    }
+   },
+   {
+    "type": "TeslaCoilInteraction",
+    "go": "TeslaCoil",
+    "fields": {
+     "speed": 2.0,
+     "shockwaveMultiplier": 1.0,
+     "interval": 1.2000000476837158,
+     "firstPulseDelay": 1.0,
+     "edgeStrength": 0.3499999940395355,
+     "liftRatio": 0.15000000596046448,
+     "pulsePrefab": "PPtr(4684364890814669807)",
+     "pulseOrigin": "PPtr(728400042861322336)",
+     "maxChainLinks": 6,
+     "maxHopDistance": 1.0,
+     "hopDelay": 0.07999999821186066,
+     "pulseDuration": 0.15000000596046448
+    }
+   }
+  ],
+  "upgrades": [
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 1,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 0,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 6,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 5,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 2,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 3,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 4,
+    "cost": 2.0
+   },
+   {
+    "go": "Canvas",
+    "machineId": 7,
+    "cost": 2.0
+   }
+  ],
+  "gem": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10,
+   "selectionMode": 0
+  },
+  "goal": 100.0
+ }
+}

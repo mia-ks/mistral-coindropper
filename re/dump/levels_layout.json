@@ -1,0 +1,3643 @@
+{
+ "12": {
+  "machines": [
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.014,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.015,
+    "y": -0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.584,
+    "y": -1.117,
+    "z": -0.486,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.012,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": 0.001,
+    "y": 0.618,
+    "z": 0.249,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (1)",
+    "x": -0.001,
+    "y": -0.729,
+    "z": 0.012,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": 0.001,
+    "y": 0.617,
+    "z": 0.249,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.193,
+    "y": 2.077,
+    "z": 0.636,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0,
+  "gems": true
+ },
+ "2": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.007,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.016,
+    "y": -0.18,
+    "z": -0.584,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.014,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.497,
+    "y": 1.609,
+    "z": 0.638,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.013,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  }
+ },
+ "13": {
+  "machines": [
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.596,
+    "y": 2.304,
+    "z": -0.049,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.013,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (4)",
+    "x": 0.021,
+    "y": -0.7,
+    "z": -0.568,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -2.16,
+    "y": 0.902,
+    "z": 0.069,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.647,
+    "y": -1.054,
+    "z": -0.657,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": -0.04,
+    "y": 0.291,
+    "z": 0.05,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0
+ },
+ "18": {
+  "machines": [
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.004,
+    "y": -0.743,
+    "z": -2.124,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet",
+    "x": -0.171,
+    "y": 0.762,
+    "z": -0.552,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.509,
+    "y": 2.515,
+    "z": 0.593,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.012,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.007,
+    "y": -0.093,
+    "z": -0.522,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -0.755,
+    "y": -0.098,
+    "z": -0.656,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true
+ },
+ "17": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.924,
+    "y": -0.782,
+    "z": -0.564,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": 0.971,
+    "y": -0.226,
+    "z": -0.046,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.509,
+    "y": 2.461,
+    "z": 0.593,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "laser",
+    "name": "Laser",
+    "x": -0.25,
+    "y": 0.278,
+    "z": 0.004,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": 6.0,
+    "offDuration": 3.0
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (1)",
+    "x": 0.975,
+    "y": 0.085,
+    "z": -0.42,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (1)",
+    "x": -0.034,
+    "y": 0.308,
+    "z": -0.046,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.015,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -0.037,
+    "y": -0.147,
+    "z": 0.056,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true,
+  "goal": 100.0
+ },
+ "16": {
+  "machines": [
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": 0.046,
+    "y": 0.366,
+    "z": -1.078,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.566,
+    "y": 3.238,
+    "z": 0.429,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "dollarGate",
+    "name": "DollarGate",
+    "x": 0.17,
+    "y": 1.527,
+    "z": -0.09,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": 1.0,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (2)",
+    "x": 0.858,
+    "y": -0.023,
+    "z": -0.086,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.0,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": 0.199,
+    "y": -0.724,
+    "z": -0.034,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.014,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "movingMagnet",
+    "name": "JunkyardMagnet",
+    "x": -0.069,
+    "y": 0.0,
+    "z": 0.365,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": 1.5,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": -0.051,
+    "y": -0.13,
+    "z": -1.566,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.0,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 4,
+    "machine": "MovingMagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true,
+  "goal": 100.0
+ },
+ "15": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (2)",
+    "x": 0.858,
+    "y": -0.023,
+    "z": -0.086,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.019,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.015,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (4)",
+    "x": 0.523,
+    "y": 0.073,
+    "z": 0.39,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (1)",
+    "x": 0.026,
+    "y": -0.291,
+    "z": -0.741,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet (1)",
+    "x": 0.124,
+    "y": 2.117,
+    "z": 0.411,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": 0.023,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.941,
+    "y": -1.667,
+    "z": -1.233,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.016,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -1.658,
+    "y": 0.261,
+    "z": -0.167,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.429,
+    "y": 2.304,
+    "z": 0.527,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0
+ },
+ "8": {
+  "machines": [
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.525,
+    "y": 1.877,
+    "z": 0.587,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.014,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.012,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.063,
+    "y": -0.397,
+    "z": -0.528,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -0.024,
+    "y": 0.08,
+    "z": -0.015,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.4000000059604645,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0,
+  "gems": true
+ },
+ "9": {
+  "machines": [
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (1)",
+    "x": -0.155,
+    "y": 1.417,
+    "z": -0.034,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.015,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.467,
+    "y": 0.144,
+    "z": -0.653,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.509,
+    "y": 2.515,
+    "z": 0.593,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": 0.471,
+    "y": 0.987,
+    "z": 0.452,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.002,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true
+ },
+ "6": {
+  "machines": [
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.002,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (1)",
+    "x": -0.354,
+    "y": 1.973,
+    "z": -0.134,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 1.084,
+    "y": 0.07,
+    "z": -0.3,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.013,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.5,
+    "y": 1.566,
+    "z": 0.464,
+    "speed": 50.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.5,
+    "y": 2.518,
+    "z": 0.559,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  }
+ },
+ "10": {
+  "machines": [
+   {
+    "type": "dollarGate",
+    "name": "DollarGate",
+    "x": -0.201,
+    "y": 1.338,
+    "z": 0.096,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": 1.0,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.646,
+    "y": 2.387,
+    "z": 0.469,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.012,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.488,
+    "y": -0.187,
+    "z": -0.628,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.035,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.022,
+    "y": 0.371,
+    "z": -0.042,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": 0.04,
+    "y": -0.024,
+    "z": 0.007,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0
+ },
+ "3": {
+  "machines": [
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.012,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.001,
+    "y": 0.501,
+    "z": 0.392,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.014,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.584,
+    "y": -0.099,
+    "z": -0.226,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.616,
+    "y": 1.834,
+    "z": 0.532,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0,
+  "gems": true
+ },
+ "11": {
+  "machines": [
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2 (1)",
+    "x": 0.359,
+    "y": 1.248,
+    "z": 0.461,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.031,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "platform",
+    "name": "Platform",
+    "x": 0.1,
+    "y": 0.032,
+    "z": 0.154,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": 5.0,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet (2)",
+    "x": -0.008,
+    "y": 1.428,
+    "z": -0.032,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.018,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.512,
+    "y": 1.172,
+    "z": -0.547,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.649,
+    "y": 3.155,
+    "z": 0.36,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -0.449,
+    "y": -0.285,
+    "z": -0.035,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.98,
+    "y": -1.048,
+    "z": -1.394,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 5,
+    "machine": "MovingPlatformInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0,
+  "gems": true
+ },
+ "7": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet",
+    "x": -0.655,
+    "y": 1.27,
+    "z": -0.537,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.035,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": -0.513,
+    "y": 0.602,
+    "z": -1.168,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.507,
+    "y": 0.462,
+    "z": -0.549,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.509,
+    "y": 2.495,
+    "z": 0.588,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0,
+  "gems": true
+ },
+ "4": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.0,
+    "y": 0.555,
+    "z": -0.036,
+    "speed": 50.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.488,
+    "y": 2.378,
+    "z": 0.568,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.014,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": -0.034,
+    "y": -0.085,
+    "z": -0.594,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.014,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  }
+ },
+ "14": {
+  "machines": [
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.004,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.99,
+    "y": -0.318,
+    "z": -0.157,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.015,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet (1)",
+    "x": 0.014,
+    "y": 0.88,
+    "z": -0.393,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (1)",
+    "x": 0.498,
+    "y": 0.036,
+    "z": -0.07,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.006,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (2)",
+    "x": -0.501,
+    "y": 0.426,
+    "z": -1.063,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.488,
+    "y": 2.378,
+    "z": 0.568,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": 0.011,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.016,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": -0.573,
+    "y": 0.496,
+    "z": -1.043,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true,
+  "goal": 100.0
+ },
+ "19": {
+  "machines": [
+   {
+    "type": "portal",
+    "name": "In Portal",
+    "x": 0.044,
+    "y": -0.655,
+    "z": -0.025,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": 0.3499999940395355,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.0,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (2)",
+    "x": 0.485,
+    "y": -0.318,
+    "z": -0.031,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "dollarGate",
+    "name": "DollarGate (1)",
+    "x": 0.362,
+    "y": 1.397,
+    "z": 0.428,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": 1.0,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "platform",
+    "name": "Platform",
+    "x": -0.397,
+    "y": 0.032,
+    "z": 0.169,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": 5.0,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.018,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.0,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "dollarGate",
+    "name": "DollarGate (2)",
+    "x": 0.362,
+    "y": 1.2,
+    "z": 0.428,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": 1.0,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower (1)",
+    "x": -0.003,
+    "y": -0.881,
+    "z": -1.309,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "magnet",
+    "name": "Magnet (2)",
+    "x": -0.007,
+    "y": 0.717,
+    "z": -1.348,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": 2.0,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.98,
+    "y": -1.048,
+    "z": -1.413,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.503,
+    "y": 3.155,
+    "z": 0.554,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.002,
+    "y": 0.0,
+    "z": -0.004,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "movingMagnet",
+    "name": "JunkyardMagnet",
+    "x": -0.948,
+    "y": 0.0,
+    "z": 0.351,
+    "speed": 0.550000011920929,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": 1.5,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.031,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "fan",
+    "name": "AirBlower",
+    "x": -0.01,
+    "y": 1.157,
+    "z": 0.455,
+    "speed": 10.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "launcher",
+    "name": "TeslaCoil",
+    "x": -0.0,
+    "y": 0.61,
+    "z": 0.259,
+    "speed": 2.0,
+    "interval": 1.2000000476837158,
+    "maxHopDistance": 1.0,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 6,
+    "machine": "PortalInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 5,
+    "machine": "MovingPlatformInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 2,
+    "machine": "FanInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 3,
+    "machine": "MagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 4,
+    "machine": "MovingMagnetInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 7,
+    "machine": "TeslaCoilInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "goal": 100.0
+ },
+ "1": {
+  "machines": [
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": -0.511,
+    "y": 1.22,
+    "z": 0.643,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": -0.013,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.017,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.073,
+    "y": -0.059,
+    "z": 0.021,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   }
+  ],
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  },
+  "gems": true
+ },
+ "5": {
+  "machines": [
+   {
+    "type": "conveyor",
+    "name": "Coveyor_Belt",
+    "x": -0.003,
+    "y": 0.0,
+    "z": -0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "spike",
+    "name": "spikes platform",
+    "x": 0.0,
+    "y": 0.28,
+    "z": 0.0,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "collector",
+    "name": "CoinCollector",
+    "x": 0.009,
+    "y": 0.153,
+    "z": -0.632,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "pusher",
+    "name": "Dozer",
+    "x": 0.009,
+    "y": 0.0,
+    "z": 0.0,
+    "speed": 2.0,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   },
+   {
+    "type": "gate",
+    "name": "MultiplyingGate x2",
+    "x": 0.029,
+    "y": 1.646,
+    "z": 0.563,
+    "speed": null,
+    "interval": null,
+    "maxHopDistance": null,
+    "attractionDuration": null,
+    "pullDuration": null,
+    "cashAmount": null,
+    "stayDuration": null,
+    "onDuration": null,
+    "offDuration": null
+   }
+  ],
+  "upgrades": [
+   {
+    "machineId": 0,
+    "machine": "PusherInteraction",
+    "cost": 2.0
+   },
+   {
+    "machineId": 1,
+    "machine": "ConveyorBeltInteraction",
+    "cost": 2.0
+   }
+  ],
+  "gems": true,
+  "goal": 100.0,
+  "spawn": {
+   "maxCharges": 15,
+   "refillInterval": 2.0,
+   "chargesPerRefill": 1,
+   "guaranteedBronzeCoinCount": 10
+  }
+ }
+}
