@@ -55,7 +55,8 @@ def col_world_aabb(go, col):
     xs=[p[0] for p in corners]; ys=[p[1] for p in corners]; zs=[p[2] for p in corners]
     return {'min':[min(xs),min(ys),min(zs)], 'max':[max(xs),max(ys),max(zs)],
             'trigger': bool(f.get('m_IsTrigger')), 'enabled': bool(f.get('m_Enabled',1)),
-            'go': L['names'].get(go, '?'), 'col': col['type']}
+            'go': L['names'].get(go, '?'), 'col': col['type'],
+            'active': bool(L['go_active'].get(go, 1))}
 
 def descendants(tid):
     out = []
@@ -121,6 +122,12 @@ for root in roots:
         floor_top = min(b['max'][1] for b in big) if big else None
         floor_cols = [b for b in big if b['max'][1] <= floor_top + 0.02 * S] if floor_top is not None else []
         floor_sources = [{'go': b['go'], 'col': b['col'], 'min': [round(v*S,4) for v in b['min']], 'max': [round(v*S,4) for v in b['max']]} for b in floor_cols]
+        # retaining walls = the remaining solid colliders under the tier (they may sit on
+        # GameObjects that are inactive in the prefab but carry enabled colliders and are
+        # activated during play - dropping them was the source of exposed perimeter gaps)
+        walls = [{'go': b['go'], 'col': b['col'], 'active': b['active'],
+                  'min': [round(v*S,4) for v in b['min']], 'max': [round(v*S,4) for v in b['max']]}
+                 for b in boxes if b not in floor_cols]
         if floor_cols:
             floor = {'min': [min(b['min'][0] for b in floor_cols), floor_top, min(b['min'][2] for b in floor_cols)],
                      'max': [max(b['max'][0] for b in floor_cols), floor_top, max(b['max'][2] for b in floor_cols)],
@@ -161,9 +168,40 @@ for root in roots:
                 a = 0 if axis_u == 'x' else 2
                 tr = (floor['max'][a] - pb['max'][a]) if sign_u > 0 else (pb['min'][a] - floor['min'][a])
                 pusher['travel'] = round(max(0.0, tr) * S, 4)
+            # the DozerWall (moving back wall of the assembly) as a collider box
+            wall_box = None
+            for t2 in sub:
+                if t2 in assembly and L['names'][L['tf'][t2]['go']] == 'DozerWall':
+                    wc = next((c for c in W.comps(L['tf'][t2]['go']) if c['kind'] == 'COL' and c['fields'].get('m_Enabled', 1) and not c['fields'].get('m_IsTrigger')), None)
+                    if wc:
+                        wa = col_world_aabb(L['tf'][t2]['go'], wc)
+                        if wa: wall_box = {'min': [round(v*S,4) for v in wa['min']], 'max': [round(v*S,4) for v in wa['max']]}
+            if wall_box: pusher['wall'] = wall_box
         tiers.append({'name': gonm, 'pos': r3(cp), 'yaw': round(wyaw(ch), 2),
                       'floor': {'min': [round(v*S,4) for v in floor['min']], 'max': [round(v*S,4) for v in floor['max']], 'sources': floor_sources} if floor else None,
+                      'walls': walls,
                       'visual': visual, 'pusher': pusher})
+    # level-level solid colliders outside the tiers (chute walls, base columns): exclude
+    # machines (handled via their zones), the background, and anything under a tier
+    tier_node_set = set()
+    for ch in W.children(root):
+        if re.match(r'^Pusher( \(\d+\))?$', L['names'][L['tf'][ch]['go']]):
+            tier_node_set |= set(descendants(ch))
+    all_root_nodes = descendants(root)
+    lvl_walls = []
+    for t in all_root_nodes:
+        if t in tier_node_set: continue
+        go = L['tf'][t]['go']; gonm = L['names'].get(go, '?')
+        if gonm == 'BG_New': continue
+        has_mb_interaction = any(c['kind'] == 'MB' and any(c['class'].endswith(x) for x in INTERACTIONS) for c in W.comps(go))
+        if has_mb_interaction: continue
+        for c in W.comps(go):
+            if c['kind'] == 'COL':
+                a = col_world_aabb(go, c)
+                if a and a['enabled'] and not a['trigger']:
+                    lvl_walls.append({'go': gonm, 'col': a['col'], 'active': a['active'],
+                                      'min': [round(v*S,4) for v in a['min']], 'max': [round(v*S,4) for v in a['max']]})
+    spec['walls'] = lvl_walls
     spec['tiers'] = tiers
 
     # machines

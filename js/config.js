@@ -79,8 +79,9 @@ function buildLevels() {
     const tiers = (raw.tiers || []).map((t) => ({
       name: t.name,
       floor: t.floor, // {min:[x,top,z], max:[x,top,z]} world AABB of the platform collider
+      walls: t.walls || [], // retaining wall colliders of this tier {go,col,min,max}
       visual: t.visual, // world AABB of the whole tier assembly (solid block extents)
-      pusher: t.pusher, // {pos, box:{min,max}, speed, backHoldDuration, direction}
+      pusher: t.pusher, // {pos, box:{min,max}, wall, origin, axis, sign, travel, speed, ...}
     }));
     const machines = (raw.machines || []).map((m, i) => {
       const def = CONFIG.machineTypes[m.type] || { label: m.type };
@@ -98,6 +99,7 @@ function buildLevels() {
       collector: raw.collector, // {pos, box:{min,max}}
       bg: raw.bg || null, // {pos, meshSize:[w,h,d]}
       tiers,
+      walls: raw.walls || [], // level-level solid colliders (chute walls, base columns)
       machines,
     });
   }

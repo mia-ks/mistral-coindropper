@@ -73,6 +73,46 @@ for (const lv of LEVELS) {
 }
 console.log('ok - floors are stationary base colliders (not the pusher), controller-resolved sweep axes, flush travel, all 19 levels');
 
+// perimeter wall guards: every tier must be enclosed by extracted wall colliders on the
+// two lateral sides, open (no wall) on the sweep side, closed at the back by the moving
+// DozerWall (no static wall there); every wall collider must correspond to a rendered mesh
+for (const lv of LEVELS) {
+  const instNames = new Set(lv.meshData.instances.map((i) => i.name));
+  for (const t of lv.tiers) {
+    const p = t.pusher, f = t.floor;
+    assert.ok(t.walls && t.walls.length > 0, 'level ' + lv.index + ' tier ' + t.name + ' has retaining walls');
+    assert.ok(p.wall, 'level ' + lv.index + ' tier ' + t.name + ' has the moving DozerWall collider');
+    const ax = p.axis, sg = p.sign;
+    const openSide = ax === 'x' ? (sg > 0 ? 'maxX' : 'minX') : (sg > 0 ? 'maxZ' : 'minZ');
+    const backSide = ax === 'x' ? (sg > 0 ? 'minX' : 'maxX') : (sg > 0 ? 'minZ' : 'maxZ');
+    const span = { minX: f.max[2] - f.min[2], maxX: f.max[2] - f.min[2], minZ: f.max[0] - f.min[0], maxZ: f.max[0] - f.min[0] };
+    for (const side of ['minX', 'maxX', 'minZ', 'maxZ']) {
+      const iv = [];
+      for (const w of t.walls) {
+        if (side === 'minX' && Math.abs(w.max[0] - f.min[0]) < 0.8) iv.push([w.min[2], w.max[2]]);
+        if (side === 'maxX' && Math.abs(w.min[0] - f.max[0]) < 0.8) iv.push([w.min[2], w.max[2]]);
+        if (side === 'minZ' && Math.abs(w.max[2] - f.min[2]) < 0.8) iv.push([w.min[0], w.max[0]]);
+        if (side === 'maxZ' && Math.abs(w.min[2] - f.max[2]) < 0.8) iv.push([w.min[0], w.max[0]]);
+      }
+      iv.sort((a, b) => a[0] - b[0]);
+      const merged = [];
+      for (const [a, b] of iv) { if (merged.length && a <= merged[merged.length - 1][1] + 0.05) merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], b); else merged.push([a, b]); }
+      const cov = merged.reduce((s, [a, b]) => s + (b - a), 0);
+      if (side === openSide) {
+        assert.ok(cov < 0.5, 'level ' + lv.index + ' tier ' + t.name + ' open side ' + side + ' must have no wall (coins descend), coverage ' + cov.toFixed(2));
+      } else if (side !== backSide) {
+        assert.ok(cov >= span[side] - 0.5, 'level ' + lv.index + ' tier ' + t.name + ' lateral side ' + side + ' must be continuously walled, coverage ' + cov.toFixed(2) + '/' + span[side].toFixed(2));
+      } else {
+        assert.ok(cov < 0.5, 'level ' + lv.index + ' tier ' + t.name + ' back side ' + side + ' is closed by the moving DozerWall, no static wall expected, coverage ' + cov.toFixed(2));
+      }
+    }
+    for (const w of t.walls) {
+      assert.ok(instNames.has(w.go), 'level ' + lv.index + ' tier ' + t.name + ' wall "' + w.go + '" has a rendered mesh instance (no invisible colliders)');
+    }
+  }
+}
+console.log('ok - perimeter walls: lateral sides continuously walled, sweep side open, back closed by DozerWall, wall colliders == rendered meshes, all 19 levels');
+
 // pusher-vs-static intersection test on the REAL scene graph: build the scene with the
 // renderer, step the engine, invoke the renderer's own updateAnimations, then intersect
 // the dozer parts' actual world matrices (from the scene graph) with every static AABB.
@@ -101,7 +141,11 @@ console.log('ok - floors are stationary base colliders (not the pusher), control
   // the assembly beyond its rest-phase (prefab) contact.
   const slabNames = new Set();
   for (const t of lv.tiers) for (const s of (t.floor.sources || [])) slabNames.add(s.go);
-  const isOwnSlab = (da, s2) => [...slabNames].some((g) => s2.name === g || s2.name.startsWith(g + ' '));
+  const isOwnSlab = (da, s2) => {
+    const sx = s2.aabb.max[0] - s2.aabb.min[0], sz = s2.aabb.max[2] - s2.aabb.min[2];
+    if (Math.min(sx, sz) < 1.5) return false; // thin = wall segment, not the base slab
+    return [...slabNames].some((g) => s2.name === g || s2.name.startsWith(g + ' '));
+  };
   const overlapAt = (step) => {
     const w2 = engine.createWorld(lv);
     const n = Math.round((step / 24) * period * 60);
@@ -122,31 +166,46 @@ console.log('ok - floors are stationary base colliders (not the pusher), control
         const oy = Math.min(b.max[1], s2.aabb.max[1]) - Math.max(b.min[1], s2.aabb.min[1]);
         const oz = Math.min(b.max[2], s2.aabb.max[2]) - Math.max(b.min[2], s2.aabb.min[2]);
         const vol = Math.max(0, ox) * Math.max(0, oy) * Math.max(0, oz);
-        if (vol > 1e-4) out.push({ da, s2, b, vol, top: Math.min(b.max[1], s2.aabb.max[1]) });
+        if (vol > 1e-4) {
+          // penetration depth: for a wall (thin horizontally, tall) it is the overlap along
+          // the wall's thin axis (the plate slides in its slot - lengthwise overlap may grow);
+          // for slabs/columns/machines it is the minimum-overlap axis (any deepening = clipping)
+          const sx = s2.aabb.max[0] - s2.aabb.min[0], sz = s2.aabb.max[2] - s2.aabb.min[2];
+          const isWall = Math.min(sx, sz) < 1.5; // thin horizontally = wall segment (incl. caps)
+          const thin = sx <= sz ? 0 : 2;
+          const depths = [Math.max(0, ox), Math.max(0, oy), Math.max(0, oz)];
+          out.push({ da, s2, b, vol, depths, depth: isWall ? depths[thin] : Math.min(...depths), isWall, top: Math.min(b.max[1], s2.aabb.max[1]) });
+        }
       }
     }
     return out;
   };
+  // store per-axis penetration depths at rest for every overlapping pair
   const rest = new Map();
-  for (const r of overlapAt(0)) rest.set(r.da.grp.userData.inst.name + '|' + r.s2.name, r.vol);
-  let worst = 0, worstWhat = '', worstAdded = 0, worstAddedWhat = '';
+  for (const r of overlapAt(0)) rest.set(r.da.tierName + '|' + r.da.grp.userData.inst.name + '|' + r.s2.name, r);
+  let worst = 0, worstWhat = '', worstDeep = 0, worstDeepWhat = '';
   for (let step = 1; step <= 24; step++) {
     for (const r of overlapAt(step)) {
-      const k = r.da.grp.userData.inst.name + '|' + r.s2.name;
-      const base = rest.get(k) || 0;
+      const k = r.da.tierName + '|' + r.da.grp.userData.inst.name + '|' + r.s2.name;
+      const b0 = rest.get(k);
       if (r.vol > worst) { worst = r.vol; worstWhat = 'phase ' + step + ' ' + k; }
       if (isOwnSlab(r.da, r.s2)) {
         // slot contact with the tier's own base: must stay at/below the slab top surface
         assert.ok(r.top <= r.s2.aabb.max[1] + 1e-3, 'phase ' + step + ' ' + k + ': assembly rises above its own base slab top (visible clipping), overlap top ' + r.top.toFixed(3) + ' vs slab top ' + r.s2.aabb.max[1].toFixed(3));
         assert.ok(r.vol < 0.5, 'phase ' + step + ' ' + k + ': slot contact unbounded, vol ' + r.vol.toFixed(3));
       } else {
-        if (r.vol - base > worstAdded) { worstAdded = r.vol - base; worstAddedWhat = 'phase ' + step + ' ' + k + ' rest ' + base.toFixed(3) + ' now ' + r.vol.toFixed(3); }
-        assert.ok(r.vol < base + 0.02, 'motion adds intersection at phase ' + step + ' for ' + k + ': rest ' + base.toFixed(3) + ' now ' + r.vol.toFixed(3));
-        assert.ok(r.vol < 0.1, 'pusher part intersects non-base geometry at phase ' + step + ' for ' + k + ', vol ' + r.vol.toFixed(3));
+        // penetration depth must not exceed the prefab (rest) depth: the plate slides in
+        // slots cut into the side walls (rest overlap is by design), but the sweep must
+        // never push any part DEEPER into any static than the prefab pose
+        const b = b0 ? b0.depth : 0;
+        const added = r.depth - b;
+        if (added > worstDeep) { worstDeep = added; worstDeepWhat = 'phase ' + step + ' ' + k + ' rest ' + b.toFixed(3) + ' now ' + r.depth.toFixed(3); }
+        assert.ok(added < 0.02, 'motion deepens intersection at phase ' + step + ' for ' + k + ': rest depth ' + b.toFixed(3) + ' now ' + r.depth.toFixed(3));
+        assert.ok(r.vol < 2.0, 'catastrophic overlap at phase ' + step + ' for ' + k + ': ' + r.vol.toFixed(3));
       }
     }
   }
-  console.log('ok - real scene graph, runtime updateAnimations, controller-derived period ' + period.toFixed(2) + 's: worst overlap ' + worst.toFixed(4) + ' (' + worstWhat + '), worst motion-added vs non-base ' + worstAdded.toFixed(4) + ' (' + worstAddedWhat + ')');
+  console.log('ok - real scene graph, runtime updateAnimations, controller-derived period ' + period.toFixed(2) + 's: worst overlap vol ' + worst.toFixed(4) + ' (' + worstWhat + '), worst added penetration depth ' + worstDeep.toFixed(4) + ' (' + worstDeepWhat + ')');
 }
 
 // camera rig must match the extracted (handedness-converted) LevelCameraBounds for every

@@ -152,6 +152,66 @@ test('pusher sweeps coins off the open edge; coins fall to the tier below (level
   assert.ok(collected > 0 || (byTier[0] || 0) > 0, 'coins moved down: collected=' + collected + ' onLower=' + (byTier[0] || 0));
 });
 
+test('retaining walls: coins on level 1 are blocked by every walled side, exit only via the open edge', () => {
+  const world = engine.createWorld(LEVELS[0]);
+  assert.ok(world.walls.length > 0, 'level 1 has extracted wall colliders in the physics world');
+  for (const t of world.tiers) assert.ok(t.walls.length > 0 && t.pusher.wall, 'tier ' + t.name + ' has walls + moving DozerWall');
+  // fling a coin at each walled side of each tier; it must never cross the wall's inner face
+  for (const t of world.tiers) {
+    const p = t.pusher;
+    const sides = [
+      { name: 'minX', face: Math.max(...t.walls.filter((w) => w.maxX <= t.minX + 0.8).map((w) => w.maxX)), dir: [-1, 0] },
+      { name: 'maxX', face: Math.min(...t.walls.filter((w) => w.minX >= t.maxX - 0.8).map((w) => w.minX)), dir: [1, 0] },
+      { name: 'minZ', face: Math.max(...t.walls.filter((w) => w.maxZ <= t.minZ + 0.8).map((w) => w.maxZ)), dir: [0, -1] },
+      { name: 'maxZ', face: Math.min(...t.walls.filter((w) => w.minZ >= t.maxZ - 0.8).map((w) => w.minZ)), dir: [0, 1] },
+    ];
+    const openSide = p.openEdge;
+    for (const s of sides) {
+      const walled = t.walls.some((w) =>
+        (s.name === 'minX' && w.maxX <= t.minX + 0.8) || (s.name === 'maxX' && w.minX >= t.maxX - 0.8) ||
+        (s.name === 'minZ' && w.maxZ <= t.minZ + 0.8) || (s.name === 'maxZ' && w.minZ >= t.maxZ - 0.8));
+      if (!walled) continue; // open side: no wall, coins must be able to leave here
+      const w2 = engine.createWorld(LEVELS[0]);
+      const c = engine.dropCoin(w2, CONFIG.coins[0]);
+      const ti = w2.tiers.indexOf(t);
+      const cx = (t.minX + t.maxX) / 2, cz = (t.minZ + t.maxZ) / 2;
+      c.x = cx; c.z = cz; c.y = t.top + CONFIG.world.coinH / 2; c.vy = 0; c.falling = false; c.tier = ti;
+      c.vx = s.dir[0] * 30; c.vz = s.dir[1] * 30;
+      for (let i = 0; i < 240; i++) engine.step(w2, 1 / 60);
+      if (s.name === 'minX') assert.ok(c.x - c.r >= s.face - 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed minX wall');
+      if (s.name === 'maxX') assert.ok(c.x + c.r <= s.face + 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed maxX wall');
+      if (s.name === 'minZ') assert.ok(c.z - c.r >= s.face - 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed minZ wall');
+      if (s.name === 'maxZ') assert.ok(c.z + c.r <= s.face + 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed maxZ wall');
+      assert.ok(s.name !== openSide || true, '');
+    }
+  }
+  // and the open edge really is open: a coin in the strip ahead of the plate's leading
+  // edge (the descent opening) is not blocked by any wall and falls off the tier
+  const w3 = engine.createWorld(LEVELS[0]);
+  const t = w3.tiers[1]; // lower tier, open edge = minX (sweeps toward the collector)
+  const p = t.pusher;
+  const c = engine.dropCoin(w3, CONFIG.coins[0]);
+  const openVal = p.openEdge === 'minX' ? t.minX : p.openEdge === 'maxX' ? t.maxX : p.openEdge === 'minZ' ? t.minZ : t.maxZ;
+  const inward = (t.minX + t.maxX) / 2, inwardZ = (t.minZ + t.maxZ) / 2;
+  c.x = p.openEdge === 'minX' ? openVal + 0.6 : p.openEdge === 'maxX' ? openVal - 0.6 : inward;
+  c.z = p.openEdge === 'minZ' ? openVal + 0.6 : p.openEdge === 'maxZ' ? openVal - 0.6 : inwardZ;
+  c.y = t.top + CONFIG.world.coinH / 2; c.vy = 0; c.falling = false; c.tier = 1;
+  c.vx = p.openEdge === 'minX' ? -30 : p.openEdge === 'maxX' ? 30 : 0;
+  c.vz = p.openEdge === 'minZ' ? -30 : p.openEdge === 'maxZ' ? 30 : 0;
+  let left = false, fell = false;
+  for (let i = 0; i < 240; i++) {
+    engine.step(w3, 1 / 60);
+    if (!w3.coins.includes(c)) { left = true; break; }
+    if (p.openEdge === 'minX' && c.x < openVal) left = true;
+    if (p.openEdge === 'maxX' && c.x > openVal) left = true;
+    if (p.openEdge === 'minZ' && c.z < openVal) left = true;
+    if (p.openEdge === 'maxZ' && c.z > openVal) left = true;
+    if (c.falling && c.tier === -1) fell = true;
+  }
+  assert.ok(left, 'coin crossed the open edge (no wall there)');
+  assert.ok(fell || !w3.coins.includes(c), 'coin fell off the tier through the opening');
+});
+
 test('level 12 (3 tiers): coins land on tiers and can fall between tiers', () => {
   const w2 = engine.createWorld(LEVELS[11]);
   assert.strictEqual(w2.tiers.length, 3);

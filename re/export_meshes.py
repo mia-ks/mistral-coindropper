@@ -197,23 +197,38 @@ for root in roots:
             out.append(L['names'][L['tf'][cur]['go']])
             cur = L['tf'][cur]['father']
         return out[::-1]
+    def has_solid_collider(go):
+        # enabled, non-trigger Box/Mesh collider = gameplay structure (retaining walls).
+        # Some wall GameObjects are inactive in the prefab but are enabled during play;
+        # they must still be rendered (dropping them was the source of perimeter gaps).
+        for c in W.comps(go):
+            if c['kind'] == 'COL' and c['type'] in ('BoxCollider', 'MeshCollider'):
+                f = c['fields']
+                if f.get('m_Enabled', 1) and not f.get('m_IsTrigger'):
+                    return True
+        return False
     def is_visible(t):
-        # every ancestor GameObject active, and an enabled MeshRenderer on this GO
-        cur = t
-        while cur and cur != ('aa', 0):
-            go = L['tf'][cur]['go']
-            if not go_active.get(go, 1): return False
-            cur = L['tf'][cur]['father']
+        # enabled MeshRenderer on this GO, and either every ancestor GameObject is
+        # active OR the node itself carries a solid collider (prefab-inactive wall)
         go = L['tf'][t]['go']
+        ren_ok = False
         for o in env.objects:
             if o.type.name == 'MeshRenderer':
                 try:
                     d = o.read_typetree()
                     if d['m_GameObject']['m_PathID'] == go[1]:
-                        return d.get('m_Enabled', 1) != 0
+                        ren_ok = d.get('m_Enabled', 1) != 0
+                        break
                 except Exception:
                     pass
-        return False
+        if not ren_ok: return False
+        cur = t
+        while cur and cur != ('aa', 0):
+            g = L['tf'][cur]['go']
+            if not go_active.get(g, 1):
+                return has_solid_collider(go)
+            cur = L['tf'][cur]['father']
+        return True
     for t in descendants(root):
         go = L['tf'][t]['go']
         gonm = L['names'][go]
@@ -223,10 +238,13 @@ for root in roots:
         if not mk: continue
         if not is_visible(t): continue
         p, q, s = W.world(t)
-        # dozer part = child of the inner 'Pusher' node (the moving assembly: Dozer plate
-        # AND its DozerWall move together), not just the node named 'Dozer'
-        par_nm = L['names'][L['tf'][L['tf'][t]['father']]['go']] if L['tf'][t]['father'] in L['tf'] else ''
-        is_dozer = bool(re.match(r'^Pusher( \(\d+\))?$', par_nm))
+        # dozer part = child of the INNER 'Pusher' node (parent whose own parent is also a
+        # 'Pusher*' tier container). The moving assembly = Dozer plate AND DozerWall.
+        # (Matching only the parent name mislabels: the inner node is itself named 'Pusher'.)
+        par = L['tf'][t]['father'] if L['tf'][t]['father'] in L['tf'] else None
+        par_nm = L['names'][L['tf'][par]['go']] if par else ''
+        gpar_nm = L['names'][L['tf'][L['tf'][par]['father']]['go']] if par and L['tf'][par]['father'] in L['tf'] else ''
+        is_dozer = bool(re.match(r'^Pusher( \(\d+\))?$', par_nm)) and bool(re.match(r'^Pusher( \(\d+\))?$', gpar_nm))
         # controller origin = the inner Pusher node's world position (all parts share it)
         origin = None
         if is_dozer and L['tf'][t]['father'] in L['tf']:
@@ -238,17 +256,19 @@ for root in roots:
         for r in range(3):
             for c in range(4):
                 cm[c * 4 + r] *= 10
-        # expected world AABB of this instance (mesh VERTEX extents x world matrix), game units
+        # expected world AABB of this instance = actual mesh VERTICES x world matrix
+        # (vertex-based, not vbox-corner-based: for rotated non-uniform-scale instances the
+        # transformed box corners extend beyond the transformed vertices), game units
         g = mesh_geom(mk)
-        vbox = g.get('vbox') if g else None
         inst_aabb = None
-        if vbox:
-            pts = [U.xform(M, (vbox['min'][0] + (dx > 0) * (vbox['max'][0] - vbox['min'][0]),
-                               vbox['min'][1] + (dy > 0) * (vbox['max'][1] - vbox['min'][1]),
-                               vbox['min'][2] + (dz > 0) * (vbox['max'][2] - vbox['min'][2])))
-                   for dx in (-1, 1) for dy in (-1, 1) for dz in (-1, 1)]
-            inst_aabb = {'min': [round(min(q2[0] for q2 in pts) * 10, 3), round(min(q2[1] for q2 in pts) * 10, 3), round(min(q2[2] for q2 in pts) * 10, 3)],
-                         'max': [round(max(q2[0] for q2 in pts) * 10, 3), round(max(q2[1] for q2 in pts) * 10, 3), round(max(q2[2] for q2 in pts) * 10, 3)]}
+        if g.get('subs'):
+            pts = []
+            for sub in g['subs']:
+                for p in sub['pos']:
+                    pts.append(U.xform(M, (p[0] / 1000.0, p[1] / 1000.0, p[2] / 1000.0)))
+            if pts:
+                inst_aabb = {'min': [round(min(q2[0] for q2 in pts) * 10, 3), round(min(q2[1] for q2 in pts) * 10, 3), round(min(q2[2] for q2 in pts) * 10, 3)],
+                             'max': [round(max(q2[0] for q2 in pts) * 10, 3), round(max(q2[1] for q2 in pts) * 10, 3), round(max(q2[2] for q2 in pts) * 10, 3)]}
         pids, cols = renderer_mats(go)
         inst = {
             'mesh': str(mk[1]),
@@ -269,8 +289,9 @@ for root in roots:
             continue
         meshes_used.add(mk)
         if is_dozer:
-            # find owning tier
-            par = L['tf'][t]['father']; tier = None
+            # owning tier = the outer 'Pusher*' container (a direct child of the level root)
+            tier = None
+            par = L['tf'][L['tf'][t]['father']]['father'] if L['tf'][t]['father'] in L['tf'] else None
             while par and par != root:
                 pn = L['names'][L['tf'][par]['go']]
                 if pn in tier_names: tier = pn; break

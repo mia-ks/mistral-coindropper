@@ -13,6 +13,10 @@ function makeEngine(CONFIG) {
     return x >= minX - m && x <= maxX + m && z >= minZ - m && z <= maxZ + m;
   }
 
+  function wallRect(w) {
+    return { minX: w.min[0], maxX: w.max[0], minY: w.min[1], maxY: w.max[1], minZ: w.min[2], maxZ: w.max[2], go: w.go || null };
+  }
+
   function normalizeTier(t) {
     const f = t.floor;
     const tier = {
@@ -20,6 +24,7 @@ function makeEngine(CONFIG) {
       minX: f.min[0], maxX: f.max[0], minZ: f.min[2], maxZ: f.max[2], top: f.min[1],
       cx: (f.min[0] + f.max[0]) / 2, cz: (f.min[2] + f.max[2]) / 2,
       visual: t.visual,
+      walls: (t.walls || []).map(wallRect), // extracted retaining-wall colliders
       pusher: null,
     };
     const p = t.pusher;
@@ -39,6 +44,7 @@ function makeEngine(CONFIG) {
       const travel = Math.max(0.3, p.travel != null ? p.travel : 2);
       tier.pusher = {
         ax, az, axis, sign, back, travel, origin,
+        wall: p.wall ? wallRect(p.wall) : null, // moving DozerWall collider
         pcx: (b.min[0] + b.max[0]) / 2, pcz: (b.min[2] + b.max[2]) / 2,
         speed: (p.speed != null ? p.speed : 2) * W.scale,
         hold: p.backHoldDuration != null ? p.backHoldDuration : 1,
@@ -91,8 +97,60 @@ function makeEngine(CONFIG) {
     };
   }
 
+  // circle (coin) vs AABB wall collision in x/z with y-overlap gating; pushes the coin
+  // out along the minimum-penetration axis and reflects the velocity component
+  function collideWall(c, w) {
+    const bot = c.y - c.h / 2, top = c.y + c.h / 2;
+    if (bot >= w.maxY - 0.01 || top <= w.minY + 0.01) return;
+    const cx = Math.max(w.minX, Math.min(c.x, w.maxX));
+    const cz = Math.max(w.minZ, Math.min(c.z, w.maxZ));
+    let dx = c.x - cx, dz = c.z - cz;
+    const d2 = dx * dx + dz * dz;
+    if (d2 > c.r * c.r) return;
+    if (d2 < 1e-9) {
+      // center inside the rect: eject along the axis of least penetration
+      const px = Math.min(c.x - w.minX, w.maxX - c.x) + c.r;
+      const pz = Math.min(c.z - w.minZ, w.maxZ - c.z) + c.r;
+      if (px < pz) {
+        const s = (c.x - (w.minX + w.maxX) / 2) >= 0 ? 1 : -1;
+        c.x += s * px;
+        if (c.vx * s < 0) c.vx = -c.vx * W.wallRestitution;
+      } else {
+        const s = (c.z - (w.minZ + w.maxZ) / 2) >= 0 ? 1 : -1;
+        c.z += s * pz;
+        if (c.vz * s < 0) c.vz = -c.vz * W.wallRestitution;
+      }
+      return;
+    }
+    const d = Math.sqrt(d2);
+    const push = c.r - d;
+    const nx = dx / d, nz = dz / d;
+    c.x += nx * push; c.z += nz * push;
+    const vn = c.vx * nx + c.vz * nz;
+    if (vn < 0) { c.vx -= (1 + W.wallRestitution) * vn * nx; c.vz -= (1 + W.wallRestitution) * vn * nz; }
+  }
+
+  function collideAllWalls(world, c) {
+    for (const w of world.walls) collideWall(c, w);
+    // moving DozerWall of each pusher: the assembly's wall collider translated by the
+    // shared sweep delta, so the pusher stays enclosed through its whole travel
+    for (const t of world.tiers) {
+      const p = t.pusher;
+      if (!p || !p.wall) continue;
+      const delta = p.pos - p.back;
+      const w = p.wall;
+      const wr = p.axis === 'x'
+        ? { minX: w.minX + delta, maxX: w.maxX + delta, minY: w.minY, maxY: w.maxY, minZ: w.minZ, maxZ: w.maxZ }
+        : { minX: w.minX, maxX: w.maxX, minY: w.minY, maxY: w.maxY, minZ: w.minZ + delta, maxZ: w.maxZ + delta };
+      collideWall(c, wr);
+    }
+  }
+
   function createWorld(level) {
     const tiers = level.tiers.map(normalizeTier);
+    const levelWalls = (level.walls || []).map(wallRect);
+    const allWalls = [...levelWalls];
+    for (const t of tiers) allWalls.push(...t.walls);
     const machines = level.machines.map((m) => normalizeMachine(m, tiers));
     for (const m of machines) if (m.tierIdx < 0) m.tierIdx = m.tierIdxFallback;
     const collector = level.collector && level.collector.box
@@ -109,7 +167,7 @@ function makeEngine(CONFIG) {
         top: m.visual.max[1],
       }));
     return {
-      level, tiers, machines, portals, collector, surfaces,
+      level, tiers, machines, portals, collector, surfaces, walls: allWalls,
       spawn: level.spawn,
       coins: [], events: [], time: 0, nextCoinId: 1,
       killY: collector ? collector.minY - W.killMargin : -60,
@@ -466,13 +524,6 @@ function makeEngine(CONFIG) {
           } else if (bottom < t.top - W.snap) {
             c.falling = true;
           }
-          // walls on closed edges
-          const p = t.pusher;
-          const open = p ? p.openEdge : null;
-          if (c.x - c.r < t.minX && open !== 'minX') { c.x = t.minX + c.r; if (c.vx < 0) c.vx = -c.vx * W.wallRestitution; }
-          if (c.x + c.r > t.maxX && open !== 'maxX') { c.x = t.maxX - c.r; if (c.vx > 0) c.vx = -c.vx * W.wallRestitution; }
-          if (c.z - c.r < t.minZ && open !== 'minZ') { c.z = t.minZ + c.r; if (c.vz < 0) c.vz = -c.vz * W.wallRestitution; }
-          if (c.z + c.r > t.maxZ && open !== 'maxZ') { c.z = t.maxZ - c.r; if (c.vz > 0) c.vz = -c.vz * W.wallRestitution; }
         } else {
           // maybe resting on a machine surface (conveyor belt top)
           const s = supportSurfaceAt(world, c.x, c.z, Math.max(bottom, prevBottom));
@@ -489,6 +540,9 @@ function makeEngine(CONFIG) {
             c.falling = true;
           }
         }
+        // physical retaining walls (extracted colliders, incl. the moving DozerWall)
+        // replace rectangular clamping; the open edge has no wall, so coins descend there
+        collideAllWalls(world, c);
       }
       // coin-coin: same-layer circle collision + vertical stacking
       for (let pass = 0; pass < W.pairPasses; pass++) {
