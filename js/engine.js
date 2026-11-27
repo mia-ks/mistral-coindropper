@@ -17,16 +17,58 @@ function makeEngine(CONFIG) {
     return { minX: w.min[0], maxX: w.max[0], minY: w.min[1], maxY: w.max[1], minZ: w.min[2], maxZ: w.max[2], go: w.go || null };
   }
 
+  // Per-edge top elevation of the static retaining walls lying ALONG each base edge:
+  // the wall must be thin on the edge axis (<=1.6, i.e. it runs along the edge, not
+  // perpendicular to it), sit within 0.8 of the edge line, and span the other axis.
+  // Used by the exit classifier: crossing the base edge BELOW this top means the coin
+  // passed through a wall that should have stopped it -> breach.
+  function edgeWallTops(walls, bminX, bmaxX, bminZ, bmaxZ) {
+    const tops = { minX: -Infinity, maxX: -Infinity, minZ: -Infinity, maxZ: -Infinity };
+    const edgeDist = (v0, v1, e) => Math.max(0, e - v1, v0 - e); // 0 if interval covers the edge line
+    for (const w of walls) {
+      const spansZ = w.minX <= bmaxX + 0.01 && w.maxX >= bminX - 0.01; // crosses the tier's x range
+      const spansX = w.minZ <= bmaxZ + 0.01 && w.maxZ >= bminZ - 0.01; // crosses the tier's z range
+      if (edgeDist(w.minX, w.maxX, bminX) < 0.8 && w.maxX - w.minX < 1.6 && spansZ) tops.minX = Math.max(tops.minX, w.maxY);
+      if (edgeDist(w.minX, w.maxX, bmaxX) < 0.8 && w.maxX - w.minX < 1.6 && spansZ) tops.maxX = Math.max(tops.maxX, w.maxY);
+      if (edgeDist(w.minZ, w.maxZ, bminZ) < 0.8 && w.maxZ - w.minZ < 1.6 && spansX) tops.minZ = Math.max(tops.minZ, w.maxY);
+      if (edgeDist(w.minZ, w.maxZ, bmaxZ) < 0.8 && w.maxZ - w.minZ < 1.6 && spansX) tops.maxZ = Math.max(tops.maxZ, w.maxY);
+    }
+    return tops;
+  }
+
+  // Was the coin, at the moment it crossed a base edge, blocked by a wall that should
+  // have stopped it? A wall counts only if it lies along that edge, is thin on the edge
+  // axis, COVERS the crossing point (perpendicular interval expanded by the coin
+  // radius contains the crossing coordinate), and the coin's bottom is below its top.
+  function edgeWallBreach(t, edge, c) {
+    const bot = c.y - c.h / 2;
+    const bminX = t.baseMinX, bmaxX = t.baseMaxX, bminZ = t.baseMinZ, bmaxZ = t.baseMaxZ;
+    const edgeDist = (v0, v1, e) => Math.max(0, e - v1, v0 - e);
+    for (const w of t.walls) {
+      let on = false;
+      if (edge === 'minX' && edgeDist(w.minX, w.maxX, bminX) < 0.8 && w.maxX - w.minX < 1.6 && c.z >= w.minZ - c.r && c.z <= w.maxZ + c.r) on = true;
+      if (edge === 'maxX' && edgeDist(w.minX, w.maxX, bmaxX) < 0.8 && w.maxX - w.minX < 1.6 && c.z >= w.minZ - c.r && c.z <= w.maxZ + c.r) on = true;
+      if (edge === 'minZ' && edgeDist(w.minZ, w.maxZ, bminZ) < 0.8 && w.maxZ - w.minZ < 1.6 && c.x >= w.minX - c.r && c.x <= w.maxX + c.r) on = true;
+      if (edge === 'maxZ' && edgeDist(w.minZ, w.maxZ, bmaxZ) < 0.8 && w.maxZ - w.minZ < 1.6 && c.x >= w.minX - c.r && c.x <= w.maxX + c.r) on = true;
+      if (on && bot < w.maxY - W.snap - 0.01) return w.maxY;
+    }
+    return null;
+  }
+
   function normalizeTier(t) {
     const f = t.floor;
     const tier = {
       name: t.name,
-      minX: f.min[0], maxX: f.max[0], minZ: f.min[2], maxZ: f.max[2], top: f.min[1],
+      minX: f.min[0], maxX: f.max[0], minZ: f.min[2], maxZ: f.max[2],
+      floorTop: f.min[1], top: f.min[1], // floorTop = static base collider top; top raised to plate top below
       cx: (f.min[0] + f.max[0]) / 2, cz: (f.min[2] + f.max[2]) / 2,
       visual: t.visual,
       walls: (t.walls || []).map(wallRect), // extracted retaining-wall colliders
       pusher: null,
     };
+    // edgeWall computed against the BASE (floor collider) bounds, before the pusher
+    // block widens minX..maxZ to the union with the plate-at-rest footprint
+    tier.edgeWall = edgeWallTops(tier.walls, tier.minX, tier.maxX, tier.minZ, tier.maxZ);
     const p = t.pusher;
     if (p && p.box) {
       const b = p.box;
@@ -45,6 +87,9 @@ function makeEngine(CONFIG) {
       tier.pusher = {
         ax, az, axis, sign, back, travel, origin,
         wall: p.wall ? wallRect(p.wall) : null, // moving DozerWall collider
+        // the plate collider's own footprint at rest, preserving its offset from the
+        // controller origin (the Dozer node is NOT at the inner Pusher node's origin)
+        boxRest: { minX: b.min[0], maxX: b.max[0], minZ: b.min[2], maxZ: b.max[2], top: b.max[1] },
         pcx: (b.min[0] + b.max[0]) / 2, pcz: (b.min[2] + b.max[2]) / 2,
         speed: (p.speed != null ? p.speed : 2) * W.scale,
         hold: p.backHoldDuration != null ? p.backHoldDuration : 1,
@@ -56,14 +101,18 @@ function makeEngine(CONFIG) {
         openEdge: sign > 0 ? (axis === 'x' ? 'maxX' : 'maxZ') : (axis === 'x' ? 'minX' : 'minZ'),
       };
       tier.pusher.pos = back;
-      // walkable footprint = union of the static base collider and the plate at rest
-      // (the plate overhangs the base at the back, and ends flush with the open edge
-      // at full travel, so the union never extends past the base on the open side)
+      // base bounds = the stationary floor collider's footprint (the true platform).
+      // minX..maxZ below become the union of base + plate-at-rest and are used ONLY for
+      // rendering, machine attachment and drop targeting - NEVER for support or exit
+      // tests. Support elevation is NOT the union: coins rest on the moving plate where
+      // the plate currently is, and on the static base only where it is exposed
+      // (see supportTopAt / supportTierAt) - no artificial permanent surface.
+      tier.baseMinX = tier.minX; tier.baseMaxX = tier.maxX; tier.baseMinZ = tier.minZ; tier.baseMaxZ = tier.maxZ;
       tier.minX = Math.min(tier.minX, b.min[0]); tier.maxX = Math.max(tier.maxX, b.max[0]);
       tier.minZ = Math.min(tier.minZ, b.min[2]); tier.maxZ = Math.max(tier.maxZ, b.max[2]);
       tier.cx = (tier.minX + tier.maxX) / 2; tier.cz = (tier.minZ + tier.maxZ) / 2;
-      // coins ride on the moving plate, whose top sits above the static base collider
-      tier.top = Math.max(tier.top, b.max[1]);
+      tier.plateTop = b.max[1];
+      tier.top = Math.max(tier.top, tier.plateTop);
     }
     return tier;
   }
@@ -98,8 +147,10 @@ function makeEngine(CONFIG) {
   }
 
   // circle (coin) vs AABB wall collision in x/z with y-overlap gating; pushes the coin
-  // out along the minimum-penetration axis and reflects the velocity component
-  function collideWall(c, w) {
+  // out along the minimum-penetration axis and reflects the RELATIVE normal velocity
+  // (wv = wall velocity for kinematic moving colliders such as the DozerWall, so the
+  // pusher face imparts its own velocity to the coins it sweeps)
+  function collideWall(c, w, wvx = 0, wvz = 0) {
     const bot = c.y - c.h / 2, top = c.y + c.h / 2;
     if (bot >= w.maxY - 0.01 || top <= w.minY + 0.01) return;
     const cx = Math.max(w.minX, Math.min(c.x, w.maxX));
@@ -109,40 +160,48 @@ function makeEngine(CONFIG) {
     if (d2 > c.r * c.r) return;
     if (d2 < 1e-9) {
       // center inside the rect: eject along the axis of least penetration
-      const px = Math.min(c.x - w.minX, w.maxX - c.x) + c.r;
-      const pz = Math.min(c.z - w.minZ, w.maxZ - c.z) + c.r;
+      const px = (Math.min(c.x - w.minX, w.maxX - c.x) + c.r) * 0.7;
+      const pz = (Math.min(c.z - w.minZ, w.maxZ - c.z) + c.r) * 0.7;
       if (px < pz) {
         const s = (c.x - (w.minX + w.maxX) / 2) >= 0 ? 1 : -1;
         c.x += s * px;
-        if (c.vx * s < 0) c.vx = -c.vx * W.wallRestitution;
+        const vn = (c.vx - wvx) * s;
+        if (vn < 0) c.vx -= (1 + W.wallRestitution) * vn * s;
       } else {
         const s = (c.z - (w.minZ + w.maxZ) / 2) >= 0 ? 1 : -1;
         c.z += s * pz;
-        if (c.vz * s < 0) c.vz = -c.vz * W.wallRestitution;
+        const vn = (c.vz - wvz) * s;
+        if (vn < 0) c.vz -= (1 + W.wallRestitution) * vn * s;
       }
       return;
     }
     const d = Math.sqrt(d2);
-    const push = c.r - d;
+    // RELAXED projection: a full pushout can fight a neighbouring wall when the gap
+    // between two colliders is narrower than the coin diameter (e.g. gate rod vs side
+    // wall: 0.770 < 0.868) - full pushes then oscillate between the two faces. A 0.7
+    // push per pass converges to the geometric minimum residual instead.
+    const push = (c.r - d) * 0.7;
     const nx = dx / d, nz = dz / d;
     c.x += nx * push; c.z += nz * push;
-    const vn = c.vx * nx + c.vz * nz;
+    const vn = (c.vx - wvx) * nx + (c.vz - wvz) * nz;
     if (vn < 0) { c.vx -= (1 + W.wallRestitution) * vn * nx; c.vz -= (1 + W.wallRestitution) * vn * nz; }
   }
 
   function collideAllWalls(world, c) {
     for (const w of world.walls) collideWall(c, w);
     // moving DozerWall of each pusher: the assembly's wall collider translated by the
-    // shared sweep delta, so the pusher stays enclosed through its whole travel
+    // shared sweep delta, so the pusher stays enclosed through its whole travel; the
+    // wall is kinematic - it carries the plate's sweep velocity
     for (const t of world.tiers) {
       const p = t.pusher;
       if (!p || !p.wall) continue;
       const delta = p.pos - p.back;
       const w = p.wall;
+      const wvx = p.axis === 'x' ? p.vel : 0, wvz = p.axis === 'z' ? p.vel : 0;
       const wr = p.axis === 'x'
         ? { minX: w.minX + delta, maxX: w.maxX + delta, minY: w.minY, maxY: w.maxY, minZ: w.minZ, maxZ: w.maxZ }
         : { minX: w.minX, maxX: w.maxX, minY: w.minY, maxY: w.maxY, minZ: w.minZ + delta, maxZ: w.maxZ + delta };
-      collideWall(c, wr);
+      collideWall(c, wr, wvx, wvz);
     }
   }
 
@@ -170,6 +229,7 @@ function makeEngine(CONFIG) {
       level, tiers, machines, portals, collector, surfaces, walls: allWalls,
       spawn: level.spawn,
       coins: [], events: [], time: 0, nextCoinId: 1,
+      stats: { exits: {}, breaches: 0, breachLog: [], collected: 0, lost: 0 },
       killY: collector ? collector.minY - W.killMargin : -60,
     };
   }
@@ -241,13 +301,42 @@ function makeEngine(CONFIG) {
     return c;
   }
 
+  // Support comes from exactly two physical surfaces per tier: the stationary base
+  // floor collider (base bounds -> floorTop) and the pusher plate at its CURRENT
+  // position (pusherPlateRect -> plateTop). The plate's rest footprint is never a
+  // permanent support: when the plate has swept away, the overhang is open and coins
+  // there fall (recorded as exits, then lost at killY - not silently supported).
   function supportTierAt(world, x, z, bottomY) {
     let best = -1, bestTop = -Infinity;
     for (let i = 0; i < world.tiers.length; i++) {
       const t = world.tiers[i];
-      if (inRect(x, z, t.minX, t.maxX, t.minZ, t.maxZ) && t.top <= bottomY + W.snap && t.top > bestTop) {
-        bestTop = t.top; best = i;
+      let top = null;
+      if (inRect(x, z, t.baseMinX, t.baseMaxX, t.baseMinZ, t.baseMaxZ)) top = t.floorTop;
+      const p = t.pusher;
+      if (p && p.boxRest) {
+        const pr = pusherPlateRect(t);
+        if (inRect(x, z, pr.minX, pr.maxX, pr.minZ, pr.maxZ)) top = Math.max(top != null ? top : -Infinity, pr.top);
       }
+      if (top != null && top <= bottomY + W.snap && top > bestTop) { bestTop = top; best = i; }
+    }
+    return best;
+  }
+
+  // Top of any solid collider covering (x,z) at or below the coin's previous bottom:
+  // static tier/level walls (a coin can rest on top of a retaining wall) plus each
+  // pusher's moving DozerWall translated by the shared sweep delta.
+  function wallTopAt(world, x, z, bottomY) {
+    let best = -Infinity;
+    for (const w of world.walls) {
+      if (inRect(x, z, w.minX, w.maxX, w.minZ, w.maxZ) && w.maxY <= bottomY + W.snap && w.maxY > best) best = w.maxY;
+    }
+    for (const t of world.tiers) {
+      const p = t.pusher;
+      if (!p || !p.wall) continue;
+      const d = p.pos - p.back, w = p.wall;
+      const minX = w.minX + (p.axis === 'x' ? d : 0), maxX = w.maxX + (p.axis === 'x' ? d : 0);
+      const minZ = w.minZ + (p.axis === 'z' ? d : 0), maxZ = w.maxZ + (p.axis === 'z' ? d : 0);
+      if (inRect(x, z, minX, maxX, minZ, maxZ) && w.maxY <= bottomY + W.snap && w.maxY > best) best = w.maxY;
     }
     return best;
   }
@@ -267,11 +356,24 @@ function makeEngine(CONFIG) {
   }
 
   function pusherPlateRect(tier) {
+    // the plate's extracted collider footprint translated by the shared sweep delta
+    // (p.pos - p.back): preserves the collider's offset from the controller origin
     const p = tier.pusher;
-    const c = p.axis === 'x' ? p.pos : p.pcx;
-    const d = p.axis === 'z' ? p.pos : p.pcz;
-    if (p.axis === 'x') return { minX: c - p.d / 2, maxX: c + p.d / 2, minZ: d - p.w / 2, maxZ: d + p.w / 2, y: p.y, h: p.h };
-    return { minX: c - p.w / 2, maxX: c + p.w / 2, minZ: d - p.d / 2, maxZ: d + p.d / 2, y: p.y, h: p.h };
+    const delta = p.pos - p.back;
+    const b = p.boxRest;
+    if (p.axis === 'x') return { minX: b.minX + delta, maxX: b.maxX + delta, minZ: b.minZ, maxZ: b.maxZ, y: p.y, h: p.h, top: b.top };
+    return { minX: b.minX, maxX: b.maxX, minZ: b.minZ + delta, maxZ: b.maxZ + delta, y: p.y, h: p.h, top: b.top };
+  }
+
+  // support elevation at (x,z) on a tier: the moving plate's top where the plate
+  // currently covers the point, else the static base floor's top
+  function supportTopAt(tier, x, z) {
+    const p = tier.pusher;
+    if (p && p.boxRest) {
+      const pr = pusherPlateRect(tier);
+      if (x >= pr.minX && x <= pr.maxX && z >= pr.minZ && z <= pr.maxZ) return pr.top;
+    }
+    return tier.floorTop;
   }
 
   function applyMachine(world, m, dt) {
@@ -473,23 +575,25 @@ function makeEngine(CONFIG) {
         c.x += c.vx * h; c.y += c.vy * h; c.z += c.vz * h;
         c.rx += c.vz * h / c.r; c.rz -= c.vx * h / c.r;
       }
-      // pusher plates push coins on their tier
+      // pusher plates drag coins on their tier by FRICTION (velocity coupling, not a
+      // rigid glue - a glued coin would oscillate with the plate and never ratchet to
+      // the open edge); the leading face is a hard contact that clamps the coin
       for (let ti = 0; ti < world.tiers.length; ti++) {
         const t = world.tiers[ti];
         if (!t.pusher) continue;
         const pr = pusherPlateRect(t);
+        const p = t.pusher;
+        const k = Math.min(1, 6 * h);
         for (const c of world.coins) {
           if (c.tier !== ti || c.falling) continue; // only coins resting on this tier
           if (c.y > t.top + 3) continue;
           if (inRect(c.x, c.z, pr.minX, pr.maxX, pr.minZ, pr.maxZ, c.r)) {
-            const p = t.pusher;
-            // carried by the moving plate; clamped only when ahead of its leading face
             if (p.axis === 'x') {
-              c.vx = p.vel;
+              c.vx += (p.vel - c.vx) * k;
               if (p.sign > 0 && c.x + c.r > pr.maxX) c.x = pr.maxX + c.r;
               if (p.sign < 0 && c.x - c.r < pr.minX) c.x = pr.minX - c.r;
             } else {
-              c.vz = p.vel;
+              c.vz += (p.vel - c.vz) * k;
               if (p.sign > 0 && c.z + c.r > pr.maxZ) c.z = pr.maxZ + c.r;
               if (p.sign < 0 && c.z - c.r < pr.minZ) c.z = pr.minZ - c.r;
             }
@@ -497,16 +601,25 @@ function makeEngine(CONFIG) {
           }
         }
       }
-      // support + walls + landing (use previous bottom so fast falls can't tunnel)
+      // support + landing (use previous bottom so fast falls can't tunnel). Support
+      // surfaces: tier base floor, the pusher plate at its CURRENT position, retaining
+      // wall tops (static + moving DozerWall), and conveyor-belt tops - the highest
+      // surface at or below the coin's previous bottom wins.
       for (const c of world.coins) {
         const bottom = c.y - c.h / 2;
         const prevBottom = (c.py != null ? c.py : c.y) - c.h / 2;
-        let ti = supportTierAt(world, c.x, c.z, Math.max(bottom, prevBottom));
-        if (ti >= 0) {
-          const t = world.tiers[ti];
-          c.tier = ti;
-          c.surface = null;
-          // resting on another coin (stacked) takes precedence over the tier floor
+        const probeY = Math.max(bottom, prevBottom);
+        const ti = supportTierAt(world, c.x, c.z, probeY);
+        let top = -Infinity, supTier = -1, supSurface = null;
+        if (ti >= 0) { top = supportTopAt(world.tiers[ti], c.x, c.z); supTier = ti; }
+        const wt = wallTopAt(world, c.x, c.z, probeY);
+        if (wt > top) { top = wt; supTier = ti; supSurface = null; }
+        const s = supportSurfaceAt(world, c.x, c.z, probeY);
+        if (s && s.top > top) { top = s.top; supTier = -1; supSurface = s.machine; }
+        if (top > -Infinity) {
+          c.tier = supTier;
+          c.surface = supSurface;
+          // resting on another coin (stacked) takes precedence over the floor
           let onCoin = null;
           for (const o of world.coins) {
             if (o === c || o.y >= c.y) continue;
@@ -516,32 +629,29 @@ function makeEngine(CONFIG) {
             c.y = onCoin.y + c.h;
             if (c.vy < 0) c.vy = 0;
             c.falling = false; c.tier = onCoin.tier;
-          } else if (c.vy <= 0 && prevBottom >= t.top - W.snap && bottom <= t.top + W.snap) {
-            c.y = t.top + c.h / 2;
+            // stacked coins rub against each other: friction couples horizontal velocity
+            // so a pile is pushed as a pile, not a frictionless tower
+            const kf = Math.min(1, 10 * h);
+            c.vx += (onCoin.vx - c.vx) * kf;
+            c.vz += (onCoin.vz - c.vz) * kf;
+          } else if (c.vy <= 0 && prevBottom >= top - W.snap && bottom <= top + W.snap) {
+            c.y = top + c.h / 2;
             if (c.vy < 0) c.vy = 0;
             c.falling = false;
             c.vx *= W.floorDamping; c.vz *= W.floorDamping;
-          } else if (bottom < t.top - W.snap) {
+          } else if (bottom < top - W.snap) {
             c.falling = true;
           }
         } else {
-          // maybe resting on a machine surface (conveyor belt top)
-          const s = supportSurfaceAt(world, c.x, c.z, Math.max(bottom, prevBottom));
-          if (s && c.vy <= 0 && prevBottom >= s.top - W.snap && bottom <= s.top + W.snap) {
-            c.y = s.top + c.h / 2;
-            if (c.vy < 0) c.vy = 0;
-            c.falling = false;
-            c.tier = -1;
-            c.surface = s.machine;
-            c.vx *= W.floorDamping; c.vz *= W.floorDamping;
-          } else {
-            c.tier = -1;
-            c.surface = null;
-            c.falling = true;
-          }
+          c.tier = -1;
+          c.surface = null;
+          c.falling = true;
         }
       }
-      // coin-coin: same-layer circle collision + vertical stacking
+      // unified contact resolution: coin-coin pairs AND all wall colliders (static tier/
+      // level walls + moving DozerWall) are resolved together inside the same passes, so
+      // neither constraint can finally violate the other (previously wall-after-pair or
+      // pair-after-wall each left the other violated)
       for (let pass = 0; pass < W.pairPasses; pass++) {
         const cs = world.coins;
         for (let i = 0; i < cs.length; i++) {
@@ -551,8 +661,10 @@ function makeEngine(CONFIG) {
             const rr = a.r + b.r;
             if (Math.abs(dy) < 0.7 * W.coinH) {
               const d = Math.hypot(dx, dz);
-              if (d < rr && d > 1e-9) {
-                const nx = dx / d, nz = dz / d, pen = rr - d;
+              if (d < rr) {
+                // exactly coincident coins (d ~ 0): separate along an arbitrary axis
+                const nx = d > 1e-9 ? dx / d : 1, nz = d > 1e-9 ? dz / d : 0;
+                const pen = rr - d;
                 a.x -= nx * pen / 2; a.z -= nz * pen / 2;
                 b.x += nx * pen / 2; b.z += nz * pen / 2;
                 const rvx = b.vx - a.vx, rvz = b.vz - a.vz;
@@ -577,21 +689,47 @@ function makeEngine(CONFIG) {
             }
           }
         }
+        for (const c of cs) collideAllWalls(world, c);
       }
-      // physical retaining walls (extracted colliders, incl. the moving DozerWall) replace
-      // rectangular clamping; run AFTER coin-coin so pair resolution can't push a coin into
-      // a wall. The open edge has no wall, so coins descend there.
-      for (const c of world.coins) collideAllWalls(world, c);
-      // collector + kill
+      // trajectory tracking: record which edge of each tier's BASE footprint every coin
+      // exits through. Exit via the pusher's open edge = the designed flow. Exit via a
+      // side that has a static retaining wall and the coin's bottom is BELOW that wall's
+      // top at the crossing = a wall breach. Exit via an unwalled side (the back
+      // overhang behind the moving DozerWall) or over a wall top = a fall; the coin is
+      // then honestly counted 'lost' when it reaches killY.
+      for (const c of world.coins) {
+        if (c.tier >= 0) { c._ptier = c.tier; c._exitRecorded = false; }
+        else if (c._ptier != null && !c._exitRecorded) {
+          const t = world.tiers[c._ptier];
+          let edge = null;
+          if (c.x < t.baseMinX) edge = 'minX'; else if (c.x > t.baseMaxX) edge = 'maxX';
+          else if (c.z < t.baseMinZ) edge = 'minZ'; else if (c.z > t.baseMaxZ) edge = 'maxZ';
+          if (edge) {
+            c._exitRecorded = true;
+            world.stats.exits[edge] = (world.stats.exits[edge] || 0) + 1;
+            const open = t.pusher ? t.pusher.openEdge : null;
+            if (edge !== open) {
+              const wallTop = edgeWallBreach(t, edge, c);
+              if (wallTop != null) {
+                world.stats.breaches++;
+                if (world.stats.breachLog.length < 20) world.stats.breachLog.push({ coin: c.id, tier: t.name, edge, x: +c.x.toFixed(2), y: +c.y.toFixed(2), z: +c.z.toFixed(2), wallTop: +wallTop.toFixed(2) });
+              }
+            }
+          }
+        }
+      }
+      // collector + kill: coins falling out of the machine are LOST, not collected
       for (let i = world.coins.length - 1; i >= 0; i--) {
         const c = world.coins[i];
         const col = world.collector;
         if (col && c.x > col.minX && c.x < col.maxX && c.z > col.minZ && c.z < col.maxZ && c.y > col.minY - 2 && c.y < col.maxY + 4) {
           world.coins.splice(i, 1);
+          world.stats.collected++;
           world.events.push({ type: 'collect', coin: c });
         } else if (c.y < world.killY) {
           world.coins.splice(i, 1);
-          world.events.push({ type: 'collect', coin: c, fell: true });
+          world.stats.lost++;
+          world.events.push({ type: 'lost', coin: c });
         }
       }
     }
@@ -626,7 +764,7 @@ function makeEngine(CONFIG) {
     });
   }
 
-  return { createWorld, dropCoin, addCoinRaw, step, serialize, restore, pusherPlateRect, supportTierAt, supportSurfaceAt, yawDir };
+  return { createWorld, dropCoin, addCoinRaw, step, serialize, restore, pusherPlateRect, supportTierAt, supportTopAt, supportSurfaceAt, wallTopAt, yawDir };
 }
 
 if (typeof module !== 'undefined' && module.exports) module.exports = { makeEngine };

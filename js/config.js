@@ -22,7 +22,7 @@ const CONFIG = {
     maxSpeed: 50,                        // maxSpeed 5 * S
     maxCoins: 220,
     substeps: 2,
-    pairPasses: 3,
+    pairPasses: 4,
     wallRestitution: 0.25,
     floorDamping: 0.995,
     killMargin: 6,                       // below collector bottom

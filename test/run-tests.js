@@ -172,17 +172,27 @@ test('retaining walls: coins on level 1 are blocked by every walled side, exit o
         (s.name === 'minZ' && w.maxZ <= t.minZ + 0.8) || (s.name === 'maxZ' && w.minZ >= t.maxZ - 0.8));
       if (!walled) continue; // open side: no wall, coins must be able to leave here
       const w2 = engine.createWorld(LEVELS[0]);
+      for (const tt of w2.tiers) tt.pusher = null; // isolate the static walls; the moving DozerWall is covered by the enclosure test below
       const c = engine.dropCoin(w2, CONFIG.coins[0]);
-      const ti = w2.tiers.indexOf(t);
+      const ti = w2.tiers.findIndex((x) => x.name === t.name); // t belongs to another world instance - find by name
       const cx = (t.minX + t.maxX) / 2, cz = (t.minZ + t.maxZ) / 2;
       c.x = cx; c.z = cz; c.y = t.top + CONFIG.world.coinH / 2; c.vy = 0; c.falling = false; c.tier = ti;
       c.vx = s.dir[0] * 30; c.vz = s.dir[1] * 30;
-      for (let i = 0; i < 240; i++) engine.step(w2, 1 / 60);
-      if (s.name === 'minX') assert.ok(c.x - c.r >= s.face - 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed minX wall');
-      if (s.name === 'maxX') assert.ok(c.x + c.r <= s.face + 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed maxX wall');
-      if (s.name === 'minZ') assert.ok(c.z - c.r >= s.face - 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed minZ wall');
-      if (s.name === 'maxZ') assert.ok(c.z + c.r <= s.face + 0.05 || !w2.coins.includes(c), 'tier ' + t.name + ': coin crossed maxZ wall');
-      assert.ok(s.name !== openSide || true, '');
+      let crossed = false, gone = false;
+      for (let i = 0; i < 240; i++) {
+        engine.step(w2, 1 / 60);
+        if (!w2.coins.includes(c)) { gone = true; break; }
+        if (s.name === 'minX' && c.x - c.r < s.face - 0.05) crossed = true;
+        if (s.name === 'maxX' && c.x + c.r > s.face + 0.05) crossed = true;
+        if (s.name === 'minZ' && c.z - c.r < s.face - 0.05) crossed = true;
+        if (s.name === 'maxZ' && c.z + c.r > s.face + 0.05) crossed = true;
+      }
+      assert.ok(!crossed, 'tier ' + t.name + ': coin crossed the ' + s.name + ' wall (face=' + s.face.toFixed(2) + ')');
+      if (gone) {
+        // removal is acceptable ONLY via the open edge; a wall breach must never delete a coin silently
+        assert.ok(w2.stats.breaches === 0 && Object.keys(w2.stats.exits).every((e) => e === openSide),
+          'tier ' + t.name + ': coin removed only via the open edge; exits=' + JSON.stringify(w2.stats.exits) + ' breaches=' + w2.stats.breaches);
+      }
     }
   }
   // and the open edge really is open: a coin in the strip ahead of the plate's leading
@@ -210,42 +220,125 @@ test('retaining walls: coins on level 1 are blocked by every walled side, exit o
   }
   assert.ok(left, 'coin crossed the open edge (no wall there)');
   assert.ok(fell || !w3.coins.includes(c), 'coin fell off the tier through the opening');
+  assert.ok(w3.stats.breaches === 0, 'crossing the open edge is not a wall breach');
+  assert.ok(Object.keys(w3.stats.exits).every((e) => e === p.openEdge), 'exit recorded via the open edge only: ' + JSON.stringify(w3.stats.exits));
 });
 
-test('no coin ever escapes a walled tier perimeter or penetrates a wall (level 1, 30s of play)', () => {
+test('no coin - resting OR in flight - ever penetrates any collider (tier walls, level walls incl. machine posts, moving DozerWall) (level 1, 30s)', () => {
   const world = engine.createWorld(LEVELS[0]);
-  let maxPen = 0;
+  let maxPen = 0, maxPenInfo = null;
   for (let i = 0; i < 30 * 60; i++) {
     if (i % 5 === 0 && world.coins.length < 150) engine.dropCoin(world, CONFIG.coins[0]);
     engine.step(world, 1 / 60);
-    for (const c of world.coins) {
-      if (c.tier < 0 || c.falling) continue; // in-flight coins legitimately cross the open edge
-      // escape through the perimeter is measured by wall penetration below; coins in
-      // flight legitimately cross the open edge, so no bounds check here
-      // and must not penetrate any TIER wall (static + moving DozerWall) whose vertical
-      // range overlaps the coin - the perimeter enclosure property
-      const wallsAll = [];
-      for (const t of world.tiers) wallsAll.push(...t.walls);
-      for (const t of world.tiers) {
-        const p = t.pusher;
-        if (p && p.wall) {
-          const delta = p.pos - p.back;
-          const wb = p.wall;
-          wallsAll.push(p.axis === 'x'
-            ? { minX: wb.minX + delta, maxX: wb.maxX + delta, minZ: wb.minZ, maxZ: wb.maxZ, minY: wb.minY, maxY: wb.maxY }
-            : { minX: wb.minX, maxX: wb.maxX, minZ: wb.minZ + delta, maxZ: wb.maxZ + delta, minY: wb.minY, maxY: wb.maxY });
-        }
+    // walls = every exported solid collider: level walls (chute, columns, gate rods) +
+    // tier walls; plus each pusher's moving DozerWall translated by the sweep delta
+    const wallsAll = [...world.walls];
+    for (const t of world.tiers) {
+      const p = t.pusher;
+      if (p && p.wall) {
+        const delta = p.pos - p.back;
+        const wb = p.wall;
+        wallsAll.push(p.axis === 'x'
+          ? { minX: wb.minX + delta, maxX: wb.maxX + delta, minZ: wb.minZ, maxZ: wb.maxZ, minY: wb.minY, maxY: wb.maxY, go: 'DozerWall:' + t.name }
+          : { minX: wb.minX, maxX: wb.maxX, minZ: wb.minZ + delta, maxZ: wb.maxZ + delta, minY: wb.minY, maxY: wb.maxY, go: 'DozerWall:' + t.name });
       }
+    }
+    for (const c of world.coins) { // NO exclusion of falling coins - they are checked too
       for (const w of wallsAll) {
         if (c.y - c.h / 2 >= w.maxY - 0.1 || c.y + c.h / 2 <= (w.minY != null ? w.minY : -1e9)) continue; // resting ON the wall top is fine; only face penetration counts
         const cx = Math.max(w.minX, Math.min(c.x, w.maxX));
         const cz = Math.max(w.minZ, Math.min(c.z, w.maxZ));
         const d = Math.hypot(c.x - cx, c.z - cz);
-        if (d < c.r) maxPen = Math.max(maxPen, c.r - d);
+        if (d < c.r && c.r - d > maxPen) { maxPen = c.r - d; maxPenInfo = { coin: c.id, wall: w.go, pen: +(c.r - d).toFixed(3), x: +c.x.toFixed(2), y: +c.y.toFixed(2), z: +c.z.toFixed(2) }; }
       }
     }
   }
-  assert.ok(maxPen <= 0.05, 'resting coin penetrated a wall by ' + maxPen.toFixed(3));
+  // threshold note: the gate-rod/side-wall gap on level 1 is 7.066-6.296 = 0.770 wide,
+  // narrower than a coin (diameter 0.868). A coin passing through that gap transiently
+  // penetrates by at most 2r - gap = 0.098 (fully on one face) and the relaxed projection
+  // converges to the per-wall minimum (0.868-0.770)/2 = 0.049 while it settles. So the
+  // hard bound is 0.098; anything above that means resolution failed or a wall was crossed
+  // (crossings are separately caught by stats.breaches below).
+  assert.ok(maxPen <= 0.098 + 1e-3, 'coin penetrated a wall beyond the geometric bound by ' + maxPen.toFixed(3) + ' ' + JSON.stringify(maxPenInfo));
+  assert.ok(world.stats.breaches === 0, 'no wall breaches recorded over 30s: ' + JSON.stringify(world.stats.breachLog.slice(0, 5)));
+});
+
+test('trajectory accounting (level 1, 60s): every coin tracked, upper->lower->collector flow, exits by edge, lost != collected', () => {
+  const world = engine.createWorld(LEVELS[0]);
+  const trans = {};
+  const prev = new Map();
+  let drops = 0;
+  for (let i = 0; i < 60 * 60; i++) {
+    if (i % 25 === 0 && drops < 150) { engine.dropCoin(world, CONFIG.coins[0]); drops++; }
+    engine.step(world, 1 / 60);
+    for (const c of world.coins) {
+      const pt = prev.get(c.id);
+      if (pt != null && pt >= 0 && pt !== c.tier) trans[pt + '->' + c.tier] = (trans[pt + '->' + c.tier] || 0) + 1;
+      prev.set(c.id, c.tier);
+    }
+  }
+  const s = world.stats;
+  assert.ok(s.breaches === 0, 'zero wall breaches: ' + JSON.stringify(s.breachLog.slice(0, 5)));
+  assert.ok((trans['0->1'] || 0) > 0, 'coins flowed from the upper tier to the lower tier: ' + JSON.stringify(trans));
+  assert.ok(s.collected > 0, 'coins reached the actual collector volume: collected=' + s.collected);
+  assert.ok(s.lost > 0, 'coins falling outside the machine are counted lost (not collected): lost=' + s.lost);
+  assert.ok(s.collected + s.lost + world.coins.length >= drops, `full accounting: collected(${s.collected}) + lost(${s.lost}) + onBoard(${world.coins.length}) >= drops(${drops})`);
+  const exitEdges = Object.keys(s.exits);
+  assert.ok(exitEdges.length > 0, 'edge exits recorded: ' + JSON.stringify(s.exits));
+  // every recorded exit edge must be either the tier's open edge or an unwalled side (a walled-side exit would already be a breach)
+  console.log('    trajectory: exits=' + JSON.stringify(s.exits) + ' transitions=' + JSON.stringify(trans) + ` collected=${s.collected} lost=${s.lost} onBoard=${world.coins.length} drops=${drops}`);
+});
+
+test('dense pile + exactly coincident coins resolve without overlap or disappearance', () => {
+  const world = engine.createWorld(LEVELS[0]);
+  const top = world.tiers.reduce((a, b) => (b.floorTop > a.floorTop ? b : a));
+  for (const t of world.tiers) t.pusher = null;
+  const ti = world.tiers.indexOf(top);
+  const cs = [];
+  for (let i = 0; i < 24; i++) {
+    const c = engine.dropCoin(world, CONFIG.coins[0]);
+    c.x = top.cx; c.z = top.cz; c.y = top.floorTop + CONFIG.world.coinH / 2 + (i % 3) * 0.01;
+    c.vx = 0; c.vy = 0; c.vz = 0; c.falling = false; c.tier = ti;
+    cs.push(c);
+  }
+  cs[1].x = cs[0].x; cs[1].z = cs[0].z; cs[1].y = cs[0].y; // exactly coincident pair
+  for (let i = 0; i < 180; i++) engine.step(world, 1 / 60);
+  let maxOverlap = 0;
+  for (let i = 0; i < cs.length; i++) {
+    for (let j = i + 1; j < cs.length; j++) {
+      const a = cs[i], b = cs[j];
+      if (Math.abs(a.y - b.y) < 0.7 * CONFIG.world.coinH) {
+        const d = Math.hypot(a.x - b.x, a.z - b.z);
+        maxOverlap = Math.max(maxOverlap, 2 * CONFIG.world.coinR - d);
+      }
+    }
+  }
+  assert.ok(maxOverlap <= 0.06, 'same-layer overlap <= 0.06 after pile settles, got ' + maxOverlap.toFixed(3));
+  // a coin may leave the pile legitimately (collected/lost/evicted) but only with a
+  // recorded event - silent disappearance would be a bug
+  const removed = new Set(world.events.filter((e) => ['collect', 'lost', 'evict'].includes(e.type)).map((e) => e.coin && e.coin.id));
+  for (const c of cs) {
+    if (!world.coins.includes(c)) assert.ok(removed.has(c.id), 'coin ' + c.id + ' removed without a collect/lost/evict event');
+  }
+});
+
+test('machine post colliders (gate rods) are resolved like any wall - not excluded from collision', () => {
+  const world = engine.createWorld(LEVELS[0]);
+  const post = world.walls.find((w) => w.go === 'RightRod' || w.go === 'LeftRod');
+  assert.ok(post, 'gate rod collider exported in world.walls');
+  const c = engine.dropCoin(world, CONFIG.coins[0]);
+  c.x = post.maxX + c.r + 0.2; c.z = (post.minZ + post.maxZ) / 2; c.y = (post.minY + post.maxY) / 2;
+  c.vx = -30; c.vy = 0; c.vz = 0; c.falling = true; c.tier = -1;
+  let maxPen = 0;
+  for (let i = 0; i < 120 && world.coins.includes(c); i++) {
+    engine.step(world, 1 / 60);
+    if (c.y - c.h / 2 >= post.maxY - 0.1 || c.y + c.h / 2 <= post.minY) continue;
+    const cx = Math.max(post.minX, Math.min(c.x, post.maxX));
+    const cz = Math.max(post.minZ, Math.min(c.z, post.maxZ));
+    const d = Math.hypot(c.x - cx, c.z - cz);
+    if (d < c.r) maxPen = Math.max(maxPen, c.r - d);
+  }
+  assert.ok(maxPen <= 0.05, 'coin never penetrated the rod post by more than 0.05, got ' + maxPen.toFixed(3));
 });
 
 test('level 12 (3 tiers): coins land on tiers and can fall between tiers', () => {
