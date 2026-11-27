@@ -279,7 +279,7 @@ for root in roots:
             'scale': [round(v * 10, 3) for v in s],
             'mats': [str(int(x)) for x in pids],
             'colors': [list(c) for c in cols],
-            'name': gonm,
+            'name': gonm, 'goPid': go[1],
             'chain': chain_of(t),
             'aabb': inst_aabb,
             'origin': origin,

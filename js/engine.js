@@ -540,9 +540,6 @@ function makeEngine(CONFIG) {
             c.falling = true;
           }
         }
-        // physical retaining walls (extracted colliders, incl. the moving DozerWall)
-        // replace rectangular clamping; the open edge has no wall, so coins descend there
-        collideAllWalls(world, c);
       }
       // coin-coin: same-layer circle collision + vertical stacking
       for (let pass = 0; pass < W.pairPasses; pass++) {
@@ -581,6 +578,10 @@ function makeEngine(CONFIG) {
           }
         }
       }
+      // physical retaining walls (extracted colliders, incl. the moving DozerWall) replace
+      // rectangular clamping; run AFTER coin-coin so pair resolution can't push a coin into
+      // a wall. The open edge has no wall, so coins descend there.
+      for (const c of world.coins) collideAllWalls(world, c);
       // collector + kill
       for (let i = world.coins.length - 1; i >= 0; i--) {
         const c = world.coins[i];

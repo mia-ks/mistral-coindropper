@@ -73,45 +73,98 @@ for (const lv of LEVELS) {
 }
 console.log('ok - floors are stationary base colliders (not the pusher), controller-resolved sweep axes, flush travel, all 19 levels');
 
-// perimeter wall guards: every tier must be enclosed by extracted wall colliders on the
-// two lateral sides, open (no wall) on the sweep side, closed at the back by the moving
-// DozerWall (no static wall there); every wall collider must correspond to a rendered mesh
+// perimeter wall guards, measured on the ACTUAL platform edge with elevation:
+// - the edge of the walkable platform at each side is the floor's edge segment at plate
+//   elevation; a wall covers an edge sub-interval only if its footprint sits on that edge
+//   AND it rises at least a coin-height above the plate top (so a resting coin is blocked)
+//   AND its base is not floating above the plate
+// - lateral sides must be covered CONTINUOUSLY (no uncovered gap > 0.05), the sweep side
+//   must have no covering wall (coin descent opening), the back is closed by the moving
+//   DozerWall (asserted at rest) with no static wall there
+// - every wall collider must correspond to a rendered mesh of the SAME GameObject
+//   (matched by goPid, not name) whose footprint overlaps the collider footprint
 for (const lv of LEVELS) {
-  const instNames = new Set(lv.meshData.instances.map((i) => i.name));
+  const byPid = new Map(lv.meshData.instances.map((i) => [i.goPid, i]));
+  const coinH = 0.1589, coinR = 0.4338;
   for (const t of lv.tiers) {
     const p = t.pusher, f = t.floor;
     assert.ok(t.walls && t.walls.length > 0, 'level ' + lv.index + ' tier ' + t.name + ' has retaining walls');
     assert.ok(p.wall, 'level ' + lv.index + ' tier ' + t.name + ' has the moving DozerWall collider');
+    const plateTop = Math.max(f.min[1], p.box.max[1]);
     const ax = p.axis, sg = p.sign;
     const openSide = ax === 'x' ? (sg > 0 ? 'maxX' : 'minX') : (sg > 0 ? 'maxZ' : 'minZ');
     const backSide = ax === 'x' ? (sg > 0 ? 'minX' : 'maxX') : (sg > 0 ? 'minZ' : 'maxZ');
-    const span = { minX: f.max[2] - f.min[2], maxX: f.max[2] - f.min[2], minZ: f.max[0] - f.min[0], maxZ: f.max[0] - f.min[0] };
+    const edgeOf = { minX: ['z', f.min[0], f.min[2], f.max[2]], maxX: ['z', f.max[0], f.min[2], f.max[2]], minZ: ['x', f.min[2], f.min[0], f.max[0]], maxZ: ['x', f.max[2], f.min[0], f.max[0]] };
     for (const side of ['minX', 'maxX', 'minZ', 'maxZ']) {
-      const iv = [];
+      const [along, plane, lo, hi] = edgeOf[side];
+      const cover = [];
       for (const w of t.walls) {
-        if (side === 'minX' && Math.abs(w.max[0] - f.min[0]) < 0.8) iv.push([w.min[2], w.max[2]]);
-        if (side === 'maxX' && Math.abs(w.min[0] - f.max[0]) < 0.8) iv.push([w.min[2], w.max[2]]);
-        if (side === 'minZ' && Math.abs(w.max[2] - f.min[2]) < 0.8) iv.push([w.min[0], w.max[0]]);
-        if (side === 'maxZ' && Math.abs(w.min[2] - f.max[2]) < 0.8) iv.push([w.min[0], w.max[0]]);
+        const onEdge = side === 'minX' ? Math.abs(w.max[0] - plane) < 0.8
+          : side === 'maxX' ? Math.abs(w.min[0] - plane) < 0.8
+          : side === 'minZ' ? Math.abs(w.max[2] - plane) < 0.8
+          : Math.abs(w.min[2] - plane) < 0.8;
+        if (!onEdge) continue;
+        // elevation gates: blocks a coin resting on the plate, base not floating
+        if (w.max[1] < plateTop + coinH * 0.5) continue; // must reach the coin center to block the disc face
+        if (w.min[1] > plateTop + 0.2) continue;
+        const a0 = along === 'z' ? w.min[2] : w.min[0], a1 = along === 'z' ? w.max[2] : w.max[0];
+        cover.push([Math.max(a0, lo), Math.min(a1, hi)]);
       }
-      iv.sort((a, b) => a[0] - b[0]);
+      cover.sort((a, b) => a[0] - b[0]);
       const merged = [];
-      for (const [a, b] of iv) { if (merged.length && a <= merged[merged.length - 1][1] + 0.05) merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], b); else merged.push([a, b]); }
-      const cov = merged.reduce((s, [a, b]) => s + (b - a), 0);
+      for (const [a, b] of cover) { if (b <= a) continue; if (merged.length && a <= merged[merged.length - 1][1] + 0.05) merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], b); else merged.push([a, b]); }
+      const gaps = [];
+      let cur = lo;
+      for (const [a, b] of merged) { if (a > cur + 0.05) gaps.push([cur, a]); cur = Math.max(cur, b); }
+      if (cur < hi - 0.05) gaps.push([cur, hi]);
+      const maxGap = gaps.reduce((m, [a, b]) => Math.max(m, b - a), 0);
       if (side === openSide) {
-        assert.ok(cov < 0.5, 'level ' + lv.index + ' tier ' + t.name + ' open side ' + side + ' must have no wall (coins descend), coverage ' + cov.toFixed(2));
-      } else if (side !== backSide) {
-        assert.ok(cov >= span[side] - 0.5, 'level ' + lv.index + ' tier ' + t.name + ' lateral side ' + side + ' must be continuously walled, coverage ' + cov.toFixed(2) + '/' + span[side].toFixed(2));
+        assert.ok(merged.length === 0, 'level ' + lv.index + ' tier ' + t.name + ' open side ' + side + ' must be a free descent opening, got covering walls');
+      } else if (side === backSide) {
+        // back side: no dedicated static wall, but the edge must be closed by the moving
+        // DozerWall (at rest) together with the ends of the lateral walls - no gaps
+        const wb = p.wall;
+        const along2 = ax === 'x' ? 'z' : 'x';
+        const w0 = along2 === 'z' ? wb.min[2] : wb.min[0], w1 = along2 === 'z' ? wb.max[2] : wb.max[0];
+        const backPlane = side === 'minX' ? f.min[0] : side === 'maxX' ? f.max[0] : side === 'minZ' ? f.min[2] : f.max[2];
+        const wallOnBack = side === 'minX' || side === 'maxX' ? Math.abs((side === 'minX' ? wb.max[0] : wb.min[0]) - backPlane) < 1.2 : Math.abs((side === 'minZ' ? wb.max[2] : wb.min[2]) - backPlane) < 1.2;
+        assert.ok(wallOnBack, 'level ' + lv.index + ' tier ' + t.name + ' DozerWall at rest must sit on the back edge');
+        // the DozerWall is part of the moving pusher: it must rise above the plate surface
+        // (it pushes coins); it is not a static retaining wall and needn't be coin-height tall
+        assert.ok(wb.max[1] >= plateTop, 'level ' + lv.index + ' tier ' + t.name + ' DozerWall must rise above the plate surface');
+        const backCover = [[w0, w1]];
+        for (const w of t.walls) { // lateral wall ends reaching the back edge
+          const a0 = along === 'z' ? w.min[2] : w.min[0], a1 = along === 'z' ? w.max[2] : w.max[0];
+          if (Math.max(a0, lo) <= Math.min(a1, hi)) backCover.push([Math.max(a0, lo), Math.min(a1, hi)]);
+        }
+        backCover.sort((a, b) => a[0] - b[0]);
+        const bm = [];
+        for (const [a, b] of backCover) { if (b <= a) continue; if (bm.length && a <= bm[bm.length - 1][1] + 0.05) bm[bm.length - 1][1] = Math.max(bm[bm.length - 1][1], b); else bm.push([a, b]); }
+        let cur = lo, maxGap2 = 0;
+        for (const [a, b] of bm) { if (a > cur + 0.05) maxGap2 = Math.max(maxGap2, a - cur); cur = Math.max(cur, b); }
+        if (cur < hi - 0.05) maxGap2 = Math.max(maxGap2, hi - cur);
+        assert.ok(maxGap2 < 0.05, 'level ' + lv.index + ' tier ' + t.name + ' back edge not continuously closed by DozerWall + lateral walls, max gap ' + maxGap2.toFixed(2));
       } else {
-        assert.ok(cov < 0.5, 'level ' + lv.index + ' tier ' + t.name + ' back side ' + side + ' is closed by the moving DozerWall, no static wall expected, coverage ' + cov.toFixed(2));
+        assert.ok(maxGap < 0.05, 'level ' + lv.index + ' tier ' + t.name + ' lateral side ' + side + ' has uncovered edge gaps: ' + JSON.stringify(gaps.map(([a, b]) => [a.toFixed(2), b.toFixed(2)])) + ' of [' + lo.toFixed(2) + ',' + hi.toFixed(2) + ']');
       }
     }
+    // identity-based wall<->mesh correspondence (goPid + footprint overlap, not names)
     for (const w of t.walls) {
-      assert.ok(instNames.has(w.go), 'level ' + lv.index + ' tier ' + t.name + ' wall "' + w.go + '" has a rendered mesh instance (no invisible colliders)');
+      const inst = byPid.get(w.goPid);
+      assert.ok(inst, 'level ' + lv.index + ' tier ' + t.name + ' wall goPid ' + w.goPid + ' (' + w.go + ') has a rendered instance of the same GameObject');
+      const ox = Math.min(inst.aabb.max[0], w.max[0]) - Math.max(inst.aabb.min[0], w.min[0]);
+      const oz = Math.min(inst.aabb.max[2], w.max[2]) - Math.max(inst.aabb.min[2], w.min[2]);
+      const overlap = Math.max(0, ox) * Math.max(0, oz);
+      const colArea = Math.max(1e-6, (w.max[0] - w.min[0]) * (w.max[2] - w.min[2]));
+      // a MeshCollider is the mesh itself -> must match almost exactly; a BoxCollider is a
+      // simplified stand-in for the mesh -> must overlap it substantially
+      const need = w.col === 'MeshCollider' ? 0.8 : 0.2;
+      assert.ok(overlap > need * colArea, 'level ' + lv.index + ' tier ' + t.name + ' wall ' + w.go + ' (' + w.col + ') rendered mesh footprint overlaps its collider by only ' + (100 * overlap / colArea).toFixed(0) + '%, need ' + (need * 100) + '%');
+      assert.ok(inst.aabb.max[1] > f.min[1] && inst.aabb.min[1] < w.max[1], 'level ' + lv.index + ' tier ' + t.name + ' wall ' + w.go + ' mesh vertically overlaps its collider');
     }
   }
 }
-console.log('ok - perimeter walls: lateral sides continuously walled, sweep side open, back closed by DozerWall, wall colliders == rendered meshes, all 19 levels');
+console.log('ok - perimeter: continuous elevated coverage of the actual platform edge on lateral sides, free opening on the sweep side, DozerWall spans the back, wall colliders matched to rendered meshes by goPid, all 19 levels');
 
 // pusher-vs-static intersection test on the REAL scene graph: build the scene with the
 // renderer, step the engine, invoke the renderer's own updateAnimations, then intersect

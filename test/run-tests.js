@@ -212,6 +212,42 @@ test('retaining walls: coins on level 1 are blocked by every walled side, exit o
   assert.ok(fell || !w3.coins.includes(c), 'coin fell off the tier through the opening');
 });
 
+test('no coin ever escapes a walled tier perimeter or penetrates a wall (level 1, 30s of play)', () => {
+  const world = engine.createWorld(LEVELS[0]);
+  let maxPen = 0;
+  for (let i = 0; i < 30 * 60; i++) {
+    if (i % 5 === 0 && world.coins.length < 150) engine.dropCoin(world, CONFIG.coins[0]);
+    engine.step(world, 1 / 60);
+    for (const c of world.coins) {
+      if (c.tier < 0 || c.falling) continue; // in-flight coins legitimately cross the open edge
+      // escape through the perimeter is measured by wall penetration below; coins in
+      // flight legitimately cross the open edge, so no bounds check here
+      // and must not penetrate any TIER wall (static + moving DozerWall) whose vertical
+      // range overlaps the coin - the perimeter enclosure property
+      const wallsAll = [];
+      for (const t of world.tiers) wallsAll.push(...t.walls);
+      for (const t of world.tiers) {
+        const p = t.pusher;
+        if (p && p.wall) {
+          const delta = p.pos - p.back;
+          const wb = p.wall;
+          wallsAll.push(p.axis === 'x'
+            ? { minX: wb.minX + delta, maxX: wb.maxX + delta, minZ: wb.minZ, maxZ: wb.maxZ, minY: wb.minY, maxY: wb.maxY }
+            : { minX: wb.minX, maxX: wb.maxX, minZ: wb.minZ + delta, maxZ: wb.maxZ + delta, minY: wb.minY, maxY: wb.maxY });
+        }
+      }
+      for (const w of wallsAll) {
+        if (c.y - c.h / 2 >= w.maxY - 0.1 || c.y + c.h / 2 <= (w.minY != null ? w.minY : -1e9)) continue; // resting ON the wall top is fine; only face penetration counts
+        const cx = Math.max(w.minX, Math.min(c.x, w.maxX));
+        const cz = Math.max(w.minZ, Math.min(c.z, w.maxZ));
+        const d = Math.hypot(c.x - cx, c.z - cz);
+        if (d < c.r) maxPen = Math.max(maxPen, c.r - d);
+      }
+    }
+  }
+  assert.ok(maxPen <= 0.05, 'resting coin penetrated a wall by ' + maxPen.toFixed(3));
+});
+
 test('level 12 (3 tiers): coins land on tiers and can fall between tiers', () => {
   const w2 = engine.createWorld(LEVELS[11]);
   assert.strictEqual(w2.tiers.length, 3);

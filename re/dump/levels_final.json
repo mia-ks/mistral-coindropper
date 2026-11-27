@@ -26,6 +26,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 7747617952839716336,
      "active": true,
      "min": [
       -4.3478,
@@ -41,6 +42,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -6309764329486529040,
      "active": true,
      "min": [
       -6.2963,
@@ -56,6 +58,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": -2032575453912347152,
      "active": false,
      "min": [
       -3.34,
@@ -71,6 +74,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 100942900021710320,
      "active": true,
      "min": [
       -2.8997,
@@ -86,6 +90,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -2948146020316590608,
      "active": false,
      "min": [
       -2.8997,
@@ -101,6 +106,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -2948146020316590608,
      "active": false,
      "min": [
       -2.8997,
@@ -116,6 +122,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -2515779906665820688,
      "active": true,
      "min": [
       -4.2664,
@@ -131,6 +138,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 2443090021975412208,
      "active": true,
      "min": [
       -4.2664,
@@ -146,6 +154,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -3918356972972978704,
      "active": true,
      "min": [
       0.3315,
@@ -161,6 +170,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": 7686843536603958768,
      "active": true,
      "min": [
       -7.6102,
@@ -176,6 +186,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": 6216263256314301936,
      "active": true,
      "min": [
       -7.6195,
@@ -191,6 +202,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6259624922695290352,
      "active": true,
      "min": [
       -5.6216,
@@ -206,6 +218,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6259624922695290352,
      "active": true,
      "min": [
       -4.5158,
@@ -221,6 +234,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6259624922695290352,
      "active": true,
      "min": [
       -5.9839,
@@ -236,6 +250,7 @@
     {
      "go": "SimpleCube.006 (3)",
      "col": "BoxCollider",
+     "goPid": -7969288514327654928,
      "active": true,
      "min": [
       -7.6195,
@@ -273,6 +288,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 6925755816365149680,
         "min": [
          -7.6195,
          4.9879,
@@ -290,6 +306,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -8943680011182715408,
        "active": true,
        "min": [
         -2.9645,
@@ -305,6 +322,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": 56011802293718512,
        "active": false,
        "min": [
         -3.1734,
@@ -320,6 +338,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -3199001867056624144,
        "active": false,
        "min": [
         -7.6174,
@@ -419,6 +438,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 8422450690872266224,
         "min": [
          -7.6102,
          -0.0121,
@@ -436,6 +456,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 5518846177444515312,
        "active": false,
        "min": [
         -7.6142,
@@ -451,6 +472,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 2779697270766915056,
        "active": true,
        "min": [
         -7.6202,
@@ -466,6 +488,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -3624042058015486480,
        "active": false,
        "min": [
         -7.6142,
@@ -481,6 +504,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 4914462674031169008,
        "active": false,
        "min": [
         -7.6202,
@@ -727,6 +751,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -5504414028218915805,
      "active": true,
      "min": [
       -5.5021,
@@ -742,6 +767,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -5504414028218915805,
      "active": true,
      "min": [
       -4.3963,
@@ -757,6 +783,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -5504414028218915805,
      "active": true,
      "min": [
       -5.8644,
@@ -772,6 +799,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": 1529975270210839587,
      "active": true,
      "min": [
       -2.5,
@@ -787,6 +815,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "MeshCollider",
+     "goPid": -4875857949661354973,
      "active": false,
      "min": [
       -7.4979,
@@ -802,6 +831,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "MeshCollider",
+     "goPid": -4875857949661354973,
      "active": false,
      "min": [
       -7.4979,
@@ -817,6 +847,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -126910652384762845,
      "active": true,
      "min": [
       -2.79,
@@ -832,6 +863,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 454793270265488419,
      "active": true,
      "min": [
       -7.5,
@@ -847,6 +879,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -1549413019966004189,
      "active": false,
      "min": [
       -7.5,
@@ -862,6 +895,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 8415960882690565155,
      "active": false,
      "min": [
       -3.0539,
@@ -877,6 +911,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3359232009753353181,
      "active": true,
      "min": [
       -7.524,
@@ -892,6 +927,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3359232009753353181,
      "active": true,
      "min": [
       -2.9851,
@@ -907,6 +943,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 1380491834431874083,
      "active": true,
      "min": [
       -4.2078,
@@ -922,6 +959,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -8224574083907935197,
      "active": true,
      "min": [
       -6.1563,
@@ -937,6 +975,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": 4344957601334076451,
      "active": true,
      "min": [
       -7.5,
@@ -952,6 +991,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": 2388677112092861475,
      "active": true,
      "min": [
       -7.5,
@@ -967,6 +1007,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": -4121398995400481757,
      "active": true,
      "min": [
       -2.5,
@@ -982,6 +1023,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 8379869871489131555,
      "active": true,
      "min": [
       -2.7115,
@@ -997,6 +1039,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -5933397918637579229,
      "active": true,
      "min": [
       -3.7495,
@@ -1012,6 +1055,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -163117029492218845,
      "active": true,
      "min": [
       2.2681,
@@ -1027,6 +1071,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 6142350087546446883,
      "active": false,
      "min": [
       -2.3462,
@@ -1042,6 +1087,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -888810317200972765,
      "active": true,
      "min": [
       -2.4498,
@@ -1057,6 +1103,7 @@
     {
      "go": "SimpleCube.006 (3)",
      "col": "BoxCollider",
+     "goPid": 7271329607165977635,
      "active": true,
      "min": [
       -7.5,
@@ -1072,6 +1119,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": 5913099434099057699,
      "active": true,
      "min": [
       -7.5,
@@ -1087,6 +1135,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": -6400367809495260125,
      "active": true,
      "min": [
       -2.5,
@@ -1102,6 +1151,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": 6991090972386305059,
      "active": true,
      "min": [
       -2.5,
@@ -1139,6 +1189,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 5892482125652075555,
         "min": [
          -2.5,
          -1.7721,
@@ -1156,6 +1207,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 9169625875695445027,
        "active": false,
        "min": [
         -2.4979,
@@ -1171,6 +1223,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": 3049372149091116067,
        "active": false,
        "min": [
         -2.51,
@@ -1186,6 +1239,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": 35706225087128611,
        "active": false,
        "min": [
         1.9461,
@@ -1201,6 +1255,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -5469846351600770013,
        "active": true,
        "min": [
         2.2,
@@ -1300,6 +1355,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -9216015378465577949,
         "min": [
          -7.5,
          2.9403,
@@ -1317,6 +1373,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 8990924534819955747,
        "active": true,
        "min": [
         -7.51,
@@ -1332,6 +1389,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -947413678375263197,
        "active": false,
        "min": [
         -7.504,
@@ -1347,6 +1405,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -5880150568354536413,
        "active": false,
        "min": [
         -7.51,
@@ -1362,6 +1421,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -2763376218278157277,
        "active": false,
        "min": [
         -7.504,
@@ -1646,6 +1706,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -8865037703052230899,
      "active": true,
      "min": [
       2.191,
@@ -1661,6 +1722,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -686745578350149875,
      "active": false,
      "min": [
       -2.519,
@@ -1676,6 +1738,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 3309468692862304013,
      "active": true,
      "min": [
       -2.509,
@@ -1691,6 +1754,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": -8598029669808963827,
      "active": true,
      "min": [
       -7.509,
@@ -1706,6 +1770,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4160341794848145165,
      "active": true,
      "min": [
       -7.5826,
@@ -1721,6 +1786,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4160341794848145165,
      "active": true,
      "min": [
       -7.7407,
@@ -1736,6 +1802,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4160341794848145165,
      "active": true,
      "min": [
       -7.7407,
@@ -1751,6 +1818,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": -7025153988541448435,
      "active": true,
      "min": [
       -7.5,
@@ -1766,6 +1834,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": -4726847620497965299,
      "active": true,
      "min": [
       -7.509,
@@ -1781,6 +1850,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -2789881535115067635,
      "active": true,
      "min": [
       2.2115,
@@ -1796,6 +1866,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7389545114022936819,
      "active": true,
      "min": [
       5.5008,
@@ -1811,6 +1882,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 6082154249151217421,
      "active": true,
      "min": [
       0.8448,
@@ -1826,6 +1898,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -6313272361278537971,
      "active": true,
      "min": [
       0.8448,
@@ -1841,6 +1914,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 306841520033005325,
      "active": false,
      "min": [
       2.2115,
@@ -1856,6 +1930,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": 2270866614009495309,
      "active": true,
      "min": [
       -7.5207,
@@ -1871,6 +1946,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -8440757084117762291,
      "active": true,
      "min": [
       -7.4476,
@@ -1886,6 +1962,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 3398004825298796301,
      "active": true,
      "min": [
       -7.4476,
@@ -1901,6 +1978,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 1061554560112819981,
      "active": true,
      "min": [
       -2.499,
@@ -1916,6 +1994,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": -3152791212072403187,
      "active": true,
      "min": [
       -2.509,
@@ -1931,6 +2010,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": 3016327678523899661,
      "active": true,
      "min": [
       -7.5,
@@ -1968,6 +2048,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 595498795474910989,
         "min": [
          -2.499,
          -0.75,
@@ -1985,6 +2066,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 800499953111170829,
        "active": false,
        "min": [
         -2.503,
@@ -2000,6 +2082,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -7903570337545421043,
        "active": false,
        "min": [
         -2.503,
@@ -2015,6 +2098,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -5086772749515194611,
        "active": true,
        "min": [
         -2.509,
@@ -2030,6 +2114,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3111053957780570355,
        "active": false,
        "min": [
         -2.509,
@@ -2129,6 +2214,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -3953536859880521971,
         "min": [
          -7.5,
          10.0,
@@ -2146,6 +2232,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -2846609323654873331,
        "active": true,
        "min": [
         -7.51,
@@ -2161,6 +2248,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 4539582588781035277,
        "active": false,
        "min": [
         -7.502,
@@ -2176,6 +2264,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -8378642507893276915,
        "active": false,
        "min": [
         -7.51,
@@ -2191,6 +2280,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 2577242041658605325,
        "active": false,
        "min": [
         -7.504,
@@ -2490,6 +2580,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 37803638444597772,
      "active": true,
      "min": [
       -7.5,
@@ -2505,6 +2596,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -6962572579142557172,
      "active": true,
      "min": [
       -7.5,
@@ -2520,6 +2612,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": 240275438459822604,
      "active": true,
      "min": [
       -7.5,
@@ -2535,6 +2628,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": 3913210905518744076,
      "active": true,
      "min": [
       -2.5,
@@ -2550,6 +2644,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": -2234371616752000500,
      "active": true,
      "min": [
       -2.5,
@@ -2565,6 +2660,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": 1297087798057837068,
      "active": true,
      "min": [
       -7.5,
@@ -2580,6 +2676,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": 3405257192247861772,
      "active": true,
      "min": [
       -2.5,
@@ -2595,6 +2692,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": 4578394205432455692,
      "active": true,
      "min": [
       -7.5,
@@ -2610,6 +2708,7 @@
     {
      "go": "DoubleCurveCube.028 (1)",
      "col": "MeshCollider",
+     "goPid": -2302510940749749748,
      "active": false,
      "min": [
       -2.5,
@@ -2625,6 +2724,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": 1670174644838736396,
      "active": true,
      "min": [
       -2.5,
@@ -2640,6 +2740,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 3963064182763233804,
      "active": true,
      "min": [
       -7.5,
@@ -2655,6 +2756,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -2754327690186055156,
      "active": true,
      "min": [
       -4.1178,
@@ -2670,6 +2772,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -5672399652199456244,
      "active": true,
      "min": [
       -6.0663,
@@ -2685,6 +2788,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": -2720173243254038004,
      "active": false,
      "min": [
       -2.5,
@@ -2700,6 +2804,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -9196717023724494324,
      "active": true,
      "min": [
       -2.5,
@@ -2715,6 +2820,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -7838531735052148212,
      "active": true,
      "min": [
       2.2,
@@ -2730,6 +2836,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7732739974785933836,
      "active": true,
      "min": [
       -3.1103,
@@ -2745,6 +2852,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7732739974785933836,
      "active": true,
      "min": [
       -2.1625,
@@ -2760,6 +2868,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7732739974785933836,
      "active": true,
      "min": [
       -3.4209,
@@ -2775,6 +2884,7 @@
     {
      "go": "Connector",
      "col": "BoxCollider",
+     "goPid": -232179824031555060,
      "active": true,
      "min": [
       -3.0204,
@@ -2790,6 +2900,7 @@
     {
      "go": "Platform",
      "col": "BoxCollider",
+     "goPid": 3787444795868324364,
      "active": true,
      "min": [
       -4.6667,
@@ -2805,6 +2916,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 471727576940618252,
      "active": true,
      "min": [
       2.071,
@@ -2820,6 +2932,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -3023558482458500596,
      "active": true,
      "min": [
       -3.7995,
@@ -2835,6 +2948,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7517071456556211700,
      "active": true,
      "min": [
       -2.629,
@@ -2850,6 +2964,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -112001566209400308,
      "active": false,
      "min": [
       -2.833,
@@ -2865,6 +2980,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -8339521290314505716,
      "active": true,
      "min": [
       -2.5931,
@@ -2880,6 +2996,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 2291933771176419852,
      "active": true,
      "min": [
       -2.395,
@@ -2895,6 +3012,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 2291933771176419852,
      "active": true,
      "min": [
       2.0243,
@@ -2910,6 +3028,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -7484491907787513332,
      "active": false,
      "min": [
       -2.5,
@@ -2925,6 +3044,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -8123835352973499892,
      "active": true,
      "min": [
       -2.5,
@@ -2940,6 +3060,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 1538212316121932300,
      "active": false,
      "min": [
       -2.4979,
@@ -2955,6 +3076,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -2326319709623999988,
      "active": true,
      "min": [
       2.2,
@@ -2970,6 +3092,7 @@
     {
      "go": "SideWallCurve",
      "col": "MeshCollider",
+     "goPid": 4613584078579245580,
      "active": false,
      "min": [
       1.9461,
@@ -3007,6 +3130,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 3221476560654443020,
         "min": [
          -7.5,
          15.4872,
@@ -3024,6 +3148,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -36434860157558260,
        "active": false,
        "min": [
         -7.4979,
@@ -3039,6 +3164,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -7546131108512652788,
        "active": false,
        "min": [
         -7.51,
@@ -3054,6 +3180,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -2928555205308505588,
        "active": true,
        "min": [
         -2.8,
@@ -3153,6 +3280,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -5566765116664110580,
         "min": [
          -7.5,
          10.6853,
@@ -3170,6 +3298,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 2519381825402905100,
        "active": true,
        "min": [
         -7.51,
@@ -3185,6 +3314,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -6788775276847160820,
        "active": false,
        "min": [
         -7.504,
@@ -3200,6 +3330,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 8072349482890699276,
        "active": false,
        "min": [
         -7.504,
@@ -3215,6 +3346,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -7560079590057303540,
        "active": false,
        "min": [
         -7.51,
@@ -3552,6 +3684,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -6004000880397241018,
      "active": true,
      "min": [
       -7.4421,
@@ -3567,6 +3700,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -6004000880397241018,
      "active": true,
      "min": [
       -7.4421,
@@ -3582,6 +3716,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -5042616311842392762,
      "active": true,
      "min": [
       -0.8963,
@@ -3597,6 +3732,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 9112206976404895046,
      "active": true,
      "min": [
       1.0522,
@@ -3612,6 +3748,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": -5728156154551257786,
      "active": true,
      "min": [
       -2.5,
@@ -3627,6 +3764,7 @@
     {
      "go": "SimpleCube.006 (3)",
      "col": "BoxCollider",
+     "goPid": 4731893861183534406,
      "active": true,
      "min": [
       -2.5,
@@ -3642,6 +3780,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 8390831460463359302,
      "active": true,
      "min": [
       -2.5,
@@ -3657,6 +3796,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -7961870057937685178,
      "active": true,
      "min": [
       -2.5,
@@ -3672,6 +3812,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 4017950973144741190,
      "active": true,
      "min": [
       2.1737,
@@ -3687,6 +3828,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 7040989567768671558,
      "active": false,
      "min": [
       1.9461,
@@ -3702,6 +3844,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -8786211220825557690,
      "active": false,
      "min": [
       -2.4979,
@@ -3717,6 +3860,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -4479638637779667642,
      "active": true,
      "min": [
       -2.2019,
@@ -3732,6 +3876,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -4479638637779667642,
      "active": true,
      "min": [
       2.0253,
@@ -3747,6 +3892,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -1225137441377405626,
      "active": true,
      "min": [
       2.1708,
@@ -3762,6 +3908,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -6027009774429194938,
      "active": true,
      "min": [
       -4.1591,
@@ -3777,6 +3924,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -4482042510400277178,
      "active": true,
      "min": [
       -5.708,
@@ -3792,6 +3940,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 8600729405538055494,
      "active": false,
      "min": [
       -2.4095,
@@ -3807,6 +3956,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -4041305592290790074,
      "active": true,
      "min": [
       -2.5462,
@@ -3822,6 +3972,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9219089862388796090,
      "active": true,
      "min": [
       0.6379,
@@ -3837,6 +3988,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9219089862388796090,
      "active": true,
      "min": [
       1.7437,
@@ -3852,6 +4004,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9219089862388796090,
      "active": true,
      "min": [
       0.2756,
@@ -3889,6 +4042,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -7695423341373934266,
         "min": [
          -2.5,
          5.7979,
@@ -3906,6 +4060,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 2747129940079883590,
        "active": false,
        "min": [
         1.9461,
@@ -3921,6 +4076,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": 8627895083010831686,
        "active": false,
        "min": [
         -2.51,
@@ -3936,6 +4092,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 4799179091003520326,
        "active": true,
        "min": [
         2.2,
@@ -3951,6 +4108,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 2541179240083240262,
        "active": false,
        "min": [
         -2.4979,
@@ -4268,6 +4426,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -6843112469824096297,
      "active": true,
      "min": [
       7.2103,
@@ -4283,6 +4442,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 8504415086141487063,
      "active": true,
      "min": [
       10.4114,
@@ -4298,6 +4458,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -3316974449353705513,
      "active": true,
      "min": [
       5.8436,
@@ -4313,6 +4474,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7409208056728012841,
      "active": true,
      "min": [
       5.8436,
@@ -4328,6 +4490,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 6346743770531542999,
      "active": false,
      "min": [
       7.2103,
@@ -4343,6 +4506,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": -4322502842651658281,
      "active": true,
      "min": [
       -2.5,
@@ -4358,6 +4522,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": 4397757871045195735,
      "active": true,
      "min": [
       -7.5,
@@ -4373,6 +4538,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": -3818624596897318953,
      "active": true,
      "min": [
       -2.5,
@@ -4388,6 +4554,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": 3041937967387883479,
      "active": true,
      "min": [
       -2.5,
@@ -4403,6 +4570,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -1525532998356125737,
      "active": true,
      "min": [
       -2.5,
@@ -4418,6 +4586,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": 2286298983121074135,
      "active": true,
      "min": [
       -7.5,
@@ -4433,6 +4602,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": 7329674858237179863,
      "active": true,
      "min": [
       -2.4979,
@@ -4448,6 +4618,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": -4775596416787630121,
      "active": true,
      "min": [
       -7.4979,
@@ -4463,6 +4634,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 637618644993292247,
      "active": true,
      "min": [
       -7.4979,
@@ -4478,6 +4650,7 @@
     {
      "go": "SimpleCube.006 (3)",
      "col": "BoxCollider",
+     "goPid": 312864224177207255,
      "active": true,
      "min": [
       -7.5,
@@ -4493,6 +4666,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": 7991112290510878679,
      "active": true,
      "min": [
       -7.5,
@@ -4508,6 +4682,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 9050809451410601943,
      "active": true,
      "min": [
       -2.5,
@@ -4523,6 +4698,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -7182155654295078953,
      "active": true,
      "min": [
       2.5021,
@@ -4538,6 +4714,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": -2255629516520769577,
      "active": true,
      "min": [
       -7.5,
@@ -4553,6 +4730,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": 8826858760596666327,
      "active": true,
      "min": [
       -7.5,
@@ -4568,6 +4746,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 7943330771248265175,
      "active": true,
      "min": [
       -3.0258,
@@ -4583,6 +4762,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -6214801041832167465,
      "active": true,
      "min": [
       -4.3402,
@@ -4598,6 +4778,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 4557794019620075479,
      "active": true,
      "min": [
       -2.4838,
@@ -4613,6 +4794,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 4557794019620075479,
      "active": true,
      "min": [
       -2.4838,
@@ -4628,6 +4810,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 8325704447572555735,
      "active": false,
      "min": [
       -2.5019,
@@ -4643,6 +4826,7 @@
     {
      "go": "SideWallCurve",
      "col": "MeshCollider",
+     "goPid": -5984529062454249513,
      "active": false,
      "min": [
       -2.5019,
@@ -4658,6 +4842,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 5082516639319242711,
      "active": false,
      "min": [
       -2.5079,
@@ -4673,6 +4858,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 633357003846367191,
      "active": true,
      "min": [
       -2.5079,
@@ -4688,6 +4874,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 3925689161398794199,
      "active": true,
      "min": [
       -2.4979,
@@ -4703,6 +4890,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 304513096116713431,
      "active": true,
      "min": [
       -7.5,
@@ -4718,6 +4906,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -4909732411665238057,
      "active": true,
      "min": [
       -2.8,
@@ -4733,6 +4922,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": 2038821219297769431,
      "active": false,
      "min": [
       -7.5,
@@ -4748,6 +4938,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -1811389496136189993,
      "active": true,
      "min": [
       -5.5321,
@@ -4763,6 +4954,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -1811389496136189993,
      "active": true,
      "min": [
       -4.4263,
@@ -4778,6 +4970,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -1811389496136189993,
      "active": true,
      "min": [
       -5.8944,
@@ -4793,6 +4986,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 867407151217686487,
      "active": true,
      "min": [
       -6.1886,
@@ -4808,6 +5002,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -6370254183967442985,
      "active": true,
      "min": [
       -4.2401,
@@ -4845,6 +5040,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -4414956706704672809,
         "min": [
          -7.4885,
          10.9435,
@@ -4862,6 +5058,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -9146065436103231529,
        "active": false,
        "min": [
         -7.4926,
@@ -4877,6 +5074,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 6003392807412938711,
        "active": false,
        "min": [
         -7.4985,
@@ -4892,6 +5090,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 2227226494101469143,
        "active": true,
        "min": [
         -7.4985,
@@ -4991,6 +5190,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 3199309884994271191,
         "min": [
          2.5021,
          0.9435,
@@ -5008,6 +5208,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 2880204084171159511,
        "active": true,
        "min": [
         2.4921,
@@ -5023,6 +5224,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -198058319892531241,
        "active": true,
        "min": [
         2.4921,
@@ -5038,6 +5240,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -8656885743367637033,
        "active": false,
        "min": [
         2.4981,
@@ -5053,6 +5256,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -5583797517182126121,
        "active": false,
        "min": [
         2.4981,
@@ -5444,6 +5648,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 4008444468212536716,
      "active": true,
      "min": [
       -4.3278,
@@ -5459,6 +5664,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -315794308731759220,
      "active": true,
      "min": [
       -6.2763,
@@ -5474,6 +5680,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 6717615108484699532,
      "active": true,
      "min": [
       -7.6979,
@@ -5489,6 +5696,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 6717615108484699532,
      "active": true,
      "min": [
       -3.2003,
@@ -5504,6 +5712,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 6787740005289039244,
      "active": true,
      "min": [
       -7.7219,
@@ -5519,6 +5728,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -5702123894604950132,
      "active": false,
      "min": [
       -7.7219,
@@ -5534,6 +5744,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 6291230262499743116,
      "active": true,
      "min": [
       -3.0219,
@@ -5549,6 +5760,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 852287421942207884,
      "active": false,
      "min": [
       -7.771,
@@ -5564,6 +5776,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 1338257271178335628,
      "active": true,
      "min": [
       -7.5774,
@@ -5579,6 +5792,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 1516691659495904652,
      "active": true,
      "min": [
       -3.5774,
@@ -5594,6 +5808,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -1231986243513739892,
      "active": true,
      "min": [
       -10.6734,
@@ -5609,6 +5824,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -4770445271166478964,
      "active": true,
      "min": [
       -8.0414,
@@ -5624,6 +5840,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": -2665295219362163316,
      "active": false,
      "min": [
       7.128,
@@ -5639,6 +5856,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": -2665295219362163316,
      "active": false,
      "min": [
       4.7475,
@@ -5654,6 +5872,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -6877740339885894260,
      "active": true,
      "min": [
       2.1646,
@@ -5669,6 +5888,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 6881422101188842892,
      "active": true,
      "min": [
       7.1591,
@@ -5684,6 +5904,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": -8344082217175345780,
      "active": true,
      "min": [
       -2.5723,
@@ -5699,6 +5920,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -1208201333616863860,
      "active": false,
      "min": [
       -2.5723,
@@ -5714,6 +5936,7 @@
     {
      "go": "Corner Platform",
      "col": "BoxCollider",
+     "goPid": -8091151816676141684,
      "active": true,
      "min": [
       -2.5723,
@@ -5729,6 +5952,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 4446375250846094732,
      "active": true,
      "min": [
       2.1277,
@@ -5744,6 +5968,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 489127200848549260,
      "active": true,
      "min": [
       -2.5778,
@@ -5759,6 +5984,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": 1283252991622780300,
      "active": true,
      "min": [
       -2.5723,
@@ -5774,6 +6000,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 7854211848981386636,
      "active": true,
      "min": [
       -2.5723,
@@ -5789,6 +6016,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": 1815834997906806156,
      "active": true,
      "min": [
       -7.7219,
@@ -5804,6 +6032,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": -6400643424581118580,
      "active": true,
      "min": [
       -7.5822,
@@ -5819,6 +6048,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "BoxCollider",
+     "goPid": -9169500211614837364,
      "active": true,
      "min": [
       -2.5723,
@@ -5834,6 +6064,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 3510675273107182988,
      "active": true,
      "min": [
       -6.8306,
@@ -5849,6 +6080,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 3510675273107182988,
      "active": true,
      "min": [
       -6.8306,
@@ -5864,6 +6096,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 8714581931584132492,
      "active": true,
      "min": [
       -7.7079,
@@ -5879,6 +6112,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 8714581931584132492,
      "active": true,
      "min": [
       -7.7079,
@@ -5894,6 +6128,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -1374334768709626484,
      "active": true,
      "min": [
       -7.5922,
@@ -5909,6 +6144,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -4147601322042518132,
      "active": false,
      "min": [
       -7.5922,
@@ -5924,6 +6160,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 7697116448261215628,
      "active": true,
      "min": [
       -7.5822,
@@ -5939,6 +6176,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 9196930902930101644,
      "active": true,
      "min": [
       -5.6721,
@@ -5954,6 +6192,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 9196930902930101644,
      "active": true,
      "min": [
       -4.5663,
@@ -5969,6 +6208,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 9196930902930101644,
      "active": true,
      "min": [
       -6.0344,
@@ -5984,6 +6224,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -239860103750937204,
      "active": true,
      "min": [
       -7.5723,
@@ -5999,6 +6240,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": -8316444393279056500,
      "active": true,
      "min": [
       -7.5723,
@@ -6014,6 +6256,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": -5420779251014822516,
      "active": false,
      "min": [
       -2.8723,
@@ -6051,6 +6294,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -7951025054971325044,
         "min": [
          -2.5723,
          8.73,
@@ -6068,6 +6312,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 777687421574714764,
        "active": false,
        "min": [
         -2.5702,
@@ -6083,6 +6328,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -6966804460330871412,
        "active": true,
        "min": [
         2.1277,
@@ -6098,6 +6344,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -6853649179933862516,
        "active": false,
        "min": [
         -2.5823,
@@ -6113,6 +6360,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 8694550637597758860,
        "active": false,
        "min": [
         1.8738,
@@ -6528,6 +6776,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9172952959614527608,
      "active": true,
      "min": [
       -5.8021,
@@ -6543,6 +6792,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9172952959614527608,
      "active": true,
      "min": [
       -4.6963,
@@ -6558,6 +6808,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -9172952959614527608,
      "active": true,
      "min": [
       -6.1644,
@@ -6573,6 +6824,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": 5444823880046794632,
      "active": true,
      "min": [
       -2.7126,
@@ -6588,6 +6840,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": 236152373586220936,
      "active": true,
      "min": [
       -2.7126,
@@ -6603,6 +6856,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": 6809182187181954952,
      "active": true,
      "min": [
       -7.7126,
@@ -6618,6 +6872,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": -3716527627868055672,
      "active": true,
      "min": [
       -7.7126,
@@ -6633,6 +6888,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": 698549739674982280,
      "active": true,
      "min": [
       -7.7126,
@@ -6648,6 +6904,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 720484894423570312,
      "active": true,
      "min": [
       -7.7126,
@@ -6663,6 +6920,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 2376704809430538120,
      "active": false,
      "min": [
       -7.7104,
@@ -6678,6 +6936,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -6736938966050023544,
      "active": true,
      "min": [
       -3.0126,
@@ -6693,6 +6952,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -8386191588462766200,
      "active": false,
      "min": [
       -3.2664,
@@ -6708,6 +6968,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 348559566201018248,
      "active": false,
      "min": [
       -7.7126,
@@ -6723,6 +6984,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -707157163354171512,
      "active": true,
      "min": [
       -7.7126,
@@ -6738,6 +7000,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 1712843728031307656,
      "active": true,
      "min": [
       -7.6846,
@@ -6753,6 +7016,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 1712843728031307656,
      "active": true,
      "min": [
       -3.163,
@@ -6768,6 +7032,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -2407831680545204344,
      "active": true,
      "min": [
       -3.1719,
@@ -6783,6 +7048,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -5080821472915433592,
      "active": true,
      "min": [
       -0.0455,
@@ -6798,6 +7064,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 3787806750374811528,
      "active": true,
      "min": [
       -4.3664,
@@ -6813,6 +7080,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 5136544919169587080,
      "active": false,
      "min": [
       -2.9997,
@@ -6828,6 +7096,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -2534015080194844792,
      "active": true,
      "min": [
       -2.9997,
@@ -6843,6 +7112,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 3689589243758172040,
      "active": true,
      "min": [
       -2.7189,
@@ -6858,6 +7128,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": 6625618523490670472,
      "active": true,
      "min": [
       -2.7126,
@@ -6873,6 +7144,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -3040638929526728824,
      "active": true,
      "min": [
       1.9874,
@@ -6888,6 +7160,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": 2952731897378887560,
      "active": true,
      "min": [
       -2.6259,
@@ -6903,6 +7176,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -6461404916798269560,
      "active": true,
      "min": [
       -7.8382,
@@ -6918,6 +7192,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -6461404916798269560,
      "active": true,
      "min": [
       -7.8382,
@@ -6933,6 +7208,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 8861311276762191752,
      "active": true,
      "min": [
       -7.7126,
@@ -6948,6 +7224,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -3571574997736695928,
      "active": false,
      "min": [
       -7.7226,
@@ -6963,6 +7240,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 6171247474865788808,
      "active": true,
      "min": [
       -7.7226,
@@ -6978,6 +7256,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -1640304689850034296,
      "active": true,
      "min": [
       -6.3284,
@@ -6993,6 +7272,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -2963505411467716728,
      "active": true,
      "min": [
       -4.5571,
@@ -7030,6 +7310,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 2100210730689091464,
         "min": [
          -7.7126,
          5.8759,
@@ -7047,6 +7328,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -1638728073981995128,
        "active": false,
        "min": [
         -7.7226,
@@ -7062,6 +7344,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 1675863113880295304,
        "active": false,
        "min": [
         -7.7166,
@@ -7077,6 +7360,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -1679546909410732152,
        "active": false,
        "min": [
         -7.7166,
@@ -7092,6 +7376,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 7505184926137112456,
        "active": true,
        "min": [
         -7.7226,
@@ -7520,6 +7805,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7182283819736928518,
      "active": true,
      "min": [
       4.6079,
@@ -7535,6 +7821,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7182283819736928518,
      "active": true,
      "min": [
       5.7137,
@@ -7550,6 +7837,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7182283819736928518,
      "active": true,
      "min": [
       4.2456,
@@ -7565,6 +7853,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -1091364997879525114,
      "active": true,
      "min": [
       -4.5801,
@@ -7580,6 +7869,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3814492985642348282,
      "active": true,
      "min": [
       -7.7219,
@@ -7595,6 +7885,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 7848230870896382214,
      "active": false,
      "min": [
       -7.7219,
@@ -7610,6 +7901,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "MeshCollider",
+     "goPid": -3154779108533300986,
      "active": true,
      "min": [
       -3.0219,
@@ -7625,6 +7917,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -6943104622613720826,
      "active": true,
      "min": [
       -7.6979,
@@ -7640,6 +7933,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -6943104622613720826,
      "active": true,
      "min": [
       -3.2003,
@@ -7655,6 +7949,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -1205704496677023482,
      "active": true,
      "min": [
       6.91,
@@ -7670,6 +7965,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3104547371850100474,
      "active": true,
      "min": [
       2.21,
@@ -7685,6 +7981,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 33553387585442054,
      "active": false,
      "min": [
       2.21,
@@ -7700,6 +7997,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 33553387585442054,
      "active": false,
      "min": [
       2.21,
@@ -7715,6 +8013,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": 7994701875028726022,
      "active": true,
      "min": [
       2.21,
@@ -7730,6 +8029,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 7201323085361942790,
      "active": true,
      "min": [
       2.21,
@@ -7745,6 +8045,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": 4535089608081707270,
      "active": true,
      "min": [
       2.21,
@@ -7760,6 +8061,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": -4662318250055397114,
      "active": true,
      "min": [
       -7.7907,
@@ -7775,6 +8077,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 8706204284987019526,
      "active": true,
      "min": [
       -2.8487,
@@ -7790,6 +8093,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -8536146770608746234,
      "active": false,
      "min": [
       -2.5723,
@@ -7805,6 +8109,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -1538157375862173434,
      "active": true,
      "min": [
       -7.7219,
@@ -7820,6 +8125,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 7644818172075086086,
      "active": false,
      "min": [
       7.128,
@@ -7835,6 +8141,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 7644818172075086086,
      "active": false,
      "min": [
       4.7475,
@@ -7850,6 +8157,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -7760875783562227450,
      "active": true,
      "min": [
       7.1591,
@@ -7865,6 +8173,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -2310940389141606138,
      "active": true,
      "min": [
       2.1646,
@@ -7880,6 +8189,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -5980355942442757882,
      "active": true,
      "min": [
       -4.3278,
@@ -7895,6 +8205,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -3283782575077355258,
      "active": true,
      "min": [
       -6.2763,
@@ -7910,6 +8221,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -8757756711262121722,
      "active": false,
      "min": [
       -2.8587,
@@ -7925,6 +8237,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -5001212952950501114,
      "active": true,
      "min": [
       -2.8587,
@@ -7940,6 +8253,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -6702017259101646586,
      "active": true,
      "min": [
       -2.8487,
@@ -7955,6 +8269,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -5480523071597997818,
      "active": true,
      "min": [
       -2.9743,
@@ -7970,6 +8285,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -5480523071597997818,
      "active": true,
      "min": [
       -2.9743,
@@ -7985,6 +8301,7 @@
     {
      "go": "Suppoirt side coollider",
      "col": "BoxCollider",
+     "goPid": 3610747160327328006,
      "active": true,
      "min": [
       -3.4248,
@@ -8000,6 +8317,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -2244482680595377914,
      "active": true,
      "min": [
       -2.7636,
@@ -8015,6 +8333,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -5266694562976853754,
      "active": true,
      "min": [
       -2.7636,
@@ -8030,6 +8349,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -438419413135224570,
      "active": true,
      "min": [
       6.2562,
@@ -8045,6 +8365,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -8955780695624281850,
      "active": true,
      "min": [
       1.6974,
@@ -8060,6 +8381,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 4473276990933602566,
      "active": true,
      "min": [
       -0.9906,
@@ -8075,6 +8397,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 7394207703304409350,
      "active": true,
      "min": [
       2.1186,
@@ -8090,6 +8413,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 7545517550303678726,
      "active": false,
      "min": [
       1.9735,
@@ -8127,6 +8451,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 1110578669830050054,
         "min": [
          -7.7907,
          11.7039,
@@ -8144,6 +8469,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 2019906339052949766,
        "active": false,
        "min": [
         -7.8007,
@@ -8159,6 +8485,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 402819170030162182,
        "active": false,
        "min": [
         -7.7947,
@@ -8174,6 +8501,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 8170325300341412102,
        "active": true,
        "min": [
         -7.8007,
@@ -8189,6 +8517,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 4468791744977342726,
        "active": false,
        "min": [
         -7.7947,
@@ -8288,6 +8617,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 2744963463159255302,
         "min": [
          2.21,
          0.5879,
@@ -8305,6 +8635,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 1149570532486123782,
        "active": false,
        "min": [
         2.2121,
@@ -8320,6 +8651,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -7072408201858739962,
        "active": false,
        "min": [
         6.6561,
@@ -8335,6 +8667,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": 4722831177813299462,
        "active": false,
        "min": [
         2.2,
@@ -8350,6 +8683,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 7634665843380293894,
        "active": true,
        "min": [
         6.91,
@@ -8826,6 +9160,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": 7413631434102842516,
      "active": false,
      "min": [
       2.2874,
@@ -8841,6 +9176,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 6071969023335507092,
      "active": true,
      "min": [
       -7.7126,
@@ -8856,6 +9192,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 6326253443515524244,
      "active": true,
      "min": [
       -7.7126,
@@ -8871,6 +9208,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 1454837121963566228,
      "active": true,
      "min": [
       -2.8275,
@@ -8886,6 +9224,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": -623761619878042476,
      "active": true,
      "min": [
       2.2874,
@@ -8901,6 +9240,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 4418293344271508628,
      "active": true,
      "min": [
       2.2891,
@@ -8916,6 +9256,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -927927168752442220,
      "active": true,
      "min": [
       -7.7126,
@@ -8931,6 +9272,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": -4838537166884985708,
      "active": true,
      "min": [
       -7.7126,
@@ -8946,6 +9288,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": -28834344879414124,
      "active": true,
      "min": [
       -2.7126,
@@ -8961,6 +9304,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": 3477080015211111572,
      "active": true,
      "min": [
       -2.7971,
@@ -8976,6 +9320,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": 75710199029867668,
      "active": true,
      "min": [
       -2.7971,
@@ -8991,6 +9336,7 @@
     {
      "go": "SlideCube (1)",
      "col": "BoxCollider",
+     "goPid": 75710199029867668,
      "active": true,
      "min": [
       -2.7971,
@@ -9006,6 +9352,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": 5170521219789857940,
      "active": true,
      "min": [
       -2.7971,
@@ -9021,6 +9368,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 4386511315817702548,
      "active": true,
      "min": [
       -7.8382,
@@ -9036,6 +9384,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 4386511315817702548,
      "active": true,
      "min": [
       -7.8382,
@@ -9051,6 +9400,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -74687274048904044,
      "active": true,
      "min": [
       -7.7126,
@@ -9066,6 +9416,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 6671396403870344340,
      "active": true,
      "min": [
       -7.7226,
@@ -9081,6 +9432,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -4367454987172928364,
      "active": false,
      "min": [
       -7.7226,
@@ -9096,6 +9448,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": 8185353451732903060,
      "active": false,
      "min": [
       -2.7226,
@@ -9111,6 +9464,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 5990879413159765140,
      "active": true,
      "min": [
       -2.7226,
@@ -9126,6 +9480,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 5872698614150767764,
      "active": true,
      "min": [
       -2.7126,
@@ -9141,6 +9496,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 11616651461502100,
      "active": true,
      "min": [
       -7.8626,
@@ -9156,6 +9512,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 11616651461502100,
      "active": true,
      "min": [
       -8.0207,
@@ -9171,6 +9528,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 11616651461502100,
      "active": true,
      "min": [
       -8.0207,
@@ -9186,6 +9544,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -2668378660814347116,
      "active": true,
      "min": [
       2.3114,
@@ -9201,6 +9560,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -2668378660814347116,
      "active": true,
      "min": [
       6.8091,
@@ -9216,6 +9576,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 8849839849738314900,
      "active": false,
      "min": [
       2.2874,
@@ -9231,6 +9592,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 772612878969775252,
      "active": true,
      "min": [
       2.2874,
@@ -9246,6 +9608,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "MeshCollider",
+     "goPid": 2106105164949070996,
      "active": true,
      "min": [
       6.9874,
@@ -9261,6 +9624,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 2106105164949070996,
      "active": true,
      "min": [
       6.9874,
@@ -9276,6 +9640,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -5228925557647825772,
      "active": true,
      "min": [
       -7.7506,
@@ -9291,6 +9656,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 2472088831091385492,
      "active": true,
      "min": [
       -7.7506,
@@ -9306,6 +9672,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -4975017642700790636,
      "active": true,
      "min": [
       6.4376,
@@ -9321,6 +9688,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 690594000293045396,
      "active": true,
      "min": [
       1.9736,
@@ -9336,6 +9704,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -4951096722854665068,
      "active": true,
      "min": [
       -0.6584,
@@ -9351,6 +9720,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -4014813048608480108,
      "active": true,
      "min": [
       2.3037,
@@ -9366,6 +9736,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -293558832019692396,
      "active": false,
      "min": [
       2.3037,
@@ -9381,6 +9752,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -3244890300100598636,
      "active": true,
      "min": [
       -2.7126,
@@ -9418,6 +9790,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -3600270429731052396,
         "min": [
          2.2874,
          4.1166,
@@ -9435,6 +9808,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -4664577003744090988,
        "active": true,
        "min": [
         6.9874,
@@ -9450,6 +9824,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -1990240534784924524,
        "active": false,
        "min": [
         6.7336,
@@ -9465,6 +9840,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 685523093788796052,
        "active": false,
        "min": [
         2.2774,
@@ -9480,6 +9856,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 2828351260714116244,
        "active": false,
        "min": [
         2.2896,
@@ -9579,6 +9956,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -5524679434466450284,
         "min": [
          -7.7126,
          10.7764,
@@ -9596,6 +9974,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 1146111431721067668,
        "active": false,
        "min": [
         -7.7226,
@@ -9611,6 +9990,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -4335898956729113452,
        "active": false,
        "min": [
         -7.7166,
@@ -9626,6 +10006,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 8685917972314760340,
        "active": true,
        "min": [
         -7.7226,
@@ -9641,6 +10022,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -4674790547914972012,
        "active": false,
        "min": [
         -7.7166,
@@ -10189,6 +10571,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7399366079564969461,
      "active": true,
      "min": [
       -8.0026,
@@ -10204,6 +10587,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7399366079564969461,
      "active": true,
      "min": [
       -8.1607,
@@ -10219,6 +10603,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 7399366079564969461,
      "active": true,
      "min": [
       -8.1607,
@@ -10234,6 +10619,7 @@
     {
      "go": "DoubleCurveCube.028 (1)",
      "col": "MeshCollider",
+     "goPid": 7920184213064742389,
      "active": true,
      "min": [
       7.3348,
@@ -10249,6 +10635,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -2592409043510004235,
      "active": false,
      "min": [
       -2.5723,
@@ -10264,6 +10651,7 @@
     {
      "go": "SimpleCube.006 (18)",
      "col": "BoxCollider",
+     "goPid": -1332068740479355403,
      "active": true,
      "min": [
       7.33,
@@ -10279,6 +10667,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 842126602315527669,
      "active": true,
      "min": [
       -2.65,
@@ -10294,6 +10683,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -2904015443169217035,
      "active": true,
      "min": [
       -2.6107,
@@ -10309,6 +10699,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": 2793215581357766133,
      "active": true,
      "min": [
       -7.65,
@@ -10324,6 +10715,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 4599758120378660341,
      "active": true,
      "min": [
       2.21,
@@ -10339,6 +10731,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 511559268345869813,
      "active": true,
      "min": [
       -7.6107,
@@ -10354,6 +10747,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": -2882226772838025739,
      "active": true,
      "min": [
       7.3348,
@@ -10369,6 +10763,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -9148582070065072651,
      "active": true,
      "min": [
       2.42,
@@ -10384,6 +10779,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": -8713692813456935435,
      "active": true,
      "min": [
       -2.65,
@@ -10399,6 +10795,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -1815890559764367883,
      "active": true,
      "min": [
       -2.5907,
@@ -10414,6 +10811,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 7149130317257733621,
      "active": false,
      "min": [
       7.128,
@@ -10429,6 +10827,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 7149130317257733621,
      "active": false,
      "min": [
       4.7475,
@@ -10444,6 +10843,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -5516855274613017099,
      "active": true,
      "min": [
       7.1591,
@@ -10459,6 +10859,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 2245840702475957749,
      "active": true,
      "min": [
       2.1646,
@@ -10474,6 +10875,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": 2973384980052342261,
      "active": true,
      "min": [
       7.33,
@@ -10489,6 +10891,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": 5639506566119978485,
      "active": true,
      "min": [
       7.3348,
@@ -10504,6 +10907,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -2985914654468377099,
      "active": true,
      "min": [
       2.39,
@@ -10519,6 +10923,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": 1526641222457980405,
      "active": true,
      "min": [
       -2.6107,
@@ -10534,6 +10939,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 1680204819063666165,
      "active": true,
      "min": [
       2.0893,
@@ -10549,6 +10955,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 4661327084848838133,
      "active": true,
      "min": [
       -2.617,
@@ -10564,6 +10971,7 @@
     {
      "go": "MovingRod",
      "col": "BoxCollider",
+     "goPid": -927344689625664011,
      "active": false,
      "min": [
       -7.5879,
@@ -10579,6 +10987,7 @@
     {
      "go": "Cube (3)",
      "col": "BoxCollider",
+     "goPid": -3023360851369036299,
      "active": true,
      "min": [
       -7.5734,
@@ -10594,6 +11003,7 @@
     {
      "go": "MovingPlate",
      "col": "BoxCollider",
+     "goPid": 6333558414749627893,
      "active": true,
      "min": [
       -7.9934,
@@ -10609,6 +11019,7 @@
     {
      "go": "Cube",
      "col": "BoxCollider",
+     "goPid": -2675323498878241291,
      "active": true,
      "min": [
       -7.3144,
@@ -10624,6 +11035,7 @@
     {
      "go": "Cube (2)",
      "col": "BoxCollider",
+     "goPid": 2056456797680727541,
      "active": true,
      "min": [
       -4.274,
@@ -10639,6 +11051,7 @@
     {
      "go": "Cube (1)",
      "col": "BoxCollider",
+     "goPid": -3998320650232826379,
      "active": true,
      "min": [
       -7.2818,
@@ -10654,6 +11067,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -1170181002399681035,
      "active": true,
      "min": [
       -9.6001,
@@ -10669,6 +11083,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 6961354692031444469,
      "active": true,
      "min": [
       2.444,
@@ -10684,6 +11099,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 6961354692031444469,
      "active": true,
      "min": [
       6.9416,
@@ -10699,6 +11115,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -9047928452733962763,
      "active": true,
      "min": [
       7.12,
@@ -10714,6 +11131,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 2907401419969033717,
      "active": false,
      "min": [
       2.42,
@@ -10729,6 +11147,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -2911231810613840395,
      "active": true,
      "min": [
       2.42,
@@ -10744,6 +11163,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 6839452165030901237,
      "active": true,
      "min": [
       -7.7806,
@@ -10759,6 +11179,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 5226802614024893941,
      "active": true,
      "min": [
       -7.7806,
@@ -10774,6 +11195,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -4571194294306638347,
      "active": true,
      "min": [
       -0.9313,
@@ -10789,6 +11211,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -4571194294306638347,
      "active": true,
      "min": [
       -1.8325,
@@ -10804,6 +11227,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -3468523172565584395,
      "active": false,
      "min": [
       -7.6207,
@@ -10819,6 +11243,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -3862080809946352139,
      "active": true,
      "min": [
       -14.4409,
@@ -10834,6 +11259,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -3862080809946352139,
      "active": true,
      "min": [
       -4.0682,
@@ -10849,6 +11275,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -7104290234445302283,
      "active": true,
      "min": [
       -7.6107,
@@ -10864,6 +11291,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -3098510319214168587,
      "active": true,
      "min": [
       -9.4779,
@@ -10879,6 +11307,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 8039940027948103157,
      "active": false,
      "min": [
       7.1028,
@@ -10894,6 +11323,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7532835300739156491,
      "active": true,
      "min": [
       12.1966,
@@ -10909,6 +11339,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 2377462005608248821,
      "active": true,
      "min": [
       6.8267,
@@ -10924,6 +11355,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7844077118707370507,
      "active": true,
      "min": [
       4.1388,
@@ -10939,6 +11371,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -8950015625785674251,
      "active": true,
      "min": [
       7.2479,
@@ -10954,6 +11387,7 @@
     {
      "go": "slide plat (1)",
      "col": "MeshCollider",
+     "goPid": 6116116635001320949,
      "active": true,
      "min": [
       7.33,
@@ -10969,6 +11403,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": 6457092847763813877,
      "active": true,
      "min": [
       12.03,
@@ -10984,6 +11419,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": -5905398619953662475,
      "active": true,
      "min": [
       7.33,
@@ -10999,6 +11435,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -5188324107529783819,
      "active": true,
      "min": [
       2.3764,
@@ -11014,6 +11451,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -7141494960818194955,
      "active": true,
      "min": [
       2.3764,
@@ -11029,6 +11467,7 @@
     {
      "go": "Suppoirt side coollider",
      "col": "BoxCollider",
+     "goPid": 4550611630004270581,
      "active": true,
      "min": [
       1.7152,
@@ -11044,6 +11483,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": -440201316397386251,
      "active": true,
      "min": [
       -2.5636,
@@ -11059,6 +11499,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": 376059615164134901,
      "active": true,
      "min": [
       -2.5636,
@@ -11074,6 +11515,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": 7592214612187641333,
      "active": true,
      "min": [
       -2.5636,
@@ -11111,6 +11553,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -9153670304187320843,
         "min": [
          -2.5907,
          11.5579,
@@ -11128,6 +11571,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -5746288068824107531,
        "active": false,
        "min": [
         -2.5947,
@@ -11143,6 +11587,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 161838892644201973,
        "active": false,
        "min": [
         -2.5947,
@@ -11158,6 +11603,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 1658792808808019445,
        "active": true,
        "min": [
         -2.6007,
@@ -11173,6 +11619,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -6608283976513980939,
        "active": false,
        "min": [
         -2.6007,
@@ -11272,6 +11719,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 7794531647529580021,
         "min": [
          7.3348,
          -11.0921,
@@ -11289,6 +11737,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 3863428863925319157,
        "active": false,
        "min": [
         7.337,
@@ -11304,6 +11753,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 4922113795280696821,
        "active": true,
        "min": [
         7.3248,
@@ -11319,6 +11769,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 4922113795280696821,
        "active": true,
        "min": [
         7.3248,
@@ -11334,6 +11785,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3629519473084566027,
        "active": true,
        "min": [
         12.0348,
@@ -11349,6 +11801,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -8940470666622110219,
        "active": false,
        "min": [
         11.781,
@@ -12007,6 +12460,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 7424855589687968893,
      "active": true,
      "min": [
       -2.51,
@@ -12022,6 +12476,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -1490659018415356803,
      "active": false,
      "min": [
       -2.51,
@@ -12037,6 +12492,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 6926097586012931197,
      "active": false,
      "min": [
       -2.504,
@@ -12052,6 +12508,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -435119060189657987,
      "active": true,
      "min": [
       -2.5,
@@ -12067,6 +12524,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 205297475650700413,
      "active": false,
      "min": [
       -2.5041,
@@ -12082,6 +12540,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -1274496379920399235,
      "active": true,
      "min": [
       -1.1678,
@@ -12097,6 +12556,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -6935025262473984899,
      "active": true,
      "min": [
       -3.1163,
@@ -12112,6 +12572,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": 5626828122281985149,
      "active": true,
      "min": [
       -7.51,
@@ -12127,6 +12588,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": -1332952631082236803,
      "active": true,
      "min": [
       -7.51,
@@ -12142,6 +12604,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": 5165700696267146365,
      "active": true,
      "min": [
       -2.81,
@@ -12157,6 +12620,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": -6628483788226313091,
      "active": true,
      "min": [
       -7.5,
@@ -12172,6 +12636,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": 4557017342562321533,
      "active": true,
      "min": [
       -7.51,
@@ -12187,6 +12652,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 590151131167573117,
      "active": true,
      "min": [
       -2.5,
@@ -12202,6 +12668,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -6090093520418585475,
      "active": false,
      "min": [
       -3.0539,
@@ -12217,6 +12684,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -7499170568598207363,
      "active": true,
      "min": [
       -7.5,
@@ -12232,6 +12700,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 7700322938723026045,
      "active": false,
      "min": [
       -7.5,
@@ -12247,6 +12716,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 6411681524532823165,
      "active": false,
      "min": [
       -7.4979,
@@ -12262,6 +12732,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -2971867241058417539,
      "active": true,
      "min": [
       -2.8,
@@ -12277,6 +12748,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6414718226263229565,
      "active": true,
      "min": [
       -2.4403,
@@ -12292,6 +12764,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6414718226263229565,
      "active": true,
      "min": [
       -1.4925,
@@ -12307,6 +12780,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6414718226263229565,
      "active": true,
      "min": [
       -2.7509,
@@ -12322,6 +12796,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": 7839111365272585341,
      "active": true,
      "min": [
       -7.51,
@@ -12337,6 +12812,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": -7915548516677270403,
      "active": true,
      "min": [
       -2.509,
@@ -12352,6 +12828,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -3737496227333880707,
      "active": true,
      "min": [
       5.4179,
@@ -12367,6 +12844,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 8747351526090589309,
      "active": true,
      "min": [
       0.8438,
@@ -12382,6 +12860,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 7350604097334264957,
      "active": true,
      "min": [
       0.8438,
@@ -12397,6 +12876,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -2397607641401277315,
      "active": false,
      "min": [
       2.2105,
@@ -12412,6 +12892,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 984266560249316477,
      "active": true,
      "min": [
       2.2105,
@@ -12427,6 +12908,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -5301875146632149891,
      "active": false,
      "min": [
       -2.519,
@@ -12442,6 +12924,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": 4994111464147502205,
      "active": true,
      "min": [
       2.191,
@@ -12457,6 +12940,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3940302813730847619,
      "active": true,
      "min": [
       -2.509,
@@ -12472,6 +12956,7 @@
     {
      "go": "Platform",
      "col": "BoxCollider",
+     "goPid": 590996581621351549,
      "active": true,
      "min": [
       -4.209,
@@ -12487,6 +12972,7 @@
     {
      "go": "Connector",
      "col": "BoxCollider",
+     "goPid": -8923628078511766403,
      "active": true,
      "min": [
       -2.2504,
@@ -12502,6 +12988,7 @@
     {
      "go": "SimpleCube.006 (3)",
      "col": "BoxCollider",
+     "goPid": -7407934034796100483,
      "active": true,
      "min": [
       -2.509,
@@ -12539,6 +13026,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 1412292907982046333,
         "min": [
          -2.509,
          -1.5521,
@@ -12556,6 +13044,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -7496098198492298115,
        "active": false,
        "min": [
         -2.5069,
@@ -12571,6 +13060,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -3785657023533366147,
        "active": false,
        "min": [
         -2.519,
@@ -12586,6 +13076,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 4809292902125323389,
        "active": true,
        "min": [
         2.191,
@@ -12601,6 +13092,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 6161020361766257789,
        "active": false,
        "min": [
         1.9371,
@@ -12700,6 +13192,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 5252581985915421821,
         "min": [
          -7.51,
          -6.0018,
@@ -12717,6 +13210,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -6338090714532952963,
        "active": true,
        "min": [
         -7.52,
@@ -12732,6 +13226,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": -5265421606640106371,
        "active": false,
        "min": [
         -7.52,
@@ -12747,6 +13242,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 8465321675516920957,
        "active": false,
        "min": [
         -7.512,
@@ -12762,6 +13258,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -6953095281978325891,
        "active": false,
        "min": [
         -7.5141,
@@ -12861,6 +13358,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 1426971534318748797,
         "min": [
          -2.499,
          -5.83,
@@ -12878,6 +13376,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -6953378338699099011,
        "active": false,
        "min": [
         -2.503,
@@ -12893,6 +13392,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -6184316838381239171,
        "active": true,
        "min": [
         -2.509,
@@ -12908,6 +13408,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3643644239396158339,
        "active": false,
        "min": [
         -2.509,
@@ -12923,6 +13424,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 6641566190556267645,
        "active": false,
        "min": [
         -2.503,
@@ -13354,6 +13856,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 7949237286065722306,
      "active": true,
      "min": [
       -7.2506,
@@ -13369,6 +13872,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -8299441889178889278,
      "active": true,
      "min": [
       -7.2506,
@@ -13384,6 +13888,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 2289642913985909698,
      "active": true,
      "min": [
       -2.28,
@@ -13399,6 +13904,7 @@
     {
      "go": "DoubleCurveCube.028 (6)",
      "col": "MeshCollider",
+     "goPid": -4473795058409745470,
      "active": true,
      "min": [
       -7.2523,
@@ -13414,6 +13920,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": 1107666904728982466,
      "active": true,
      "min": [
       -7.28,
@@ -13429,6 +13936,7 @@
     {
      "go": "DoubleCurveCube.028 (3)",
      "col": "MeshCollider",
+     "goPid": 6160360817831957442,
      "active": true,
      "min": [
       -7.28,
@@ -13444,6 +13952,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -1495774909171248190,
      "active": true,
      "min": [
       -2.28,
@@ -13459,6 +13968,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": 6194047607335932866,
      "active": true,
      "min": [
       -7.2523,
@@ -13474,6 +13984,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": 2125612881576973250,
      "active": true,
      "min": [
       -2.3785,
@@ -13489,6 +14000,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 7045132924623049666,
      "active": true,
      "min": [
       -2.2515,
@@ -13504,6 +14016,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 7045132924623049666,
      "active": true,
      "min": [
       2.2604,
@@ -13519,6 +14032,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 8759562397780071362,
      "active": true,
      "min": [
       -2.28,
@@ -13534,6 +14048,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 6940500797931836354,
      "active": false,
      "min": [
       -2.28,
@@ -13549,6 +14064,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -2963836413724273726,
      "active": true,
      "min": [
       2.42,
@@ -13564,6 +14080,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 1457150353842492354,
      "active": false,
      "min": [
       -2.2779,
@@ -13579,6 +14096,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -1393960913491143742,
      "active": false,
      "min": [
       2.1661,
@@ -13594,6 +14112,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -966521384357342270,
      "active": true,
      "min": [
       -7.3284,
@@ -13609,6 +14128,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -966521384357342270,
      "active": true,
      "min": [
       -7.4865,
@@ -13624,6 +14144,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -966521384357342270,
      "active": true,
      "min": [
       -7.4865,
@@ -13639,6 +14160,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -8184723738814065726,
      "active": true,
      "min": [
       -7.2523,
@@ -13654,6 +14176,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 6959061156666790850,
      "active": true,
      "min": [
       -7.2587,
@@ -13669,6 +14192,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": 7678259578663130050,
      "active": false,
      "min": [
       -7.2579,
@@ -13684,6 +14208,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 4956339166777955266,
      "active": true,
      "min": [
       -2.5523,
@@ -13699,6 +14224,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -346361799725886526,
      "active": false,
      "min": [
       -7.4459,
@@ -13714,6 +14240,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -1652147754964692030,
      "active": true,
      "min": [
       3.8003,
@@ -13729,6 +14256,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -2785929010911259710,
      "active": true,
      "min": [
       2.0432,
@@ -13744,6 +14272,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 563353031121359810,
      "active": true,
      "min": [
       3.7454,
@@ -13759,6 +14288,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 3425252666116133826,
      "active": true,
      "min": [
       7.0246,
@@ -13774,6 +14304,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -4157078494527106110,
      "active": false,
      "min": [
       3.977,
@@ -13789,6 +14320,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": -3914476280962493502,
      "active": true,
      "min": [
       2.3128,
@@ -13804,6 +14336,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 2844055581546632130,
      "active": true,
      "min": [
       -2.28,
@@ -13819,6 +14352,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -34851577328905278,
      "active": true,
      "min": [
       -2.2278,
@@ -13856,6 +14390,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -1583621579760479294,
         "min": [
          -2.28,
          -2.0121,
@@ -13873,6 +14408,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -1654348474165242942,
        "active": true,
        "min": [
         2.42,
@@ -13888,6 +14424,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 3832079714110067650,
        "active": false,
        "min": [
         -2.2779,
@@ -13903,6 +14440,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": -2831231320656194622,
        "active": false,
        "min": [
         -2.29,
@@ -13918,6 +14456,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -6678058869519559742,
        "active": false,
        "min": [
         2.1661,
@@ -14361,6 +14900,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 8135615888770082201,
      "active": true,
      "min": [
       -2.5064,
@@ -14376,6 +14916,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 4392065807098914201,
      "active": true,
      "min": [
       2.2,
@@ -14391,6 +14932,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -8011284569465018983,
      "active": true,
      "min": [
       -2.5,
@@ -14406,6 +14948,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 8784742513549911449,
      "active": false,
      "min": [
       -3.0539,
@@ -14421,6 +14964,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -6412316593044970087,
      "active": false,
      "min": [
       -7.4979,
@@ -14436,6 +14980,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -1027817541492791911,
      "active": false,
      "min": [
       -7.5,
@@ -14451,6 +14996,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 4094119563923891609,
      "active": true,
      "min": [
       -7.5,
@@ -14466,6 +15012,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -2341936720044153447,
      "active": true,
      "min": [
       -2.8,
@@ -14481,6 +15028,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -4708836600978594407,
      "active": true,
      "min": [
       2.4936,
@@ -14496,6 +15044,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -2311225594249468519,
      "active": false,
      "min": [
       2.4944,
@@ -14511,6 +15060,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": 7858290092470379929,
      "active": true,
      "min": [
       2.5,
@@ -14526,6 +15076,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -1856436216889858663,
      "active": true,
      "min": [
       7.2,
@@ -14541,6 +15092,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -1906972052240783975,
      "active": true,
      "min": [
       -4.1178,
@@ -14556,6 +15108,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -2437082683506416231,
      "active": true,
      "min": [
       -6.0663,
@@ -14571,6 +15124,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": 4844572723755492761,
      "active": true,
      "min": [
       -7.5,
@@ -14586,6 +15140,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 6572205523977971097,
      "active": true,
      "min": [
       -7.5,
@@ -14601,6 +15156,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -6318435968002611815,
      "active": true,
      "min": [
       -7.5093,
@@ -14616,6 +15172,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": -2959628773161097831,
      "active": true,
      "min": [
       2.4893,
@@ -14631,6 +15188,7 @@
     {
      "go": "DoubleCurveCube.028 (2)",
      "col": "MeshCollider",
+     "goPid": 3675995689874433433,
      "active": true,
      "min": [
       -2.5,
@@ -14646,6 +15204,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": -5989527775340845671,
      "active": true,
      "min": [
       -7.5093,
@@ -14661,6 +15220,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": 7186600664987608473,
      "active": true,
      "min": [
       -2.5,
@@ -14676,6 +15236,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": 7287922588884805017,
      "active": true,
      "min": [
       -7.5,
@@ -14691,6 +15252,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": 7970547696741131673,
      "active": true,
      "min": [
       2.45,
@@ -14706,6 +15268,7 @@
     {
      "go": "SimpleCube.006 (2)",
      "col": "BoxCollider",
+     "goPid": 7970687554204673433,
      "active": true,
      "min": [
       -2.5,
@@ -14721,6 +15284,7 @@
     {
      "go": "SimpleCube.006",
      "col": "BoxCollider",
+     "goPid": 5683900606422263193,
      "active": true,
      "min": [
       -7.5,
@@ -14736,6 +15300,7 @@
     {
      "go": "SimpleCube.006 (1)",
      "col": "BoxCollider",
+     "goPid": -8978566346464090727,
      "active": true,
      "min": [
       -7.5,
@@ -14751,6 +15316,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": -1980031395468532327,
      "active": true,
      "min": [
       -2.5,
@@ -14766,6 +15332,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -8486256794257709671,
      "active": true,
      "min": [
       -2.5,
@@ -14781,6 +15348,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "MeshCollider",
+     "goPid": -7965398433964481127,
      "active": false,
      "min": [
       -7.5,
@@ -14796,6 +15364,7 @@
     {
      "go": "DoubleCurveCube.028 (1)",
      "col": "MeshCollider",
+     "goPid": -9132187481991010919,
      "active": false,
      "min": [
       7.5,
@@ -14811,6 +15380,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 1742964861307397529,
      "active": true,
      "min": [
       -7.5,
@@ -14826,6 +15396,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 2053920938779026841,
      "active": true,
      "min": [
       -7.51,
@@ -14841,6 +15412,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": 1661115910265185689,
      "active": false,
      "min": [
       -7.51,
@@ -14856,6 +15428,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -3982069057144347239,
      "active": true,
      "min": [
       -5.3523,
@@ -14871,6 +15444,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -3982069057144347239,
      "active": true,
      "min": [
       -4.4045,
@@ -14886,6 +15460,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -3982069057144347239,
      "active": true,
      "min": [
       -5.6628,
@@ -14901,6 +15476,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -5778007857547696743,
      "active": false,
      "min": [
       -7.4979,
@@ -14916,6 +15492,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -7597819428522351207,
      "active": true,
      "min": [
       -2.8,
@@ -14931,6 +15508,7 @@
     {
      "go": "SideWallCurve",
      "col": "MeshCollider",
+     "goPid": -145941522829859431,
      "active": false,
      "min": [
       -3.0539,
@@ -14946,6 +15524,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -6616890777561979495,
      "active": false,
      "min": [
       -7.5,
@@ -14961,6 +15540,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -6769115783895702119,
      "active": true,
      "min": [
       -7.5,
@@ -14976,6 +15556,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3490905016017214055,
      "active": true,
      "min": [
       -7.395,
@@ -14991,6 +15572,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3490905016017214055,
      "active": true,
      "min": [
       -2.9757,
@@ -15006,6 +15588,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -4746096660534581863,
      "active": true,
      "min": [
       7.2349,
@@ -15021,6 +15604,7 @@
     {
      "go": "CoinCollector (2)",
      "col": "MeshCollider",
+     "goPid": -6216399390473247335,
      "active": true,
      "min": [
       7.2349,
@@ -15036,6 +15620,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -9155821597037419111,
      "active": false,
      "min": [
       7.4117,
@@ -15051,6 +15636,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -2747652282791221863,
      "active": true,
      "min": [
       5.478,
@@ -15066,6 +15652,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 968822897660077465,
      "active": true,
      "min": [
       10.4593,
@@ -15081,6 +15668,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -6554177161525385831,
      "active": true,
      "min": [
       7.1801,
@@ -15096,6 +15684,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -4153754363697355367,
      "active": true,
      "min": [
       2.4991,
@@ -15111,6 +15700,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -4153754363697355367,
      "active": true,
      "min": [
       7.0111,
@@ -15126,6 +15716,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -4192449363073751655,
      "active": false,
      "min": [
       6.8868,
@@ -15141,6 +15732,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -8181999732682316391,
      "active": false,
      "min": [
       2.4407,
@@ -15156,6 +15748,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 1769233295861032345,
      "active": false,
      "min": [
       2.4428,
@@ -15171,6 +15764,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 5051896374677874073,
      "active": true,
      "min": [
       2.4407,
@@ -15186,6 +15780,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -3442205749890308711,
      "active": true,
      "min": [
       7.1407,
@@ -15201,6 +15796,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": -317969783586085479,
      "active": false,
      "min": [
       2.4793,
@@ -15216,6 +15812,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 5750803441496696217,
      "active": true,
      "min": [
       2.4893,
@@ -15231,6 +15828,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": 2690769801921504665,
      "active": true,
      "min": [
       2.4793,
@@ -15246,6 +15844,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 8243970382797350297,
      "active": true,
      "min": [
       -0.7097,
@@ -15261,6 +15860,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 8243970382797350297,
      "active": true,
      "min": [
       -1.5945,
@@ -15298,6 +15898,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 6720799898337486233,
         "min": [
          -7.5093,
          12.2679,
@@ -15315,6 +15916,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 1413588265804965273,
        "active": false,
        "min": [
         -7.5193,
@@ -15330,6 +15932,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 1759869383364322713,
        "active": false,
        "min": [
         -7.5072,
@@ -15345,6 +15948,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": 3931203136285582745,
        "active": false,
        "min": [
         -3.0632,
@@ -15360,6 +15964,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3783690111897688679,
        "active": true,
        "min": [
         -2.8093,
@@ -15459,6 +16064,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 3996684036395312537,
         "min": [
          -2.5,
          -0.4621,
@@ -15476,6 +16082,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 4291249471184905625,
        "active": false,
        "min": [
         -7.2659,
@@ -15491,6 +16098,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 4168972196620543385,
        "active": false,
        "min": [
         -2.51,
@@ -15506,6 +16114,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 8744292716111799705,
        "active": false,
        "min": [
         -2.51,
@@ -15605,6 +16214,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -1064437130884536935,
         "min": [
          -2.4907,
          10.7479,
@@ -15622,6 +16232,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "MeshCollider",
+       "goPid": 3035509410217797017,
        "active": false,
        "min": [
         -2.5007,
@@ -15637,6 +16248,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -3985410665745144423,
        "active": false,
        "min": [
         -7.2565,
@@ -15652,6 +16264,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 580519167452456345,
        "active": true,
        "min": [
         -2.5007,
@@ -16280,6 +16893,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -4656581137623148351,
      "active": true,
      "min": [
       -0.199,
@@ -16295,6 +16909,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -4656581137623148351,
      "active": true,
      "min": [
       0.3994,
@@ -16310,6 +16925,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 536638246781262017,
      "active": true,
      "min": [
       -4.7103,
@@ -16325,6 +16941,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 536638246781262017,
      "active": true,
      "min": [
       -3.7625,
@@ -16340,6 +16957,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 536638246781262017,
      "active": true,
      "min": [
       -5.0209,
@@ -16355,6 +16973,7 @@
     {
      "go": "SimpleCube.006 (20)",
      "col": "BoxCollider",
+     "goPid": -1638193613386803007,
      "active": true,
      "min": [
       2.774,
@@ -16370,6 +16989,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -689916330825738047,
      "active": true,
      "min": [
       -2.226,
@@ -16385,6 +17005,7 @@
     {
      "go": "DoubleCurveCube.028 (5)",
      "col": "MeshCollider",
+     "goPid": 4232570656936302785,
      "active": true,
      "min": [
       7.8493,
@@ -16400,6 +17021,7 @@
     {
      "go": "DoubleCurveCube.028 (5)",
      "col": "BoxCollider",
+     "goPid": 4232570656936302785,
      "active": true,
      "min": [
       7.8493,
@@ -16415,6 +17037,7 @@
     {
      "go": "SimpleCube.006 (21)",
      "col": "BoxCollider",
+     "goPid": 8623846550628473025,
      "active": true,
      "min": [
       7.8493,
@@ -16430,6 +17053,7 @@
     {
      "go": "DoubleCurveCube.028 (3)",
      "col": "MeshCollider",
+     "goPid": 4868671473242872001,
      "active": true,
      "min": [
       -7.226,
@@ -16445,6 +17069,7 @@
     {
      "go": "SimpleCube.006 (19)",
      "col": "BoxCollider",
+     "goPid": 4089359898282956993,
      "active": true,
      "min": [
       7.8493,
@@ -16460,6 +17085,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": -1458044902493120319,
      "active": true,
      "min": [
       -2.2844,
@@ -16475,6 +17101,7 @@
     {
      "go": "DoubleCurveCube.028 (6)",
      "col": "MeshCollider",
+     "goPid": -3513022904910145343,
      "active": true,
      "min": [
       -7.2263,
@@ -16490,6 +17117,7 @@
     {
      "go": "SimpleCube.006 (18)",
      "col": "BoxCollider",
+     "goPid": 8164121947238176961,
      "active": true,
      "min": [
       -7.226,
@@ -16505,6 +17133,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": -8316831453771130687,
      "active": true,
      "min": [
       7.8493,
@@ -16520,6 +17149,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": 2827505731433535681,
      "active": true,
      "min": [
       -7.226,
@@ -16535,6 +17165,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": -3341634915851495231,
      "active": true,
      "min": [
       2.82,
@@ -16550,6 +17181,7 @@
     {
      "go": "SimpleCube.006 (22)",
      "col": "BoxCollider",
+     "goPid": 3925787313766013121,
      "active": true,
      "min": [
       2.73,
@@ -16565,6 +17197,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 7578584192305666241,
      "active": true,
      "min": [
       -2.284,
@@ -16580,6 +17213,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": -6130799220649748287,
      "active": true,
      "min": [
       -2.284,
@@ -16595,6 +17229,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": -6733205612584757055,
      "active": true,
      "min": [
       -2.284,
@@ -16610,6 +17245,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": -2539984315101996863,
      "active": true,
      "min": [
       2.416,
@@ -16625,6 +17261,7 @@
     {
      "go": "SlideCube (2)",
      "col": "BoxCollider",
+     "goPid": -2539984315101996863,
      "active": true,
      "min": [
       2.416,
@@ -16640,6 +17277,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -780176059995514687,
      "active": true,
      "min": [
       7.823,
@@ -16655,6 +17293,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 2970187752080611521,
      "active": true,
      "min": [
       7.823,
@@ -16670,6 +17309,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 5678284288476256449,
      "active": true,
      "min": [
       -5.4763,
@@ -16685,6 +17325,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -3812714628970112831,
      "active": true,
      "min": [
       -3.5278,
@@ -16700,6 +17341,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -4083129872900351807,
      "active": true,
      "min": [
       -6.9814,
@@ -16715,6 +17357,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -1536446971513333567,
      "active": true,
      "min": [
       -6.9814,
@@ -16730,6 +17373,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -5161405926756575039,
      "active": false,
      "min": [
       -6.9814,
@@ -16745,6 +17389,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 294389652908873921,
      "active": false,
      "min": [
       2.764,
@@ -16760,6 +17405,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 5153858412404152513,
      "active": true,
      "min": [
       2.774,
@@ -16775,6 +17421,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 7642253953425676481,
      "active": true,
      "min": [
       2.764,
@@ -16790,6 +17437,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 6677827110828579009,
      "active": false,
      "min": [
       2.7699,
@@ -16805,6 +17453,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 72060318604925121,
      "active": false,
      "min": [
       2.7699,
@@ -16820,6 +17469,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -5939836364561770303,
      "active": true,
      "min": [
       -2.226,
@@ -16835,6 +17485,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": -7438906206333298495,
      "active": false,
      "min": [
       -2.236,
@@ -16850,6 +17501,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": 1167022550134888641,
      "active": true,
      "min": [
       -2.236,
@@ -16865,6 +17517,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -1498187516117378879,
      "active": true,
      "min": [
       4.8601,
@@ -16880,6 +17533,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 6711075783716640961,
      "active": true,
      "min": [
       12.5416,
@@ -16895,6 +17549,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 1133326583297611969,
      "active": true,
      "min": [
       6.4125,
@@ -16910,6 +17565,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -3508308161032218431,
      "active": false,
      "min": [
       9.62,
@@ -16925,6 +17581,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -6378904799830599487,
      "active": true,
      "min": [
       7.7967,
@@ -16940,6 +17597,7 @@
     {
      "go": "CoinCollector (2)",
      "col": "MeshCollider",
+     "goPid": 8085157986090621121,
      "active": true,
      "min": [
       7.7967,
@@ -16955,6 +17613,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 2434297297065089217,
      "active": true,
      "min": [
       2.73,
@@ -16970,6 +17629,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": -8227834013655426879,
      "active": false,
      "min": [
       2.73,
@@ -16985,6 +17645,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": 3781608950143981761,
      "active": true,
      "min": [
       7.43,
@@ -17000,6 +17661,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 1511596577318639809,
      "active": true,
      "min": [
       7.8778,
@@ -17015,6 +17677,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 1511596577318639809,
      "active": true,
      "min": [
       12.3897,
@@ -17030,6 +17693,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 3257227190567639233,
      "active": true,
      "min": [
       12.5493,
@@ -17045,6 +17709,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 2839801531651397825,
      "active": false,
      "min": [
       7.8493,
@@ -17060,6 +17725,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -6919794341950187327,
      "active": false,
      "min": [
       7.8515,
@@ -17075,6 +17741,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -7006014928000378687,
      "active": false,
      "min": [
       12.2955,
@@ -17090,6 +17757,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -425566013858375487,
      "active": true,
      "min": [
       7.8493,
@@ -17127,6 +17795,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -2521839957253809983,
         "min": [
          2.7993,
          -6.2521,
@@ -17144,6 +17813,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -8968856695100401471,
        "active": false,
        "min": [
         2.7953,
@@ -17159,6 +17829,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -6804039853826565951,
        "active": true,
        "min": [
         2.7893,
@@ -17174,6 +17845,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 4494456826075551937,
        "active": false,
        "min": [
         2.7893,
@@ -17189,6 +17861,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -3697587637966726975,
        "active": false,
        "min": [
         2.7953,
@@ -17288,6 +17961,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -9137642895786108735,
         "min": [
          7.8493,
          -10.4499,
@@ -17305,6 +17979,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -6206454824186865471,
        "active": false,
        "min": [
         12.2955,
@@ -17320,6 +17995,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 1148112299580987585,
        "active": false,
        "min": [
         7.8393,
@@ -17335,6 +18011,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 6468712342962903233,
        "active": true,
        "min": [
         12.5493,
@@ -17350,6 +18027,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": 8685810974816540865,
        "active": false,
        "min": [
         7.8515,
@@ -17449,6 +18127,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -9102114014207862591,
         "min": [
          -2.2844,
          9.7879,
@@ -17466,6 +18145,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": -4107688263833544511,
        "active": false,
        "min": [
         2.1617,
@@ -17481,6 +18161,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -5496433119082243903,
        "active": false,
        "min": [
         -2.2823,
@@ -17496,6 +18177,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -9385156662257471,
        "active": true,
        "min": [
         2.4156,
@@ -17511,6 +18193,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -1505337489466779455,
        "active": false,
        "min": [
         -2.2944,
@@ -18155,6 +18838,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 4898317704860726897,
      "active": false,
      "min": [
       -2.3023,
@@ -18170,6 +18854,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -1654522345488386447,
      "active": true,
      "min": [
       -7.0023,
@@ -18185,6 +18870,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 4927276185005651569,
      "active": true,
      "min": [
       -7.0087,
@@ -18200,6 +18886,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 4830815637498623601,
      "active": true,
      "min": [
       7.823,
@@ -18215,6 +18902,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -8665767773042051471,
      "active": true,
      "min": [
       7.823,
@@ -18230,6 +18918,7 @@
     {
      "go": "MovingJoint.001",
      "col": "BoxCollider",
+     "goPid": 4912500334652290673,
      "active": true,
      "min": [
       -4.409,
@@ -18245,6 +18934,7 @@
     {
      "go": "Cylinder",
      "col": "BoxCollider",
+     "goPid": -68263444818889103,
      "active": true,
      "min": [
       -5.0675,
@@ -18260,6 +18950,7 @@
     {
      "go": "MovingJoint",
      "col": "BoxCollider",
+     "goPid": 5285045792843232881,
      "active": true,
      "min": [
       -4.5536,
@@ -18275,6 +18966,7 @@
     {
      "go": "MovingRod",
      "col": "BoxCollider",
+     "goPid": -8593659679938644367,
      "active": true,
      "min": [
       -4.3281,
@@ -18290,6 +18982,7 @@
     {
      "go": "LeftSide_Joint",
      "col": "BoxCollider",
+     "goPid": -8000316405216315791,
      "active": true,
      "min": [
       -5.3741,
@@ -18305,6 +18998,7 @@
     {
      "go": "RightSide_Joint",
      "col": "BoxCollider",
+     "goPid": -4188301244467775887,
      "active": true,
      "min": [
       1.7461,
@@ -18320,6 +19014,7 @@
     {
      "go": "StaticRod",
      "col": "BoxCollider",
+     "goPid": -5474326389601077647,
      "active": true,
      "min": [
       -5.1479,
@@ -18335,6 +19030,7 @@
     {
      "go": "CoinCollector (2)",
      "col": "MeshCollider",
+     "goPid": -2219805197678217615,
      "active": true,
      "min": [
       -2.1211,
@@ -18350,6 +19046,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -9202169031009503631,
      "active": true,
      "min": [
       2.6239,
@@ -18365,6 +19062,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -7779637674456582543,
      "active": true,
      "min": [
       -3.5052,
@@ -18380,6 +19078,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 3140766757885638257,
      "active": true,
      "min": [
       -5.0576,
@@ -18395,6 +19094,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 8255755150868477553,
      "active": true,
      "min": [
       -2.1211,
@@ -18410,6 +19110,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": -6490509455430650255,
      "active": true,
      "min": [
       -6.9506,
@@ -18425,6 +19126,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -5123611537919510927,
      "active": true,
      "min": [
       -6.9506,
@@ -18440,6 +19142,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 3917014132145714801,
      "active": true,
      "min": [
       -2.3053,
@@ -18455,6 +19158,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 3956214748183852657,
      "active": false,
      "min": [
       -7.0031,
@@ -18470,6 +19174,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -1654682708590397839,
      "active": false,
      "min": [
       -2.5591,
@@ -18485,6 +19190,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 4899860561148638833,
      "active": false,
      "min": [
       -7.0053,
@@ -18500,6 +19206,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 1492961572808226417,
      "active": true,
      "min": [
       -7.0053,
@@ -18515,6 +19222,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": -6986952940874697103,
      "active": true,
      "min": [
       -2.08,
@@ -18530,6 +19238,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": -7701285236845054351,
      "active": true,
      "min": [
       2.62,
@@ -18545,6 +19254,7 @@
     {
      "go": "SlideCube (2)",
      "col": "BoxCollider",
+     "goPid": -7701285236845054351,
      "active": true,
      "min": [
       2.62,
@@ -18560,6 +19270,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": 7755750053447530097,
      "active": true,
      "min": [
       -2.08,
@@ -18575,6 +19286,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": 3151295656125658737,
      "active": true,
      "min": [
       5.9235,
@@ -18590,6 +19302,7 @@
     {
      "go": "SimpleCube.006 (23)",
      "col": "BoxCollider",
+     "goPid": -3016536650904373647,
      "active": true,
      "min": [
       -8.2202,
@@ -18605,6 +19318,7 @@
     {
      "go": "SimpleCube.006 (24)",
      "col": "BoxCollider",
+     "goPid": 4879499713196324465,
      "active": true,
      "min": [
       -8.2203,
@@ -18620,6 +19334,7 @@
     {
      "go": "SimpleCube.006 (25)",
      "col": "BoxCollider",
+     "goPid": 1132772004541036145,
      "active": true,
      "min": [
       -3.2545,
@@ -18635,6 +19350,7 @@
     {
      "go": "SimpleCube.006 (26)",
      "col": "BoxCollider",
+     "goPid": -9024313102666959247,
      "active": true,
      "min": [
       3.045,
@@ -18650,6 +19366,7 @@
     {
      "go": "SimpleCube.006 (22)",
      "col": "BoxCollider",
+     "goPid": -1025906091961420175,
      "active": true,
      "min": [
       3.0532,
@@ -18665,6 +19382,7 @@
     {
      "go": "SimpleCube.006 (28)",
      "col": "BoxCollider",
+     "goPid": 4350542179740284529,
      "active": true,
      "min": [
       -8.2457,
@@ -18680,6 +19398,7 @@
     {
      "go": "SimpleCube.006 (27)",
      "col": "BoxCollider",
+     "goPid": -7913530077837265295,
      "active": true,
      "min": [
       -3.2545,
@@ -18695,6 +19414,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -2657707242385574287,
      "active": true,
      "min": [
       -2.08,
@@ -18710,6 +19430,7 @@
     {
      "go": "DoubleCurveCube.028 (5)",
      "col": "MeshCollider",
+     "goPid": -1108579233869269391,
      "active": true,
      "min": [
       3.0553,
@@ -18725,6 +19446,7 @@
     {
      "go": "DoubleCurveCube.028 (5)",
      "col": "BoxCollider",
+     "goPid": -1108579233869269391,
      "active": true,
      "min": [
       3.0553,
@@ -18740,6 +19462,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 2978558051915396721,
      "active": true,
      "min": [
       -7.0407,
@@ -18755,6 +19478,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 1124132667641820785,
      "active": false,
      "min": [
       -7.0407,
@@ -18770,6 +19494,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3822103111083755919,
      "active": true,
      "min": [
       -7.0307,
@@ -18785,6 +19510,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -8081469787076823439,
      "active": false,
      "min": [
       -7.0347,
@@ -18800,6 +19526,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 5840097622525277809,
      "active": false,
      "min": [
       -7.0347,
@@ -18815,6 +19542,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 5562121094112474737,
      "active": true,
      "min": [
       3.0386,
@@ -18830,6 +19558,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 4510259933914527345,
      "active": true,
      "min": [
       7.745,
@@ -18845,6 +19574,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -3904285075840764303,
      "active": true,
      "min": [
       3.045,
@@ -18860,6 +19590,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": -6136804980806519183,
      "active": true,
      "min": [
       2.66,
@@ -18875,6 +19606,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3027299057783081359,
      "active": true,
      "min": [
       -2.04,
@@ -18890,6 +19622,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "MeshCollider",
+     "goPid": 627199883956909681,
      "active": false,
      "min": [
       -2.04,
@@ -18905,6 +19638,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 4862184801221670513,
      "active": true,
      "min": [
       -2.0395,
@@ -18920,6 +19654,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 9152902158470739569,
      "active": false,
      "min": [
       -2.0435,
@@ -18935,6 +19670,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 6424712215117493873,
      "active": false,
      "min": [
       -2.0495,
@@ -18950,6 +19686,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -1614351776845334927,
      "active": false,
      "min": [
       -2.0435,
@@ -18965,6 +19702,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -50862819675146639,
      "active": true,
      "min": [
       -2.0495,
@@ -18980,6 +19718,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -110215165919299983,
      "active": true,
      "min": [
       -2.1654,
@@ -18995,6 +19734,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -110215165919299983,
      "active": true,
      "min": [
       -2.1654,
@@ -19010,6 +19750,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 8925168260534302321,
      "active": true,
      "min": [
       -7.0111,
@@ -19025,6 +19766,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 8925168260534302321,
      "active": true,
      "min": [
       -2.4822,
@@ -19040,6 +19782,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -6956419563474323855,
      "active": false,
      "min": [
       -2.5591,
@@ -19055,6 +19798,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -4597745035232807311,
      "active": false,
      "min": [
       -7.0031,
@@ -19070,6 +19814,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -4363666286626146703,
      "active": true,
      "min": [
       -2.3053,
@@ -19085,6 +19830,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 1606353444704810609,
      "active": true,
      "min": [
       -7.0053,
@@ -19100,6 +19846,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 289399696085677681,
      "active": false,
      "min": [
       -7.0053,
@@ -19115,6 +19862,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -7128837929255897487,
      "active": true,
      "min": [
       -7.0026,
@@ -19130,6 +19878,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -7128837929255897487,
      "active": true,
      "min": [
       -7.1607,
@@ -19145,6 +19894,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -7128837929255897487,
      "active": true,
      "min": [
       -7.1607,
@@ -19182,6 +19932,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -696510409435384207,
         "min": [
          3.045,
          -0.2721,
@@ -19199,6 +19950,7 @@
       {
        "go": "SideWallCurve",
        "col": "BoxCollider",
+       "goPid": 7325565076789065329,
        "active": false,
        "min": [
         7.4911,
@@ -19214,6 +19966,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 913666168248137329,
        "active": false,
        "min": [
         3.035,
@@ -19229,6 +19982,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3481497103110048143,
        "active": true,
        "min": [
         7.745,
@@ -19244,6 +19998,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "BoxCollider",
+       "goPid": -1930636128562055567,
        "active": false,
        "min": [
         3.0471,
@@ -20001,6 +20756,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -5417149410809385678,
      "active": true,
      "min": [
       -7.7907,
@@ -20016,6 +20772,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 4012757076715466034,
      "active": false,
      "min": [
       7.128,
@@ -20031,6 +20788,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 4012757076715466034,
      "active": false,
      "min": [
       4.7475,
@@ -20046,6 +20804,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -7290584116130058958,
      "active": true,
      "min": [
       7.1591,
@@ -20061,6 +20820,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -5208495308025533134,
      "active": true,
      "min": [
       2.1646,
@@ -20076,6 +20836,7 @@
     {
      "go": "SimpleCube.006 (20)",
      "col": "BoxCollider",
+     "goPid": -8852018885403382478,
      "active": true,
      "min": [
       2.1513,
@@ -20091,6 +20852,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": -3841064882347938510,
      "active": true,
      "min": [
       7.1513,
@@ -20106,6 +20868,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": -6599876232165626574,
      "active": false,
      "min": [
       7.21,
@@ -20121,6 +20884,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -2365936064639832782,
      "active": true,
      "min": [
       2.1513,
@@ -20136,6 +20900,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": -3780451073268290254,
      "active": true,
      "min": [
       2.1513,
@@ -20151,6 +20916,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 8831168288246164786,
      "active": true,
      "min": [
       2.21,
@@ -20166,6 +20932,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -8364937940757811918,
      "active": false,
      "min": [
       -2.5723,
@@ -20181,6 +20948,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 902386036893773106,
      "active": true,
      "min": [
       -7.7907,
@@ -20196,6 +20964,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -4478134086813913806,
      "active": true,
      "min": [
       7.21,
@@ -20211,6 +20980,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": -8426203325975728846,
      "active": true,
      "min": [
       -7.7907,
@@ -20226,6 +20996,7 @@
     {
      "go": "SimpleCube.006 (18)",
      "col": "BoxCollider",
+     "goPid": 4037643749308329266,
      "active": true,
      "min": [
       -2.8487,
@@ -20241,6 +21012,7 @@
     {
      "go": "SimpleCube.006 (19)",
      "col": "BoxCollider",
+     "goPid": -8127231006140568270,
      "active": true,
      "min": [
       -2.8487,
@@ -20256,6 +21028,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -1076880335914111694,
      "active": true,
      "min": [
       7.6894,
@@ -20271,6 +21044,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 1494404530174979378,
      "active": true,
      "min": [
       11.0739,
@@ -20286,6 +21060,7 @@
     {
      "go": "Suppoirt side coollider",
      "col": "BoxCollider",
+     "goPid": -9178198286241469134,
      "active": true,
      "min": [
       10.9303,
@@ -20301,6 +21076,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": 4848964501559340338,
      "active": true,
      "min": [
       7.1513,
@@ -20316,6 +21092,7 @@
     {
      "go": "Laser base (1)",
      "col": "BoxCollider",
+     "goPid": -2778859595957310158,
      "active": true,
      "min": [
       2.1513,
@@ -20331,6 +21108,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": 454353974608293170,
      "active": false,
      "min": [
       1.8513,
@@ -20346,6 +21124,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 2699534705010502962,
      "active": true,
      "min": [
       1.8513,
@@ -20361,6 +21140,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": -486723579373195982,
      "active": false,
      "min": [
       2.1513,
@@ -20376,6 +21156,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -6170868577453052622,
      "active": true,
      "min": [
       6.8513,
@@ -20391,6 +21172,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -8287860465868116686,
      "active": true,
      "min": [
       -2.8407,
@@ -20406,6 +21188,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -8287860465868116686,
      "active": true,
      "min": [
       0.7118,
@@ -20421,6 +21204,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": 904734541160082738,
      "active": false,
      "min": [
       -2.8407,
@@ -20436,6 +21220,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -2534206967352431310,
      "active": true,
      "min": [
       -2.8307,
@@ -20451,6 +21236,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -5403304200174277326,
      "active": false,
      "min": [
       5.5771,
@@ -20466,6 +21252,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -1567928694061437646,
      "active": true,
      "min": [
       1.127,
@@ -20481,6 +21268,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 3551647956054469938,
      "active": true,
      "min": [
       11.8817,
@@ -20496,6 +21284,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": 4399996345258831154,
      "active": true,
      "min": [
       6.7619,
@@ -20511,6 +21300,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4407022105407548722,
      "active": true,
      "min": [
       -1.2976,
@@ -20526,6 +21316,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4407022105407548722,
      "active": true,
      "min": [
       -0.1931,
@@ -20541,6 +21332,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 4407022105407548722,
      "active": true,
      "min": [
       -1.6611,
@@ -20556,6 +21348,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 2061221205243948338,
      "active": true,
      "min": [
       -4.3278,
@@ -20571,6 +21364,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -1152661124786787022,
      "active": true,
      "min": [
       -6.2763,
@@ -20586,6 +21380,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 7980128781658713394,
      "active": true,
      "min": [
       2.0257,
@@ -20601,6 +21396,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 7980128781658713394,
      "active": true,
      "min": [
       2.0257,
@@ -20616,6 +21412,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -6861740129082774222,
      "active": true,
      "min": [
       2.1413,
@@ -20631,6 +21428,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 8243990892965883186,
      "active": true,
      "min": [
       2.1513,
@@ -20646,6 +21444,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 8335863980470857010,
      "active": false,
      "min": [
       2.1413,
@@ -20661,6 +21460,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3523487384726695218,
      "active": true,
      "min": [
       2.0257,
@@ -20676,6 +21476,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3523487384726695218,
      "active": true,
      "min": [
       2.0257,
@@ -20691,6 +21492,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 6108961165815868722,
      "active": true,
      "min": [
       2.1413,
@@ -20706,6 +21508,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -3943991467366912718,
      "active": false,
      "min": [
       2.1413,
@@ -20721,6 +21524,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -4762094273093931726,
      "active": true,
      "min": [
       2.1513,
@@ -20736,6 +21540,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 7763485340968447282,
      "active": false,
      "min": [
       7.21,
@@ -20751,6 +21556,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 7763485340968447282,
      "active": false,
      "min": [
       7.21,
@@ -20766,6 +21572,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": 303920200322805042,
      "active": true,
      "min": [
       11.91,
@@ -20781,6 +21588,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 6153421719843663154,
      "active": true,
      "min": [
       7.21,
@@ -20796,6 +21604,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -5317592117338280654,
      "active": true,
      "min": [
       -2.9743,
@@ -20811,6 +21620,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -5317592117338280654,
      "active": true,
      "min": [
       -2.9743,
@@ -20826,6 +21636,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 712371395406622002,
      "active": true,
      "min": [
       -2.8487,
@@ -20841,6 +21652,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 4079227620021267762,
      "active": false,
      "min": [
       -2.8587,
@@ -20856,6 +21668,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -7913138949710648014,
      "active": true,
      "min": [
       -2.8587,
@@ -20871,6 +21684,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -8320457899310224078,
      "active": true,
      "min": [
       -7.9163,
@@ -20886,6 +21700,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -8320457899310224078,
      "active": true,
      "min": [
       -7.9163,
@@ -20901,6 +21716,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "MeshCollider",
+     "goPid": -8253853392331313870,
      "active": false,
      "min": [
       -7.8007,
@@ -20916,6 +21732,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 980278266665069874,
      "active": true,
      "min": [
       -7.8007,
@@ -20931,6 +21748,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 6338111690392628530,
      "active": true,
      "min": [
       -7.7907,
@@ -20968,6 +21786,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -875179467805921998,
         "min": [
          -7.7907,
          13.1679,
@@ -20985,6 +21804,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 3388976555240222002,
        "active": false,
        "min": [
         -7.7947,
@@ -21000,6 +21820,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -3283306380158472910,
        "active": false,
        "min": [
         -7.8007,
@@ -21015,6 +21836,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 1658598900785704242,
        "active": true,
        "min": [
         -7.8007,
@@ -21030,6 +21852,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -7081930548423594702,
        "active": false,
        "min": [
         -7.7947,
@@ -21129,6 +21952,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -2387425142075527886,
         "min": [
          -2.8487,
          -3.3375,
@@ -21146,6 +21970,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 7096978703757569330,
        "active": false,
        "min": [
         -2.8527,
@@ -21161,6 +21986,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -238264096307188430,
        "active": false,
        "min": [
         -2.8527,
@@ -21176,6 +22002,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -1447314697876247246,
        "active": false,
        "min": [
         -2.8587,
@@ -21191,6 +22018,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -3073453994808545998,
        "active": true,
        "min": [
         -2.8587,
@@ -21290,6 +22118,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -228484903065785038,
         "min": [
          -7.7907,
          7.4179,
@@ -21307,6 +22136,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": 6213770912257764658,
        "active": false,
        "min": [
         -7.8007,
@@ -21322,6 +22152,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -7628248303110361806,
        "active": false,
        "min": [
         -3.3445,
@@ -21337,6 +22168,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 6407924682783943986,
        "active": false,
        "min": [
         -7.7885,
@@ -21352,6 +22184,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -7566042109260632782,
        "active": true,
        "min": [
         -3.0907,
@@ -21451,6 +22284,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 7191897683509144882,
         "min": [
          2.1513,
          0.7708,
@@ -21468,6 +22302,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": -5956911817679082190,
        "active": true,
        "min": [
         2.1413,
@@ -21483,6 +22318,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -8928192295199347406,
        "active": false,
        "min": [
         2.1413,
@@ -21498,6 +22334,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 1105179572484468018,
        "active": false,
        "min": [
         2.1473,
@@ -21513,6 +22350,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -2371152063278781134,
        "active": false,
        "min": [
         2.1473,
@@ -21612,6 +22450,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -8425186371640595150,
         "min": [
          -7.7907,
          14.8086,
@@ -21629,6 +22468,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 4720186285340585266,
        "active": false,
        "min": [
         -7.7885,
@@ -21644,6 +22484,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 3248317921116187954,
        "active": true,
        "min": [
         -3.0907,
@@ -21659,6 +22500,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -1649830986117255886,
        "active": false,
        "min": [
         -3.3445,
@@ -21674,6 +22516,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": -3506799579827180238,
        "active": false,
        "min": [
         -7.8007,
@@ -22391,6 +23234,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 2079632272874859204,
      "active": true,
      "min": [
       -7.7219,
@@ -22406,6 +23250,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 6118123289928460996,
      "active": true,
      "min": [
       -3.0219,
@@ -22421,6 +23266,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 4253649096449977028,
      "active": false,
      "min": [
       -7.7219,
@@ -22436,6 +23282,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3895079622343977668,
      "active": true,
      "min": [
       -7.6979,
@@ -22451,6 +23298,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3895079622343977668,
      "active": true,
      "min": [
       -3.2003,
@@ -22466,6 +23314,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3263796895014065468,
      "active": true,
      "min": [
       2.3114,
@@ -22481,6 +23330,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": -3263796895014065468,
      "active": true,
      "min": [
       6.8091,
@@ -22496,6 +23346,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 4092652660606036676,
      "active": false,
      "min": [
       2.2874,
@@ -22511,6 +23362,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -7482972010235106620,
      "active": true,
      "min": [
       2.2874,
@@ -22526,6 +23378,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "MeshCollider",
+     "goPid": 6010739486947076804,
      "active": true,
      "min": [
       6.9874,
@@ -22541,6 +23394,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 6010739486947076804,
      "active": true,
      "min": [
       6.9874,
@@ -22556,6 +23410,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6757496894432471748,
      "active": true,
      "min": [
       4.2479,
@@ -22571,6 +23426,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6757496894432471748,
      "active": true,
      "min": [
       5.3537,
@@ -22586,6 +23442,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": 6757496894432471748,
      "active": true,
      "min": [
       3.8856,
@@ -22601,6 +23458,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -2713648019037951292,
      "active": true,
      "min": [
       -1.9916,
@@ -22616,6 +23474,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": -2713648019037951292,
      "active": true,
      "min": [
       -1.9916,
@@ -22631,6 +23490,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": -3070097923558675772,
      "active": false,
      "min": [
       -2.5241,
@@ -22646,6 +23506,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 8918699651313232580,
      "active": true,
      "min": [
       -2.7866,
@@ -22661,6 +23522,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -6438477723607897404,
      "active": true,
      "min": [
       -5.3419,
@@ -22676,6 +23538,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 2562928941578840772,
      "active": true,
      "min": [
       1.8874,
@@ -22691,6 +23554,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -2354044052266816828,
      "active": true,
      "min": [
       -2.6165,
@@ -22706,6 +23570,7 @@
     {
      "go": "Corner Platform",
      "col": "BoxCollider",
+     "goPid": 1483265224301275844,
      "active": true,
      "min": [
       -7.7219,
@@ -22721,6 +23586,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -7259805936030324028,
      "active": true,
      "min": [
       -7.7157,
@@ -22736,6 +23602,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -8104099157052429628,
      "active": true,
      "min": [
       -3.0219,
@@ -22751,6 +23618,7 @@
     {
      "go": "slide plat",
      "col": "MeshCollider",
+     "goPid": -7881269731655357756,
      "active": true,
      "min": [
       -2.57,
@@ -22766,6 +23634,7 @@
     {
      "go": "SlideCube (2)",
      "col": "BoxCollider",
+     "goPid": 7763267042283547332,
      "active": true,
      "min": [
       2.13,
@@ -22781,6 +23650,7 @@
     {
      "go": "SlideCube (1)",
      "col": "BoxCollider",
+     "goPid": 5404956239071144644,
      "active": true,
      "min": [
       -2.59,
@@ -22796,6 +23666,7 @@
     {
      "go": "4SidesCurved_Cube 1 (1)",
      "col": "BoxCollider",
+     "goPid": -5522594329160127804,
      "active": true,
      "min": [
       0.532,
@@ -22811,6 +23682,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": 9145287379996895940,
      "active": true,
      "min": [
       0.532,
@@ -22826,6 +23698,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": -7596330397731132732,
      "active": true,
      "min": [
       -7.5822,
@@ -22841,6 +23714,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": -8359971039524951356,
      "active": true,
      "min": [
       -7.7219,
@@ -22856,6 +23730,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": -7438280241646998844,
      "active": false,
      "min": [
       7.128,
@@ -22871,6 +23746,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": -7438280241646998844,
      "active": false,
      "min": [
       4.7475,
@@ -22886,6 +23762,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 2753879332827491012,
      "active": true,
      "min": [
       2.1646,
@@ -22901,6 +23778,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 6472688209793903300,
      "active": true,
      "min": [
       7.1591,
@@ -22916,6 +23794,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": -4705909293558928700,
      "active": true,
      "min": [
       2.4277,
@@ -22931,6 +23810,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": -6887498822183425340,
      "active": false,
      "min": [
       -2.9095,
@@ -22946,6 +23826,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": -5148708660715656508,
      "active": true,
      "min": [
       -2.57,
@@ -22961,6 +23842,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -5987127629378950460,
      "active": true,
      "min": [
       2.4413,
@@ -22976,6 +23858,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": -6941437307373229372,
      "active": true,
      "min": [
       -2.5723,
@@ -22991,6 +23874,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": -4939284940646651196,
      "active": false,
      "min": [
       2.4277,
@@ -23006,6 +23890,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": 6411986829914401476,
      "active": true,
      "min": [
       2.4277,
@@ -23021,6 +23906,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -2125421739848176956,
      "active": true,
      "min": [
       -2.551,
@@ -23036,6 +23922,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": 1003073347546049220,
      "active": false,
      "min": [
       -2.5723,
@@ -23051,6 +23938,7 @@
     {
      "go": "SimpleCube.006 (4)",
      "col": "BoxCollider",
+     "goPid": 5751181999330159300,
      "active": true,
      "min": [
       -2.5723,
@@ -23066,6 +23954,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 1167687727036885700,
      "active": true,
      "min": [
       7.1477,
@@ -23081,6 +23970,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": -8773766073466688828,
      "active": false,
      "min": [
       -2.8127,
@@ -23096,6 +23986,7 @@
     {
      "go": "SimpleCube.006 (18)",
      "col": "BoxCollider",
+     "goPid": 4380492676459457220,
      "active": true,
      "min": [
       -7.7219,
@@ -23111,6 +24002,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -3272312825023173948,
      "active": true,
      "min": [
       2.4477,
@@ -23126,6 +24018,7 @@
     {
      "go": "4SidesCurved_Cube 1 (1)",
      "col": "BoxCollider",
+     "goPid": 707940310661786308,
      "active": true,
      "min": [
       -4.5301,
@@ -23141,6 +24034,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -3908028478354822460,
      "active": true,
      "min": [
       -4.5301,
@@ -23156,6 +24050,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": 4902766338286611140,
      "active": true,
      "min": [
       -6.2763,
@@ -23171,6 +24066,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 5942467419124656836,
      "active": true,
      "min": [
       -4.3278,
@@ -23186,6 +24082,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 6754031217596820164,
      "active": false,
      "min": [
       -2.5823,
@@ -23201,6 +24098,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -5627754915532444988,
      "active": true,
      "min": [
       -2.5823,
@@ -23216,6 +24114,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 9077296494151789252,
      "active": true,
      "min": [
       -2.5723,
@@ -23231,6 +24130,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 5584631588495682244,
      "active": true,
      "min": [
       -2.698,
@@ -23246,6 +24146,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 5584631588495682244,
      "active": true,
      "min": [
       -2.698,
@@ -23261,6 +24162,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "MeshCollider",
+     "goPid": 4317893013264329412,
      "active": false,
      "min": [
       2.1277,
@@ -23276,6 +24178,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 7611288644642138820,
      "active": false,
      "min": [
       -2.5723,
@@ -23291,6 +24194,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 7611288644642138820,
      "active": false,
      "min": [
       -2.5723,
@@ -23306,6 +24210,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3652948038832624956,
      "active": true,
      "min": [
       -2.5723,
@@ -23343,6 +24248,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 4034417115769662148,
         "min": [
          -7.7219,
          12.1079,
@@ -23360,6 +24266,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": 406008585172085444,
        "active": false,
        "min": [
         -3.2758,
@@ -23375,6 +24282,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": -8762056780115154236,
        "active": false,
        "min": [
         -7.7319,
@@ -23390,6 +24298,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": 3832669916468865732,
        "active": false,
        "min": [
         -7.7198,
@@ -23405,6 +24314,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 7741716010756336324,
        "active": true,
        "min": [
         -3.0219,
@@ -23504,6 +24414,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 9069840787337898692,
         "min": [
          2.43,
          4.9779,
@@ -23521,6 +24432,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 8717695420410030788,
        "active": true,
        "min": [
         7.13,
@@ -23536,6 +24448,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "MeshCollider",
+       "goPid": 8535281426155891396,
        "active": false,
        "min": [
         2.42,
@@ -23551,6 +24464,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -4151133472761386300,
        "active": false,
        "min": [
         2.4321,
@@ -23566,6 +24480,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -297307343639549244,
        "active": false,
        "min": [
         6.8761,
@@ -24200,6 +25115,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -4476533942015172512,
      "active": true,
      "min": [
       -9.4209,
@@ -24215,6 +25131,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -4476533942015172512,
      "active": true,
      "min": [
       0.9518,
@@ -24230,6 +25147,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -4453457603338051488,
      "active": false,
      "min": [
       -2.6007,
@@ -24245,6 +25163,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -3670653516210446240,
      "active": true,
      "min": [
       -2.5907,
@@ -24260,6 +25179,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 147044159275786336,
      "active": true,
      "min": [
       -0.9213,
@@ -24275,6 +25195,7 @@
     {
      "go": "Magnet Base",
      "col": "BoxCollider",
+     "goPid": 147044159275786336,
      "active": true,
      "min": [
       -1.8225,
@@ -24290,6 +25211,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 5896155329302224992,
      "active": false,
      "min": [
       2.3548,
@@ -24305,6 +25227,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": 5896155329302224992,
      "active": false,
      "min": [
       2.3548,
@@ -24320,6 +25243,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": 6607270053730902112,
      "active": true,
      "min": [
       7.0548,
@@ -24335,6 +25259,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -1600850463211528096,
      "active": true,
      "min": [
       2.3548,
@@ -24350,6 +25275,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -396039646531624864,
      "active": false,
      "min": [
       -2.5886,
@@ -24365,6 +25291,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -3752026530693783456,
      "active": true,
      "min": [
       -2.5822,
@@ -24380,6 +25307,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -1310472710607151008,
      "active": true,
      "min": [
       2.1178,
@@ -24395,6 +25323,7 @@
     {
      "go": "slide plat (1)",
      "col": "MeshCollider",
+     "goPid": 5474359119992971360,
      "active": true,
      "min": [
       7.33,
@@ -24410,6 +25339,7 @@
     {
      "go": "SlideCube (1)",
      "col": "MeshCollider",
+     "goPid": 85721316632420448,
      "active": true,
      "min": [
       7.33,
@@ -24425,6 +25355,7 @@
     {
      "go": "SlideCube (2)",
      "col": "MeshCollider",
+     "goPid": -7320307515334664096,
      "active": true,
      "min": [
       12.03,
@@ -24440,6 +25371,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 371202824479563872,
      "active": true,
      "min": [
       -7.5307,
@@ -24455,6 +25387,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 8495624766554300512,
      "active": false,
      "min": [
       -7.5307,
@@ -24470,6 +25403,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 2728062608250101856,
      "active": true,
      "min": [
       -7.5207,
@@ -24485,6 +25419,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 8508449637738340448,
      "active": false,
      "min": [
       -7.5247,
@@ -24500,6 +25435,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 475667996197970016,
      "active": false,
      "min": [
       -7.5247,
@@ -24515,6 +25451,7 @@
     {
      "go": "4SidesCurved_Cube 1",
      "col": "BoxCollider",
+     "goPid": -7824629226099908512,
      "active": true,
      "min": [
       -9.4779,
@@ -24530,6 +25467,7 @@
     {
      "go": "RightSide_Joint",
      "col": "BoxCollider",
+     "goPid": -6384824837632237472,
      "active": true,
      "min": [
       -7.8024,
@@ -24545,6 +25483,7 @@
     {
      "go": "LeftSide_Joint",
      "col": "BoxCollider",
+     "goPid": -2670691511884062624,
      "active": true,
      "min": [
       -7.8625,
@@ -24560,6 +25499,7 @@
     {
      "go": "MovingJoint",
      "col": "BoxCollider",
+     "goPid": 4502485355129462880,
      "active": true,
      "min": [
       -7.8032,
@@ -24575,6 +25515,7 @@
     {
      "go": "MovingRod",
      "col": "BoxCollider",
+     "goPid": 7548398905250406496,
      "active": true,
      "min": [
       -7.2666,
@@ -24590,6 +25531,7 @@
     {
      "go": "MovingJoint.001",
      "col": "BoxCollider",
+     "goPid": 5886067950839128160,
      "active": true,
      "min": [
       -5.3398,
@@ -24605,6 +25547,7 @@
     {
      "go": "Cylinder",
      "col": "BoxCollider",
+     "goPid": -6246191593423576992,
      "active": true,
      "min": [
       -6.0869,
@@ -24620,6 +25563,7 @@
     {
      "go": "StaticRod",
      "col": "BoxCollider",
+     "goPid": 1552114224790560864,
      "active": true,
      "min": [
       -7.8763,
@@ -24635,6 +25579,7 @@
     {
      "go": "DoubleCurveCube.028",
      "col": "MeshCollider",
+     "goPid": -8815565227573321632,
      "active": true,
      "min": [
       -7.5207,
@@ -24650,6 +25595,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": -7732315614585102240,
      "active": false,
      "min": [
       6.8261,
@@ -24665,6 +25611,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -8302024686532173728,
      "active": true,
      "min": [
       2.38,
@@ -24680,6 +25627,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": 985546834940059744,
      "active": false,
      "min": [
       2.3821,
@@ -24695,6 +25643,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 338193422323015776,
      "active": false,
      "min": [
       2.38,
@@ -24710,6 +25659,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -6033005643661778848,
      "active": true,
      "min": [
       7.08,
@@ -24725,6 +25675,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -921789125478326176,
      "active": false,
      "min": [
       -7.607,
@@ -24740,6 +25691,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -2185793181490028448,
      "active": true,
      "min": [
       -2.9007,
@@ -24755,6 +25707,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -890256518067068832,
      "active": true,
      "min": [
       -7.6007,
@@ -24770,6 +25723,7 @@
     {
      "go": "SimpleCube.006 (20)",
      "col": "BoxCollider",
+     "goPid": -873118280741887904,
      "active": true,
      "min": [
       2.3548,
@@ -24785,6 +25739,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": 6846266294708265056,
      "active": true,
      "min": [
       2.1178,
@@ -24800,6 +25755,7 @@
     {
      "go": "SimpleCube.006 (15)",
      "col": "BoxCollider",
+     "goPid": 1625434635658256480,
      "active": true,
      "min": [
       -7.5207,
@@ -24815,6 +25771,7 @@
     {
      "go": "SimpleCube.006 (9)",
      "col": "BoxCollider",
+     "goPid": 4149669325006823520,
      "active": true,
      "min": [
       -2.5407,
@@ -24830,6 +25787,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 2945253929406226528,
      "active": false,
      "min": [
       7.128,
@@ -24845,6 +25803,7 @@
     {
      "go": "sidebarrier",
      "col": "BoxCollider",
+     "goPid": 2945253929406226528,
      "active": false,
      "min": [
       4.7475,
@@ -24860,6 +25819,7 @@
     {
      "go": "SimpleCube.006 (13)",
      "col": "BoxCollider",
+     "goPid": -6545065243212390304,
      "active": true,
      "min": [
       2.1646,
@@ -24875,6 +25835,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": 7657675096798126176,
      "active": true,
      "min": [
       7.1591,
@@ -24890,6 +25851,7 @@
     {
      "go": "SimpleCube.006 (8)",
      "col": "BoxCollider",
+     "goPid": 3584994036311449696,
      "active": true,
      "min": [
       -7.5207,
@@ -24905,6 +25867,7 @@
     {
      "go": "SimpleCube.006 (10)",
      "col": "BoxCollider",
+     "goPid": -3832326625093099424,
      "active": true,
      "min": [
       7.3348,
@@ -24920,6 +25883,7 @@
     {
      "go": "SimpleCube.006 (11)",
      "col": "BoxCollider",
+     "goPid": -7376778301923925920,
      "active": true,
      "min": [
       2.21,
@@ -24935,6 +25899,7 @@
     {
      "go": "SimpleCube.006 (18)",
      "col": "BoxCollider",
+     "goPid": 3880132956119359584,
      "active": true,
      "min": [
       7.33,
@@ -24950,6 +25915,7 @@
     {
      "go": "SimpleCube.006 (16)",
      "col": "BoxCollider",
+     "goPid": -8814235369205735328,
      "active": true,
      "min": [
       7.3348,
@@ -24965,6 +25931,7 @@
     {
      "go": "SimpleCube.006 (19)",
      "col": "BoxCollider",
+     "goPid": 6777461095514497120,
      "active": true,
      "min": [
       -7.491,
@@ -24980,6 +25947,7 @@
     {
      "go": "SimpleCube.006 (12)",
      "col": "BoxCollider",
+     "goPid": -7507618926933254048,
      "active": true,
      "min": [
       -7.5207,
@@ -24995,6 +25963,7 @@
     {
      "go": "SimpleCube.006 (17)",
      "col": "BoxCollider",
+     "goPid": -7085651068930236320,
      "active": true,
      "min": [
       7.33,
@@ -25010,6 +25979,7 @@
     {
      "go": "SimpleCube.006 (6)",
      "col": "BoxCollider",
+     "goPid": -7806798967923810208,
      "active": false,
      "min": [
       -2.5723,
@@ -25025,6 +25995,7 @@
     {
      "go": "SimpleCube.006 (14)",
      "col": "BoxCollider",
+     "goPid": -5065203703274151840,
      "active": true,
      "min": [
       2.42,
@@ -25040,6 +26011,7 @@
     {
      "go": "SimpleCube.006 (7)",
      "col": "BoxCollider",
+     "goPid": 4468112036671447136,
      "active": true,
      "min": [
       -2.5907,
@@ -25055,6 +26027,7 @@
     {
      "go": "SimpleCube.006 (5)",
      "col": "BoxCollider",
+     "goPid": 1115174746030268512,
      "active": true,
      "min": [
       -2.65,
@@ -25070,6 +26043,7 @@
     {
      "go": "CoinCollectorAreaoLD",
      "col": "MeshCollider",
+     "goPid": 3727194935311196256,
      "active": false,
      "min": [
       7.1028,
@@ -25085,6 +26059,7 @@
     {
      "go": "CoinCollector (1)",
      "col": "MeshCollider",
+     "goPid": -4016774108560891808,
      "active": true,
      "min": [
       6.9745,
@@ -25100,6 +26075,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": -958591795689430944,
      "active": true,
      "min": [
       6.8267,
@@ -25115,6 +26091,7 @@
     {
      "go": "sideColliderWalls",
      "col": "BoxCollider",
+     "goPid": 8289545230688837728,
      "active": true,
      "min": [
       11.8411,
@@ -25130,6 +26107,7 @@
     {
      "go": "RightRod",
      "col": "MeshCollider",
+     "goPid": 8704931650313248864,
      "active": true,
      "min": [
       -4.2678,
@@ -25145,6 +26123,7 @@
     {
      "go": "LeftRod",
      "col": "MeshCollider",
+     "goPid": -3668355403707064224,
      "active": true,
      "min": [
       -6.2163,
@@ -25160,6 +26139,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": 6732852437784256608,
      "active": true,
      "min": [
       7.3348,
@@ -25175,6 +26155,7 @@
     {
      "go": "SideWallCurve (1)",
      "col": "BoxCollider",
+     "goPid": -4818868238202380192,
      "active": false,
      "min": [
       7.337,
@@ -25190,6 +26171,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": 4270442917796831328,
      "active": false,
      "min": [
       7.3348,
@@ -25205,6 +26187,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": -7698555819357446048,
      "active": true,
      "min": [
       12.0348,
@@ -25220,6 +26203,7 @@
     {
      "go": "SideWallCurve",
      "col": "BoxCollider",
+     "goPid": 5250303141536260192,
      "active": false,
      "min": [
       11.781,
@@ -25235,6 +26219,7 @@
     {
      "go": "SingleCurve.002 (4)",
      "col": "BoxCollider",
+     "goPid": -1539745262282743712,
      "active": false,
      "min": [
       -2.541,
@@ -25250,6 +26235,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -9052689599902195616,
      "active": true,
      "min": [
       -2.5212,
@@ -25265,6 +26251,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -7957833939984785312,
      "active": true,
      "min": [
       -16.0276,
@@ -25280,6 +26267,7 @@
     {
      "go": "SingleCurve.002 (3)",
      "col": "BoxCollider",
+     "goPid": -7957833939984785312,
      "active": true,
      "min": [
       4.4838,
@@ -25295,6 +26283,7 @@
     {
      "go": "MovingRod",
      "col": "BoxCollider",
+     "goPid": -6378966209084792736,
      "active": true,
      "min": [
       -2.5599,
@@ -25310,6 +26299,7 @@
     {
      "go": "Cube (2)",
      "col": "BoxCollider",
+     "goPid": 6453220333371646048,
      "active": true,
      "min": [
       0.1377,
@@ -25325,6 +26315,7 @@
     {
      "go": "Cube (1)",
      "col": "BoxCollider",
+     "goPid": 4345141030846521440,
      "active": true,
      "min": [
       -2.3123,
@@ -25340,6 +26331,7 @@
     {
      "go": "MovingPlate",
      "col": "BoxCollider",
+     "goPid": -7956970747102502816,
      "active": true,
      "min": [
       -2.5729,
@@ -25355,6 +26347,7 @@
     {
      "go": "Cube (3)",
      "col": "BoxCollider",
+     "goPid": -4657308252184480,
      "active": true,
      "min": [
       -2.6201,
@@ -25370,6 +26363,7 @@
     {
      "go": "Cube",
      "col": "BoxCollider",
+     "goPid": 1256137284505428064,
      "active": true,
      "min": [
       -2.3377,
@@ -25385,6 +26379,7 @@
     {
      "go": "SingleCurve.002",
      "col": "MeshCollider",
+     "goPid": -2011009746753888160,
      "active": true,
      "min": [
       2.42,
@@ -25400,6 +26395,7 @@
     {
      "go": "SingleCurve.002 (2)",
      "col": "BoxCollider",
+     "goPid": -9040844707616595872,
      "active": true,
      "min": [
       2.41,
@@ -25415,6 +26411,7 @@
     {
      "go": "SingleCurve.002 (1)",
      "col": "BoxCollider",
+     "goPid": 421901641682772064,
      "active": false,
      "min": [
       2.41,
@@ -25430,6 +26427,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3593671730217672800,
      "active": true,
      "min": [
       2.2944,
@@ -25445,6 +26443,7 @@
     {
      "go": "Coveyor_Belt_Sides",
      "col": "BoxCollider",
+     "goPid": 3593671730217672800,
      "active": true,
      "min": [
       2.2944,
@@ -25460,6 +26459,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -6645518597708193696,
      "active": true,
      "min": [
       -5.5821,
@@ -25475,6 +26475,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -6645518597708193696,
      "active": true,
      "min": [
       -4.4763,
@@ -25490,6 +26491,7 @@
     {
      "go": "Collider",
      "col": "BoxCollider",
+     "goPid": -6645518597708193696,
      "active": true,
      "min": [
       -5.9444,
@@ -25527,6 +26529,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": 4511567422439481440,
         "min": [
          -2.5407,
          3.3473,
@@ -25544,6 +26547,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -8576451125377114016,
        "active": false,
        "min": [
         -2.5447,
@@ -25559,6 +26563,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": 2743768338302230624,
        "active": true,
        "min": [
         -2.5507,
@@ -25574,6 +26579,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": 821721382373941344,
        "active": false,
        "min": [
         -2.5507,
@@ -25589,6 +26595,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -2966085398117031840,
        "active": false,
        "min": [
         -2.5447,
@@ -25688,6 +26695,7 @@
        {
         "go": "SingleCurve.002",
         "col": "MeshCollider",
+        "goPid": -7139891406668570528,
         "min": [
          7.3348,
          -11.0921,
@@ -25705,6 +26713,7 @@
       {
        "go": "SideWallCurve (1)",
        "col": "MeshCollider",
+       "goPid": -462215837729693600,
        "active": false,
        "min": [
         7.337,
@@ -25720,6 +26729,7 @@
       {
        "go": "SideWallCurve",
        "col": "MeshCollider",
+       "goPid": -2712321696884596640,
        "active": false,
        "min": [
         11.781,
@@ -25735,6 +26745,7 @@
       {
        "go": "SingleCurve.002 (1)",
        "col": "BoxCollider",
+       "goPid": -1824678223388680096,
        "active": true,
        "min": [
         12.0348,
@@ -25750,6 +26761,7 @@
       {
        "go": "SingleCurve.002 (2)",
        "col": "BoxCollider",
+       "goPid": -4965711043012009888,
        "active": true,
        "min": [
         7.3248,
